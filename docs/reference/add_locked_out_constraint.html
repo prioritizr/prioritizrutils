@@ -150,154 +150,154 @@ locked out. See details for more information.</dd>
 <span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
 #&gt; Variable types: 0 continuous, 90 integer (90 binary)
 #&gt; Coefficient statistics:
-#&gt;   Matrix range     [1e-01, 9e-01]
+#&gt;   Matrix range     [2e-01, 9e-01]
 #&gt;   Objective range  [2e+02, 2e+02]
 #&gt;   Bounds range     [1e+00, 1e+00]
-#&gt;   RHS range        [5e+00, 1e+01]
-#&gt; Found heuristic solution: objective 5958.15
-#&gt; Presolve removed 0 rows and 19 columns
+#&gt;   RHS range        [6e+00, 1e+01]
+#&gt; Found heuristic solution: objective 4159.83
+#&gt; Presolve removed 0 rows and 20 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 5 rows, 71 columns, 355 nonzeros
-#&gt; Variable types: 0 continuous, 71 integer (71 binary)
-#&gt; Presolved: 5 rows, 71 columns, 355 nonzeros
+#&gt; Presolved: 5 rows, 70 columns, 350 nonzeros
+#&gt; Variable types: 0 continuous, 70 integer (70 binary)
+#&gt; Presolved: 5 rows, 70 columns, 350 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 3.582102e+03, 5 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 3.504576e+03, 17 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt;      0     0 3582.10210    0    3 5958.15248 3582.10210  39.9%     -    0s
-#&gt; H    0     0                    3638.5014037 3582.10210  1.55%     -    0s
+#&gt;      0     0 3504.57619    0    4 4159.82912 3504.57619  15.8%     -    0s
+#&gt; H    0     0                    3601.4996639 3504.57619  2.69%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (5 simplex iterations) in 0.01 seconds
+#&gt; Explored 0 nodes (17 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 2 available processors)
 #&gt; 
-#&gt; Solution count 2: 3638.5 5958.15 
-#&gt; Pool objective bound 3582.1
+#&gt; Solution count 2: 3601.5 4159.83 
+#&gt; Pool objective bound 3504.58
 #&gt; 
 #&gt; Optimal solution found (tolerance 1.00e-01)
-#&gt; Best objective 3.638501403688e+03, best bound 3.582102098146e+03, gap 1.5501%</div><div class='input'><span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
+#&gt; Best objective 3.601499663878e+03, best bound 3.504576185167e+03, gap 2.6912%</div><div class='input'><span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>)</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
 #&gt; Variable types: 0 continuous, 90 integer (90 binary)
 #&gt; Coefficient statistics:
-#&gt;   Matrix range     [1e-01, 9e-01]
+#&gt;   Matrix range     [2e-01, 9e-01]
 #&gt;   Objective range  [2e+02, 2e+02]
 #&gt;   Bounds range     [1e+00, 1e+00]
-#&gt;   RHS range        [5e+00, 1e+01]
-#&gt; Found heuristic solution: objective 5958.15
-#&gt; Presolve removed 0 rows and 19 columns
+#&gt;   RHS range        [6e+00, 1e+01]
+#&gt; Found heuristic solution: objective 4159.83
+#&gt; Presolve removed 0 rows and 20 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 5 rows, 71 columns, 355 nonzeros
-#&gt; Variable types: 0 continuous, 71 integer (71 binary)
-#&gt; Presolved: 5 rows, 71 columns, 355 nonzeros
+#&gt; Presolved: 5 rows, 70 columns, 350 nonzeros
+#&gt; Variable types: 0 continuous, 70 integer (70 binary)
+#&gt; Presolved: 5 rows, 70 columns, 350 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 3.582102e+03, 5 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 3.504576e+03, 17 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt;      0     0 3582.10210    0    3 5958.15248 3582.10210  39.9%     -    0s
-#&gt; H    0     0                    3638.5014037 3582.10210  1.55%     -    0s
+#&gt;      0     0 3504.57619    0    4 4159.82912 3504.57619  15.8%     -    0s
+#&gt; H    0     0                    3601.4996639 3504.57619  2.69%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (5 simplex iterations) in 0.01 seconds
+#&gt; Explored 0 nodes (17 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 2 available processors)
 #&gt; 
-#&gt; Solution count 2: 3638.5 5958.15 
-#&gt; Pool objective bound 3582.1
+#&gt; Solution count 2: 3601.5 4159.83 
+#&gt; Pool objective bound 3504.58
 #&gt; 
 #&gt; Optimal solution found (tolerance 1.00e-01)
-#&gt; Best objective 3.638501403688e+03, best bound 3.582102098146e+03, gap 1.5501%</div><div class='input'><span class='no'>s3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>)</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
+#&gt; Best objective 3.601499663878e+03, best bound 3.504576185167e+03, gap 2.6912%</div><div class='input'><span class='no'>s3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>)</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
 #&gt; Variable types: 0 continuous, 90 integer (90 binary)
 #&gt; Coefficient statistics:
-#&gt;   Matrix range     [1e-01, 9e-01]
+#&gt;   Matrix range     [2e-01, 9e-01]
 #&gt;   Objective range  [2e+02, 2e+02]
 #&gt;   Bounds range     [1e+00, 1e+00]
-#&gt;   RHS range        [5e+00, 1e+01]
-#&gt; Found heuristic solution: objective 5958.15
-#&gt; Presolve removed 0 rows and 19 columns
+#&gt;   RHS range        [6e+00, 1e+01]
+#&gt; Found heuristic solution: objective 4159.83
+#&gt; Presolve removed 0 rows and 20 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 5 rows, 71 columns, 355 nonzeros
-#&gt; Variable types: 0 continuous, 71 integer (71 binary)
-#&gt; Presolved: 5 rows, 71 columns, 355 nonzeros
+#&gt; Presolved: 5 rows, 70 columns, 350 nonzeros
+#&gt; Variable types: 0 continuous, 70 integer (70 binary)
+#&gt; Presolved: 5 rows, 70 columns, 350 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 3.582102e+03, 5 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 3.504576e+03, 17 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt;      0     0 3582.10210    0    3 5958.15248 3582.10210  39.9%     -    0s
-#&gt; H    0     0                    3638.5014037 3582.10210  1.55%     -    0s
+#&gt;      0     0 3504.57619    0    4 4159.82912 3504.57619  15.8%     -    0s
+#&gt; H    0     0                    3601.4996639 3504.57619  2.69%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (5 simplex iterations) in 0.01 seconds
+#&gt; Explored 0 nodes (17 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 2 available processors)
 #&gt; 
-#&gt; Solution count 2: 3638.5 5958.15 
-#&gt; Pool objective bound 3582.1
+#&gt; Solution count 2: 3601.5 4159.83 
+#&gt; Pool objective bound 3504.58
 #&gt; 
 #&gt; Optimal solution found (tolerance 1.00e-01)
-#&gt; Best objective 3.638501403688e+03, best bound 3.582102098146e+03, gap 1.5501%</div><div class='input'><span class='no'>s4</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p4</span>)</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
+#&gt; Best objective 3.601499663878e+03, best bound 3.504576185167e+03, gap 2.6912%</div><div class='input'><span class='no'>s4</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p4</span>)</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
 #&gt; Variable types: 0 continuous, 90 integer (90 binary)
 #&gt; Coefficient statistics:
-#&gt;   Matrix range     [1e-01, 9e-01]
+#&gt;   Matrix range     [2e-01, 9e-01]
 #&gt;   Objective range  [2e+02, 2e+02]
 #&gt;   Bounds range     [1e+00, 1e+00]
-#&gt;   RHS range        [5e+00, 1e+01]
-#&gt; Found heuristic solution: objective 5958.15
-#&gt; Presolve removed 0 rows and 19 columns
+#&gt;   RHS range        [6e+00, 1e+01]
+#&gt; Found heuristic solution: objective 4159.83
+#&gt; Presolve removed 0 rows and 20 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 5 rows, 71 columns, 355 nonzeros
-#&gt; Variable types: 0 continuous, 71 integer (71 binary)
-#&gt; Presolved: 5 rows, 71 columns, 355 nonzeros
+#&gt; Presolved: 5 rows, 70 columns, 350 nonzeros
+#&gt; Variable types: 0 continuous, 70 integer (70 binary)
+#&gt; Presolved: 5 rows, 70 columns, 350 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 3.582102e+03, 5 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 3.504576e+03, 17 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt;      0     0 3582.10210    0    3 5958.15248 3582.10210  39.9%     -    0s
-#&gt; H    0     0                    3638.5014037 3582.10210  1.55%     -    0s
+#&gt;      0     0 3504.57619    0    4 4159.82912 3504.57619  15.8%     -    0s
+#&gt; H    0     0                    3601.4996639 3504.57619  2.69%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (5 simplex iterations) in 0.01 seconds
+#&gt; Explored 0 nodes (17 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 2 available processors)
 #&gt; 
-#&gt; Solution count 2: 3638.5 5958.15 
-#&gt; Pool objective bound 3582.1
+#&gt; Solution count 2: 3601.5 4159.83 
+#&gt; Pool objective bound 3504.58
 #&gt; 
 #&gt; Optimal solution found (tolerance 1.00e-01)
-#&gt; Best objective 3.638501403688e+03, best bound 3.582102098146e+03, gap 1.5501%</div><div class='input'><span class='no'>s5</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p5</span>)</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
+#&gt; Best objective 3.601499663878e+03, best bound 3.504576185167e+03, gap 2.6912%</div><div class='input'><span class='no'>s5</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p5</span>)</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
 #&gt; Variable types: 0 continuous, 90 integer (90 binary)
 #&gt; Coefficient statistics:
-#&gt;   Matrix range     [1e-01, 9e-01]
+#&gt;   Matrix range     [2e-01, 9e-01]
 #&gt;   Objective range  [2e+02, 2e+02]
 #&gt;   Bounds range     [1e+00, 1e+00]
-#&gt;   RHS range        [5e+00, 1e+01]
-#&gt; Found heuristic solution: objective 5958.15
-#&gt; Presolve removed 0 rows and 19 columns
+#&gt;   RHS range        [6e+00, 1e+01]
+#&gt; Found heuristic solution: objective 4159.83
+#&gt; Presolve removed 0 rows and 20 columns
 #&gt; Presolve time: 0.00s
-#&gt; Presolved: 5 rows, 71 columns, 355 nonzeros
-#&gt; Variable types: 0 continuous, 71 integer (71 binary)
-#&gt; Presolved: 5 rows, 71 columns, 355 nonzeros
+#&gt; Presolved: 5 rows, 70 columns, 350 nonzeros
+#&gt; Variable types: 0 continuous, 70 integer (70 binary)
+#&gt; Presolved: 5 rows, 70 columns, 350 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 3.582102e+03, 5 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 3.504576e+03, 17 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt;      0     0 3582.10210    0    3 5958.15248 3582.10210  39.9%     -    0s
-#&gt; H    0     0                    3638.5014037 3582.10210  1.55%     -    0s
+#&gt;      0     0 3504.57619    0    4 4159.82912 3504.57619  15.8%     -    0s
+#&gt; H    0     0                    3601.4996639 3504.57619  2.69%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (5 simplex iterations) in 0.01 seconds
+#&gt; Explored 0 nodes (17 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 2 available processors)
 #&gt; 
-#&gt; Solution count 2: 3638.5 5958.15 
-#&gt; Pool objective bound 3582.1
+#&gt; Solution count 2: 3601.5 4159.83 
+#&gt; Pool objective bound 3504.58
 #&gt; 
 #&gt; Optimal solution found (tolerance 1.00e-01)
-#&gt; Best objective 3.638501403688e+03, best bound 3.582102098146e+03, gap 1.5501%</div><div class='input'>
+#&gt; Best objective 3.601499663878e+03, best bound 3.504576185167e+03, gap 2.6912%</div><div class='input'>
 <span class='co'># plot solutions</span>
 <span class='fu'>par</span>(<span class='kw'>mfrow</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>3</span>,<span class='fl'>2</span>))
 <span class='fu'>plot</span>(<span class='no'>s1</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>'none locked out'</span>)

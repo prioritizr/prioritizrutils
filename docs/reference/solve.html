@@ -135,33 +135,33 @@ object.</dd>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>solve</span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
 #&gt; Variable types: 0 continuous, 90 integer (90 binary)
 #&gt; Coefficient statistics:
-#&gt;   Matrix range     [1e-01, 9e-01]
+#&gt;   Matrix range     [2e-01, 9e-01]
 #&gt;   Objective range  [2e+02, 2e+02]
 #&gt;   Bounds range     [1e+00, 1e+00]
-#&gt;   RHS range        [2e+00, 7e+00]
-#&gt; Found heuristic solution: objective 3332.3
+#&gt;   RHS range        [3e+00, 7e+00]
+#&gt; Found heuristic solution: objective 2140.26
 #&gt; Presolve time: 0.00s
 #&gt; Presolved: 5 rows, 90 columns, 450 nonzeros
 #&gt; Variable types: 0 continuous, 90 integer (90 binary)
 #&gt; Presolved: 5 rows, 90 columns, 450 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 1.782297e+03, 10 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 1.720638e+03, 10 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt;      0     0 1782.29653    0    3 3332.29701 1782.29653  46.5%     -    0s
-#&gt; H    0     0                    1807.7489997 1782.29653  1.41%     -    0s
+#&gt;      0     0 1720.63823    0    4 2140.25691 1720.63823  19.6%     -    0s
+#&gt; H    0     0                    1782.9782753 1720.63823  3.50%     -    0s
 #&gt; 
 #&gt; Explored 0 nodes (10 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 2 available processors)
 #&gt; 
-#&gt; Solution count 2: 1807.75 3332.3 
-#&gt; Pool objective bound 1782.3
+#&gt; Solution count 2: 1782.98 2140.26 
+#&gt; Pool objective bound 1720.64
 #&gt; 
 #&gt; Optimal solution found (tolerance 1.00e-01)
-#&gt; Best objective 1.807748999681e+03, best bound 1.782296533661e+03, gap 1.4080%</div><div class='input'>
+#&gt; Best objective 1.782978275316e+03, best bound 1.720638226500e+03, gap 3.4964%</div><div class='input'>
 <span class='co'># print the solution</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s</span>)</div><div class='output co'>#&gt; class       : RasterLayer 
 #&gt; dimensions  : 10, 10, 100  (nrow, ncol, ncell)

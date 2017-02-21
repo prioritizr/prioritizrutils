@@ -242,9 +242,9 @@ add_rsymphony_solver <- function(x, gap=0.1, time_limit=-1, first_feasible=0,
 #' @rdname solvers
 #' @export
 add_default_solver <- function(x) {
-  if (requireNamespace("gurobi", quietly = TRUE)) {
+  if (requireNamespace('gurobi', quietly = TRUE)) {
     return(add_gurobi_solver(x))
-  } else if (requireNamespace("lpsymphony", quietly = TRUE)) {
+  } else if (requireNamespace('lpsymphony', quietly = TRUE)) {
     return(add_lpsymphony_solver(x))
   } else {
     return(add_rsymphony_solver(x))

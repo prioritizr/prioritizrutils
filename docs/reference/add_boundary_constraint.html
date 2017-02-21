@@ -128,34 +128,34 @@ of <code>0.5</code> is commonly used for planning units along the coast line.</d
 <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 585 rows, 380 columns and 1610 nonzeros
 #&gt; Variable types: 0 continuous, 380 integer (380 binary)
 #&gt; Coefficient statistics:
-#&gt;   Matrix range     [1e-01, 1e+00]
+#&gt;   Matrix range     [2e-01, 1e+00]
 #&gt;   Objective range  [5e-01, 3e+02]
 #&gt;   Bounds range     [1e+00, 1e+00]
-#&gt;   RHS range        [5e+00, 1e+01]
-#&gt; Found heuristic solution: objective 6978.37
+#&gt;   RHS range        [6e+00, 1e+01]
+#&gt; Found heuristic solution: objective 4728.38
 #&gt; Presolve time: 0.02s
 #&gt; Presolved: 585 rows, 380 columns, 1610 nonzeros
 #&gt; Variable types: 0 continuous, 380 integer (380 binary)
 #&gt; Presolved: 585 rows, 380 columns, 1610 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 4.084966e+03, 494 iterations, 0.02 seconds
+#&gt; Root relaxation: objective 3.967468e+03, 475 iterations, 0.02 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt;      0     0 4084.96606    0  184 6978.37471 4084.96606  41.5%     -    0s
-#&gt; H    0     0                    4557.8638008 4084.96606  10.4%     -    0s
-#&gt; H    0     0                    4495.9782032 4084.96606  9.14%     -    0s
+#&gt;      0     0 3967.46769    0   59 4728.37913 3967.46769  16.1%     -    0s
+#&gt; H    0     0                    4604.1370005 3967.46769  13.8%     -    0s
+#&gt; H    0     0                    4151.1879602 3967.46769  4.43%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (494 simplex iterations) in 0.05 seconds
+#&gt; Explored 0 nodes (475 simplex iterations) in 0.05 seconds
 #&gt; Thread count was 1 (of 2 available processors)
 #&gt; 
-#&gt; Solution count 3: 4495.98 4557.86 6978.37 
-#&gt; Pool objective bound 4084.97
+#&gt; Solution count 3: 4151.19 4604.14 4728.38 
+#&gt; Pool objective bound 3967.47
 #&gt; 
 #&gt; Optimal solution found (tolerance 1.00e-01)
-#&gt; Best objective 4.495978203222e+03, best bound 4.084966064896e+03, gap 9.1418%</div><div class='output co'>#&gt; class       : RasterLayer 
+#&gt; Best objective 4.151187960154e+03, best bound 3.967467690498e+03, gap 4.4257%</div><div class='output co'>#&gt; class       : RasterLayer 
 #&gt; dimensions  : 10, 10, 100  (nrow, ncol, ncell)
 #&gt; resolution  : 0.1, 0.1  (x, y)
 #&gt; extent      : 0, 1, 0, 1  (xmin, xmax, ymin, ymax)
@@ -166,96 +166,96 @@ of <code>0.5</code> is commonly used for planning units along the coast line.</d
 #&gt; </div><div class='input'><span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>stack</span>(<span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>))</div><div class='output co'>#&gt; Optimize a model with 585 rows, 380 columns and 1610 nonzeros
 #&gt; Variable types: 0 continuous, 380 integer (380 binary)
 #&gt; Coefficient statistics:
-#&gt;   Matrix range     [1e-01, 1e+00]
+#&gt;   Matrix range     [2e-01, 1e+00]
 #&gt;   Objective range  [5e-01, 3e+02]
 #&gt;   Bounds range     [1e+00, 1e+00]
-#&gt;   RHS range        [5e+00, 1e+01]
-#&gt; Found heuristic solution: objective 6978.37
+#&gt;   RHS range        [6e+00, 1e+01]
+#&gt; Found heuristic solution: objective 4728.38
 #&gt; Presolve time: 0.01s
 #&gt; Presolved: 585 rows, 380 columns, 1610 nonzeros
 #&gt; Variable types: 0 continuous, 380 integer (380 binary)
 #&gt; Presolved: 585 rows, 380 columns, 1610 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 4.084966e+03, 494 iterations, 0.01 seconds
+#&gt; Root relaxation: objective 3.967468e+03, 475 iterations, 0.01 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt;      0     0 4084.96606    0  184 6978.37471 4084.96606  41.5%     -    0s
-#&gt; H    0     0                    4557.8638008 4084.96606  10.4%     -    0s
-#&gt; H    0     0                    4495.9782032 4084.96606  9.14%     -    0s
+#&gt;      0     0 3967.46769    0   59 4728.37913 3967.46769  16.1%     -    0s
+#&gt; H    0     0                    4604.1370005 3967.46769  13.8%     -    0s
+#&gt; H    0     0                    4151.1879602 3967.46769  4.43%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (494 simplex iterations) in 0.04 seconds
+#&gt; Explored 0 nodes (475 simplex iterations) in 0.03 seconds
 #&gt; Thread count was 1 (of 2 available processors)
 #&gt; 
-#&gt; Solution count 3: 4495.98 4557.86 6978.37 
-#&gt; Pool objective bound 4084.97
+#&gt; Solution count 3: 4151.19 4604.14 4728.38 
+#&gt; Pool objective bound 3967.47
 #&gt; 
 #&gt; Optimal solution found (tolerance 1.00e-01)
-#&gt; Best objective 4.495978203222e+03, best bound 4.084966064896e+03, gap 9.1418%
+#&gt; Best objective 4.151187960154e+03, best bound 3.967467690498e+03, gap 4.4257%
 #&gt; Optimize a model with 585 rows, 380 columns and 1610 nonzeros
 #&gt; Variable types: 0 continuous, 380 integer (380 binary)
 #&gt; Coefficient statistics:
-#&gt;   Matrix range     [1e-01, 1e+00]
+#&gt;   Matrix range     [2e-01, 1e+00]
 #&gt;   Objective range  [5e-01, 3e+02]
 #&gt;   Bounds range     [1e+00, 1e+00]
-#&gt;   RHS range        [5e+00, 1e+01]
-#&gt; Found heuristic solution: objective 6978.37
+#&gt;   RHS range        [6e+00, 1e+01]
+#&gt; Found heuristic solution: objective 4728.38
 #&gt; Presolve time: 0.01s
 #&gt; Presolved: 585 rows, 380 columns, 1610 nonzeros
 #&gt; Variable types: 0 continuous, 380 integer (380 binary)
 #&gt; Presolved: 585 rows, 380 columns, 1610 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 4.084966e+03, 494 iterations, 0.01 seconds
+#&gt; Root relaxation: objective 3.967468e+03, 475 iterations, 0.01 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt;      0     0 4084.96606    0  184 6978.37471 4084.96606  41.5%     -    0s
-#&gt; H    0     0                    4557.8638008 4084.96606  10.4%     -    0s
-#&gt; H    0     0                    4495.9782032 4084.96606  9.14%     -    0s
+#&gt;      0     0 3967.46769    0   59 4728.37913 3967.46769  16.1%     -    0s
+#&gt; H    0     0                    4604.1370005 3967.46769  13.8%     -    0s
+#&gt; H    0     0                    4151.1879602 3967.46769  4.43%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (494 simplex iterations) in 0.04 seconds
+#&gt; Explored 0 nodes (475 simplex iterations) in 0.03 seconds
 #&gt; Thread count was 1 (of 2 available processors)
 #&gt; 
-#&gt; Solution count 3: 4495.98 4557.86 6978.37 
-#&gt; Pool objective bound 4084.97
+#&gt; Solution count 3: 4151.19 4604.14 4728.38 
+#&gt; Pool objective bound 3967.47
 #&gt; 
 #&gt; Optimal solution found (tolerance 1.00e-01)
-#&gt; Best objective 4.495978203222e+03, best bound 4.084966064896e+03, gap 9.1418%
+#&gt; Best objective 4.151187960154e+03, best bound 3.967467690498e+03, gap 4.4257%
 #&gt; Optimize a model with 585 rows, 380 columns and 1610 nonzeros
 #&gt; Variable types: 0 continuous, 380 integer (380 binary)
 #&gt; Coefficient statistics:
-#&gt;   Matrix range     [1e-01, 1e+00]
+#&gt;   Matrix range     [2e-01, 1e+00]
 #&gt;   Objective range  [5e-01, 3e+02]
 #&gt;   Bounds range     [1e+00, 1e+00]
-#&gt;   RHS range        [5e+00, 1e+01]
-#&gt; Found heuristic solution: objective 6978.37
+#&gt;   RHS range        [6e+00, 1e+01]
+#&gt; Found heuristic solution: objective 4728.38
 #&gt; Presolve time: 0.01s
 #&gt; Presolved: 585 rows, 380 columns, 1610 nonzeros
 #&gt; Variable types: 0 continuous, 380 integer (380 binary)
 #&gt; Presolved: 585 rows, 380 columns, 1610 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 4.084966e+03, 494 iterations, 0.01 seconds
+#&gt; Root relaxation: objective 3.967468e+03, 475 iterations, 0.01 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt;      0     0 4084.96606    0  184 6978.37471 4084.96606  41.5%     -    0s
-#&gt; H    0     0                    4557.8638008 4084.96606  10.4%     -    0s
-#&gt; H    0     0                    4495.9782032 4084.96606  9.14%     -    0s
+#&gt;      0     0 3967.46769    0   59 4728.37913 3967.46769  16.1%     -    0s
+#&gt; H    0     0                    4604.1370005 3967.46769  13.8%     -    0s
+#&gt; H    0     0                    4151.1879602 3967.46769  4.43%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (494 simplex iterations) in 0.04 seconds
+#&gt; Explored 0 nodes (475 simplex iterations) in 0.03 seconds
 #&gt; Thread count was 1 (of 2 available processors)
 #&gt; 
-#&gt; Solution count 3: 4495.98 4557.86 6978.37 
-#&gt; Pool objective bound 4084.97
+#&gt; Solution count 3: 4151.19 4604.14 4728.38 
+#&gt; Pool objective bound 3967.47
 #&gt; 
 #&gt; Optimal solution found (tolerance 1.00e-01)
-#&gt; Best objective 4.495978203222e+03, best bound 4.084966064896e+03, gap 9.1418%</div><div class='input'>
+#&gt; Best objective 4.151187960154e+03, best bound 3.967467690498e+03, gap 4.4257%</div><div class='input'>
 <span class='co'># plot solutions</span>
 <span class='fu'>plot</span>(<span class='no'>s</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'basic solution'</span>, <span class='st'>'small boundary constraints'</span>,
                  <span class='st'>'high boundary constraints'</span>))</div><img src='add_boundary_constraint-7.png' alt='' width='540' height='400' /><div class='input'>

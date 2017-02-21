@@ -153,33 +153,33 @@ of <code>0.5</code> is commonly used for planning units along the coast line.</d
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 295 rows, 235 columns and 1030 nonzeros
 #&gt; Variable types: 0 continuous, 235 integer (235 binary)
 #&gt; Coefficient statistics:
-#&gt;   Matrix range     [1e-01, 1e+00]
+#&gt;   Matrix range     [2e-01, 1e+00]
 #&gt;   Objective range  [1e-01, 2e+02]
 #&gt;   Bounds range     [1e+00, 1e+00]
-#&gt;   RHS range        [5e+00, 1e+01]
-#&gt; Found heuristic solution: objective 6155.62
+#&gt;   RHS range        [6e+00, 1e+01]
+#&gt; Found heuristic solution: objective 4134.58
 #&gt; Presolve time: 0.01s
 #&gt; Presolved: 295 rows, 235 columns, 1030 nonzeros
 #&gt; Variable types: 0 continuous, 235 integer (235 binary)
 #&gt; Presolved: 295 rows, 235 columns, 1030 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 3.582440e+03, 160 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 3.482402e+03, 156 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt;      0     0 3582.43991    0    9 6155.62471 3582.43991  41.8%     -    0s
-#&gt; H    0     0                    3821.9759894 3582.43991  6.27%     -    0s
+#&gt;      0     0 3482.40180    0    6 4134.57913 3482.40180  15.8%     -    0s
+#&gt; H    0     0                    3579.5526443 3482.40180  2.71%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (160 simplex iterations) in 0.01 seconds
+#&gt; Explored 0 nodes (156 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 2 available processors)
 #&gt; 
-#&gt; Solution count 2: 3821.98 6155.62 
-#&gt; Pool objective bound 3582.44
+#&gt; Solution count 2: 3579.55 4134.58 
+#&gt; Pool objective bound 3482.4
 #&gt; 
 #&gt; Optimal solution found (tolerance 1.00e-01)
-#&gt; Best objective 3.821975989355e+03, best bound 3.582439914573e+03, gap 6.2673%</div><div class='input'>
+#&gt; Best objective 3.579552644345e+03, best bound 3.482401800870e+03, gap 2.7140%</div><div class='input'>
 <span class='co'># show solution</span>
 <span class='fu'>plot</span>(<span class='no'>s</span>)</div><img src='marxan_problem-4.png' alt='' width='540' height='400' /><div class='input'>
 <span class='co'>## Not run: ------------------------------------</span>

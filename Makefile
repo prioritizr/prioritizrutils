@@ -24,7 +24,6 @@ readme:
 	sed -i -e '1i---\' gh-README.Rmd;\
 	R --slave -e "knitr::knit('gh-README.Rmd')"
 	mv -f inst/vign/gh-README.md ./README.md
-	# mv -f inst/vign/figure inst/vign/readme-figure
 	rm -rf inst/vign/gh-README.Rmd
 	sed -i 1,5d README.md
 	sed -i 's|figure|inst/vign/readme-figure|g' README.md
@@ -32,12 +31,7 @@ readme:
 vigns:
 	mkdir -p vignettes
 	cp -f inst/vign/*.Rmd vignettes/
-	rm vignettes/placeholder.Rmd
 	R --slave -e "devtools::load_all();devtools::build_vignettes()"
-	rm -rf vignettes/*
-	mkdir -p vignettes
-	cp -f inst/vign/placeholder.Rmd vignettes/README.Rmd
-	touch inst/doc/*
 
 site:
 	mkdir -p vignettes
