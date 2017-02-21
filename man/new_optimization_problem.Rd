@@ -7,10 +7,10 @@
 new_optimization_problem()
 }
 \value{
-\code{\link{OptimizationProblem}} object.
+\code{\link{OptimizationProblem-class}} object.
 }
 \description{
-Generate a new \code{\link{OptimizationProblem}} object.
+Generate a new \code{\link{OptimizationProblem-class}} object.
 }
 \seealso{
 OptimizationProblem-methods

@@ -31,7 +31,12 @@ readme:
 vigns:
 	mkdir -p vignettes
 	cp -f inst/vign/*.Rmd vignettes/
+	rm vignettes/placeholder.Rmd
 	R --slave -e "devtools::load_all();devtools::build_vignettes()"
+	rm -rf vignettes/*
+	mkdir -p vignettes
+	cp -f inst/vign/placeholder.Rmd vignettes/README.Rmd
+	touch inst/doc/*
 
 site:
 	mkdir -p vignettes

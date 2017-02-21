@@ -77,7 +77,7 @@ col_ids(x)
 row_ids(x)
 }
 \arguments{
-\item{x}{\code{\link{OptimizationProblem}} object.}
+\item{x}{\code{\link{OptimizationProblem-class}} object.}
 }
 \value{
 \code{\link[Matrix]{dgCMatrix-class}}, \code{numeric} vector,
@@ -85,7 +85,7 @@ row_ids(x)
 }
 \description{
 These functions are used to access data from an
-\code{\link{OptimizationProblem}} object. See below for details on their
+\code{\link{OptimizationProblem-class}} object. See below for details on their
 usage.
 }
 \details{

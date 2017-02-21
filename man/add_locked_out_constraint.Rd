@@ -8,13 +8,13 @@
 \alias{add_locked_out_constraint}
 \title{Add locked out constraint}
 \arguments{
-\item{x}{\code{\link{ConservationProblem}} object.}
+\item{x}{\code{\link{ConservationProblem-class}} object.}
 
 \item{locked_out}{Object that determines which planning units that should be 
 locked out. See details for more information.}
 }
 \value{
-\code{\link{ConservationProblem}} object.
+\code{\link{ConservationProblem-class}} object.
 }
 \description{
 Add constraints to ensure that certain planning units are locked out 
@@ -34,16 +34,16 @@ The locked out planning units can be specified in several
   \item{\code{character}}{column name in the attribute table with 
     \code{logical} values indicating if planning units should be locked out. 
     Note that \code{locked_out} can only a \code{character} if the planning
-    units in \code{x} are a \code{\link{SpatialPolygonsDataFrame-class}}, 
-    \code{\link{SpatialLinesDataFrame-class}}, or 
-    \code{\link{SpatialPointsDataFrame-class}} object.}
+    units in \code{x} are a \code{\link[sp]{SpatialPolygonsDataFrame-class}}, 
+    \code{\link[sp]{SpatialLinesDataFrame-class}}, or 
+    \code{\link[sp]{SpatialPointsDataFrame-class}} object.}
 
-  \item{\code{\link{Raster-class}} object}{with \code{logical} cells values. 
-    Planning units in \code{x} that spatially intersect with at least one 
-    \code{TRUE} pixel are locked in.}
+  \item{\code{\link[raster]{Raster-class}} object}{with \code{logical} cells 
+    values. Planning units in \code{x} that spatially intersect with at 
+    least one \code{TRUE} pixel are locked in.}
 
-  \item{\code{\link{Spatial-class}} object.}{planning units in \code{x} that
-    spatially intersect with \code{locked_in} are locked in.}
+  \item{\code{\link[sp]{Spatial-class}} object.}{planning units in \code{x} 
+    that spatially intersect with \code{locked_in} are locked in.}
 
  }
 }

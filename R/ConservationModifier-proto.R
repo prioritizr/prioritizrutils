@@ -7,11 +7,12 @@ methods::setOldClass('ConservationModifier')
 #' Conservation problem modifier prototype
 #'
 #' This super-prototype is used to represent prototypes that in turn are used to 
-#' modify a \code{\link{ConservationProblem}} object. Specifically, the
-#' \code{\link{Constraint}}, \code{\link{Decision}}, \code{\link{Objective}}
-#' and \code{\link{Target}} prototypes inherit from this class. \strong{
-#' Only the most expert experts should use this class directly because changes
-#' to these class will have profound and far reaching effects.}
+#' modify a \code{\link{ConservationProblem-class}} object. Specifically, the
+#' \code{\link{Constraint-class}}, \code{\link{Decision-class}}, 
+#' \code{\link{Objective-class}}, and \code{\link{Target-class}} prototypes 
+#' inherit from this class. \strong{Only the most expert experts should use 
+#' this class directly because changes to these class will have profound and 
+#' far reaching effects.}
 #'
 #' @section Fields:
 #'
@@ -52,9 +53,9 @@ methods::setOldClass('ConservationModifier')
 #'
 #' \item{id}{\code{id} or \code{name} of parameter}
 #'
-#' \item{cp}{\code{\link{ConservationProblem}} object}
+#' \item{cp}{\code{\link{ConservationProblem-class}} object}
 #'
-#' \item{op}{\code{\link{OptimizationProblem}} object}
+#' \item{op}{\code{\link{OptimizationProblem-class}} object}
 #'
 #' }
 #'
@@ -82,12 +83,12 @@ methods::setOldClass('ConservationModifier')
 #'   \code{ConservationProblem} objects.}
 #'
 #' \item{output}{\code{function} used to generate an output from the object.
-#'   This method is only used for \code{\link{Target}} objects.}
+#'   This method is only used for \code{\link{Target-class}} objects.}
 #'
 #' \item{apply}{\code{function} used to apply the modifier to an 
-#'   \code{\link{OptimizationProblem}} object.
-#'   This is used by \code{\link{Constraint}},  \code{\link{Decision}}, 
-#'   and \code{\link{Objective}} objects.}
+#'   \code{\link{OptimizationProblem-class}} object.
+#'   This is used by \code{\link{Constraint-class}}, 
+#'   \code{\link{Decision-class}}, and \code{\link{Objective-class}} objects.}
 #'
 #' \item{get_parameter}{retrieve the value of a parameter.}
 #'
@@ -99,12 +100,12 @@ methods::setOldClass('ConservationModifier')
 #' \item{render_parameter}{generate a \emph{shiny} widget to modify the
 #'   the value of a parameter (specified by argument \code{id}).}
 #'
-#' \item{render_all_parameters}{generate a \emph{shiny} \code{div}
+#' \item{render_all_parameters}{generate a \code{\link[shiny]{div}}
 #'   containing all the parameters' widgets.}
 #'
 #' }
 #'
-#' @name ConservationModifier
+#' @name ConservationModifier-class
 #'
 #' @export
 ConservationModifier <- pproto(

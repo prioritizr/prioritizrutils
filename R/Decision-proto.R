@@ -11,11 +11,11 @@ methods::setOldClass('Decision')
 #' a recipe to make a decision, to actually specify
 #' the type of decision in a planning problem, see the help page on
 #' \code{\link{decisions}}. Only experts should use this class directly.}
-#' This class inherits from the \code{\link{ConservationModifier}}. 
+#' This class inherits from the \code{\link{ConservationModifier-class}}. 
 #'
-#' @seealso \code{\link{ConservationModifier}}.
+#' @seealso \code{\link{ConservationModifier-class}}.
 #'
-#' @name Decision
+#' @name Decision-class
 NULL
 
 #' @export

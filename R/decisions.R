@@ -35,7 +35,7 @@ NULL
 #'
 #'  }
 #'
-#' @param x \code{ConservationProblem} object.
+#' @param x \code{\link{ConservationProblem-class}} object.
 #'
 #' @param upper_limit \code{numeric} value specifying the maximum proportion
 #'   of a planning unit that can be reserved (eg. set to 0.8 for 80 \%).
@@ -44,7 +44,7 @@ NULL
 #' \code{ConservationProblem} object. \strong{If multiple decisions are added 
 #' to a problem object, then the last one to be added will be used.}
 #'
-#' @return \code{\link{Decision}} object.
+#' @return \code{\link{Decision-class}} object.
 #'
 #' @examples
 #' # create basic problem and using the default decision (binary)

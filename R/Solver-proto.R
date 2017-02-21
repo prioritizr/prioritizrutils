@@ -13,35 +13,52 @@ methods::setOldClass('Solver')
 #' help page on \code{\link{solvers}}}.
 #'
 #' @section Fields:
+#'
 #' \itemize{
+#'
 #' \item{$name}{\code{character} name of solver.}
+#'
 #' \item{$parameters}{\code{Parameters} object with parameters used to customize
 #'   the the solver.}
+#'
 #' \item{$solve}{\code{function} used to solve a
-#'   \code{\link{OptimizationProblem}} object.}
+#'   \code{\link{OptimizationProblem-class}} object.}
 #' }
 #'
 #' @section Usage:
+#' 
 #' \code{x$print()}
+#' 
 #' \code{x$show()}
+#' 
 #' \code{x$repr()}
+#' 
 #' \code{x$solve(op)}
 #' 
 #' @section Arguments:
 #' \describe{
-#' \item{x}{\code{\link{Solver}} object.}
-#' \item{op}{\code{\link{OptimizationProblem}} object.}
+#' 
+#' \item{x}{\code{\link{Solver-class}} object.}
+#' 
+#' \item{op}{\code{\link{OptimizationProblem-class}} object.}
+#' 
 #' }
 #'
 #' @section Details:
+#'
 #' \describe{
 #' \item{print}{print the object.}
+#'
 #' \item{show}{show the object.}
+#'
 #' \item{repr}{\code{character} representation of object.}
-#' \item{solve}{solve a \link{OptimizationProblem} using this object.}
+#'
+#' \item{solve}{solve a \code{\link{OptimizationProblem-class}} using this 
+#'   object.}
+#'
 #' }
 #'
-#' @name Solver
+#' @name Solver-class
 NULL
 
 #' @export

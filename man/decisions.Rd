@@ -17,13 +17,13 @@ add_semicontinuous_decision(x, upper_limit)
 add_default_decision(x)
 }
 \arguments{
-\item{x}{\code{ConservationProblem} object.}
+\item{x}{\code{\link{ConservationProblem-class}} object.}
 
 \item{upper_limit}{\code{numeric} value specifying the maximum proportion
 of a planning unit that can be reserved (eg. set to 0.8 for 80 \%).}
 }
 \value{
-\code{\link{Decision}} object.
+\code{\link{Decision-class}} object.
 }
 \description{
 Conservation planning problems involve making decisions on planning units.

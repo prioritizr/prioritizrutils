@@ -11,33 +11,35 @@ solve(a,b) # OptimizationProblem,Solver
 solve(a,b) # ConservationProblem,missing
 }
 \arguments{
-\item{a}{\code{\link{ConservationProblem}} or an \code{OptimizationProblem}
-object.}
+\item{a}{\code{\link{ConservationProblem-class}} or an
+\code{\link{OptimizationProblem-class}} object.}
 
-\item{b}{\code{\link{Solver}} object. Not need if \code{a} is an
-\code{\link{ConservationProblem}} object.}
+\item{b}{\code{\link{Solver-class}} object. Not need if \code{a} is an
+\code{\link{ConservationProblem-class}} object.}
 }
 \value{
-A \code{\link[raster]{RasterLayer-class}}, \code{\link[sp]{Spatial}}, or a 
-  \code{numeric} vector containing the solution depending on the
-  argument to \code{a}.
+A \code{\link[raster]{RasterLayer-class}}, 
+  \code{\link[sp]{Spatial-class}}, or a \code{numeric} vector containing the 
+  solution depending on the argument to \code{a}.
 }
 \description{
-Solve a \code{\link{ConservationProblem}} or an \code{OptimizationProblem}.
+Solve a \code{\link{ConservationProblem-class}} or an 
+\code{\link{OptimizationProblem-class}}.
 }
 \details{
-If a \code{\link{OptimizationProblem}} is supplied, then the solution
-  is returned as a \code{logical} showing the status of each planning unit.
-  If a \code{\link{ConservationProblem}} is supplied, then the 
-  solution is returned in the format of the cost data contained inside it:
+If a \code{\link{OptimizationProblem-class}} is supplied, then the 
+  solution is returned as a \code{logical} showing the status of each 
+  planning unit. If a \code{\link{ConservationProblem-class}} is supplied, 
+  then the  solution is returned in the format of the cost data contained 
+  inside it:
   \itemize{
   \item{\code{\link[raster]{RasterLayer-class}}}{the solution is returned as a
      \code{\link[raster]{RasterLayer-class}} object. Cell values denote the 
      decision.}
-  \item{\code{Spatial}}{the solution is returned as a 
-     \code{\link{SpatialPolygonsDataFrame}} or
-     \code{\link{SpatialLinesDataFrame}} with a "Solution" column containing
-     the decision values.}
+  \item{\code{\link[sp]{Spatial-class}}}{the solution is returned as a 
+     \code{\link[sp]{SpatialPolygonsDataFrame}} or
+     \code{\link[sp]{SpatialLinesDataFrame}} with a "Solution" column 
+     containing the decision values.}
   }
 }
 \examples{

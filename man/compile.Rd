@@ -10,15 +10,15 @@ compile(x, ...)
 \method{compile}{ConservationProblem}(x, ...)
 }
 \arguments{
-\item{x}{\code{\link{ConservationProblem}} object.}
+\item{x}{\code{\link{ConservationProblem-class}} object.}
 
 \item{...}{not used.}
 }
 \value{
-\code{OptimizationProblem} object.
+\code{\link{OptimizationProblem-class}} object.
 }
 \description{
-Compile a \code{\link{ConservationProblem}} into an
+Compile a \code{\link{ConservationProblem-class}} into an
 \code{OptimizationProblem}.
 }
 \examples{

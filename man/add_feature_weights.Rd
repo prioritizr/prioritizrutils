@@ -7,14 +7,14 @@
 add_feature_weights(x, weights)
 }
 \arguments{
-\item{x}{\code{\link{ConservationProblem}} object.}
+\item{x}{\code{\link{ConservationProblem-class}} object.}
 
 \item{weights}{\code{numeric} weights. Higher values for a feature 
 indicate that it is more desireable to represent the feature in a network. 
 Weights cannot have negative values.}
 }
 \value{
-\code{\link{ConservationProblem}} object with the weights
+\code{\link{ConservationProblem-class}} object with the weights
   added to it.
 }
 \description{

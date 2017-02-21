@@ -8,13 +8,13 @@
 \alias{add_locked_in_constraint}
 \title{Add locked in constraints}
 \arguments{
-\item{x}{\code{\link{ConservationProblem}} object.}
+\item{x}{\code{\link{ConservationProblem-class}} object.}
 
 \item{locked_in}{Object that determines which planning units that should be 
 locked in. See details for more information.}
 }
 \value{
-\code{\link{ConservationProblem}} object.
+\code{\link{ConservationProblem-class}} object.
 }
 \description{
 Add constraints constraints to lock in planning units
@@ -35,9 +35,9 @@ The locked in planning units can be specified in several
   \item{\code{character}}{column name in the attribute table with 
     \code{logical} values indicating if planning units should be locked in. 
     Note that \code{locked_in} can only a \code{character} if the planning
-    units in \code{x} are a \code{\link{SpatialPolygonsDataFrame-class}}, 
-    \code{\link{SpatialLinesDataFrame-class}}, or 
-    \code{\link{SpatialPointsDataFrame-class}} object.}
+    units in \code{x} are a \code{\link[sp]{SpatialPolygonsDataFrame-class}}, 
+    \code{\link[sp]{SpatialLinesDataFrame-class}}, or 
+    \code{\link[sp]{SpatialPointsDataFrame-class}} object.}
 
   \item{\code{\link[raster]{Raster-class}} object}{Planning units in \code{x} 
     that intersect with cells in \code{y} that are not equal to zero and 

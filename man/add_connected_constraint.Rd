@@ -7,10 +7,10 @@
 add_connected_constraint(x)
 }
 \arguments{
-\item{x}{\code{\link{ConservationProblem}} object.}
+\item{x}{\code{\link{ConservationProblem-class}} object.}
 }
 \value{
-\code{\link{ConservationProblem}} object with the constraint added
+\code{\link{ConservationProblem-class}} object with the constraint added
   to it.
 }
 \description{

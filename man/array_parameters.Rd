@@ -31,7 +31,7 @@ value for each element in \code{value}. This arguments defaults to the
 largest  possible number on the system.}
 }
 \value{
-\code{\link{ArrayParameter}} object.
+\code{\link{ArrayParameter-class}} object.
 }
 \description{
 These functions are used to create parameters that consist of multiple

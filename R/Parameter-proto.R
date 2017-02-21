@@ -36,9 +36,9 @@ methods::setOldClass('Parameter')
 #' \item{reset}{update the parameter values to be the default values.}
 #' }
 #'
-#' @seealso \code{\link{ScalarParameter}}.
+#' @seealso \code{\link{ScalarParameter-class}}.
 #'
-#' @name Parameter
+#' @name Parameter-class
 NULL
 
 #' @export

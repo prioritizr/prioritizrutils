@@ -12,8 +12,8 @@ NULL
 #' (see \code{link{constraints}}).
 #'
 #' @param x \code{\link[raster]{Raster-class}}, 
-#'   \code{\link[sp]{SpatialPolygonsDataFrame}}, or
-#'   \code{\link[sp]{SpatialLinesDataFrame}} object specifying the planning
+#'   \code{\link[sp]{SpatialPolygonsDataFrame-class}}, or
+#'   \code{\link[sp]{SpatialLinesDataFrame-class}} object specifying the planning
 #'   units to use in the reserve design exercise and their corresponding cost.
 #'   It may be desirable to exlcude some planning units from the analysis, for
 #'   example those outside the study area. To exclude planning units, set the
@@ -30,8 +30,8 @@ NULL
 #'
 #' @param ... additional arguments.
 #'
-#' @return A \code{\link{ConservationProblem}} object containing the basic data
-#'   used to build a prioritization problem.
+#' @return A \code{\link{ConservationProblem-class}} object containing the 
+#'   basic data used to build a prioritization problem.
 #'
 #' @seealso \code{\link{constraints}}, \code{\link{objectives}},
 #'  \code{\link{targets}}.

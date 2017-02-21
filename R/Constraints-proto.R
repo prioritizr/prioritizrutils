@@ -6,16 +6,16 @@ methods::setOldClass('Constraints')
 
 #' Constraints prototype
 #'
-#' This prototype represents a collection of \code{\link{Constraint}} objects.
+#' This prototype represents a collection of \code{\link{Constraint-class}} 
+#' objects.
 #'
 #' @section Fields:
 #' \itemize{
-#'   \item{$constraints}{\code{list} object containing \code{\link{Constraint}} 
-#'    objects.}
+#'   \item{$constraints}{\code{list} object containing 
+#'     \code{\link{Constraint-class}} objects.}
 #' }
 #'
 #' @section Usage:
-#' \preformatted{x <- Constraint$new()}
 #' \code{x$print()}
 #' \code{x$show()}
 #' \code{x$repr()}
@@ -39,7 +39,7 @@ methods::setOldClass('Constraints')
 #' \item{show}{show the object.}
 #' \item{repr}{\code{character} representation of object.}
 #'
-#' \item{add}{add \code{Constraint} object.}
+#' \item{add}{add \code{\link{Constraint-class}} object.}
 #'
 #' \item{get_parameter}{retrieve the value of a parameter in the object
 #'   using an \code{id} object.}
@@ -47,11 +47,11 @@ methods::setOldClass('Constraints')
 #'   to a new object.}
 #' \item{render_parameter}{generate a \emph{shiny} widget to modify the
 #'   the value of a parameter (specified by argument \code{id}).}
-#' \item{render_all_parameters}{generate a \emph{shiny} \code{div}
+#' \item{render_all_parameters}{generate a \code{\link[shiny]{div}}
 #'   containing all the parameters' widgets.}
 #' }
 #'
-#' @name Constraints
+#' @name Constraints-class
 NULL
 
 #' @export

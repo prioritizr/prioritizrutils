@@ -3,14 +3,14 @@ NULL
 
 #' Compile a problem
 #' 
-#' Compile a \code{\link{ConservationProblem}} into an
+#' Compile a \code{\link{ConservationProblem-class}} into an
 #' \code{OptimizationProblem}.
 #' 
-#' @param x \code{\link{ConservationProblem}} object.
+#' @param x \code{\link{ConservationProblem-class}} object.
 #'
 #' @param ... not used.
 #' 
-#' @return \code{OptimizationProblem} object.
+#' @return \code{\link{OptimizationProblem-class}} object.
 #'
 #' @examples
 #' # build minimal conservation problem

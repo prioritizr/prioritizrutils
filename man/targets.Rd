@@ -18,7 +18,7 @@ add_loglinear_targets(x, lower_bound_amount, lower_bound_target,
 add_default_targets(x)
 }
 \arguments{
-\item{x}{\code{\link{ConservationProblem}} object.}
+\item{x}{\code{\link{ConservationProblem-class}} object.}
 
 \item{targets}{\code{numeric} targets for features. If all features should
 have the same target, \code{targets} can be a single number. Otherwise, 
@@ -40,7 +40,7 @@ applied to features with a total amount that is greater
 than or equal to \code{upper_bound_amount}.}
 }
 \value{
-\code{\link{ConservationProblem}} object with the target added
+\code{\link{ConservationProblem-class}} object with the target added
   to it.
 }
 \description{

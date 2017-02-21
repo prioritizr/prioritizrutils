@@ -6,13 +6,14 @@ methods::setOldClass('Parameters')
 
 #' Parameters class
 #'
-#' This class represents a collection of \code{\link{ArrayParameter}}, and
-#' \code{\link{ScalarParameter}} objects.
+#' This class represents a collection of \code{\link{ArrayParameter-class}}, and
+#' \code{\link{ScalarParameter-class}} objects.
 #'
 #' @section Fields:
 #' \itemize{
 #' \item{$parameters}{\code{list} object containing
-#'  \code{\link{ArrayParameter}}, and \code{\link{ScalarParameter}} objects.}
+#'   \code{\link{ArrayParameter-class}}, and \code{\link{ScalarParameter-class}} 
+#'   objects.}
 #' }
 #'
 #' @section Usage:
@@ -30,7 +31,7 @@ methods::setOldClass('Parameters')
 #' @section Arguments:
 #' \describe{
 #' \item{id}{\code{id} object.}
-#' \item{p}{\code{\link{Parameter}} object.}
+#' \item{p}{\code{\link{Parameter-class}} object.}
 #' \item{value}{any object.}
 #' }
 #'
@@ -50,7 +51,7 @@ methods::setOldClass('Parameters')
 #'   containing all the parameters' widgets.}
 #' }
 #'
-#' @name Parameters
+#' @name Parameters-class
 NULL
 
 #' @export

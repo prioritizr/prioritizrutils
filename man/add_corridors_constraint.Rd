@@ -7,7 +7,7 @@
 add_corridors_constraint(x, targets, friction)
 }
 \arguments{
-\item{x}{\code{\link{ConservationProblem}} object.}
+\item{x}{\code{\link{ConservationProblem-class}} object.}
 
 \item{targets}{\code{numeric} targets specifying the minimum flow
 permitted throughout the prioritisation. If \code{targets} is a single
@@ -19,7 +19,7 @@ friction surfaces for each feature. Pixels with missing values are
 assumed to be completely impermeable.}
 }
 \value{
-\code{\link{ConservationProblem}} object.
+\code{\link{ConservationProblem-class}} object.
 }
 \description{
 This function adds corridor constraints using friction rasters that

@@ -9,10 +9,10 @@ NULL
 #' the same constraints, because means that the same calculations will not be 
 #' run multiple times.
 #'
-#' @param x \code{\link{ConservationProblem}} object
+#' @param x \code{\link{ConservationProblem-class}} object
 #'
 #' @details This function is used for the effect of modifying the input
-#'   \code{\link{ConservationProblem}} object. As such, it does not return
+#'   \code{\link{ConservationProblem-class}} object. As such, it does not return
 #'   anything. To use this function with \code{\link{pipe}} operators, use the
 #'   \code{\%T>\%} operator and not the \code{\%>\%} operator.
 #'

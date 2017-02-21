@@ -34,7 +34,7 @@ the largest acceptable value for \code{value}. This arguments defaults to
 the largest possible number on the system.}
 }
 \value{
-\code{\link{ScalarParameter}} object.
+\code{\link{ScalarParameter-class}} object.
 }
 \description{
 These functions are used to create parameters that consist of a single

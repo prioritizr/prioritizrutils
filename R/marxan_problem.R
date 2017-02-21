@@ -34,8 +34,7 @@
 #'
 #' @param ... not used
 #'
-#' @return \code{link{ConservationProblem}} or \code{logical} \code{vector}
-#'   indicating if which planning units were prioritized.
+#' @return \code{link{ConservationProblem-class}} object.
 #'
 #' @examples
 #' # create Marxan problem using spatial data

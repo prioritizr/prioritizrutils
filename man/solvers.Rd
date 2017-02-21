@@ -20,7 +20,7 @@ add_rsymphony_solver(x, gap = 0.1, time_limit = -1, first_feasible = 0,
 add_default_solver(x)
 }
 \arguments{
-\item{x}{\code{\link{ConservationProblem}} object.}
+\item{x}{\code{\link{ConservationProblem-class}} object.}
 
 \item{gap}{\code{numeric} relative gap to optimality. The optimizer will
 terminate when the difference between the upper and lower objective
@@ -54,7 +54,7 @@ reporting progress on solving the problem?}
 \description{
 Specify the software and configurations used to solve a conservation planning 
 problem. Below is a list of different solvers that can be added to a 
-\code{\link{ConservationProblem}} object.
+\code{\link{ConservationProblem-class}} object.
 }
 \details{
 \describe{

@@ -5,7 +5,7 @@ NULL
 #'
 #' Specify the software and configurations used to solve a conservation planning 
 #' problem. Below is a list of different solvers that can be added to a 
-#' \code{\link{ConservationProblem}} object.
+#' \code{\link{ConservationProblem-class}} object.
 #'
 #' \describe{
 #'
@@ -40,7 +40,7 @@ NULL
 #'
 #' }
 #'
-#' @param x \code{\link{ConservationProblem}} object.
+#' @param x \code{\link{ConservationProblem-class}} object.
 #'
 #' @param gap \code{numeric} relative gap to optimality. The optimizer will
 #'   terminate when the difference between the upper and lower objective

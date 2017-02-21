@@ -38,7 +38,7 @@ NULL
 #'   values of zero or one.}
 #' }
 #'
-#' @return \code{\link{ScalarParameter}} object.
+#' @return \code{\link{ScalarParameter-class}} object.
 #'
 #' @name scalar_parameters
 NULL
@@ -122,7 +122,7 @@ binary_parameter <- function(name, value) {
 #'     that can only be zero or one.}
 #' }
 #'
-#' @return \code{\link{ArrayParameter}} object.
+#' @return \code{\link{ArrayParameter-class}} object.
 #'
 #' @name array_parameters
 NULL
@@ -178,10 +178,10 @@ binary_parameter_array <- function(name, value, label) {
 #'
 #' Create a collection of parameter objects.
 #' 
-#' @param ... \code{\link{ArrayParameter}} and/or 
-#'   \code{\link{ScalarParameter}}) objects to store in collection.
+#' @param ... \code{\link{ArrayParameter-class}} and/or 
+#'   \code{\link{ScalarParameter-class}}) objects to store in collection.
 #'
-#' @return \code{\link{Parameters}} object.
+#' @return \code{\link{Parameters-class}} object.
 #'
 #' @seealso \code{\link{array_parameters}}, code{\link{scalar_parameters}}.
 #'

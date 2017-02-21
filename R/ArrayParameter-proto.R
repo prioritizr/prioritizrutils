@@ -11,18 +11,29 @@ methods::setOldClass('ArrayParameter')
 #' directly with this class.}
 #'
 #' @section Fields: 
+#'
 #' \itemize{
+#'
 #' \item{$id}{\code{character} identifier for parameter.}
+#'
 #' \item{$name}{\code{character} name of parameter.}
+#'
 #' \item{$value}{\code{numeric} \code{vector} of values.}
+#'
 #' \item{$label}{\code{character} \code{vector} of names for each value.}
+#'
 #' \item{$default}{\code{numeric} \code{vector} of default values.}
+#'
 #' \item{$length}{\code{integer} number of values.}
+#'
 #' \item{$class}{\code{character} class of values.}
+#'
 #' \item{$lower_limit}{\code{numeric} \code{vector} specifying the minimum 
 #'   permitted values.}
+#'
 #' \item{$upper_limit}{\code{numeric} \code{vector} specifying the maximum
 #'   permitted values.}
+#'
 #' \item{$widget}{\code{function} used to construct a
 #'   \code{\link[shiny]{shiny}} interface for modifying values.}
 #' } 
@@ -47,22 +58,31 @@ methods::setOldClass('ArrayParameter')
 #'
 #' @section Details:
 #' \describe{
+#'
 #' \item{print}{print the object.}
+#'
 #' \item{show}{show the object.}
+#'
 #' \item{repr}{\code{character} representation of object.}
+#'
 #' \item{validate}{check if a proposed new set of parameters are valid.}
+#'
 #' \item{get}{return a \code{\link[base]{data.frame}} containing the
 #'   parameter values.}
+#'
 #' \item{set}{update the parameter values using a
 #'   \code{\link[base]{data.frame}}.}
+#'
 #' \item{reset}{update the parameter values to be the default values.}
+#'
 #' \item{render}{create a \code{\link[shiny]{shiny}} widget to modify 
 #'   parameter values.}
+#'
 #' }
 #'
-#' @seealso \code{\link{ScalarParameter}}, \code{\link{Parameter}}.
+#' @seealso \code{\link{ScalarParameter-class}}, \code{\link{Parameter-class}}.
 #'
-#' @name ArrayParameter
+#' @name ArrayParameter-class
 NULL
 
 #' @export

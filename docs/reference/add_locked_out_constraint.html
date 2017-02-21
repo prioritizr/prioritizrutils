@@ -91,7 +91,7 @@ and so contain little remaining habitat.</p>
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>x</dt>
-      <dd><code><a href='ConservationProblem.html'>ConservationProblem</a></code> object.</dd>
+      <dd><code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> object.</dd>
       <dt>locked_out</dt>
       <dd>Object that determines which planning units that should be 
 locked out. See details for more information.</dd>
@@ -99,7 +99,7 @@ locked out. See details for more information.</dd>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='ConservationProblem.html'>ConservationProblem</a></code> object.</p>
+    <p><code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> object.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -111,14 +111,14 @@ locked out. See details for more information.</dd>
     <p><dt><code>character</code></dt><dd>column name in the attribute table with 
     <code>logical</code> values indicating if planning units should be locked out. 
     Note that <code>locked_out</code> can only a <code>character</code> if the planning
-    units in <code>x</code> are a <code>SpatialPolygonsDataFrame-class</code>, 
-    <code>SpatialLinesDataFrame-class</code>, or 
-    <code>SpatialPointsDataFrame-class</code> object.</dd></p>
-    <p><dt><code>Raster-class</code> object</dt><dd>with <code>logical</code> cells values. 
-    Planning units in <code>x</code> that spatially intersect with at least one 
-    <code>TRUE</code> pixel are locked in.</dd></p>
-    <p><dt><code>Spatial-class</code> object.</dt><dd>planning units in <code>x</code> that
-    spatially intersect with <code>locked_in</code> are locked in.</dd></p>
+    units in <code>x</code> are a <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPolygonsDataFrame-class'>SpatialPolygonsDataFrame-class</a></code>, 
+    <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialLinesDataFrame-class'>SpatialLinesDataFrame-class</a></code>, or 
+    <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPointsDataFrame-class'>SpatialPointsDataFrame-class</a></code> object.</dd></p>
+    <p><dt><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> object</dt><dd>with <code>logical</code> cells 
+    values. Planning units in <code>x</code> that spatially intersect with at 
+    least one <code>TRUE</code> pixel are locked in.</dd></p>
+    <p><dt><code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code> object.</dt><dd>planning units in <code>x</code> 
+    that spatially intersect with <code>locked_in</code> are locked in.</dd></p>
     <p></dl></p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>

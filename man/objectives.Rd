@@ -20,7 +20,7 @@ add_phylogenetic_representation_objective(x, budget, tree)
 add_default_objective(x)
 }
 \arguments{
-\item{x}{\code{\link{ConservationProblem}} object.}
+\item{x}{\code{\link{ConservationProblem-class}} object.}
 
 \item{budget}{\code{numeric} value specifying the maximum expenditure of 
 the prioritization.}

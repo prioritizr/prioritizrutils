@@ -81,7 +81,8 @@
     </div>
 
     
-    <p>Solve a <code><a href='ConservationProblem.html'>ConservationProblem</a></code> or an <code>OptimizationProblem</code>.</p>
+    <p>Solve a <code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> or an 
+<code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code>.</p>
     
 
     <pre><span class='fu'>solve</span>(<span class='no'>a</span>,<span class='no'>b</span>) <span class='co'># OptimizationProblem,Solver</span>
@@ -91,34 +92,35 @@
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>a</dt>
-      <dd><code><a href='ConservationProblem.html'>ConservationProblem</a></code> or an <code>OptimizationProblem</code>
-object.</dd>
+      <dd><code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> or an
+<code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code> object.</dd>
       <dt>b</dt>
-      <dd><code><a href='Solver.html'>Solver</a></code> object. Not need if <code>a</code> is an
-<code><a href='ConservationProblem.html'>ConservationProblem</a></code> object.</dd>
+      <dd><code><a href='Solver-class.html'>Solver-class</a></code> object. Not need if <code>a</code> is an
+<code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> object.</dd>
     </dl>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>RasterLayer-class</a></code>, <code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial</a></code>, or a 
-  <code>numeric</code> vector containing the solution depending on the
-  argument to <code>a</code>.</p>
+    <p>A <code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>RasterLayer-class</a></code>, 
+  <code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code>, or a <code>numeric</code> vector containing the 
+  solution depending on the argument to <code>a</code>.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>If a <code><a href='OptimizationProblem.html'>OptimizationProblem</a></code> is supplied, then the solution
-  is returned as a <code>logical</code> showing the status of each planning unit.
-  If a <code><a href='ConservationProblem.html'>ConservationProblem</a></code> is supplied, then the 
-  solution is returned in the format of the cost data contained inside it:
+    <p>If a <code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code> is supplied, then the 
+  solution is returned as a <code>logical</code> showing the status of each 
+  planning unit. If a <code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> is supplied, 
+  then the  solution is returned in the format of the cost data contained 
+  inside it:
   <ul>
 <li><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>RasterLayer-class</a></code>the solution is returned as a
      <code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>RasterLayer-class</a></code> object. Cell values denote the 
      decision.
   </li>
-<li><code>Spatial</code>the solution is returned as a 
-     <code>SpatialPolygonsDataFrame</code> or
-     <code>SpatialLinesDataFrame</code> with a &quot;Solution&quot; column containing
-     the decision values.
+<li><code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code>the solution is returned as a 
+     <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPolygons'>SpatialPolygonsDataFrame</a></code> or
+     <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialLines'>SpatialLinesDataFrame</a></code> with a &quot;Solution&quot; column 
+     containing the decision values.
   </li>
 </ul></p>
     

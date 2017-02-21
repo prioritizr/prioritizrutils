@@ -6,9 +6,9 @@ NULL
 #' Add constraints to a conservation problem to ensure that all selected
 #' planning units are connected.
 #'
-#' @param x \code{\link{ConservationProblem}} object.
+#' @param x \code{\link{ConservationProblem-class}} object.
 #'
-#' @return \code{\link{ConservationProblem}} object with the constraint added
+#' @return \code{\link{ConservationProblem-class}} object with the constraint added
 #'   to it.
 #' 
 #' @seealso \code{\link{constraints}} for all the available constraints.

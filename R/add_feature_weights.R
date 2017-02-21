@@ -12,7 +12,7 @@ NULL
 #' other features when making decisions about how the budget should be 
 #' allocated.
 #' 
-#' @param x \code{\link{ConservationProblem}} object.
+#' @param x \code{\link{ConservationProblem-class}} object.
 #'
 #' @param weights \code{numeric} weights. Higher values for a feature 
 #'   indicate that it is more desireable to represent the feature in a network. 
@@ -22,7 +22,7 @@ NULL
 #'   type of planning problem (ie. \code{\link{add_maximum_coverage_objective}},
 #'   and \code{\link{add_maximum_representation_objective}}.
 #'
-#' @return \code{\link{ConservationProblem}} object with the weights
+#' @return \code{\link{ConservationProblem-class}} object with the weights
 #'   added to it.
 #'
 #' @seealso \code{\link{targets}}.

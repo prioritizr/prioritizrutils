@@ -7,7 +7,7 @@
 run_calculations(x)
 }
 \arguments{
-\item{x}{\code{\link{ConservationProblem}} object}
+\item{x}{\code{\link{ConservationProblem-class}} object}
 }
 \value{
 None.
@@ -21,7 +21,7 @@ run multiple times.
 }
 \details{
 This function is used for the effect of modifying the input
-  \code{\link{ConservationProblem}} object. As such, it does not return
+  \code{\link{ConservationProblem-class}} object. As such, it does not return
   anything. To use this function with \code{\link{pipe}} operators, use the
   \code{\%T>\%} operator and not the \code{\%>\%} operator.
 }

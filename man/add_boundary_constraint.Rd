@@ -7,7 +7,7 @@
 add_boundary_constraint(x, penalty, edge_factor)
 }
 \arguments{
-\item{x}{\code{\link{ConservationProblem}} object.}
+\item{x}{\code{\link{ConservationProblem-class}} object.}
 
 \item{penalty}{\code{numeric} penalty for exposed edges. This
 is equivalent to the
@@ -19,7 +19,7 @@ not have any neighboring planning units. For example, an edge factor
 of \code{0.5} is commonly used for planning units along the coast line.}
 }
 \value{
-\code{\link{ConservationProblem}} object.
+\code{\link{ConservationProblem-class}} object.
 }
 \description{
 Add constraints to a conservation problem that favor solutions that clump

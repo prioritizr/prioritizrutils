@@ -6,7 +6,7 @@ NULL
 #' Add constraints to a conservation problem that favor solutions that clump
 #' selected planning units together into contiguous reserves.
 #' 
-#' @param x \code{\link{ConservationProblem}} object.
+#' @param x \code{\link{ConservationProblem-class}} object.
 #'
 #' @param penalty \code{numeric} penalty for exposed edges. This
 #'  is equivalent to the
@@ -17,7 +17,7 @@ NULL
 #'   not have any neighboring planning units. For example, an edge factor
 #'   of \code{0.5} is commonly used for planning units along the coast line.
 #'
-#' @return \code{\link{ConservationProblem}} object.
+#' @return \code{\link{ConservationProblem-class}} object.
 #' 
 #' @seealso \code{\link{constraints}} for a list of all available constraints.
 #'

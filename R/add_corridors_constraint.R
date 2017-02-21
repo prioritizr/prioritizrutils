@@ -9,7 +9,7 @@ NULL
 #' for indiviuals to move through. Targets are used to denote the 
 #' minimum dispersal capability across the solution.
 #'
-#' @param x \code{\link{ConservationProblem}} object.
+#' @param x \code{\link{ConservationProblem-class}} object.
 #'
 #' @param targets \code{numeric} targets specifying the minimum flow
 #'  permitted throughout the prioritisation. If \code{targets} is a single
@@ -20,7 +20,7 @@ NULL
 #'   friction surfaces for each feature. Pixels with missing values are
 #'   assumed to be completely impermeable.
 #'
-#' @return \code{\link{ConservationProblem}} object.
+#' @return \code{\link{ConservationProblem-class}} object.
 #'
 #' @seealso \code{\link{constraints}} for all the available constraints.
 #'

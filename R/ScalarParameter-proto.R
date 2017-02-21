@@ -49,9 +49,9 @@ methods::setOldClass('ScalarParameter')
 #'               parameter values.}
 #' }
 #'
-#' @name ScalarParameter
+#' @name ScalarParameter-class
 #'
-#' @seealso \code{\link{Parameter}}, \code{\link{ArrayParameter}}.
+#' @seealso \code{\link{Parameter-class}}, \code{\link{ArrayParameter-class}}.
 NULL
 
 #' @export

@@ -7,11 +7,11 @@
 parameters(...)
 }
 \arguments{
-\item{...}{\code{\link{ArrayParameter}} and/or 
-\code{\link{ScalarParameter}}) objects to store in collection.}
+\item{...}{\code{\link{ArrayParameter-class}} and/or 
+\code{\link{ScalarParameter-class}}) objects to store in collection.}
 }
 \value{
-\code{\link{Parameters}} object.
+\code{\link{Parameters-class}} object.
 }
 \description{
 Create a collection of parameter objects.

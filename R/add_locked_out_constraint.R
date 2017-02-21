@@ -8,7 +8,7 @@ NULL
 #' units that have been substantially altered by anthropogenic development,
 #' and so contain little remaining habitat.
 #' 
-#' @param x \code{\link{ConservationProblem}} object.
+#' @param x \code{\link{ConservationProblem-class}} object.
 #'
 #' @param locked_out Object that determines which planning units that should be 
 #'   locked out. See details for more information.
@@ -24,20 +24,20 @@ NULL
 #'   \item{\code{character}}{column name in the attribute table with 
 #'     \code{logical} values indicating if planning units should be locked out. 
 #'     Note that \code{locked_out} can only a \code{character} if the planning
-#'     units in \code{x} are a \code{\link{SpatialPolygonsDataFrame-class}}, 
-#'     \code{\link{SpatialLinesDataFrame-class}}, or 
-#'     \code{\link{SpatialPointsDataFrame-class}} object.}
+#'     units in \code{x} are a \code{\link[sp]{SpatialPolygonsDataFrame-class}}, 
+#'     \code{\link[sp]{SpatialLinesDataFrame-class}}, or 
+#'     \code{\link[sp]{SpatialPointsDataFrame-class}} object.}
 #'
-#'   \item{\code{\link{Raster-class}} object}{with \code{logical} cells values. 
-#'     Planning units in \code{x} that spatially intersect with at least one 
-#'     \code{TRUE} pixel are locked in.}
+#'   \item{\code{\link[raster]{Raster-class}} object}{with \code{logical} cells 
+#'     values. Planning units in \code{x} that spatially intersect with at 
+#'     least one \code{TRUE} pixel are locked in.}
 #'
-#'   \item{\code{\link{Spatial-class}} object.}{planning units in \code{x} that
-#'     spatially intersect with \code{locked_in} are locked in.}
+#'   \item{\code{\link[sp]{Spatial-class}} object.}{planning units in \code{x} 
+#'     that spatially intersect with \code{locked_in} are locked in.}
 #'
 #'  }
 #'
-#' @return \code{\link{ConservationProblem}} object.
+#' @return \code{\link{ConservationProblem-class}} object.
 #'
 #' @examples
 #' # create basic problem

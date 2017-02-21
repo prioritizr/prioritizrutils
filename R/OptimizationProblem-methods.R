@@ -3,9 +3,9 @@ NULL
 
 #' Optimization problem
 #'
-#' Generate a new \code{\link{OptimizationProblem}} object.
+#' Generate a new \code{\link{OptimizationProblem-class}} object.
 #'
-#' @return \code{\link{OptimizationProblem}} object.
+#' @return \code{\link{OptimizationProblem-class}} object.
 #'
 #' @seealso OptimizationProblem-methods
 #'
@@ -18,10 +18,10 @@ new_optimization_problem <- function() {
 #' Access data from optimization problem
 #' 
 #' These functions are used to access data from an
-#' \code{\link{OptimizationProblem}} object. See below for details on their
+#' \code{\link{OptimizationProblem-class}} object. See below for details on their
 #' usage.
 #'
-#' @param x \code{\link{OptimizationProblem}} object.
+#' @param x \code{\link{OptimizationProblem-class}} object.
 #'
 #' @details The functions return the following data:
 #'

@@ -39,7 +39,7 @@ NULL
 #'
 #'  }
 #'
-#' @param x \code{\link{ConservationProblem}} object.
+#' @param x \code{\link{ConservationProblem-class}} object.
 #' 
 #' @param targets \code{numeric} targets for features. If all features should
 #'   have the same target, \code{targets} can be a single number. Otherwise, 
@@ -60,7 +60,7 @@ NULL
 #'   applied to features with a total amount that is greater
 #'   than or equal to \code{upper_bound_amount}.
 #'
-#' @return \code{\link{ConservationProblem}} object with the target added
+#' @return \code{\link{ConservationProblem-class}} object with the target added
 #'   to it.
 #'
 #' @seealso \code{\link{constraints}}, \code{\link{objectives}},

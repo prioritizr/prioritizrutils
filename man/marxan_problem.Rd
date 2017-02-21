@@ -48,8 +48,7 @@ not have any neighboring planning units. For example, an edge factor
 of \code{0.5} is commonly used for planning units along the coast line.}
 }
 \value{
-\code{link{ConservationProblem}} or \code{logical} \code{vector}
-  indicating if which planning units were prioritized.
+\code{link{ConservationProblem-class}} object.
 }
 \description{
 Create a Marxan conservation problem. Although users are encouraged to 

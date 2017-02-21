@@ -39,7 +39,7 @@ NULL
 #'
 #'  }
 #'
-#' @param x \code{\link{ConservationProblem}} object.
+#' @param x \code{\link{ConservationProblem-class}} object.
 #'
 #' @param budget \code{numeric} value specifying the maximum expenditure of 
 #'   the prioritization.

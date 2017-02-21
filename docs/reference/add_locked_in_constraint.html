@@ -92,7 +92,7 @@ reserve network.</p>
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>x</dt>
-      <dd><code><a href='ConservationProblem.html'>ConservationProblem</a></code> object.</dd>
+      <dd><code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> object.</dd>
       <dt>locked_in</dt>
       <dd>Object that determines which planning units that should be 
 locked in. See details for more information.</dd>
@@ -100,7 +100,7 @@ locked in. See details for more information.</dd>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='ConservationProblem.html'>ConservationProblem</a></code> object.</p>
+    <p><code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> object.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -112,9 +112,9 @@ locked in. See details for more information.</dd>
     <p><dt><code>character</code></dt><dd>column name in the attribute table with 
     <code>logical</code> values indicating if planning units should be locked in. 
     Note that <code>locked_in</code> can only a <code>character</code> if the planning
-    units in <code>x</code> are a <code>SpatialPolygonsDataFrame-class</code>, 
-    <code>SpatialLinesDataFrame-class</code>, or 
-    <code>SpatialPointsDataFrame-class</code> object.</dd></p>
+    units in <code>x</code> are a <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPolygonsDataFrame-class'>SpatialPolygonsDataFrame-class</a></code>, 
+    <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialLinesDataFrame-class'>SpatialLinesDataFrame-class</a></code>, or 
+    <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPointsDataFrame-class'>SpatialPointsDataFrame-class</a></code> object.</dd></p>
     <p><dt><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> object</dt><dd>Planning units in <code>x</code> 
     that intersect with cells in <code>y</code> that are not equal to zero and 
     not <code>NA</code> are locked in.</dd></p>
@@ -226,7 +226,7 @@ locked in. See details for more information.</dd>
 #&gt; 
 #&gt;      0     0 3546.28612    0    3 3811.64191 3546.28612  6.96%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (8 simplex iterations) in 0.01 seconds
+#&gt; Explored 0 nodes (8 simplex iterations) in 0.00 seconds
 #&gt; Thread count was 1 (of 2 available processors)
 #&gt; 
 #&gt; Solution count 1: 3811.64 
@@ -255,7 +255,7 @@ locked in. See details for more information.</dd>
 #&gt; 
 #&gt;      0     0 3546.28612    0    3 3811.64191 3546.28612  6.96%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (8 simplex iterations) in 0.01 seconds
+#&gt; Explored 0 nodes (8 simplex iterations) in 0.00 seconds
 #&gt; Thread count was 1 (of 2 available processors)
 #&gt; 
 #&gt; Solution count 1: 3811.64 

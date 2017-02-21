@@ -14,8 +14,8 @@ problem(x, features, ...)
 }
 \arguments{
 \item{x}{\code{\link[raster]{Raster-class}}, 
-\code{\link[sp]{SpatialPolygonsDataFrame}}, or
-\code{\link[sp]{SpatialLinesDataFrame}} object specifying the planning
+\code{\link[sp]{SpatialPolygonsDataFrame-class}}, or
+\code{\link[sp]{SpatialLinesDataFrame-class}} object specifying the planning
 units to use in the reserve design exercise and their corresponding cost.
 It may be desirable to exlcude some planning units from the analysis, for
 example those outside the study area. To exclude planning units, set the
@@ -33,8 +33,8 @@ column in the attribute table of a \code{\link[sp]{Spatial-class}} object
 with the cost data.}
 }
 \value{
-A \code{\link{ConservationProblem}} object containing the basic data
-  used to build a prioritization problem.
+A \code{\link{ConservationProblem-class}} object containing the 
+  basic data used to build a prioritization problem.
 }
 \description{
 Create a systematic conservation planning problem. This function is used to
