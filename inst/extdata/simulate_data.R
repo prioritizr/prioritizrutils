@@ -1,7 +1,7 @@
 ## Initialization
 # initialize session
 set.seed(500)
-devtools::load_all()
+source('R/simulate.R')
 library(RandomFields)
 RFoptions(seed=500)
 

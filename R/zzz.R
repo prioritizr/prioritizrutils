@@ -10,5 +10,5 @@
 }
 
 .onUnload <- function(libpath) {
-  library.dynam.unload('prioritizr', libpath)
+  library.dynam.unload('prioritizrutils', libpath)
 }
