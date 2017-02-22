@@ -22,13 +22,15 @@ env:
     - _R_CHECK_FORCE_SUGGESTS_=FALSE
 
 apt_packages:
-  - r-cran-rgdal
-  - r-cran-rsymphony
-  - r-cran-rgeos
   - libgeos-dev
   - libgeos-c1
   - curl
   - qpdf 
+
+r_binary_packages:
+  - rgdal
+  - rsymphony
+  - rgeos
 
 before_install: 
   - echo "TRAVIS_OS_NAME = $TRAVIS_OS_NAME"
