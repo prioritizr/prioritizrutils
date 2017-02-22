@@ -26,11 +26,15 @@ apt_packages:
   - libgeos-c1
   - curl
   - qpdf 
-
-r_binary_packages:
-  - rgdal
-  - rsymphony
-  - rgeos
+  - coinor-libcgl-dev
+  - coinor-libclp-dev
+  - coinor-libcoinutils-dev
+  - coinor-libosi-dev
+  - coinor-libsymphony-dev
+  - coinor-libsymphony-doc
+  - r-cran-rgdal
+  - r-cran-rgeos
+  - r-cran-rsymphony
 
 before_install: 
   - echo "TRAVIS_OS_NAME = $TRAVIS_OS_NAME"
