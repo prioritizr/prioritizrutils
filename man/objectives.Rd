@@ -2,13 +2,15 @@
 % Please edit documentation in R/objectives.R
 \name{objectives}
 \alias{objectives}
+\alias{add_default_objective}
 \alias{add_minimum_set_objective}
 \alias{add_maximum_coverage_objective}
 \alias{add_maximum_representation_objective}
 \alias{add_phylogenetic_representation_objective}
-\alias{add_default_objective}
 \title{Problem objective}
 \usage{
+add_default_objective(x)
+
 add_minimum_set_objective(x)
 
 add_maximum_coverage_objective(x, budget)
@@ -16,8 +18,6 @@ add_maximum_coverage_objective(x, budget)
 add_maximum_representation_objective(x, budget)
 
 add_phylogenetic_representation_objective(x, budget, tree)
-
-add_default_objective(x)
 }
 \arguments{
 \item{x}{\code{\link{ConservationProblem-class}} object.}
@@ -72,7 +72,6 @@ added to a conservation problem.
     placed on preserving as much of a representative sample a phylogenetic
     tree as possible given a budget. This objective requires the
     "ape" R package to be installed.}
-
 
  }
 }

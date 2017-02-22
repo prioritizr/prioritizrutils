@@ -9,6 +9,13 @@
 \alias{fast_extract}
 \alias{fast_extract}
 \title{Fast extract}
+\usage{
+fast_extract(x, y) # Raster, SpatialPolygons
+
+fast_extract(x, y) # Raster, SpatialLines
+
+fast_extract(x, y) # Raster, SpatialPoints
+}
 \arguments{
 \item{x}{\code{\link[raster]{Raster-class}} object.}
 

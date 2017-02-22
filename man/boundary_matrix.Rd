@@ -12,6 +12,15 @@
 \alias{boundary_matrix}
 \alias{boundary_matrix}
 \title{Boundary matrix}
+\usage{
+boundary_matrix(x) # Raster
+
+boundary_matrix(x) # SpatialPolygons
+
+boundary_matrix(x) # SpatialLines
+
+boundary_matrix(x) # SpatialPoints
+}
 \arguments{
 \item{x}{\code{\link[raster]{Raster-class}},
 \code{\link[sp]{SpatialLines-class}}, or
@@ -19,9 +28,7 @@
 \code{\link[raster]{Raster-class}} object then it must have only one
 layer.}
 
-\item{edges}{\code{integer} number of edges that each planning unit has when
- argument to \code{x} is a \code{\link[raster]{Raster-class}} object. 
-Defaults to 4. Valid values are 4 and 6.}
+\item{...}{not used.}
 }
 \value{
 \code{\link{Matrix}{dsCMatrix-class}} object.

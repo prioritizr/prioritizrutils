@@ -11,6 +11,9 @@
 \alias{add_locked_out_constraint}
 \alias{add_locked_out_constraint}
 \title{Add locked out constraint}
+\usage{
+add_locked_out_constraint(x, locked_out)
+}
 \arguments{
 \item{x}{\code{\link{ConservationProblem-class}} object.}
 

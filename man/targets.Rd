@@ -2,20 +2,20 @@
 % Please edit documentation in R/targets.R
 \name{targets}
 \alias{targets}
+\alias{add_default_targets}
 \alias{add_relative_targets}
 \alias{add_absolute_targets}
 \alias{add_loglinear_targets}
-\alias{add_default_targets}
 \title{Targets}
 \usage{
+add_default_targets(x)
+
 add_relative_targets(x, targets)
 
 add_absolute_targets(x, targets)
 
 add_loglinear_targets(x, lower_bound_amount, lower_bound_target,
   upper_bound_amount, upper_bound_target)
-
-add_default_targets(x)
 }
 \arguments{
 \item{x}{\code{\link{ConservationProblem-class}} object.}
@@ -50,7 +50,13 @@ targets that can be added to a conservation planning \code{\link{problem}}.
 }
 \details{
 \describe{
-  \item{\code{relative_targets}}{Targets are expressed as a proportion 
+
+\item{\code{default_targets}}{The default targets are used when targets
+    have not explicitly been set using the above functions. The creators
+    of this package do not believe that there can be any sensible default
+    targets. Thus relying on the default target will yield an error. }
+
+\item{\code{relative_targets}}{Targets are expressed as a proportion 
     (between 0
     and 1) of the maximum level of representation in the study area.
     The argument to \code{x} should have a single value if all features
@@ -73,11 +79,6 @@ targets that can be added to a conservation planning \code{\link{problem}}.
     to or less than the first cut-off range size, and the fourth
     argument specifies the target required for species with a range
     size equal to or greater than the required range size.}
-
-\item{\code{default_targets}}{The default targets are used when targets
-    have not explicitly been set using the above functions. The creators
-    of this package do not believe that there can be any sensible default
-    targets. Thus relying on the default target will yield an error. }
 
 }
 }

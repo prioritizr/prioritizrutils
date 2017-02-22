@@ -59,7 +59,7 @@
 \alias{OptimizationProblem-methods}
 \alias{OptimizationProblem-methods}
 \alias{OptimizationProblem-methods}
-\title{Access data from optimization problem}
+\title{Optimization problem methods}
 \usage{
 nrow(x)
 

@@ -11,6 +11,15 @@
 \alias{connected_matrix}
 \alias{connected_matrix}
 \title{Connected matrix}
+\usage{
+connected_matrix(x, directions = 4) # Raster
+
+connected_matrix(x) # SpatialPolygons
+
+connected_matrix(x) # SpatialLines
+
+connected_matrix(x, distance) # SpatialPoints
+}
 \arguments{
 \item{x}{\code{\link[raster]{Raster-class}} or 
 \code{\link[sp]{Spatial-class}} object. Note that if \code{x} is a 

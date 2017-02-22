@@ -8,6 +8,12 @@ NULL
 #' targets that can be added to a conservation planning \code{\link{problem}}.
 #' 
 #' \describe{
+#'
+#'   \item{\code{default_targets}}{The default targets are used when targets
+#'     have not explicitly been set using the above functions. The creators
+#'     of this package do not believe that there can be any sensible default
+#'     targets. Thus relying on the default target will yield an error. }
+#'
 #'   \item{\code{relative_targets}}{Targets are expressed as a proportion 
 #'     (between 0
 #'     and 1) of the maximum level of representation in the study area.
@@ -31,11 +37,6 @@ NULL
 #'     to or less than the first cut-off range size, and the fourth
 #'     argument specifies the target required for species with a range
 #'     size equal to or greater than the required range size.}
-#'
-#'   \item{\code{default_targets}}{The default targets are used when targets
-#'     have not explicitly been set using the above functions. The creators
-#'     of this package do not believe that there can be any sensible default
-#'     targets. Thus relying on the default target will yield an error. }
 #'
 #'  }
 #'
@@ -90,6 +91,15 @@ NULL
 #'
 #' @name targets
 NULL
+
+#' @rdname targets
+#' @export
+add_default_targets <- function(x) {
+  # assert arguments are valid
+  assertthat::assert_that(inherits(x, 'ConservationProblem'))
+  # throw error because targets must be chosen by the user
+  stop('problem is missing targets and they must be explicitly defined')
+}
 
 #' @rdname targets
 #' @export
@@ -192,13 +202,3 @@ add_loglinear_targets <- function(x, lower_bound_amount,
           self$get_data('abundances')
     }))
 }
-
-#' @rdname targets
-#' @export
-add_default_targets <- function(x) {
-  # assert arguments are valid
-  assertthat::assert_that(inherits(x, 'ConservationProblem'))
-  # throw error because targets must be chosen by the user
-  stop('problem is missing targets and they must be explicitly defined')
-}
-

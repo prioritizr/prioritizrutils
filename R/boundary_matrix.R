@@ -12,10 +12,8 @@ NULL
 #'   \code{\link[raster]{Raster-class}} object then it must have only one
 #'   layer.
 #' 
-#' @param edges \code{integer} number of edges that each planning unit has when
-#'   argument to \code{x} is a \code{\link[raster]{Raster-class}} object. 
-#'  Defaults to 4. Valid values are 4 and 6.
-#' 
+#' @param ... not used.
+#'
 #' @details This function returns a \code{\link[Matrix]{dsCMatrix-class}} 
 #'   symmetric sparse matrix. Cells on the off-diagonal indicate the length of 
 #'   the shared boundary between two different planning units. Cells on the 
@@ -43,6 +41,7 @@ methods::setGeneric('boundary_matrix',
 
 
 #' @name boundary_matrix
+#' @usage boundary_matrix(x) # Raster
 #' @rdname boundary_matrix
 methods::setMethod(
   'boundary_matrix',
@@ -81,6 +80,7 @@ methods::setMethod(
 })
 
 #' @name boundary_matrix
+#' @usage boundary_matrix(x) # SpatialPolygons
 #' @rdname boundary_matrix
 methods::setMethod(
   'boundary_matrix',
@@ -99,23 +99,25 @@ methods::setMethod(
 })
 
 #' @name boundary_matrix
+#' @usage boundary_matrix(x) # SpatialLines
 #' @rdname boundary_matrix
 methods::setMethod(
   'boundary_matrix',
   signature(x='SpatialLines'),
   function(x, ...) {
     assertthat::assert_that(inherits(x, 'SpatialLines'))
-    stop('Planning units represented by lines have no boundaries. ',
+    stop('Data represented by lines have no boundaries. ',
       'See ?constraints for alternative constraints.')
 })
 
 #' @name boundary_matrix
+#' @usage boundary_matrix(x) # SpatialPoints
 #' @rdname boundary_matrix
 methods::setMethod(
   'boundary_matrix',
   signature(x='SpatialPoints'),
   function(x, ...) {
     assertthat::assert_that(inherits(x, 'SpatialPoints'))
-    stop('Planning units represented by points have no boundaries. ',
+    stop('Data represented by points have no boundaries. ',
       'See ?constraints alternative constraints.')
 })

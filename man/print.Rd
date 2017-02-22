@@ -3,6 +3,9 @@
 \name{print}
 \alias{print}
 \title{Print}
+\usage{
+print(x, ...)
+}
 \arguments{
 \item{x}{An object.}
 

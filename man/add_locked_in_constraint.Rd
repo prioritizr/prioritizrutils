@@ -11,6 +11,9 @@
 \alias{add_locked_in_constraint}
 \alias{add_locked_in_constraint}
 \title{Add locked in constraints}
+\usage{
+add_locked_in_constraint(x, locked_in)
+}
 \arguments{
 \item{x}{\code{\link{ConservationProblem-class}} object.}
 

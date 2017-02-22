@@ -8,6 +8,8 @@ NULL
 #' units that have been degraded and are not longer suitable for conserving
 #' species.
 #' 
+#' @usage add_locked_out_constraint(x, locked_out)
+#' 
 #' @param x \code{\link{ConservationProblem-class}} object.
 #'
 #' @param locked_out Object that determines which planning units that should be 

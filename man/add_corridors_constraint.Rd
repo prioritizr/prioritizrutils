@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_corridors_constraint.R
 \name{add_corridors_constraint}
 \alias{add_corridors_constraint}
-\title{Corridors constraint}
+\title{Add corridors constraint}
 \usage{
 add_corridors_constraint(x, targets, friction)
 }

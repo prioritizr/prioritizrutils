@@ -49,7 +49,6 @@ NULL
 #'     tree as possible given a budget. This objective requires the
 #'     "ape" R package to be installed.}
 #'
-#'
 #'  }
 #'
 #' @param x \code{\link{ConservationProblem-class}} object.
@@ -94,6 +93,15 @@ NULL
 #'
 #' @name objectives
 NULL
+
+#' @rdname objectives
+#' @export
+add_default_objective <- function(x) {
+  # assert argument is valid
+  assertthat::assert_that(inherits(x, 'ConservationProblem'))
+  # throw error because objectives must be explicitly defined
+  stop('problem is missing an objective and this must be explicitly defined')
+}
 
 #' @rdname objectives
 #' @export
@@ -207,12 +215,4 @@ add_phylogenetic_representation_objective <- function(x, budget, tree) {
     }))
 }
 
-#' @rdname objectives
-#' @export
-add_default_objective <- function(x) {
-  # assert argument is valid
-  assertthat::assert_that(inherits(x, 'ConservationProblem'))
-  # throw error because objectives must be explicitly defined
-  stop('problem is missing an objective and this must be explicitly defined')
-}
 

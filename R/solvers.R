@@ -9,6 +9,9 @@ NULL
 #'
 #' \describe{
 #'
+#'  \item{\code{default_solver}}{This solver uses the best software installed 
+#'    currently installed on the system.}
+#'
 #'   \item{\code{add_gurobi_solver}}{\href{http://gurobi.com}{Gurobi} is a
 #'     state-of-the-art commercial optimization software with an R package
 #'     interface. It is by far the fastest of the solvers available in this
@@ -34,9 +37,6 @@ NULL
 #'    On Windows and Mac, \code{lpsymphony} may be easier to
 #'    may be easier to install. This solver uses the \code{lpsymphony} package 
 #'    to solve.}
-#'
-#'  \item{\code{default_solver}}{This solver uses the best software installed 
-#'    currently installed on the system.}
 #'
 #' }
 #'
@@ -117,6 +117,19 @@ NULL
 #' @export
 methods::setClass('GurobiSolver', contains='Solver')
 
+
+#' @rdname solvers
+#' @export
+add_default_solver <- function(x, ...) {
+  if (requireNamespace('gurobi', quietly = TRUE)) {
+    return(add_gurobi_solver(x, ...))
+  } else if (requireNamespace('lpsymphony', quietly = TRUE)) {
+    return(add_lpsymphony_solver(x, ...))
+  } else {
+    return(add_rsymphony_solver(x, ...))
+  }
+}
+
 #' @rdname solvers
 #' @export
 add_gurobi_solver <- function(x, gap=0.1, time_limit=.Machine$integer.max,
@@ -167,54 +180,6 @@ add_gurobi_solver <- function(x, gap=0.1, time_limit=.Machine$integer.max,
 }
 
 #' @export
-methods::setClass('LpsymphonySolver', contains='Solver')
-
-#' @rdname solvers
-#' @export
-add_lpsymphony_solver <- function(x, gap=0.1, time_limit=-1, verbosity=1,
-                                  first_feasible=0) {
-  # assert that arguments are valid
-  assertthat::assert_that(inherits(x, 'ConservationProblem'),
-    isTRUE(all(is.finite(gap))), assertthat::is.scalar(gap), isTRUE(gap <= 1), 
-    isTRUE(gap >= 0), isTRUE(all(is.finite(time_limit))),
-    assertthat::is.scalar(time_limit),
-    assertthat::is.count(time_limit) || isTRUE(time_limit==-1),
-    isTRUE(all(is.finite(verbosity))), assertthat::is.count(abs(verbosity)),
-    isTRUE(verbosity <= 1), isTRUE(verbosity >= -2),
-    assertthat::is.scalar(first_feasible), 
-    isTRUE(first_feasible==1 || isTRUE(first_feasible==0)),
-    requireNamespace('lpsymphony', quietly=TRUE))
-  # add solver
-  x$add_solver(pproto(
-    'LpsymphonySolver',
-    Solver,
-    name='Lpsymphony',
-    parameters=parameters(
-      integer_parameter('verbosity', verbosity, lower_limit=-2L,     
-        upper_limit=1L),
-      proportion_parameter('gap',gap),
-      integer_parameter('time_limit', time_limit, lower_limit=-1,
-        upper_limit=.Machine$integer.max),
-      binary_parameter('first_feasible', first_feasible)),
-    solve=function(self, x) {
-      model = list(
-        obj = x$obj(),
-        mat = as.matrix(x$A()),
-        dir = x$sense(),
-        rhs = x$rhs(),
-        types = x$vtype(),
-        bounds = list(lower = x$lb(), upper=x$ub()),
-        max = x$modelsense()=='max')
-      p <- as.list(self$parameters)
-      names(p)[2] <- 'gap_limit'
-      model$dir <- replace(model$dir, model$dir=='=', '==')
-      model$types <- replace(model$types, model$types=='S', 'C')
-      p$first_feasible <- as.logical(p$first_feasible)
-      do.call(lpsymphony::lpsymphony_solve_LP, append(model, p))$solution
-    }))
-}
-
-#' @export
 methods::setClass('RsymphonySolver', contains='Solver')
 
 #' @rdname solvers
@@ -261,15 +226,50 @@ add_rsymphony_solver <- function(x, gap=0.1, time_limit=-1, first_feasible=0,
     }))
 }
 
+#' @export
+methods::setClass('LpsymphonySolver', contains='Solver')
+
 #' @rdname solvers
 #' @export
-add_default_solver <- function(x, ...) {
-  if (requireNamespace('gurobi', quietly = TRUE)) {
-    return(add_gurobi_solver(x, ...))
-  } else if (requireNamespace('lpsymphony', quietly = TRUE)) {
-    return(add_lpsymphony_solver(x, ...))
-  } else {
-    return(add_rsymphony_solver(x, ...))
-  }
+add_lpsymphony_solver <- function(x, gap=0.1, time_limit=-1, verbosity=1,
+                                  first_feasible=0) {
+  # assert that arguments are valid
+  assertthat::assert_that(inherits(x, 'ConservationProblem'),
+    isTRUE(all(is.finite(gap))), assertthat::is.scalar(gap), isTRUE(gap <= 1), 
+    isTRUE(gap >= 0), isTRUE(all(is.finite(time_limit))),
+    assertthat::is.scalar(time_limit),
+    assertthat::is.count(time_limit) || isTRUE(time_limit==-1),
+    isTRUE(all(is.finite(verbosity))), assertthat::is.count(abs(verbosity)),
+    isTRUE(verbosity <= 1), isTRUE(verbosity >= -2),
+    assertthat::is.scalar(first_feasible), 
+    isTRUE(first_feasible==1 || isTRUE(first_feasible==0)),
+    requireNamespace('lpsymphony', quietly=TRUE))
+  # add solver
+  x$add_solver(pproto(
+    'LpsymphonySolver',
+    Solver,
+    name='Lpsymphony',
+    parameters=parameters(
+      integer_parameter('verbosity', verbosity, lower_limit=-2L,     
+        upper_limit=1L),
+      proportion_parameter('gap',gap),
+      integer_parameter('time_limit', time_limit, lower_limit=-1,
+        upper_limit=.Machine$integer.max),
+      binary_parameter('first_feasible', first_feasible)),
+    solve=function(self, x) {
+      model = list(
+        obj = x$obj(),
+        mat = as.matrix(x$A()),
+        dir = x$sense(),
+        rhs = x$rhs(),
+        types = x$vtype(),
+        bounds = list(lower = x$lb(), upper=x$ub()),
+        max = x$modelsense()=='max')
+      p <- as.list(self$parameters)
+      names(p)[2] <- 'gap_limit'
+      model$dir <- replace(model$dir, model$dir=='=', '==')
+      model$types <- replace(model$types, model$types=='S', 'C')
+      p$first_feasible <- as.logical(p$first_feasible)
+      do.call(lpsymphony::lpsymphony_solve_LP, append(model, p))$solution
+    }))
 }
-

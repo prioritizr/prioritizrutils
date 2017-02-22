@@ -10,6 +10,8 @@ NULL
 #'
 #' @param y \code{\link{Spatial-class}} or \code{\link{Raster-class}} object.
 #'
+#' @param ... not used.
+#'
 #' @return \code{integer} indices of the units in \code{x} that intersect with 
 #'   \code{y}.
 #'
@@ -28,14 +30,15 @@ NULL
 #' @export
 methods::setGeneric('intersecting_units', 
                     signature=methods::signature('x', 'y'),
-                    function(x, y) 
+                    function(x, y, ...) 
                       standardGeneric('intersecting_units'))
 
 #' @name intersecting_units
+#' @usage intersecting_units(x, y) # Raster, Raster
 #' @rdname intersecting_units
 methods::setMethod('intersecting_units',
   methods::signature(x='Raster', y='Raster'),
-  function(x, y) {
+  function(x, y, ...) {
     # assert arguments are valid
     assertthat::assert_that(inherits(x, 'Raster'), inherits(y, 'Raster'),
       isTRUE(raster::nlayers(x)==1), raster::compareCRS(x@crs, y@crs),
@@ -52,10 +55,11 @@ methods::setMethod('intersecting_units',
 )
 
 #' @name intersecting_units
+#' @usage intersecting_units(x, y) # Spatial, Spatial
 #' @rdname intersecting_units
 methods::setMethod('intersecting_units',
   methods::signature(x='Spatial', y='Spatial'),
-  function(x, y) {
+  function(x, y, ...) {
     # assert arguments are valid
     assertthat::assert_that(
       inherits(x, 'Spatial'), inherits(x, 'Spatial'),
@@ -76,10 +80,11 @@ methods::setMethod('intersecting_units',
 )
 
 #' @name intersecting_units
+#' @usage intersecting_units(x, y) # Raster, Spatial
 #' @rdname intersecting_units
 methods::setMethod('intersecting_units',
   methods::signature(x='Raster', y='Spatial'),
-  function(x, y) {
+  function(x, y, ...) {
     # assert arguments are valid
     assertthat::assert_that(
       inherits(x, 'Raster'), inherits(y, 'Spatial'), 
@@ -97,10 +102,11 @@ methods::setMethod('intersecting_units',
 )
 
 #' @name intersecting_units
+#' @usage intersecting_units(x, y, ...) # Spatial, Raster
 #' @rdname intersecting_units
 methods::setMethod('intersecting_units',
   methods::signature(x='Spatial', y='Raster'),
-  function(x, y) {
+  function(x, y, ...) {
     # assert arguments are valid
     assertthat::assert_that(
       inherits(x, 'Spatial'), inherits(y, 'Raster'), 

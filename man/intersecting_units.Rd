@@ -11,10 +11,21 @@
 \alias{intersecting_units}
 \alias{intersecting_units}
 \title{Find intersecting units}
+\usage{
+intersecting_units(x, y) # Raster, Raster
+
+intersecting_units(x, y) # Spatial, Spatial
+
+intersecting_units(x, y) # Raster, Spatial
+
+intersecting_units(x, y, ...) # Spatial, Raster
+}
 \arguments{
 \item{x}{\code{\link{Spatial-class}} or \code{\link{Raster-class}} object.}
 
 \item{y}{\code{\link{Spatial-class}} or \code{\link{Raster-class}} object.}
+
+\item{...}{not used.}
 }
 \value{
 \code{integer} indices of the units in \code{x} that intersect with 

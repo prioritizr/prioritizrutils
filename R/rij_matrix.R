@@ -1,10 +1,11 @@
 #' @include internal.R fast_extract.R
 NULL
 
-#' \code{rij} matrix
+#' Feature by planning unit matrix
 #'
-#' Generate a \code{rij} matrix using spatial data sets. The \code{rij}
-#' contains data on the amount of each feature in each planning unit.
+#' Generate a feature by planning unit (aka \emph{rij} matrix) using spatial 
+#' data sets. The \code{rij} contains data on the amount of each feature in 
+#' each planning unit.
 #'
 #' @param x \code{\link[raster]{RasterLayer-class}} or
 #'   \code{\link[sp]{Spatial-class}} object representing the 
@@ -68,6 +69,7 @@ methods::setGeneric('rij_matrix',
                     function(x, y, ...) standardGeneric('rij_matrix'))
 
 #' @name rij_matrix
+#' @usage rij_matrix(x, y) # Raster, Raster
 #' @rdname rij_matrix
 methods::setMethod('rij_matrix', signature(x='Raster', y='Raster'),
   function(x, y, ...) {
@@ -101,6 +103,7 @@ methods::setMethod('rij_matrix', signature(x='Raster', y='Raster'),
 })
 
 #' @name rij_matrix
+#' @usage rij_matrix(x, y) # Spatial, Raster
 #' @rdname rij_matrix
 methods::setMethod('rij_matrix', signature(x='Spatial', y='Raster'),
   function(x, y, fun=sum, velox=requireNamespace('velox'), ...) {

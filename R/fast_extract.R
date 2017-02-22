@@ -35,6 +35,7 @@ methods::setGeneric('fast_extract',
                     function(x, y, ...) standardGeneric('fast_extract'))
 
 #' @name fast_extract
+#' @usage fast_extract(x, y) # Raster, SpatialPolygons
 #' @rdname fast_extract
 methods::setMethod('fast_extract', signature(x='Raster', y='SpatialPolygons'), 
   function(x, y, fun=mean, velox=requireNamespace('velox'), ...) {
@@ -79,6 +80,7 @@ methods::setMethod('fast_extract', signature(x='Raster', y='SpatialPolygons'),
 )
 
 #' @name fast_extract
+#' @usage fast_extract(x, y) # Raster, SpatialLines
 #' @rdname fast_extract
 methods::setMethod('fast_extract', signature(x='Raster', y='SpatialLines'), 
   function(x, y, fun=mean, ...) {
@@ -100,6 +102,7 @@ methods::setMethod('fast_extract', signature(x='Raster', y='SpatialLines'),
 )
 
 #' @name fast_extract
+#' @usage fast_extract(x, y) # Raster, SpatialPoints
 #' @rdname fast_extract
 methods::setMethod('fast_extract', signature(x='Raster', y='SpatialPoints'), 
   function(x, y, fun=mean, ...) {

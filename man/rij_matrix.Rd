@@ -6,7 +6,12 @@
 \alias{rij_matrix,Spatial,Raster-method}
 \alias{rij_matrix}
 \alias{rij_matrix}
-\title{\code{rij} matrix}
+\title{Feature by planning unit matrix}
+\usage{
+rij_matrix(x, y) # Raster, Raster
+
+rij_matrix(x, y) # Spatial, Raster
+}
 \arguments{
 \item{x}{\code{\link[raster]{RasterLayer-class}} or
 \code{\link[sp]{Spatial-class}} object representing the 
@@ -38,8 +43,9 @@ is installed. Note that this only used when \code{x} is a
 \code{\link{Matrix}{dgCMatrix-class}} object.
 }
 \description{
-Generate a \code{rij} matrix using spatial data sets. The \code{rij}
-contains data on the amount of each feature in each planning unit.
+Generate a feature by planning unit (aka \emph{rij} matrix) using spatial 
+data sets. The \code{rij} contains data on the amount of each feature in 
+each planning unit.
 }
 \details{
 The sparse matrix represents the spatial intersection between the

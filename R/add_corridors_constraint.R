@@ -1,7 +1,7 @@
 #' @include internal.R Constraint-proto.R
 NULL
 
-#' Corridors constraint
+#' Add corridors constraint
 #'
 #' It is important to maintain connectivity between reserves. However,
 #' some areas are more difficult for species to traverse then other areas.

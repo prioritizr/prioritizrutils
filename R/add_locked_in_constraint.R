@@ -7,7 +7,9 @@ NULL
 #' For example, it may be desirable to lock in planning units that are 
 #' inside existing protected areas so that the solution fills in the gaps in the 
 #' existing reserve network.
-#' 
+#'
+#' @usage add_locked_in_constraint(x, locked_in)
+#'
 #' @param x \code{\link{ConservationProblem-class}} object.
 #'
 #' @param locked_in Object that determines which planning units that should be 

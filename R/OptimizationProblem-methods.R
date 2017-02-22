@@ -15,7 +15,7 @@ new_optimization_problem <- function() {
     ptr=rcpp_new_optimization_problem())
 }
 
-#' Access data from optimization problem
+#' Optimization problem methods
 #' 
 #' These functions are used to access data from an
 #' \code{\link{OptimizationProblem-class}} object.

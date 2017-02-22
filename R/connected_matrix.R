@@ -15,7 +15,7 @@ NULL
 #'    in which cells should be connected: 4 (rook's case), 8 (queen's case), 
 #'    16 (knight and one-cell queen moves), or 'bishop' to connect cells with
 #'    one-cell diagonal moves. 
-
+#'
 #' @param distance \code{numeric} If \code{x} is a 
 #'   \code{\link{SpatialPoints-class}} object, the distance that planning units 
 #'   have to be within in order to qualify as being connected.
@@ -39,6 +39,7 @@ methods::setGeneric('connected_matrix',
 
 
 #' @name connected_matrix
+#' @usage connected_matrix(x, directions = 4) # Raster
 #' @rdname connected_matrix
 methods::setMethod(
   'connected_matrix',
@@ -61,6 +62,7 @@ methods::setMethod(
 })
 
 #' @name connected_matrix
+#' @usage connected_matrix(x) # SpatialPolygons
 #' @rdname connected_matrix
 methods::setMethod(
   'connected_matrix',
@@ -76,6 +78,7 @@ methods::setMethod(
 })
 
 #' @name connected_matrix
+#' @usage connected_matrix(x) # SpatialLines
 #' @rdname connected_matrix
 methods::setMethod(
   'connected_matrix',
@@ -91,6 +94,7 @@ methods::setMethod(
 })
 
 #' @name connected_matrix
+#' @usage connected_matrix(x, distance) # SpatialPoints
 #' @rdname connected_matrix
 methods::setMethod(
   'connected_matrix',

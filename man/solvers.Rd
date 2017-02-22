@@ -2,25 +2,27 @@
 % Please edit documentation in R/solvers.R
 \name{solvers}
 \alias{solvers}
-\alias{add_gurobi_solver}
-\alias{add_lpsymphony_solver}
-\alias{add_rsymphony_solver}
 \alias{add_default_solver}
+\alias{add_gurobi_solver}
+\alias{add_rsymphony_solver}
+\alias{add_lpsymphony_solver}
 \title{Problem solvers}
 \usage{
+add_default_solver(x, ...)
+
 add_gurobi_solver(x, gap = 0.1, time_limit = .Machine$integer.max,
   presolve = 2, threads = 1, first_feasible = 0)
-
-add_lpsymphony_solver(x, gap = 0.1, time_limit = -1, verbosity = 1,
-  first_feasible = 0)
 
 add_rsymphony_solver(x, gap = 0.1, time_limit = -1, first_feasible = 0,
   verbosity = 1)
 
-add_default_solver(x, ...)
+add_lpsymphony_solver(x, gap = 0.1, time_limit = -1, verbosity = 1,
+  first_feasible = 0)
 }
 \arguments{
 \item{x}{\code{\link{ConservationProblem-class}} object.}
+
+\item{...}{arguments passed to the default solver.}
 
 \item{gap}{\code{numeric} relative gap to optimality. The optimizer will
 terminate when the difference between the upper and lower objective
@@ -50,8 +52,6 @@ relaxed solution, and is therefore often reasonably close to optimality.}
 
 \item{verbosity}{\code{integer} how verbose should the solver be when
 reporting progress on solving the problem?}
-
-\item{...}{arguments passed to the default solver.}
 }
 \description{
 Specify the software and configurations used to solve a conservation planning 
@@ -60,6 +60,9 @@ problem. Below is a list of different solvers that can be added to a
 }
 \details{
 \describe{
+
+\item{\code{default_solver}}{This solver uses the best software installed 
+   currently installed on the system.}
 
 \item{\code{add_gurobi_solver}}{\href{http://gurobi.com}{Gurobi} is a
     state-of-the-art commercial optimization software with an R package
@@ -86,9 +89,6 @@ problem. Below is a list of different solvers that can be added to a
    On Windows and Mac, \code{lpsymphony} may be easier to
    may be easier to install. This solver uses the \code{lpsymphony} package 
    to solve.}
-
-\item{\code{default_solver}}{This solver uses the best software installed 
-   currently installed on the system.}
 
 }
 }
