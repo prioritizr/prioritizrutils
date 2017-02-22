@@ -32,7 +32,7 @@ vigns:
 	mkdir -p vignettes
 	cp -f inst/vign/*.Rmd vignettes/
 	rm vignettes/placeholder.Rmd
-	R --slave -e "devtools::load_all();devtools::build_vignettes()"
+	R --slave -e "devtools::build_vignettes()"
 	rm -rf vignettes/*
 	mkdir -p vignettes
 	cp -f inst/vign/placeholder.Rmd vignettes/README.Rmd
@@ -42,7 +42,7 @@ site:
 	mkdir -p vignettes
 	cp -f inst/vign/*.Rmd vignettes
 	rm vignettes/placeholder.Rmd
-	R --slave -e "devtools::load_all();pkgdown::build_site()"
+	R --slave -e "pkgdown::build_site()"
 	rm -rf vignettes/*
 	rm -rf inst/doc/*
 
@@ -50,11 +50,9 @@ test:
 	R --slave -e "devtools::test()" > test.log 2>&1
 
 check:
-	R --slave -e "devtools::check()"
-	R --slave -e "devtools::build_win()"
+	R --slave -e "devtools::check()" > check.log 2>&1
 
 checkwb:
-	R --slave -e "devtools::check()"
 	R --slave -e "devtools::build_win()"
 
 build:
