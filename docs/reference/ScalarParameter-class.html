@@ -89,25 +89,20 @@
     <h2 class="hasAnchor" id="fields"><a class="anchor" href="#fields"></a>Fields</h2>
 
     <p></p>
-    <p><ul>
-<li>$id<code>character</code> identifier for parameter.
-</li>
-<li>$name<code>character</code> name of parameter.
-</li>
-<li>$value<code>numeric</code> scalar value.
-</li>
-<li>$default<code>numeric</code> scalar default value.
-</li>
-<li>$class<code>character</code> class of value.
-</li>
-<li>$lower_limit<code>numeric</code> scalar value minimum permitted value.
-</li>
-<li>$upper_limit<code>numeric</code> scalar value maximum permitted value.
-</li>
-<li>$widget<code>function</code> used to construct a
-               <code><a href='http://www.rdocumentation.org/packages/shiny/topics/shiny-package'>shiny</a></code> interface for modifying values.
-</li>
-</ul></p>
+    <p><dl class='dl-horizontal'></p>
+    <p><dt>$id</dt><dd><code>character</code> identifier for parameter.</dd></p>
+    <p><dt>$name</dt><dd><code>character</code> name of parameter.</dd></p>
+    <p><dt>$value</dt><dd><code>numeric</code> scalar value.</dd></p>
+    <p><dt>$default</dt><dd><code>numeric</code> scalar default value.</dd></p>
+    <p><dt>$class</dt><dd><code>character</code> name of the class that <code>$value</code> should
+  inherit from (eg. <code>integer</code>).</dd></p>
+    <p><dt>$lower_limit</dt><dd><code>numeric</code> scalar value that is the minimum value 
+  that <code>$value</code> is permitted to be.</dd></p>
+    <p><dt>$upper_limit</dt><dd><code>numeric</code> scalar value that is the maximum value 
+  that <code>$value</code> is permitted to be.</dd></p>
+    <p><dt>$widget</dt><dd><code>function</code> used to construct a
+               <code><a href='http://www.rdocumentation.org/packages/shiny/topics/shiny-package'>shiny</a></code> interface for modifying values.</dd>
+</dl></p>
     
     <h2 class="hasAnchor" id="usage"><a class="anchor" href="#usage"></a>Usage</h2>
 
@@ -125,22 +120,22 @@
     <p></p>
     <p><dl class='dl-horizontal'>
 <dt>x</dt><dd>object used to set a new parameter value.</dd>
-<dt>...</dt><dd>arguments passed to function in <code>widget</code> field.</dd>
+<dt>...</dt><dd>arguments passed to <code>$widget</code>.</dd>
  </dl></p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p></p>
-    <p><dl class='dl-horizontal'>
-<dt>print</dt><dd>print the object.</dd>
-<dt>show</dt><dd>show the object.</dd>
-<dt>validate</dt><dd>check if a proposed new set of parameters are valid.</dd>
-<dt>get</dt><dd>extract the parameter value.</dd>
-<dt>set</dt><dd>update the parameter value.</dd>
-<dt>reset</dt><dd>update the parameter value to be the default value.</dd>
-<dt>render</dt><dd>create a <code><a href='http://www.rdocumentation.org/packages/shiny/topics/shiny-package'>shiny</a></code> widget to modify 
-              parameter values.</dd>
-</dl></p>
+    <p><dl class='dl-horizontal'></p>
+    <p><dt>print</dt><dd>print the object.</dd></p>
+    <p><dt>show</dt><dd>show the object.</dd></p>
+    <p><dt>validate</dt><dd>check if a proposed new set of parameters are valid.</dd></p>
+    <p><dt>get</dt><dd>extract the parameter value.</dd></p>
+    <p><dt>set</dt><dd>update the parameter value.</dd></p>
+    <p><dt>reset</dt><dd>update the parameter value to be the default value.</dd></p>
+    <p><dt>render</dt><dd>create a <code><a href='http://www.rdocumentation.org/packages/shiny/topics/shiny-package'>shiny</a></code> widget to modify 
+              parameter values.</dd></p>
+    <p></dl></p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

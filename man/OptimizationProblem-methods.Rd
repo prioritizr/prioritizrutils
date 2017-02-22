@@ -81,12 +81,12 @@ row_ids(x)
 }
 \value{
 \code{\link[Matrix]{dgCMatrix-class}}, \code{numeric} vector,
-        \code{numeric} vector, or scalar \code{integer}.
+  \code{numeric} vector, or scalar \code{integer} depending on the method
+  used.
 }
 \description{
 These functions are used to access data from an
-\code{\link{OptimizationProblem-class}} object. See below for details on their
-usage.
+\code{\link{OptimizationProblem-class}} object.
 }
 \details{
 The functions return the following data:
@@ -100,10 +100,11 @@ The functions return the following data:
 \item{ncell}{\code{integer} number of cells.}
 
 \item{modelsense}{\code{character} describing if the problem is to be
-  maximized ('max') or minimized ('min').}
+  maximized (\code{'max'}) or minimized (\code{'min'}).}
 
 \item{vtype}{\code{character} describing the type of each decision variable:
-  binary ('B'), semi-continuous ('S'), or continuous ('C')}
+  binary (\code{'B'}), semi-continuous (\code{'S'}), or continuous 
+  (\code{'C'})}
 
 \item{obj}{\code{numeric} vector specifying the objective function.}
 
@@ -113,13 +114,13 @@ The functions return the following data:
 \item{rhs}{\code{numeric} vector with right-hand-side linear constraints}
 
 \item{sense}{\code{character} vector with the senses of the linear
-  constraints ('<=', '>=', '=').}
+  constraints (\code{'<='}, \code{'>='}, \code{'='}).}
 
-\item{lb}{\code{numeric} lower bounds for decision variables. \code{NA} 
-  values indicate no lower bound.}
+\item{lb}{\code{numeric} lower bound for each decision variable. Missing data
+  values (\code{NA}) indicate no lower bound for a given variable.}
 
-\item{ub}{\code{numeric} upper bounds for decision variables. NA values 
-  indicate no upper bound.}
+\item{ub}{\code{numeric} upper bounds for each decision variable. Missing data
+  values (\code{NA}) indicate no upper bound for a given variable.}
 
 \item{number_of_planning_units}{\code{integer} number of planning units in
   the problem.}

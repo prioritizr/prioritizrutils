@@ -81,7 +81,7 @@
     </div>
 
     
-    <p>Determine the units in any given spatial data object that intersect
+    <p>Determine the units in a given spatial data object that intersect
 with any of the units in another spatial data object.</p>
     
 
@@ -89,14 +89,25 @@ with any of the units in another spatial data object.</p>
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>x</dt>
-      <dd>Object.</dd>
+      <dd><code>Spatial-class</code> or <code>Raster-class</code> object.</dd>
       <dt>y</dt>
-      <dd>Object.</dd>
+      <dd><code>Spatial-class</code> or <code>Raster-class</code> object.</dd>
     </dl>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>the units in <code>x</code> that intersect with <code>y</code>.</p>
+    <p><code>integer</code> indices of the units in <code>x</code> that intersect with 
+  <code>y</code>.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The <code><a href='parallel.html'>set_number_of_threads</a></code> can be used to distribute
+  computations among multiple threads and potentially reduce run time.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p><code><a href='fast_extract.html'>fast_extract</a></code>, <code><a href='parallel.html'>set_number_of_threads</a></code>,
+  <code><a href='parallel.html'>get_number_of_threads</a></code>.</p>
     
 
   </div>
@@ -106,6 +117,10 @@ with any of the units in another spatial data object.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
           </ul>
 
   </div>

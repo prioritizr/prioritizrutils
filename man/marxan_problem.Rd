@@ -16,7 +16,7 @@ marxan_problem(x, ...)
 }
 \arguments{
 \item{x}{\code{character} file path for Marxan input file (typically
-called \emph{input.dat}) or a \code{\link[sp]{Spatial-class}} or 
+called \code{'input.dat'}) or a \code{\link[sp]{Spatial-class}} or 
 \code{\link[raster]{Raster-class}} object containing planning unit data.}
 
 \item{...}{not used}
@@ -28,9 +28,9 @@ data on the distribution of features across the study area.}
 in the solution.}
 
 \item{targets_type}{\code{character} name indicating if the \code{targets}
-are expressed as "relative" (eg. 0.2 meaning that 20 \% of a feature 
-needs to be conserved), or "absolute" (eg. 100 meaning that 100 units of a 
-feature need to be conserved) amounts.}
+are expressed as \code{'relative'} (eg. \code{0.2} meaning that 20 \% of a feature 
+needs to be conserved), or \code{'absolute'} (eg. \code{200} meaning that 
+200 units of a feature need to be conserved) amounts.}
 
 \item{locked_in}{Object that determines which planning units that should be 
 locked in. See details for more information.}
@@ -40,25 +40,25 @@ locked out. See details for more information.}
 
 \item{penalty}{\code{numeric} penalty for exposed edges. This
 is equivalent to the
-\href{http://marxan.net/downloads/uq_marxan_web_2/module2.html}{boundary 
-length modifier (BLM)} parameter in \href{marxan.net}{Marxan}.}
+\href{http://marxan.net/downloads/uq_marxan_web_2/module2.html}{boundary length modifier (BLM)}
+parameter in \href{http://marxan.net}{marxan.net}.}
 
 \item{edge_factor}{\code{numeric} proportion to scale edges that do
 not have any neighboring planning units. For example, an edge factor
 of \code{0.5} is commonly used for planning units along the coast line.}
 }
 \value{
-\code{link{ConservationProblem-class}} object.
+\code{\link{ConservationProblem-class}} object.
 }
 \description{
 Create a Marxan conservation problem. Although users are encouraged to 
 build and tailor conservation planning problems to suit their own needs, 
-sometimes it is easier to just use a more familiar "canned" approach. To
-address this need, this function provides a convenient wrapper for generating
+sometimes it is easier to use a more familiar "canned" approach. This 
+function provides a convenient wrapper for generating
 and solving Marxan-style conservation problems. If users already have
 their conservation planning data in the Marxan input format, this function
-can be used to read such files and solve the Marxan problems using 
-exact algorithm solvers.
+can also be used to read Marxan data files and solve the Marxan-style 
+problems using exact algorithm solvers.
 }
 \examples{
 # create Marxan problem using spatial data

@@ -82,40 +82,39 @@
 
     
     <p>This class is used to represent an optimization problem. Data are stored
-in memory using an external pointer. <strong>Only experts interact with this
-class directly.</strong></p>
+in memory using an external pointer. <strong>Only experts should interact 
+with this class directly.</strong></p>
     
 
         
     <h2 class="hasAnchor" id="fields"><a class="anchor" href="#fields"></a>Fields</h2>
 
     <p></p>
-    <p><ul>
-<li>$ptr<code>externalptr</code> object.
-</li>
-</ul></p>
+    <p><dl class='dl-horizontal'>
+<dt>$ptr</dt><dd><code>externalptr</code> object.</dd>
+</dl></p>
     
     <h2 class="hasAnchor" id="usage"><a class="anchor" href="#usage"></a>Usage</h2>
 
     <p></p>
-    <p><code>x$print()</code>
-<code>x$show()</code>
-<code>x$repr()</code></p>
-    <p><code>x$ncol()</code>
-<code>x$nrow()</code>
-<code>x$ncell()</code></p>
-    <p><code>x$modelsense()</code>
-<code>x$vtype()</code>
-<code>x$obj()</code>
-<code>x$A()</code>
-<code>x$rhs()</code>
-<code>x$sense()</code>
-<code>x$lb()</code>
-<code>x$ub()</code></p>
-    <p><code>x$number_of_planning_units()</code>
-<code>x$number_of_features()</code></p>
-    <p><code>x$row_ids()</code>
-<code>x$col_ids()</code></p>
+    <p><code>x$print()</code></p>
+    <p><code>x$show()</code></p>
+    <p><code>x$repr()</code></p>
+    <p><code>x$ncol()</code></p>
+    <p><code>x$nrow()</code></p>
+    <p><code>x$ncell()</code></p>
+    <p><code>x$modelsense()</code></p>
+    <p><code>x$vtype()</code></p>
+    <p><code>x$obj()</code></p>
+    <p><code>x$A()</code></p>
+    <p><code>x$rhs()</code></p>
+    <p><code>x$sense()</code></p>
+    <p><code>x$lb()</code></p>
+    <p><code>x$ub()</code></p>
+    <p><code>x$number_of_planning_units()</code></p>
+    <p><code>x$number_of_features()</code></p>
+    <p><code>x$row_ids()</code></p>
+    <p><code>x$col_ids()</code></p>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
 
@@ -140,15 +139,15 @@ class directly.</strong></p>
     <p><dt>A</dt><dd><code><a href='http://www.rdocumentation.org/packages/Matrix/topics/dgCMatrix-class'>dgCMatrix-class</a></code> model matrix </dd></p>
     <p><dt>rhs</dt><dd><code>numeric</code> vector of right-hand-side constraints.</dd></p>
     <p><dt>sense</dt><dd><code>character</code> vector of constraint senses.</dd></p>
-    <p><dt>lb</dt><dd><code>numeric</code> vector of lower bounds for each column.</dd></p>
-    <p><dt>ub</dt><dd><code>numeric</code> vector of upper bounds for each column.</dd></p>
+    <p><dt>lb</dt><dd><code>numeric</code> vector of lower bounds for each decision variable.</dd></p>
+    <p><dt>ub</dt><dd><code>numeric</code> vector of upper bounds for each decision variable.</dd></p>
     <p><dt>number_of_features</dt><dd><code>integer</code> number of features in the problem.</dd></p>
     <p><dt>number_of_planning_units</dt><dd><code>integer</code> number of planning units in 
   the problem.</dd></p>
-    <p><dt>col_ids</dt><dd><code>character</code> constraint ids for each column in the 
-  model matrix.</dd></p>
-    <p><dt>row_ids</dt><dd><code>character</code> constraint ids for each row in the model
-  matrix.</dd></p>
+    <p><dt>col_ids</dt><dd><code>character</code> names describing each decision variable
+  (column) in the model matrix.</dd></p>
+    <p><dt>row_ids</dt><dd><code>character</code> names describing each constraint (row) in
+  in the model matrix.</dd></p>
     <p></dl></p>
     
 

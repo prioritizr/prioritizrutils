@@ -43,7 +43,7 @@ spatial distribution of the planning units and their costs, as well as
 the features (eg. species, ecosystems) that need to be conserved. After 
 constructing this object, it can be customized to meet specific 
 objectives using targets (see \code{\link{targets}}) and constraints 
-(see \code{link{constraints}}).
+(see \code{\link{constraints}}).
 }
 \examples{
 # create problem using raster planning unit data

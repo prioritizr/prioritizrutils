@@ -6,9 +6,7 @@
 \alias{get_number_of_threads}
 \alias{set_number_of_threads}
 \alias{get_number_of_threads}
-\title{This function set and get the number of threads for processing data when 
-processing data. Note that this does not influence the number of 
-threads used when solving a conservation problem.}
+\title{Number of threads for data processing}
 \usage{
 set_number_of_threads(x = 1L)
 
@@ -19,20 +17,24 @@ get_number_of_threads()
 }
 \value{
 \describe{
+
   \item{get_number_of_threads}{\code{integer} number of threads.}
+
   \item{set_number_of_threads}{invisible \code{logical} indicating 
     success.}
+
 }
 }
 \description{
-This function set and get the number of threads for processing data when 
-processing data. Note that this does not influence the number of 
-threads used when solving a conservation problem.
+Set and get the number of threads used for processing data. Note 
+that this does not influence the number of threads used when solving a 
+conservation problem and this must be set when adding the 
+solver to the problem.
 }
 \details{
-To cease processing data in parallel, set the number of 
+To stop processing data in parallel, set the number of 
   threads to one.
 }
 \seealso{
-\code{\link{is.parallel}}.
+\code{\link{is.parallel}}, \code{\link{solvers}}.
 }

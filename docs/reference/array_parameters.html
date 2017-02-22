@@ -81,21 +81,17 @@
     </div>
 
     
-    <p>These functions are used to create parameters that consist of multiple
-numbers. Parameters have a name, multiple values, a label for each 
-value, defalt values, a defined range of acceptable values, a class, 
-and a function for generating a <code><a href='http://www.rdocumentation.org/packages/shiny/topics/shiny-package'>shiny</a></code> widget to
-modify them. If values are supplied to a parameter that are unacceptable,
-then an error is thrown.</p>
+    <p>Create parameters that consist of multiple numbers. If an attempt is made 
+to create a parameter with conflicting settings then an error will be thrown.</p>
     
 
     <pre><span class='fu'>proportion_parameter_array</span>(<span class='no'>name</span>, <span class='no'>value</span>, <span class='no'>label</span>)
 
+<span class='fu'>binary_parameter_array</span>(<span class='no'>name</span>, <span class='no'>value</span>, <span class='no'>label</span>)
+
 <span class='fu'>numeric_parameter_array</span>(<span class='no'>name</span>, <span class='no'>value</span>, <span class='no'>label</span>,
   <span class='kw'>lower_limit</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='no'>.Machine</span>$<span class='no'>double.xmin</span>, <span class='fu'>length</span>(<span class='no'>value</span>)),
-  <span class='kw'>upper_limit</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='no'>.Machine</span>$<span class='no'>double.xmax</span>, <span class='fu'>length</span>(<span class='no'>value</span>)))
-
-<span class='fu'>binary_parameter_array</span>(<span class='no'>name</span>, <span class='no'>value</span>, <span class='no'>label</span>)</pre>
+  <span class='kw'>upper_limit</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='no'>.Machine</span>$<span class='no'>double.xmax</span>, <span class='fu'>length</span>(<span class='no'>value</span>)))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
@@ -106,12 +102,12 @@ then an error is thrown.</p>
       <dt>label</dt>
       <dd><code>character</code> <code>vector</code> of labels for each value.</dd>
       <dt>lower_limit</dt>
-      <dd><code>vector</code> of values show the minimum acceptable
-value for each element in <code>value</code>. This arguments defaults to the 
+      <dd><code>vector</code> of values denoting the minimum acceptable
+value for each element in <code>value</code>. Defaults to the 
 smallest possible number on the system.</dd>
       <dt>upper_limit</dt>
-      <dd><code>vector</code> of values show the maximum acceptable
-value for each element in <code>value</code>. This arguments defaults to the 
+      <dd><code>vector</code> of values denoting the maximum acceptable
+value for each element in <code>value</code>. Defaults to the 
 largest  possible number on the system.</dd>
     </dl>
     
@@ -122,14 +118,15 @@ largest  possible number on the system.</dd>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Below is a list of parameter generating functions and a brief 
-  description of each.</p>
-    <p><dl class='dl-horizontal'></p>
-    <p><dt>proportion_parameter_array</dt><dd>array of <code>numeric</code> values that 
-    between zero and one.</dd></p>
-    <p><dt>numeric_parameter_array</dt><dd>array of <code>numeric</code> values.</dd></p>
-    <p><dt>binary_parameter_array</dt><dd>array of <code>integer</code> values
-    that can only be zero or one.</dd>
-</dl></p>
+  description of each.
+<dl class='dl-horizontal'></p>
+    <p><dt>proportion_parameter_array</dt><dd>a parameter that consists of multiple 
+   <code>numeric</code> values that are between zero and one.</dd></p>
+    <p><dt>numeric_parameter_array</dt><dd>a parameter that consists of multiple
+    <code>numeric</code> values.</dd></p>
+    <p><dt>binary_parameter_array</dt><dd>a parameter that consists of multiple
+    <code>integer</code> values that are either zero or one.</dd></p>
+    <p></dl></p>
     
 
   </div>

@@ -10,31 +10,52 @@ add_corridors_constraint(x, targets, friction)
 \item{x}{\code{\link{ConservationProblem-class}} object.}
 
 \item{targets}{\code{numeric} targets specifying the minimum flow
-permitted throughout the prioritisation. If \code{targets} is a single
+permitted throughout the solution. If \code{targets} is a single
 number then it is used for each feature. Otherwise, if \code{targets} is 
 a \code{vector} then it specifies the target for each feature.}
 
 \item{friction}{\code{\link[raster]{RasterStack-class}} object denoting 
-friction surfaces for each feature. Pixels with missing values are
-assumed to be completely impermeable.}
+friction surfaces for each feature. Cells with zero values offer no cost 
+to dispersal and individuals can move through these with ease. Cells with 
+higher values are associated with a cost for traversal. Cells with 
+\code{NA} values are complete barriers to dispersal and individuals
+cannot move through these at all.}
 }
 \value{
 \code{\link{ConservationProblem-class}} object.
 }
 \description{
-This function adds corridor constraints using friction rasters that
-denote the dificulty at which individuals can move across the 
-landscape. Higher cell values indicate that areas that are harder
-for indiviuals to move through. Targets are used to denote the 
-minimum dispersal capability across the solution.
+It is important to maintain connectivity between reserves. However,
+some areas are more difficult for species to traverse then other areas.
+As a consequence, even though reserves may be connected, species may
+not be able to move between reserves if the areas connecting them 
+are barriers to dispersal.
+}
+\details{
+This function adds constraints to ensure that corridors connect 
+reserves and that individuals from all species can utilise the 
+corridors. Friction \code{\link[raster]{Raster-class}} objects area
+used to show each dificult areas are to traverse.
 }
 \examples{
-# create problem with corridors constraint
+
 \dontrun{
-problem(sim_pu_raster, sim_features) \%>\%
+
+# create basic problem
+p1 <- problem(sim_pu_raster, sim_features) \%>\%
   add_minimum_set_objective() \%>\%
   add_relative_targets(0.2) \%>\%
-  add_corridors_constraint(0.2, sim_locked_in_raster)
+  add_binary_decision()
+
+# create problem with added corridor constraints
+p2 <- p1 \%>\% add_corridors_constraint(0.2, sim_friction_raster)
+
+# solve problems
+s <- stack(solve(p1), solve(p2))
+
+# plot solutions
+plot(s, main=c('basic solution', 'solution with corridors'))
+
 }
 }
 \seealso{

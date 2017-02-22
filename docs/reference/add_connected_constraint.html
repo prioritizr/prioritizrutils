@@ -95,8 +95,8 @@ planning units are connected.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> object with the constraint added
-  to it.</p>
+    <p><code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> object with the constraint 
+  added to it.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -105,8 +105,9 @@ planning units are connected.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Not run: ------------------------------------</span>
+<span class='co'># </span>
 <span class='co'># # create basic problem</span>
-<span class='co'># p &lt;- problem(sim_pu_raster, sim_features) %&gt;%</span>
+<span class='co'># p1 &lt;- problem(sim_pu_raster, sim_features) %&gt;%</span>
 <span class='co'>#   add_minimum_set_objective() %&gt;%</span>
 <span class='co'>#   add_relative_targets(0.2)</span>
 <span class='co'># </span>
@@ -114,10 +115,11 @@ planning units are connected.</p>
 <span class='co'># p2 &lt;- p %&gt;% add_connected_constraint()</span>
 <span class='co'># </span>
 <span class='co'># # solve problems</span>
-<span class='co'># s &lt;- stack(solve(p), solve(p2))</span>
+<span class='co'># s &lt;- stack(solve(p1), solve(p2))</span>
 <span class='co'># </span>
 <span class='co'># # plot solutions</span>
 <span class='co'># plot(s, main=c('basic solution', 'connected solution'))</span>
+<span class='co'># </span>
 <span class='co'>## ---------------------------------------------</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -81,11 +81,8 @@
     </div>
 
     
-    <p>Generate a boundary matrix showing the shared and exposed edges of 
-planning units. <strong>This function assumes the 
-data are in a projected coordinate system where distances can
-be correctly calculated. Thus spatial data in a longitude/latitude
-coordinate system should be reprojected prior to using this function.</strong></p>
+    <p>Generate a boundary matrix describing the shared and exposed edges of 
+planning units.</p>
     
 
     
@@ -94,7 +91,7 @@ coordinate system should be reprojected prior to using this function.</strong></
       <dt>x</dt>
       <dd><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code>,
 <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialLines-class'>SpatialLines-class</a></code>, or
-<code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPolygons-class'>SpatialPolygons-class</a></code> object. Note that if <code>x</code> is a 
+<code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPolygons-class'>SpatialPolygons-class</a></code> object. If <code>x</code> is a 
 <code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> object then it must have only one
 layer.</dd>
       <dt>edges</dt>
@@ -109,11 +106,17 @@ Defaults to 4. Valid values are 4 and 6.</dd>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function returns a matrix. Cells along the off-diagonal 
-  indicating the length of the shared boundary between two planning units. 
-  Cells along the diagonal indicate length of a given planning unit&#39;s edges 
-  that have no neighbors (eg. for edges of planning units found along the 
-  coastline).</p>
+    <p>This function returns a <code><a href='http://www.rdocumentation.org/packages/Matrix/topics/dsCMatrix-class'>dsCMatrix-class</a></code> 
+  symmetric sparse matrix. Cells on the off-diagonal indicate the length of 
+  the shared boundary between two different planning units. Cells on the 
+  diagonal indicate length of a given planning unit&#39;s edges that have no 
+  neighbors (eg. for edges of planning units found along the 
+  coastline). <strong>This function assumes the data are in a coordinate
+  system where Euclidean distances accurately describe the proximity
+  between two points on the earth</strong>. Thus spatial data in a longitude/latitude
+  coordinate system (aka <a href = 'WGS84'>http://spatialreference.org/ref/epsg/wgs-84/</a>)
+  should be reprojected to another coordinate system before using this 
+  function.</p>
     
 
   </div>

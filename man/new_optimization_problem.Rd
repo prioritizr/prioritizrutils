@@ -13,5 +13,5 @@ new_optimization_problem()
 Generate a new \code{\link{OptimizationProblem-class}} object.
 }
 \seealso{
-OptimizationProblem-methods
+\code{\link{OptimizationProblem-methods}}
 }

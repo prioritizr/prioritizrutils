@@ -10,8 +10,8 @@ NULL
 #'
 #' @param penalty \code{numeric} penalty for exposed edges. This
 #'  is equivalent to the
-#'  \href{http://marxan.net/downloads/uq_marxan_web_2/module2.html}{boundary 
-#'  length modifier (BLM)} parameter in \href{marxan.net}{Marxan}.
+#'  \href{http://marxan.net/downloads/uq_marxan_web_2/module2.html}{boundary length modifier (BLM)}
+#'  parameter in \href{http://marxan.net}{marxan.net}.
 #'
 #' @param edge_factor \code{numeric} proportion to scale edges that do
 #'   not have any neighboring planning units. For example, an edge factor

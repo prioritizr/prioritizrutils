@@ -28,42 +28,53 @@ the prioritization.}
 \item{tree}{\code{\link[ape]{phylo}} object specifying a phylogenetic tree}
 }
 \description{
-The problem objective specifies how the problem \code{\link{targets}} should
-be used to generate a solution. All conservation planning problems require
-an objective in order to be solved. See below for a list of the problem
-objectives that are available.
+Conservation planning problems involve minimizing or maximizing an objective.
+For instance, the planner may require a solution that conserves
+enough habitat for each species while minimizing the overall cost of the
+reserve network. Alternatively, the planner may require a solution
+that maximizes the number of conserved species while ensuring that the cost
+of the reserve network does not exceed the budget. The problem objective 
+specifies the overall goal of the problem.
 }
 \details{
+All conservation planning problems require an objective in order to 
+be solved. While some users may feel that explicitly defining an objective 
+for a conservation problem adds some element of arbitrariness or 
+subjectivity to the decision making process, we remind them that "canned" 
+decision support tools (such as Marxan or Zonation) also have objectives. The 
+key difference here is that instead of choosing between different software 
+programs here the user is explicitly choosing their objective within the
+single environment. See below for a list of the objectives that can be 
+added to a conservation problem.
+
 \describe{
 
-\item{\code{add_minimum_set_objective}}{The objective here is to find the 
+  \item{\code{add_default_objective}}{This objective is used when no objective
+    has been explicitly specified by the user. This will result in an error
+    because there is no sensible default.}
+
+  \item{\code{add_minimum_set_objective}}{The objective here is to find the 
     the solution that fulfills all the targets and constraints for 
     the smallest cost. This objective is similar to that used in Marxan.}
 
-\item{\code{add_maximum_coverage_objective}}{The objective here is to
+  \item{\code{add_maximum_coverage_objective}}{The objective here is to
     find the solution that secures as much of each feature as possible
     whilst not exceeding the budget.}
 
-\item{\code{add_maximum_representation_objective}}{The objective here is 
+  \item{\code{add_maximum_representation_objective}}{The objective here is 
     to find the solution that fulfills as many targets as possible while 
     ensuring that the cost of the solution does not exceed budget and that 
     all constraints are met. This objective was inspired by the conservation
     problem defined in Cabeza et al. XXXX.}
 
-\item{\code{add_phylogenetic_representation_objective}}{This objective is 
+  \item{\code{add_phylogenetic_representation_objective}}{This objective is 
     similar to \code{maximum_targets_objective} except that emphasis is 
     placed on preserving as much of a representative sample a phylogenetic
     tree as possible given a budget. This objective requires the
     "ape" R package to be installed.}
 
-\item{\code{default_objective}}{This objective is used when no objective
-    has been explicitly specified. This will result in an error because
-    \emph{"Let the computer find out" is a poor strategy and usually
-    reflects the fact that the researcher did not bother to think
-    clearly about the problem of interest and its scientific setting
-    (Burnham and Anderson, 2002).}}
 
-}
+ }
 }
 \examples{
 # load data
@@ -94,6 +105,6 @@ plot(s, main=c('minimum set', 'maximum coverage', 'maximum representation',
 
 }
 \seealso{
-\code{link{constraints}}, \code{link{problem}},
+\code{\link{constraints}}, \code{\link{problem}},
   \code{\link{targets}}.
 }

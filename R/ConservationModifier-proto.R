@@ -27,21 +27,31 @@ methods::setOldClass('ConservationModifier')
 #' }
 #'
 #' @section Usage:
+#'
 #' \code{x$print()}
+#'
 #' \code{x$show()}
+#'
 #' \code{x$repr()}
 #'
 #' \code{x$get_data(name)}
+#'
 #' \code{x$set_data(name, value)}
 #'
 #' \code{x$calculate(cp)}
+#'
 #' \code{x$output()}
+#'
 #' \code{x$apply(op,cp)}
 #'
 #' \code{x$get_parameter(id)}
+#'
 #' \code{x$get_all_parameters()}
+#'
 #' \code{x$set_parameter(id, value)}
+#'
 #' \code{x$render_parameter(id)}
+#'
 #' \code{x$render_all_parameter()}
 #'
 #' @section Arguments:
@@ -106,7 +116,8 @@ methods::setOldClass('ConservationModifier')
 #' }
 #'
 #' @name ConservationModifier-class
-#'
+NULL
+
 #' @export
 ConservationModifier <- pproto(
   'ConservationModifier',

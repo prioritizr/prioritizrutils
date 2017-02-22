@@ -10,21 +10,26 @@ methods::setOldClass('Constraints')
 #' objects.
 #'
 #' @section Fields:
-#' \itemize{
+#' \describe{
 #'   \item{$constraints}{\code{list} object containing 
 #'     \code{\link{Constraint-class}} objects.}
 #' }
 #'
 #' @section Usage:
 #' \code{x$print()}
+#'
 #' \code{x$show()}
+#'
 #' \code{x$repr()}
 #'
 #' \code{x$add}
 #'
 #' \code{x$get_parameter(id)}
+#'
 #' \code{x$set_parameter(id, value)}
+#'
 #' \code{x$render_parameter(id)}
+#'
 #' \code{x$render_all_parameters()}
 #'
 #' @section Arguments:
@@ -50,6 +55,8 @@ methods::setOldClass('Constraints')
 #' \item{render_all_parameters}{generate a \code{\link[shiny]{div}}
 #'   containing all the parameters' widgets.}
 #' }
+#'
+#' @seealso \code{\link{Constraint-class}}.
 #'
 #' @name Constraints-class
 NULL

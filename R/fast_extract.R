@@ -10,15 +10,18 @@ NULL
 #'
 #' @param y \code{\link[sp]{Spatial-class}} object.
 #'
-#' @param fun \code{function} to compute values.
-#'
 #' @param ... additional arguments passed to \code{\link[raster]{extract}}.
 #'
 #' @return \code{data.frame}, \code{matrix}, or \code{list} object 
 #'   depending on the arguments.
 #'
 #' @seealso \code{\link[raster]{extract}},
-#'   \code{\link[velox]{VeloxRaster_extract}}
+#'   \code{\link[velox]{VeloxRaster_extract}}.
+#'
+#' @details Spatial analyses will be conducted using the 
+#'   \code{\link[velox]{velox}} package if it is installed. Additionally, 
+#'   multiple threads can be used to speed up computation using the 
+#'   \code{\link{set_number_of_threads}} function.
 #'
 #' @name fast_extract
 #'

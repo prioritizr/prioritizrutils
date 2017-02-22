@@ -19,7 +19,7 @@ compile(x, ...)
 }
 \description{
 Compile a \code{\link{ConservationProblem-class}} into an
-\code{OptimizationProblem}.
+\code{\link{OptimizationProblem-class}} object.
 }
 \examples{
 # build minimal conservation problem

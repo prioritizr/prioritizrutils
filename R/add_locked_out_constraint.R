@@ -3,10 +3,10 @@ NULL
 
 #' Add locked out constraint
 #'
-#' Add constraints to ensure that certain planning units are locked out 
-#' from the solution. For example, it may be useful to lock out planning 
-#' units that have been substantially altered by anthropogenic development,
-#' and so contain little remaining habitat.
+#' Add constraints to ensure that certain planning units are not prioritized
+#' in the solution. For example, it may be useful to lock out planning 
+#' units that have been degraded and are not longer suitable for conserving
+#' species.
 #' 
 #' @param x \code{\link{ConservationProblem-class}} object.
 #'
@@ -18,22 +18,23 @@ NULL
 #'
 #'   \describe{
 #'   
-#'   \item{\code{integer} \code{vector}}{indices for which planning units should
-#'     be locked out.}
+#'   \item{\code{integer}}{\code{vector} of indices pertaining to which 
+#'     planning units should be locked out.}
 #'
-#'   \item{\code{character}}{column name in the attribute table with 
-#'     \code{logical} values indicating if planning units should be locked out. 
-#'     Note that \code{locked_out} can only a \code{character} if the planning
-#'     units in \code{x} are a \code{\link[sp]{SpatialPolygonsDataFrame-class}}, 
-#'     \code{\link[sp]{SpatialLinesDataFrame-class}}, or 
-#'     \code{\link[sp]{SpatialPointsDataFrame-class}} object.}
+#'   \item{\code{character}}{column name in the attribute table values 
+#'     indicating if planning units should be locked out. This option is
+#'     only available if the planning units in \code{x} are a 
+#'     \code{\link[sp]{Spatial-class}} object. The column in the attribute
+#'     table should have \code{logical}  (ie. \code{TRUE} or \code{FALSE}) 
+#'     values indicating if the planning unit is to be locked out.}
 #'
-#'   \item{\code{\link[raster]{Raster-class}} object}{with \code{logical} cells 
-#'     values. Planning units in \code{x} that spatially intersect with at 
-#'     least one \code{TRUE} pixel are locked in.}
+#'   \item{\code{\link[raster]{Raster-class}} object}{planning units in \code{x} 
+#'     that intersect with cells in \code{y} are locked out. Specifically, 
+#'     only if the intersect with cells in \code{y} are that are not equal to 
+#'     zero or \code{NA}.}
 #'
 #'   \item{\code{\link[sp]{Spatial-class}} object.}{planning units in \code{x} 
-#'     that spatially intersect with \code{locked_in} are locked in.}
+#'     that spatially intersect with \code{locked_in} are locked out.}
 #'
 #'  }
 #'

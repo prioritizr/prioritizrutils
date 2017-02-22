@@ -3,16 +3,23 @@ NULL
 
 #' Find intersecting units
 #'
-#' Determine the units in any given spatial data object that intersect
+#' Determine the units in a given spatial data object that intersect
 #' with any of the units in another spatial data object.
 #'
-#' @param x Object.
+#' @param x \code{\link{Spatial-class}} or \code{\link{Raster-class}} object.
 #'
-#' @param y Object.
+#' @param y \code{\link{Spatial-class}} or \code{\link{Raster-class}} object.
 #'
-#' @return the units in \code{x} that intersect with \code{y}.
+#' @return \code{integer} indices of the units in \code{x} that intersect with 
+#'   \code{y}.
+#'
+#' @details The \code{\link{set_number_of_threads}} can be used to distribute
+#'   computations among multiple threads and potentially reduce run time.
 #'
 #' @name intersecting_units
+#'
+#' @seealso \code{\link{fast_extract}}, \code{\link{set_number_of_threads}},
+#'   \code{\link{get_number_of_threads}}.
 #'
 #' @exportMethod intersecting_units
 #'

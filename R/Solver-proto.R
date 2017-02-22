@@ -14,7 +14,7 @@ methods::setOldClass('Solver')
 #'
 #' @section Fields:
 #'
-#' \itemize{
+#' \describe{
 #'
 #' \item{$name}{\code{character} name of solver.}
 #'
@@ -53,7 +53,7 @@ methods::setOldClass('Solver')
 #'
 #' \item{repr}{\code{character} representation of object.}
 #'
-#' \item{solve}{solve a \code{\link{OptimizationProblem-class}} using this 
+#' \item{solve}{solve an \code{\link{OptimizationProblem-class}} using this 
 #'   object.}
 #'
 #' }

@@ -87,13 +87,13 @@ unit into a protected area). Below is a list of decisions that can be
 added to a conservation planning problem.</p>
     
 
-    <pre><span class='fu'>add_binary_decision</span>(<span class='no'>x</span>)
+    <pre><span class='fu'>add_default_decision</span>(<span class='no'>x</span>)
+
+<span class='fu'>add_binary_decision</span>(<span class='no'>x</span>)
 
 <span class='fu'>add_proportion_decision</span>(<span class='no'>x</span>)
 
-<span class='fu'>add_semicontinuous_decision</span>(<span class='no'>x</span>, <span class='no'>upper_limit</span>)
-
-<span class='fu'>add_default_decision</span>(<span class='no'>x</span>)</pre>
+<span class='fu'>add_semicontinuous_decision</span>(<span class='no'>x</span>, <span class='no'>upper_limit</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
@@ -111,7 +111,10 @@ of a planning unit that can be reserved (eg. set to 0.8 for 80 %).</dd>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><dl class='dl-horizontal'></p>
-    <p><dt><code>add_binary_decision</code></dt><dd>This is the classic decision of either 
+    <p><dt><code>add_default_decision</code></dt><dd>This decsion represents the default 
+    decision if no decision is specified when constructing a conservation
+    planning problem. It defaults to using a <code>binary_decision</code>.</dd>
+  <dt><code>add_binary_decision</code></dt><dd>This is the classic decision of either 
     prioritizing or not prioritizing a planning unit. Typically,
     this decision has the assumed action of buying the planning 
     unit to include in a protected area network.</dd></p>
@@ -127,9 +130,6 @@ of a planning unit that can be reserved (eg. set to 0.8 for 80 %).</dd>
     (eg. 80 %) of a planning unit can be preserved. This type of
     decision may be useful when it is not practical to conserve the 
     entire planning unit.</dd></p>
-    <p><dt><code>add_default_decision</code></dt><dd>This decsion represents the default 
-    decision if no decision is specified when constructing a conservation
-    planning problem. It defaults to using a <code>binary_decision</code>.</dd></p>
     <p></dl></p>
     <p>Only a single decision should be added to a 
 <code>ConservationProblem</code> object. <strong>If multiple decisions are added 

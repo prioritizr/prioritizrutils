@@ -81,8 +81,8 @@
     </div>
 
     
-    <p>This function helps with distributing a work load among processors
-for parallel processing by returning a list with index that</p>
+    <p>Utility function for distributing computations among a pool of workers
+for parallel processing.</p>
     
 
     <pre><span class='fu'>distribute_load</span>(<span class='no'>x</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fu'><a href='parallel.html'>get_number_of_threads</a></span>())</pre>
@@ -102,8 +102,8 @@ for parallel processing by returning a list with index that</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function returns a <code>list</code> containing an element for
-  each thread. Each element contains a <code>integer</code> vector 
-  specifying the indices that a thread should process.</p>
+  each worker. Each element contains a <code>integer</code> <code>vector</code> 
+  specifying the indices that the worker should process.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 

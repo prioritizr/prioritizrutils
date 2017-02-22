@@ -3,12 +3,14 @@
 \name{scalar_parameters}
 \alias{scalar_parameters}
 \alias{proportion_parameter}
+\alias{binary_parameter}
 \alias{integer_parameter}
 \alias{numeric_parameter}
-\alias{binary_parameter}
 \title{Scalar parameters}
 \usage{
 proportion_parameter(name, value)
+
+binary_parameter(name, value)
 
 integer_parameter(name, value,
   lower_limit = as.integer(-.Machine$integer.max),
@@ -16,8 +18,6 @@ integer_parameter(name, value,
 
 numeric_parameter(name, value, lower_limit = .Machine$double.xmin,
   upper_limit = .Machine$double.xmax)
-
-binary_parameter(name, value)
 }
 \arguments{
 \item{name}{\code{character} name of parameter.}
@@ -26,11 +26,11 @@ binary_parameter(name, value)
 parameter.}
 
 \item{lower_limit}{\code{integer} or \code{double} value representing 
-the smallest acceptable value for \code{value}. This arguments defaults to 
+the smallest acceptable value for \code{value}. Defaults to 
 the smallest possible number on the system.}
 
 \item{upper_limit}{\code{integer} or \code{double} value representing 
-the largest acceptable value for \code{value}. This arguments defaults to 
+the largest acceptable value for \code{value}. Defaults to 
 the largest possible number on the system.}
 }
 \value{
@@ -49,12 +49,12 @@ Below is a list of parameter generating functions and a brief
 
 \describe{
 
-\item{proportion_parameter}{A parameter that is a \code{double} and bounded
-  between zero and one.}
+  \item{proportion_parameter}{A parameter that is a \code{double} and bounded
+    between zero and one.}
 
-\item{integer_parameter}{A parameter that is a \code{integer}.}
+  \item{integer_parameter}{A parameter that is a \code{integer}.}
 
-\item{numeric_parameter}{A parameter that is a \code{double}.}
+  \item{numeric_parameter}{A parameter that is a \code{double}.}
 
 \item{binary_parameter}{A parameter that is restricted to \code{integer}
   values of zero or one.}

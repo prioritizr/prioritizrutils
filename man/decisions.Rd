@@ -2,19 +2,19 @@
 % Please edit documentation in R/decisions.R
 \name{decisions}
 \alias{decisions}
+\alias{add_default_decision}
 \alias{add_binary_decision}
 \alias{add_proportion_decision}
 \alias{add_semicontinuous_decision}
-\alias{add_default_decision}
 \title{Add problem decision type}
 \usage{
+add_default_decision(x)
+
 add_binary_decision(x)
 
 add_proportion_decision(x)
 
 add_semicontinuous_decision(x, upper_limit)
-
-add_default_decision(x)
 }
 \arguments{
 \item{x}{\code{\link{ConservationProblem-class}} object.}
@@ -34,7 +34,10 @@ added to a conservation planning problem.
 \details{
 \describe{
 
-\item{\code{add_binary_decision}}{This is the classic decision of either 
+\item{\code{add_default_decision}}{This decsion represents the default 
+    decision if no decision is specified when constructing a conservation
+    planning problem. It defaults to using a \code{binary_decision}.}
+  \item{\code{add_binary_decision}}{This is the classic decision of either 
     prioritizing or not prioritizing a planning unit. Typically,
     this decision has the assumed action of buying the planning 
     unit to include in a protected area network.}
@@ -52,10 +55,6 @@ added to a conservation planning problem.
     (eg. 80 \%) of a planning unit can be preserved. This type of
     decision may be useful when it is not practical to conserve the 
     entire planning unit.}
-
-\item{\code{add_default_decision}}{This decsion represents the default 
-    decision if no decision is specified when constructing a conservation
-    planning problem. It defaults to using a \code{binary_decision}.}
 
 }
 

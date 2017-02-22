@@ -92,24 +92,40 @@ problem. Below is a list of different solvers that can be added to a
 }
 \examples{
 
-# create basic problem with defaults
+# create basic problem
 p <- problem(sim_pu_raster, sim_features) \%>\%
   add_minimum_set_objective() \%>\%
   add_relative_targets(0.1)
 
-# add rsymphony solver with default settings
-p \%>\% add_rsymphony_solver()
+# create problem with added rsymphony solver and limit the time spent 
+# searching for the optimal solution to 2 seconds
+p1 <- p \%>\% add_rsymphony_solver(time_limit=2)
 
-# add rsymphony solver with custom settings
-p \%>\% add_rsymphony_solver(gap=0.05, time_limit=100)
+# create problem with added rsymphony solver and limit the time spent 
+# searching for the optimal solution to 5 seconds
+p2 <- p \%>\% add_rsymphony_solver(time_limit=5)
 
-\dontrun{
-# add gurobi solver
-p \%>\% add_gurobi_solver(gap=0.1, presolve=2, time_limit=100)
+# solve problems
+s <- stack(solve(p1), solve(p2))
 
-# add lpsolver solver
-p \%>\% add_lpsymphony_solver(gap=0.1, time_limit=100)
+# create character vector to store plot titles
+titles <- c('rsymphony (2s)', 'rsymphony (5s)')
 
+# if the gurobi is installed: create problem with added gurobi solver 
+if (requireNamespace('gurobi', quietly=TRUE)) {
+  titles <- c(titles, 'gurobi (5s)')
+  p3 <- p \%>\% add_gurobi_solver(gap=0.1, presolve=2, time_limit=5)
+  s <- addLayer(s, solve(p3))
 }
+
+# if the lpsymphony is installed: create problem with added lpsymphony solver 
+if (requireNamespace('lpsymphony', quietly=TRUE)) {
+  titles <- c(titles, 'lpsymphony')
+  p4 <- p \%>\% add_lpsymphony_solver(gap=0.1, time_limit=5)
+  s <- addLayer(s, solve(p4))
+}
+
+# plot solutions
+plot(s, main=titles)
 
 }

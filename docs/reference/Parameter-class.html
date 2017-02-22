@@ -81,43 +81,36 @@
     </div>
 
     
-    <p>This class is used to represent a parameter has multiple values. Each value 
-is has a label to differentiate values. <strong>Only experts should interact
-directly with this class.</strong></p>
+    <p>This class is used to represent a parameter that has multiple values. Each 
+value has a different label to differentiate values. <strong>Only experts 
+should interact directly with this class.</strong></p>
     
 
         
     <h2 class="hasAnchor" id="fields"><a class="anchor" href="#fields"></a>Fields</h2>
 
     <p></p>
-    <p><ul>
-<li>$id<code>character</code> identifier for parameter.
-</li>
-<li>$name<code>character</code> name of parameter.
-</li>
-<li>$value<code>numeric</code> <code>vector</code> of values.
-</li>
-<li>$default<code>numeric</code> <code>vector</code> of default values.
-</li>
-<li>$class<code>character</code> class of values.
-</li>
-<li>$lower_limit<code>numeric</code> <code>vector</code> specifying the minimum
-  permitted values.
-</li>
-<li>$upper_limit<code>numeric</code> <code>vector</code> specifying the maximum
-  permitted values.
-</li>
-<li>$widget<code>function</code> used to construct a
-               <code><a href='http://www.rdocumentation.org/packages/shiny/topics/shiny-package'>shiny</a></code> interface for modifying values.
-</li>
-</ul></p>
+    <p><dl class='dl-horizontal'></p>
+    <p><dt>$id</dt><dd><code><a href='new_id.html'>Id</a></code> identifier for parameter.</dd></p>
+    <p><dt>$name</dt><dd><code>character</code> name of parameter.</dd></p>
+    <p><dt>$value</dt><dd><code>numeric</code> <code>vector</code> of values.</dd></p>
+    <p><dt>$default</dt><dd><code>numeric</code> <code>vector</code> of default values.</dd></p>
+    <p><dt>$class</dt><dd><code>character</code> name of the class that the values inherit 
+  from (eg. <code>&#39;integer&#39;</code>.</dd></p>
+    <p><dt>$lower_limit</dt><dd><code>numeric</code> <code>vector</code> specifying the minimum
+  permitted value for each element in <code>$value</code>.</dd></p>
+    <p><dt>$upper_limit</dt><dd><code>numeric</code> <code>vector</code> specifying the maximum
+  permitted value for each element in <code>$value</code>.</dd></p>
+    <p><dt>$widget</dt><dd><code>function</code> used to construct a
+               <code><a href='http://www.rdocumentation.org/packages/shiny/topics/shiny-package'>shiny</a></code> interface for modifying values.</dd>
+</dl></p>
     
     <h2 class="hasAnchor" id="usage"><a class="anchor" href="#usage"></a>Usage</h2>
 
     <p></p>
-    <p><code>x$print()</code>
-<code>x$show()</code>
-<code>x$reset()</code></p>
+    <p><code>x$print()</code></p>
+    <p><code>x$show()</code></p>
+    <p><code>x$reset()</code></p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -125,7 +118,7 @@ directly with this class.</strong></p>
     <p><dl class='dl-horizontal'>
 <dt>print</dt><dd>print the object.</dd>
 <dt>show</dt><dd>show the object.</dd>
-<dt>reset</dt><dd>update the parameter values to be the default values.</dd>
+<dt>reset</dt><dd>change the parameter values to be the default values.</dd>
 </dl></p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>

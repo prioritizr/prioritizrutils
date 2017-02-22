@@ -10,6 +10,10 @@ NULL
 #'
 #' \describe{
 #'
+#'   \item{\code{add_default_decision}}{This decsion represents the default 
+#'     decision if no decision is specified when constructing a conservation
+#'     planning problem. It defaults to using a \code{binary_decision}.}
+
 #'   \item{\code{add_binary_decision}}{This is the classic decision of either 
 #'     prioritizing or not prioritizing a planning unit. Typically,
 #'     this decision has the assumed action of buying the planning 
@@ -28,10 +32,6 @@ NULL
 #'     (eg. 80 \%) of a planning unit can be preserved. This type of
 #'     decision may be useful when it is not practical to conserve the 
 #'     entire planning unit.}
-#'
-#'   \item{\code{add_default_decision}}{This decsion represents the default 
-#'     decision if no decision is specified when constructing a conservation
-#'     planning problem. It defaults to using a \code{binary_decision}.}
 #'
 #'  }
 #'
@@ -70,6 +70,12 @@ NULL
 #'
 #' @name decisions
 NULL
+
+#' @rdname decisions
+#' @export
+add_default_decision <- function(x) {
+  add_binary_decision(x)
+}
 
 #' @rdname decisions
 #' @export 
@@ -117,10 +123,4 @@ add_semicontinuous_decision <- function(x, upper_limit) {
       invisible(rcpp_apply_semicontinuous_decision(x$ptr,
         self$parameters$get('upper limit')))
     }))
-}
-
-
-#' @rdname decisions
-add_default_decision <- function(x) {
-  add_binary_decision(x)
 }

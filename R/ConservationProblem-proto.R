@@ -22,7 +22,7 @@ methods::setOldClass('ConservationProblem')
 #' class directly.}
 #'
 #' @section Fields:
-#' \itemize{
+#' \describe{
 #'
 #' \item{$data}{\code{list} object containing data.}
 #'
@@ -43,61 +43,82 @@ methods::setOldClass('ConservationProblem')
 #' }
 #'
 #' @section Usage:
+#'
 #' \code{x$print()}
+#'
 #' \code{x$show()}
+#'
 #' \code{x$repr()}
 #'
 #' \code{x$get_data(name)}
+#'
 #' \code{x$set_data(name, value)}
 #'
 #' \code{x$number_of_total_units()}
+#'
 #' \code{x$number_of_planning_units()}
+#'
 #' \code{x$planning_unit_costs()}
+#'
 #' \code{x$number_of_features()}
+#'
 #' \code{x$feature_names()}
+#'
 #' \code{x$feature_abundances_in_planning_units()}
+#'
 #' \code{x$feature_targets()}
 #'
 #' \code{x$add_objective(obj)}
+#'
 #' \code{x$add_decision(dec)}
+#'
 #' \code{x$add_solver(sol)}
+#'
 #' \code{x$add_constraint(con)}
+#'
 #' \code{x$add_targets(targ)}
 #'
-#' \code{x$constraint_calculations()}
-#'
 #' \code{x$get_constraint_parameter(id)} 
+#'
 #' \code{x$set_constraint_parameter(id, value)} 
+#'
 #' \code{x$render_constraint_parameter(id)} 
+#'
 #' \code{x$render_all_constraint_parameters()}
 #'
 #' \code{x$get_objective_parameter(id)} 
+#'
 #' \code{x$set_objective_parameter(id, value)} 
+#'
 #' \code{x$render_objective_parameter(id)} 
+#'
 #' \code{x$render_all_objective_parameters()}
 #'
 #' \code{x$get_solver_parameter(id)} 
+#'
 #' \code{x$set_solver_parameter(id, value)} 
+#'
 #' \code{x$render_solver_parameter(id)} 
+#'
 #' \code{x$render_all_solver_parameters()}
 #'
 #' @section Arguments:
 #'
 #' \describe{
 #'
-#' \item{name}{\code{character} name for object}
+#' \item{name}{\code{character} name for object.}
 #'
-#' \item{value}{any object}
+#' \item{value}{an object.}
 #'
-#' \item{obj}{\code{\link{Objective-class}} object}
+#' \item{obj}{\code{\link{Objective-class}} object.}
 #'
-#' \item{dec}{\code{\link{Decision-class}} object}
+#' \item{dec}{\code{\link{Decision-class}} object.}
 #'
-#' \item{con}{\code{\link{Constraint-class}} object}
+#' \item{con}{\code{\link{Constraint-class}} object.}
 #'
-#' \item{sol}{\code{\link{Solver-class}} object}
+#' \item{sol}{\code{\link{Solver-class}} object.}
 #'
-#' \item{targ}{\code{\link{Target-class}} object}
+#' \item{targ}{\code{\link{Target-class}} object.}
 #'
 #' \item{cost}{\code{\link[raster]{RasterLayer-class}}, 
 #'   \code{\link[sp]{SpatialPolygonsDataFrame-class}}, or 

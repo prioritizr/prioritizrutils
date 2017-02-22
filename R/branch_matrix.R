@@ -3,21 +3,35 @@ NULL
 
 #' Branch matrix
 #'
-#' Generate a matrix showing which species inherit from which branches.
+#' Phylogenetic trees depict the evolutionary relationships between different
+#' species. Each branch in a phylogenetic tree represents a period of 
+#' evolutionary history. Species that are connected to the same branch
+#' both share that same period of evolutionary histroy. This function creates 
+#' a matrix that shows which species are connected with branch. In other words,
+#' it creates a matrix that shows which periods of evolutionary history
+#' each species experienced.
 #'
 #' @param x \code{\link[ape]{phylo}} tree object.
 #'
-#' @return \code{\link[Matrix]{dgCMatrix-class}} matrix object. Each row 
+#' @return \code{\link[Matrix]{dgCMatrix-class}} sparse matrix object. Each row 
 #'   corresponds to a different species. Each column corresponds to a different
 #'   branch. Species that inherit from a given branch are denoted with a one.
+#'
+#' @name branch_matrix
+#'
+#' @rdname branch_matrix
 #'
 #' @export
 branch_matrix <- function(x) UseMethod('branch_matrix')
 
+#' @rdname branch_matrix
+#' @method branch_matrix default
 #' @export
 branch_matrix.default <- function(x) 
   rcpp_branch_matrix(as(x, 'phylo'))
 
+#' @rdname branch_matrix
+#' @method branch_matrix phylo
 #' @export
 branch_matrix.phylo <- function(x) {
   # check that tree is valid and return error if not

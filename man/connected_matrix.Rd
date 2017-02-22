@@ -19,18 +19,18 @@ layer.}
  16 (knight and one-cell queen moves), or 'bishop' to connect cells with
  one-cell diagonal moves.}
 
-\item{distance}{\code{numeric} If \code{x} is a \code{SpatialPoints} object,
-the distance that planning units have to be within in order
-to qualify as being connected.}
+\item{distance}{\code{numeric} If \code{x} is a 
+\code{\link{SpatialPoints-class}} object, the distance that planning units 
+have to be within in order to qualify as being connected.}
 }
 \value{
-\code{\link{Matrix}{dsCMatrix-class}} object.
+\code{\link[Matrix]{dsCMatrix-class}} object.
 }
 \description{
-Generate a matrix showing which planning units are connected.
+Create a matrix showing which planning units are spatially connected.
 }
 \details{
-This function returns a matrix. Cells along the off-diagonal 
-  indicating if two planning units are connected. Cells along the 
-  diagonal are zero to reduce computation burden.
+This function returns a \code{\link[Matrix]{dgCMatrix-class}} sparse
+  matrix. Cells along the off-diagonal indicate if two planning units are 
+  connected. Cells along the diagonal are zero to reduce memory consumption.
 }

@@ -15,13 +15,13 @@ distribute_load(x, n = get_number_of_threads())
 \code{list} object.
 }
 \description{
-This function helps with distributing a work load among processors
-for parallel processing by returning a list with index that
+Utility function for distributing computations among a pool of workers
+for parallel processing.
 }
 \details{
 This function returns a \code{list} containing an element for
-  each thread. Each element contains a \code{integer} vector 
-  specifying the indices that a thread should process.
+  each worker. Each element contains a \code{integer} \code{vector} 
+  specifying the indices that the worker should process.
 }
 \seealso{
 \code{\link{get_number_of_threads}}, 

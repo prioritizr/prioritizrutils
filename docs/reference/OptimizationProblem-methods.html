@@ -82,8 +82,7 @@
 
     
     <p>These functions are used to access data from an
-<code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code> object. See below for details on their
-usage.</p>
+<code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code> object.</p>
     
 
     <pre><span class='fu'>nrow</span>(<span class='no'>x</span>)
@@ -125,7 +124,8 @@ usage.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code><a href='http://www.rdocumentation.org/packages/Matrix/topics/dgCMatrix-class'>dgCMatrix-class</a></code>, <code>numeric</code> vector,
-        <code>numeric</code> vector, or scalar <code>integer</code>.</p>
+  <code>numeric</code> vector, or scalar <code>integer</code> depending on the method
+  used.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -135,19 +135,20 @@ usage.</p>
     <p><dt>ncol</dt><dd><code>integer</code> number of columns (decision variables).</dd></p>
     <p><dt>ncell</dt><dd><code>integer</code> number of cells.</dd></p>
     <p><dt>modelsense</dt><dd><code>character</code> describing if the problem is to be
-  maximized (&#39;max&#39;) or minimized (&#39;min&#39;).</dd></p>
+  maximized (<code>&#39;max&#39;</code>) or minimized (<code>&#39;min&#39;</code>).</dd></p>
     <p><dt>vtype</dt><dd><code>character</code> describing the type of each decision variable:
-  binary (&#39;B&#39;), semi-continuous (&#39;S&#39;), or continuous (&#39;C&#39;)</dd></p>
+  binary (<code>&#39;B&#39;</code>), semi-continuous (<code>&#39;S&#39;</code>), or continuous 
+  (<code>&#39;C&#39;</code>)</dd></p>
     <p><dt>obj</dt><dd><code>numeric</code> vector specifying the objective function.</dd></p>
     <p><dt>A</dt><dd><code><a href='http://www.rdocumentation.org/packages/Matrix/topics/dgCMatrix-class'>dgCMatrix-class</a></code> matrix object defining the
   problem matrix.</dd></p>
     <p><dt>rhs</dt><dd><code>numeric</code> vector with right-hand-side linear constraints</dd></p>
     <p><dt>sense</dt><dd><code>character</code> vector with the senses of the linear
-  constraints (&#39;&lt;=&#39;, &#39;&gt;=&#39;, &#39;=&#39;).</dd></p>
-    <p><dt>lb</dt><dd><code>numeric</code> lower bounds for decision variables. <code>NA</code> 
-  values indicate no lower bound.</dd></p>
-    <p><dt>ub</dt><dd><code>numeric</code> upper bounds for decision variables. NA values 
-  indicate no upper bound.</dd></p>
+  constraints (<code>&#39;&lt;=&#39;</code>, <code>&#39;&gt;=&#39;</code>, <code>&#39;=&#39;</code>).</dd></p>
+    <p><dt>lb</dt><dd><code>numeric</code> lower bound for each decision variable. Missing data
+  values (<code>NA</code>) indicate no lower bound for a given variable.</dd></p>
+    <p><dt>ub</dt><dd><code>numeric</code> upper bounds for each decision variable. Missing data
+  values (<code>NA</code>) indicate no upper bound for a given variable.</dd></p>
     <p><dt>number_of_planning_units</dt><dd><code>integer</code> number of planning units in
   the problem.</dd></p>
     <p><dt>number_of_features</dt><dd><code>integer</code> number of features

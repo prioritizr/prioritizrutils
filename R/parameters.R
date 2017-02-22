@@ -15,11 +15,11 @@ NULL
 #'    parameter.
 #'
 #' @param lower_limit \code{integer} or \code{double} value representing 
-#'   the smallest acceptable value for \code{value}. This arguments defaults to 
+#'   the smallest acceptable value for \code{value}. Defaults to 
 #'   the smallest possible number on the system.
 #'
 #' @param upper_limit \code{integer} or \code{double} value representing 
-#'   the largest acceptable value for \code{value}. This arguments defaults to 
+#'   the largest acceptable value for \code{value}. Defaults to 
 #'   the largest possible number on the system.
 #'
 #' @details Below is a list of parameter generating functions and a brief 
@@ -27,12 +27,12 @@ NULL
 #'
 #' \describe{
 #'
-#' \item{proportion_parameter}{A parameter that is a \code{double} and bounded
-#'   between zero and one.}
+#'   \item{proportion_parameter}{A parameter that is a \code{double} and bounded
+#'     between zero and one.}
 #'
-#' \item{integer_parameter}{A parameter that is a \code{integer}.}
+#'   \item{integer_parameter}{A parameter that is a \code{integer}.}
 #'
-#' \item{numeric_parameter}{A parameter that is a \code{double}.}
+#'   \item{numeric_parameter}{A parameter that is a \code{double}.}
 #'
 #' \item{binary_parameter}{A parameter that is restricted to \code{integer}
 #'   values of zero or one.}
@@ -44,6 +44,7 @@ NULL
 NULL
 
 #' @rdname scalar_parameters
+#' @export
 proportion_parameter <- function(name, value) {
   assertthat::assert_that(assertthat::is.string(name), is.finite(value),
     assertthat::is.scalar(value), isTRUE(value>=0), isTRUE(value<=1))
@@ -53,6 +54,17 @@ proportion_parameter <- function(name, value) {
 }
 
 #' @rdname scalar_parameters
+#' @export
+binary_parameter <- function(name, value) {
+  assertthat::assert_that(assertthat::is.string(name),
+    assertthat::is.scalar(value), isTRUE(value==1 | value==0), is.finite(value))
+  pproto('BinaryParameter', ScalarParameter, id=new_id(), name=name,
+    value=as.integer(value), default=as.integer(value), class='integer',
+    lower_limit=0L, upper_limit=1L, widget='shiny::checkboxInput')
+}
+
+#' @rdname scalar_parameters
+#' @export
 integer_parameter <- function(name, value, 
                               lower_limit=as.integer(-.Machine$integer.max),
                               upper_limit=as.integer(.Machine$integer.max)) {
@@ -65,6 +77,7 @@ integer_parameter <- function(name, value,
 } 
 
 #' @rdname scalar_parameters
+#' @export
 numeric_parameter <- function(name, value,
                               lower_limit=.Machine$double.xmin,
                               upper_limit=.Machine$double.xmax) {
@@ -76,23 +89,10 @@ numeric_parameter <- function(name, value,
     widget='shiny::numericInput')
 }
 
-#' @rdname scalar_parameters
-binary_parameter <- function(name, value) {
-  assertthat::assert_that(assertthat::is.string(name),
-    assertthat::is.scalar(value), isTRUE(value==1 | value==0), is.finite(value))
-  pproto('BinaryParameter', ScalarParameter, id=new_id(), name=name,
-    value=as.integer(value), default=as.integer(value), class='integer',
-    lower_limit=0L, upper_limit=1L, widget='shiny::checkboxInput')
-}
-
 #' Array parameters
 #'
-#' These functions are used to create parameters that consist of multiple
-#' numbers. Parameters have a name, multiple values, a label for each 
-#' value, defalt values, a defined range of acceptable values, a class, 
-#' and a function for generating a \code{\link[shiny]{shiny}} widget to
-#' modify them. If values are supplied to a parameter that are unacceptable,
-#' then an error is thrown.
+#' Create parameters that consist of multiple numbers. If an attempt is made 
+#' to create a parameter with conflicting settings then an error will be thrown.
 #'
 #' @param name \code{character} name of parameter.
 #'
@@ -100,26 +100,27 @@ binary_parameter <- function(name, value) {
 #'
 #' @param label \code{character} \code{vector} of labels for each value.
 #'
-#' @param lower_limit \code{vector} of values show the minimum acceptable
-#'   value for each element in \code{value}. This arguments defaults to the 
+#' @param lower_limit \code{vector} of values denoting the minimum acceptable
+#'   value for each element in \code{value}. Defaults to the 
 #'   smallest possible number on the system.
 #'
-#' @param upper_limit \code{vector} of values show the maximum acceptable
-#'   value for each element in \code{value}. This arguments defaults to the 
+#' @param upper_limit \code{vector} of values denoting the maximum acceptable
+#'   value for each element in \code{value}. Defaults to the 
 #'   largest  possible number on the system.
 #'   
 #' @details Below is a list of parameter generating functions and a brief 
 #'   description of each.
-#'
 #' \describe{
 #'
-#'   \item{proportion_parameter_array}{array of \code{numeric} values that 
-#'     between zero and one.}
+#'   \item{proportion_parameter_array}{a parameter that consists of multiple 
+#'    \code{numeric} values that are between zero and one.}
 #'
-#'   \item{numeric_parameter_array}{array of \code{numeric} values.}
+#'   \item{numeric_parameter_array}{a parameter that consists of multiple
+#'     \code{numeric} values.}
 #'
-#'   \item{binary_parameter_array}{array of \code{integer} values
-#'     that can only be zero or one.}
+#'   \item{binary_parameter_array}{a parameter that consists of multiple
+#'     \code{integer} values that are either zero or one.}
+#'
 #' }
 #'
 #' @return \code{\link{ArrayParameter-class}} object.
@@ -128,6 +129,7 @@ binary_parameter <- function(name, value) {
 NULL
 
 #' @rdname array_parameters
+#' @export
 proportion_parameter_array <- function(name, value, label) {
   assertthat::assert_that(assertthat::is.string(name),
     inherits(value, 'numeric'),
@@ -142,6 +144,24 @@ proportion_parameter_array <- function(name, value, label) {
 }
 
 #' @rdname array_parameters
+#' @export
+binary_parameter_array <- function(name, value, label) {
+  assertthat::assert_that(assertthat::is.string(name),
+    inherits(value, 'numeric'), 
+    assertthat::noNA(value), all(is.finite(value)),
+    isTRUE(all(value==1 | value==0)),
+    inherits(label, 'character'), assertthat::noNA(label),
+    length(value) == length(label))
+  pproto('BinaryParameterArray', ArrayParameter, id=new_id(),
+    name = name, value=as.integer(value),
+    label=label, class='integer', lower_limit=rep(0L, length(value)), 
+    upper_limit=rep(1L, length(value)),
+    default=as.integer(value), length=length(value),
+    widget='rhandsontable::rHandsontableOutput')
+}
+
+#' @rdname array_parameters
+#' @export
 numeric_parameter_array <- function(name, value, label,
                                     lower_limit=rep(.Machine$double.xmin,
                                       length(value)),
@@ -158,32 +178,28 @@ numeric_parameter_array <- function(name, value, label,
     widget='rhandsontable::rHandsontableOutput')
 }
 
-#' @rdname array_parameters
-binary_parameter_array <- function(name, value, label) {
-  assertthat::assert_that(assertthat::is.string(name),
-    inherits(value, 'numeric'), 
-    assertthat::noNA(value), all(is.finite(value)),
-    isTRUE(all(value==1 | value==0)),
-    inherits(label, 'character'), assertthat::noNA(label),
-    length(value) == length(label))
-  pproto('BinaryParameterArray', ArrayParameter, id=new_id(),
-    name = name, value=as.integer(value),
-    label=label, class='integer', lower_limit=rep(0L, length(value)), 
-    upper_limit=rep(1L, length(value)),
-    default=as.integer(value), length=length(value),
-    widget='rhandsontable::rHandsontableOutput')
-}
-
 #' Parameters
 #'
-#' Create a collection of parameter objects.
+#' Create a new collection of \code{Parameter} objects.
 #' 
-#' @param ... \code{\link{ArrayParameter-class}} and/or 
-#'   \code{\link{ScalarParameter-class}}) objects to store in collection.
+#' @param ... \code{\link{Parameter-class}} objects.
 #'
 #' @return \code{\link{Parameters-class}} object.
 #'
-#' @seealso \code{\link{array_parameters}}, code{\link{scalar_parameters}}.
+#' @seealso \code{\link{array_parameters}}, \code{\link{scalar_parameters}}.
+#'
+#' @examples
+#'
+#' # create two Parameter objects
+#' p1 <- binary_parameter('paramter one', 1)
+#' print(p1)
+#'
+#' p2 <- numeric_parameter('parameter two', 5)
+#' print(p2)
+#'
+#' # store Parameter objects in a Parameters object
+#' p <- parameters(p1, p2)
+#' print(p)
 #'
 #' @export
 parameters <- function(...) {

@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>This function set and get the number of threads for processing data when 
- <U+2014> parallel <e2><80><a2> prioritizrutils</title>
+<title>Number of threads for data processing <U+2014> parallel <e2><80><a2> prioritizrutils</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -78,14 +77,14 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>This function set and get the number of threads for processing data when 
-</h1>
+    <h1>Number of threads for data processing</h1>
     </div>
 
     
-    <p>This function set and get the number of threads for processing data when 
-processing data. Note that this does not influence the number of 
-threads used when solving a conservation problem.</p>
+    <p>Set and get the number of threads used for processing data. Note 
+that this does not influence the number of threads used when solving a 
+conservation problem and this must be set when adding the 
+solver to the problem.</p>
     
 
     <pre><span class='fu'>set_number_of_threads</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>1L</span>)
@@ -100,20 +99,20 @@ threads used when solving a conservation problem.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><dl class='dl-horizontal'>
-  <dt>get_number_of_threads</dt><dd><code>integer</code> number of threads.</dd>
-  <dt>set_number_of_threads</dt><dd>invisible <code>logical</code> indicating 
-    success.</dd>
-</dl></p>
+    <p><dl class='dl-horizontal'></p>
+    <p><dt>get_number_of_threads</dt><dd><code>integer</code> number of threads.</dd></p>
+    <p><dt>set_number_of_threads</dt><dd>invisible <code>logical</code> indicating 
+    success.</dd></p>
+    <p></dl></p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>To cease processing data in parallel, set the number of 
+    <p>To stop processing data in parallel, set the number of 
   threads to one.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='is.parallel.html'>is.parallel</a></code>.</p>
+    <p><code><a href='is.parallel.html'>is.parallel</a></code>, <code><a href='solvers.html'>solvers</a></code>.</p>
     
 
   </div>

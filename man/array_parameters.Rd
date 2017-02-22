@@ -3,17 +3,17 @@
 \name{array_parameters}
 \alias{array_parameters}
 \alias{proportion_parameter_array}
-\alias{numeric_parameter_array}
 \alias{binary_parameter_array}
+\alias{numeric_parameter_array}
 \title{Array parameters}
 \usage{
 proportion_parameter_array(name, value, label)
 
+binary_parameter_array(name, value, label)
+
 numeric_parameter_array(name, value, label,
   lower_limit = rep(.Machine$double.xmin, length(value)),
   upper_limit = rep(.Machine$double.xmax, length(value)))
-
-binary_parameter_array(name, value, label)
 }
 \arguments{
 \item{name}{\code{character} name of parameter.}
@@ -22,37 +22,34 @@ binary_parameter_array(name, value, label)
 
 \item{label}{\code{character} \code{vector} of labels for each value.}
 
-\item{lower_limit}{\code{vector} of values show the minimum acceptable
-value for each element in \code{value}. This arguments defaults to the 
+\item{lower_limit}{\code{vector} of values denoting the minimum acceptable
+value for each element in \code{value}. Defaults to the 
 smallest possible number on the system.}
 
-\item{upper_limit}{\code{vector} of values show the maximum acceptable
-value for each element in \code{value}. This arguments defaults to the 
+\item{upper_limit}{\code{vector} of values denoting the maximum acceptable
+value for each element in \code{value}. Defaults to the 
 largest  possible number on the system.}
 }
 \value{
 \code{\link{ArrayParameter-class}} object.
 }
 \description{
-These functions are used to create parameters that consist of multiple
-numbers. Parameters have a name, multiple values, a label for each 
-value, defalt values, a defined range of acceptable values, a class, 
-and a function for generating a \code{\link[shiny]{shiny}} widget to
-modify them. If values are supplied to a parameter that are unacceptable,
-then an error is thrown.
+Create parameters that consist of multiple numbers. If an attempt is made 
+to create a parameter with conflicting settings then an error will be thrown.
 }
 \details{
 Below is a list of parameter generating functions and a brief 
   description of each.
-
 \describe{
 
-  \item{proportion_parameter_array}{array of \code{numeric} values that 
-    between zero and one.}
+  \item{proportion_parameter_array}{a parameter that consists of multiple 
+   \code{numeric} values that are between zero and one.}
 
-  \item{numeric_parameter_array}{array of \code{numeric} values.}
+  \item{numeric_parameter_array}{a parameter that consists of multiple
+    \code{numeric} values.}
 
-  \item{binary_parameter_array}{array of \code{integer} values
-    that can only be zero or one.}
+  \item{binary_parameter_array}{a parameter that consists of multiple
+    \code{integer} values that are either zero or one.}
+
 }
 }

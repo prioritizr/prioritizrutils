@@ -81,10 +81,22 @@
     </div>
 
     
-    <p>Generate a matrix showing which species inherit from which branches.</p>
+    <p>Phylogenetic trees depict the evolutionary relationships between different
+species. Each branch in a phylogenetic tree represents a period of 
+evolutionary history. Species that are connected to the same branch
+both share that same period of evolutionary histroy. This function creates 
+a matrix that shows which species are connected with branch. In other words,
+it creates a matrix that shows which periods of evolutionary history
+each species experienced.</p>
     
 
-    <pre><span class='fu'>branch_matrix</span>(<span class='no'>x</span>)</pre>
+    <pre><span class='fu'>branch_matrix</span>(<span class='no'>x</span>)
+
+<span class='co'># S3 method for default</span>
+<span class='fu'>branch_matrix</span>(<span class='no'>x</span>)
+
+<span class='co'># S3 method for phylo</span>
+<span class='fu'>branch_matrix</span>(<span class='no'>x</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
@@ -94,7 +106,7 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code><a href='http://www.rdocumentation.org/packages/Matrix/topics/dgCMatrix-class'>dgCMatrix-class</a></code> matrix object. Each row 
+    <p><code><a href='http://www.rdocumentation.org/packages/Matrix/topics/dgCMatrix-class'>dgCMatrix-class</a></code> sparse matrix object. Each row 
   corresponds to a different species. Each column corresponds to a different
   branch. Species that inherit from a given branch are denoted with a one.</p>
     

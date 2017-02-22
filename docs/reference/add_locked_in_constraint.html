@@ -81,11 +81,10 @@
     </div>
 
     
-    <p>Add constraints constraints to lock in planning units
-so that they are selected in the solution. For example, it may
-be desirable to lock in planning units already within existing
-protected areas so that the solutions fills in the gaps in the existing
-reserve network.</p>
+    <p>Add constraints to ensure that they are prioritized in the solution. 
+For example, it may be desirable to lock in planning units that are 
+inside existing protected areas so that the solution fills in the gaps in the 
+existing reserve network.</p>
     
 
     
@@ -107,17 +106,18 @@ locked in. See details for more information.</dd>
     <p>The locked in planning units can be specified in several 
   different ways:</p>
     <p><dl class='dl-horizontal'></p>
-    <p><dt><code>integer</code> <code>vector</code></dt><dd>indices for which planning units should
-    be locked in.</dd></p>
-    <p><dt><code>character</code></dt><dd>column name in the attribute table with 
-    <code>logical</code> values indicating if planning units should be locked in. 
-    Note that <code>locked_in</code> can only a <code>character</code> if the planning
-    units in <code>x</code> are a <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPolygonsDataFrame-class'>SpatialPolygonsDataFrame-class</a></code>, 
-    <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialLinesDataFrame-class'>SpatialLinesDataFrame-class</a></code>, or 
-    <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPointsDataFrame-class'>SpatialPointsDataFrame-class</a></code> object.</dd></p>
-    <p><dt><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> object</dt><dd>Planning units in <code>x</code> 
-    that intersect with cells in <code>y</code> that are not equal to zero and 
-    not <code>NA</code> are locked in.</dd></p>
+    <p><dt><code>integer</code></dt><dd><code>vector</code> of indices pertaining to which 
+    planning units should be locked in.</dd></p>
+    <p><dt><code>character</code></dt><dd>column name in the attribute table values 
+    indicating if planning units should be locked in. This option is
+    only available if the planning units in <code>x</code> are a 
+    <code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code> object. The column in the attribute
+    table should have <code>logical</code>  (ie. <code>TRUE</code> or <code>FALSE</code>) 
+    values indicating if the planning unit is to be locked in.</dd></p>
+    <p><dt><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> object</dt><dd>planning units in <code>x</code> 
+    that intersect with cells in <code>y</code> are locked in. Specifically, 
+    only if the intersect with cells in <code>y</code> are that are not equal to 
+    zero or <code>NA</code>.</dd></p>
     <p><dt><code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code> object.</dt><dd>planning units in <code>x</code> 
     that spatially intersect with <code>locked_in</code> are locked in.</dd></p>
     <p></dl></p>
@@ -226,7 +226,7 @@ locked in. See details for more information.</dd>
 #&gt; 
 #&gt;      0     0 3546.28612    0    3 3811.64191 3546.28612  6.96%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (8 simplex iterations) in 0.00 seconds
+#&gt; Explored 0 nodes (8 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 2 available processors)
 #&gt; 
 #&gt; Solution count 1: 3811.64 
@@ -255,7 +255,7 @@ locked in. See details for more information.</dd>
 #&gt; 
 #&gt;      0     0 3546.28612    0    3 3811.64191 3546.28612  6.96%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (8 simplex iterations) in 0.00 seconds
+#&gt; Explored 0 nodes (8 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 2 available processors)
 #&gt; 
 #&gt; Solution count 1: 3811.64 
@@ -294,19 +294,19 @@ locked in. See details for more information.</dd>
 #&gt; Best objective 3.811641906815e+03, best bound 3.546286124673e+03, gap 6.9617%</div><div class='input'>
 <span class='co'># plot solutions</span>
 <span class='fu'>par</span>(<span class='kw'>mfrow</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>3</span>,<span class='fl'>2</span>))
-<span class='fu'>plot</span>(<span class='no'>s1</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>'none locked out'</span>)
+<span class='fu'>plot</span>(<span class='no'>s1</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>'none locked in'</span>)
 <span class='fu'>plot</span>(<span class='no'>s1</span>[<span class='no'>s1</span>$<span class='no'>solution</span><span class='kw'>==</span><span class='fl'>1</span>,], <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'darkgreen'</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 
-<span class='fu'>plot</span>(<span class='no'>s2</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>'locked out (integer input)'</span>)
+<span class='fu'>plot</span>(<span class='no'>s2</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>'locked in (integer input)'</span>)
 <span class='fu'>plot</span>(<span class='no'>s2</span>[<span class='no'>s2</span>$<span class='no'>solution</span><span class='kw'>==</span><span class='fl'>1</span>,], <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'darkgreen'</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 
-<span class='fu'>plot</span>(<span class='no'>s3</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>'locked out (character input)'</span>)
+<span class='fu'>plot</span>(<span class='no'>s3</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>'locked in (character input)'</span>)
 <span class='fu'>plot</span>(<span class='no'>s3</span>[<span class='no'>s3</span>$<span class='no'>solution</span><span class='kw'>==</span><span class='fl'>1</span>,], <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'darkgreen'</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 
-<span class='fu'>plot</span>(<span class='no'>s4</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>'locked out (raster input)'</span>)
+<span class='fu'>plot</span>(<span class='no'>s4</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>'locked in (raster input)'</span>)
 <span class='fu'>plot</span>(<span class='no'>s4</span>[<span class='no'>s4</span>$<span class='no'>solution</span><span class='kw'>==</span><span class='fl'>1</span>,], <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'darkgreen'</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 
-<span class='fu'>plot</span>(<span class='no'>s5</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>'locked out (polygon input)'</span>)
+<span class='fu'>plot</span>(<span class='no'>s5</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>'locked in (polygon input)'</span>)
 <span class='fu'>plot</span>(<span class='no'>s5</span>[<span class='no'>s5</span>$<span class='no'>solution</span><span class='kw'>==</span><span class='fl'>1</span>,], <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'darkgreen'</span>, <span class='kw'>add</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><img src='add_locked_in_constraint-14.png' alt='' width='540' height='400' /></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

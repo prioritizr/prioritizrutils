@@ -90,14 +90,14 @@ then an error is thrown.</p>
 
     <pre><span class='fu'>proportion_parameter</span>(<span class='no'>name</span>, <span class='no'>value</span>)
 
+<span class='fu'>binary_parameter</span>(<span class='no'>name</span>, <span class='no'>value</span>)
+
 <span class='fu'>integer_parameter</span>(<span class='no'>name</span>, <span class='no'>value</span>,
   <span class='kw'>lower_limit</span> <span class='kw'>=</span> <span class='fu'>as.integer</span>(-<span class='no'>.Machine</span>$<span class='no'>integer.max</span>),
   <span class='kw'>upper_limit</span> <span class='kw'>=</span> <span class='fu'>as.integer</span>(<span class='no'>.Machine</span>$<span class='no'>integer.max</span>))
 
 <span class='fu'>numeric_parameter</span>(<span class='no'>name</span>, <span class='no'>value</span>, <span class='kw'>lower_limit</span> <span class='kw'>=</span> <span class='no'>.Machine</span>$<span class='no'>double.xmin</span>,
-  <span class='kw'>upper_limit</span> <span class='kw'>=</span> <span class='no'>.Machine</span>$<span class='no'>double.xmax</span>)
-
-<span class='fu'>binary_parameter</span>(<span class='no'>name</span>, <span class='no'>value</span>)</pre>
+  <span class='kw'>upper_limit</span> <span class='kw'>=</span> <span class='no'>.Machine</span>$<span class='no'>double.xmax</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
@@ -108,11 +108,11 @@ then an error is thrown.</p>
 parameter.</dd>
       <dt>lower_limit</dt>
       <dd><code>integer</code> or <code>double</code> value representing 
-the smallest acceptable value for <code>value</code>. This arguments defaults to 
+the smallest acceptable value for <code>value</code>. Defaults to 
 the smallest possible number on the system.</dd>
       <dt>upper_limit</dt>
       <dd><code>integer</code> or <code>double</code> value representing 
-the largest acceptable value for <code>value</code>. This arguments defaults to 
+the largest acceptable value for <code>value</code>. Defaults to 
 the largest possible number on the system.</dd>
     </dl>
     
@@ -126,7 +126,7 @@ the largest possible number on the system.</dd>
   description of each.</p>
     <p><dl class='dl-horizontal'></p>
     <p><dt>proportion_parameter</dt><dd>A parameter that is a <code>double</code> and bounded
-  between zero and one.</dd></p>
+    between zero and one.</dd></p>
     <p><dt>integer_parameter</dt><dd>A parameter that is a <code>integer</code>.</dd></p>
     <p><dt>numeric_parameter</dt><dd>A parameter that is a <code>double</code>.</dd></p>
     <p><dt>binary_parameter</dt><dd>A parameter that is restricted to <code>integer</code>

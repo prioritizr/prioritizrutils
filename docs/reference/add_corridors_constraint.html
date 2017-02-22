@@ -81,11 +81,11 @@
     </div>
 
     
-    <p>This function adds corridor constraints using friction rasters that
-denote the dificulty at which individuals can move across the 
-landscape. Higher cell values indicate that areas that are harder
-for indiviuals to move through. Targets are used to denote the 
-minimum dispersal capability across the solution.</p>
+    <p>It is important to maintain connectivity between reserves. However,
+some areas are more difficult for species to traverse then other areas.
+As a consequence, even though reserves may be connected, species may
+not be able to move between reserves if the areas connecting them 
+are barriers to dispersal.</p>
     
 
     <pre><span class='fu'>add_corridors_constraint</span>(<span class='no'>x</span>, <span class='no'>targets</span>, <span class='no'>friction</span>)</pre>
@@ -96,18 +96,28 @@ minimum dispersal capability across the solution.</p>
       <dd><code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> object.</dd>
       <dt>targets</dt>
       <dd><code>numeric</code> targets specifying the minimum flow
-permitted throughout the prioritisation. If <code>targets</code> is a single
+permitted throughout the solution. If <code>targets</code> is a single
 number then it is used for each feature. Otherwise, if <code>targets</code> is 
 a <code>vector</code> then it specifies the target for each feature.</dd>
       <dt>friction</dt>
       <dd><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>RasterStack-class</a></code> object denoting 
-friction surfaces for each feature. Pixels with missing values are
-assumed to be completely impermeable.</dd>
+friction surfaces for each feature. Cells with zero values offer no cost 
+to dispersal and individuals can move through these with ease. Cells with 
+higher values are associated with a cost for traversal. Cells with 
+<code>NA</code> values are complete barriers to dispersal and individuals
+cannot move through these at all.</dd>
     </dl>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> object.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This function adds constraints to ensure that corridors connect 
+reserves and that individuals from all species can utilise the 
+corridors. Friction <code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> objects area
+used to show each dificult areas are to traverse.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -115,12 +125,24 @@ assumed to be completely impermeable.</dd>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># create problem with corridors constraint</span>
+    <pre class="examples"><div class='input'>
 <span class='co'>## Not run: ------------------------------------</span>
-<span class='co'># problem(sim_pu_raster, sim_features) %&gt;%</span>
+<span class='co'># </span>
+<span class='co'># # create basic problem</span>
+<span class='co'># p1 &lt;- problem(sim_pu_raster, sim_features) %&gt;%</span>
 <span class='co'>#   add_minimum_set_objective() %&gt;%</span>
 <span class='co'>#   add_relative_targets(0.2) %&gt;%</span>
-<span class='co'>#   add_corridors_constraint(0.2, sim_locked_in_raster)</span>
+<span class='co'>#   add_binary_decision()</span>
+<span class='co'># </span>
+<span class='co'># # create problem with added corridor constraints</span>
+<span class='co'># p2 &lt;- p1 %&gt;% add_corridors_constraint(0.2, sim_friction_raster)</span>
+<span class='co'># </span>
+<span class='co'># # solve problems</span>
+<span class='co'># s &lt;- stack(solve(p1), solve(p2))</span>
+<span class='co'># </span>
+<span class='co'># # plot solutions</span>
+<span class='co'># plot(s, main=c('basic solution', 'solution with corridors'))</span>
+<span class='co'># </span>
 <span class='co'>## ---------------------------------------------</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -129,6 +151,8 @@ assumed to be completely impermeable.</dd>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

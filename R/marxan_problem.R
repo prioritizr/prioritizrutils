@@ -4,15 +4,15 @@
 #'
 #' Create a Marxan conservation problem. Although users are encouraged to 
 #' build and tailor conservation planning problems to suit their own needs, 
-#' sometimes it is easier to just use a more familiar "canned" approach. To
-#' address this need, this function provides a convenient wrapper for generating
+#' sometimes it is easier to use a more familiar "canned" approach. This 
+#' function provides a convenient wrapper for generating
 #' and solving Marxan-style conservation problems. If users already have
 #' their conservation planning data in the Marxan input format, this function
-#' can be used to read such files and solve the Marxan problems using 
-#' exact algorithm solvers.
+#' can also be used to read Marxan data files and solve the Marxan-style 
+#' problems using exact algorithm solvers.
 #'
 #' @param x \code{character} file path for Marxan input file (typically
-#'   called \emph{input.dat}) or a \code{\link[sp]{Spatial-class}} or 
+#'   called \code{'input.dat'}) or a \code{\link[sp]{Spatial-class}} or 
 #'   \code{\link[raster]{Raster-class}} object containing planning unit data.
 #'
 #' @param features \code{\link[raster]{Raster-class}} object containing
@@ -22,9 +22,9 @@
 #'   in the solution.
 #'
 #' @param targets_type \code{character} name indicating if the \code{targets}
-#'   are expressed as "relative" (eg. 0.2 meaning that 20 \% of a feature 
-#'   needs to be conserved), or "absolute" (eg. 100 meaning that 100 units of a 
-#'   feature need to be conserved) amounts. 
+#'   are expressed as \code{'relative'} (eg. \code{0.2} meaning that 20 \% of a feature 
+#'   needs to be conserved), or \code{'absolute'} (eg. \code{200} meaning that 
+#'   200 units of a feature need to be conserved) amounts. 
 #'
 #' @inheritParams add_boundary_constraint
 #'
@@ -34,7 +34,7 @@
 #'
 #' @param ... not used
 #'
-#' @return \code{link{ConservationProblem-class}} object.
+#' @return \code{\link{ConservationProblem-class}} object.
 #'
 #' @examples
 #' # create Marxan problem using spatial data

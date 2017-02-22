@@ -9,14 +9,25 @@ This prototype is used to represent a parameter has a single value.
 }
 \section{Fields}{
  
-\itemize{
+\describe{
+
 \item{$id}{\code{character} identifier for parameter.}
+
 \item{$name}{\code{character} name of parameter.}
+
 \item{$value}{\code{numeric} scalar value.}
+
 \item{$default}{\code{numeric} scalar default value.}
-\item{$class}{\code{character} class of value.}
-\item{$lower_limit}{\code{numeric} scalar value minimum permitted value.}
-\item{$upper_limit}{\code{numeric} scalar value maximum permitted value.}
+
+\item{$class}{\code{character} name of the class that \code{$value} should
+  inherit from (eg. \code{integer}).}
+
+\item{$lower_limit}{\code{numeric} scalar value that is the minimum value 
+  that \code{$value} is permitted to be.}
+
+\item{$upper_limit}{\code{numeric} scalar value that is the maximum value 
+  that \code{$value} is permitted to be.}
+
 \item{$widget}{\code{function} used to construct a
                \code{\link[shiny]{shiny}} interface for modifying values.}
 }
@@ -37,21 +48,29 @@ This prototype is used to represent a parameter has a single value.
  
 \describe{
 \item{x}{object used to set a new parameter value.}
-\item{...}{arguments passed to function in \code{widget} field.}
+\item{...}{arguments passed to \code{$widget}.}
  }
 }
 
 \section{Details}{
 
 \describe{
+
 \item{print}{print the object.}
+
 \item{show}{show the object.}
+
 \item{validate}{check if a proposed new set of parameters are valid.}
+
 \item{get}{extract the parameter value.}
+
 \item{set}{update the parameter value.}
+
 \item{reset}{update the parameter value to be the default value.}
+
 \item{render}{create a \code{\link[shiny]{shiny}} widget to modify 
               parameter values.}
+
 }
 }
 

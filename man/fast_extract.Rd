@@ -11,8 +11,6 @@
 
 \item{y}{\code{\link[sp]{Spatial-class}} object.}
 
-\item{fun}{\code{function} to compute values.}
-
 \item{...}{additional arguments passed to \code{\link[raster]{extract}}.}
 }
 \value{
@@ -23,7 +21,13 @@
 Extract data from a \code{\link[raster]{Raster-class}} object from a 
 \code{\link[sp]{Spatial-class}} object using performance enhancing tricks.
 }
+\details{
+Spatial analyses will be conducted using the 
+  \code{\link[velox]{velox}} package if it is installed. Additionally, 
+  multiple threads can be used to speed up computation using the 
+  \code{\link{set_number_of_threads}} function.
+}
 \seealso{
 \code{\link[raster]{extract}},
-  \code{\link[velox]{VeloxRaster_extract}}
+  \code{\link[velox]{VeloxRaster_extract}}.
 }

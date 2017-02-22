@@ -5,12 +5,12 @@
 \title{OptimizationProblem class}
 \description{
 This class is used to represent an optimization problem. Data are stored
-in memory using an external pointer. \strong{Only experts interact with this
-class directly.}
+in memory using an external pointer. \strong{Only experts should interact 
+with this class directly.}
 }
 \section{Fields}{
 
-\itemize{
+\describe{
 \item{$ptr}{\code{externalptr} object.}
 }
 }
@@ -18,26 +18,39 @@ class directly.}
 \section{Usage}{
 
 \code{x$print()}
+
 \code{x$show()}
+
 \code{x$repr()}
 
 \code{x$ncol()}
+
 \code{x$nrow()}
+
 \code{x$ncell()}
 
 \code{x$modelsense()}
+
 \code{x$vtype()}
+
 \code{x$obj()}
+
 \code{x$A()}
+
 \code{x$rhs()}
+
 \code{x$sense()}
+
 \code{x$lb()}
+
 \code{x$ub()}
 
 \code{x$number_of_planning_units()}
+
 \code{x$number_of_features()}
 
 \code{x$row_ids()}
+
 \code{x$col_ids()}
 }
 
@@ -76,20 +89,20 @@ class directly.}
 
 \item{sense}{\code{character} vector of constraint senses.}
 
-\item{lb}{\code{numeric} vector of lower bounds for each column.}
+\item{lb}{\code{numeric} vector of lower bounds for each decision variable.}
 
-\item{ub}{\code{numeric} vector of upper bounds for each column.}
+\item{ub}{\code{numeric} vector of upper bounds for each decision variable.}
 
 \item{number_of_features}{\code{integer} number of features in the problem.}
 
 \item{number_of_planning_units}{\code{integer} number of planning units in 
   the problem.}
 
-\item{col_ids}{\code{character} constraint ids for each column in the 
-  model matrix.}
+\item{col_ids}{\code{character} names describing each decision variable
+  (column) in the model matrix.}
 
-\item{row_ids}{\code{character} constraint ids for each row in the model
-  matrix.}
+\item{row_ids}{\code{character} names describing each constraint (row) in
+  in the model matrix.}
 
 }
 }

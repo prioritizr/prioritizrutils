@@ -4,54 +4,79 @@
 \alias{Parameters-class}
 \title{Parameters class}
 \description{
-This class represents a collection of \code{\link{ArrayParameter-class}}, and
-\code{\link{ScalarParameter-class}} objects.
+This class represents a collection of \code{\link{Parameter-class}} objects.
+It provides methods for accessing, updating, and rendering the parmaeters 
+stored inside it.
 }
 \section{Fields}{
 
-\itemize{
-\item{$parameters}{\code{list} object containing
-  \code{\link{ArrayParameter-class}}, and \code{\link{ScalarParameter-class}} 
-  objects.}
+\describe{
+
+\item{$parameters}{\code{list} object containing 
+  \code{\link{Parameter-class}} objects.}
+
 }
 }
 
 \section{Usage}{
 
+
 \code{x$print()}
+
 \code{x$show()}
+
 \code{x$repr()}
+
 \code{x$names()}
 
 \code{x$get(id)}
+
 \code{x$set(id, value)}
+
 \code{x$add(p)}
+
 \code{x$render(id)}
+
 \code{x$render_all()}
 }
 
 \section{Arguments}{
 
 \describe{
-\item{id}{\code{id} object.}
+\item{id}{\code{\link{Id}} object.}
+
 \item{p}{\code{\link{Parameter-class}} object.}
+
 \item{value}{any object.}
+
+}
 }
 
+\section{Details}{
+
+
 \describe{
+
 \item{print}{print the object.}
+
 \item{show}{show the object.}
+
 \item{repr}{\code{character} representation of object.}
+
 \item{names}{return \code{character} names of parameters.}
 
 \item{get}{retrieve the value of a parameter in the object
-   using an \code{id} object.}
+   using an \code{Id} object.}
+
 \item{set}{change the value of a parameter in the object 
    to a new object.}
+
 \item{render}{generate a \emph{shiny} widget to modify the
-  the value of a parameter (specified by argument \code{id}).}
-\item{render_all}{generate a \emph{shiny} \code{div}
+  the value of a parameter (specified by argument \code{Id}).}
+
+\item{render_all}{generate a \code{\link[shiny]{div}}
   containing all the parameters' widgets.}
+
 }
 }
 

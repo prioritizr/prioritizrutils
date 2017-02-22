@@ -4,7 +4,7 @@ NULL
 #' Compile a problem
 #' 
 #' Compile a \code{\link{ConservationProblem-class}} into an
-#' \code{OptimizationProblem}.
+#' \code{\link{OptimizationProblem-class}} object.
 #' 
 #' @param x \code{\link{ConservationProblem-class}} object.
 #'

@@ -13,7 +13,7 @@ help page on \code{\link{solvers}}}.
 \section{Fields}{
 
 
-\itemize{
+\describe{
 
 \item{$name}{\code{character} name of solver.}
 
@@ -58,7 +58,7 @@ help page on \code{\link{solvers}}}.
 
 \item{repr}{\code{character} representation of object.}
 
-\item{solve}{solve a \code{\link{OptimizationProblem-class}} using this 
+\item{solve}{solve an \code{\link{OptimizationProblem-class}} using this 
   object.}
 
 }

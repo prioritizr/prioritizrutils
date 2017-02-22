@@ -10,8 +10,8 @@ add_connected_constraint(x)
 \item{x}{\code{\link{ConservationProblem-class}} object.}
 }
 \value{
-\code{\link{ConservationProblem-class}} object with the constraint added
-  to it.
+\code{\link{ConservationProblem-class}} object with the constraint 
+  added to it.
 }
 \description{
 Add constraints to a conservation problem to ensure that all selected
@@ -19,8 +19,9 @@ planning units are connected.
 }
 \examples{
 \dontrun{
+
 # create basic problem
-p <- problem(sim_pu_raster, sim_features) \%>\%
+p1 <- problem(sim_pu_raster, sim_features) \%>\%
   add_minimum_set_objective() \%>\%
   add_relative_targets(0.2)
 
@@ -28,10 +29,11 @@ p <- problem(sim_pu_raster, sim_features) \%>\%
 p2 <- p \%>\% add_connected_constraint()
 
 # solve problems
-s <- stack(solve(p), solve(p2))
+s <- stack(solve(p1), solve(p2))
 
 # plot solutions
 plot(s, main=c('basic solution', 'connected solution'))
+
 }
 }
 \seealso{

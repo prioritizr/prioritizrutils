@@ -4,13 +4,13 @@ NULL
 #' @export
 methods::setOldClass('Target')
   
-#' Target class
+#' Target prototype
 #'  
-#' This class is used to represent the targets used when making a
-#' prioritization. \strong{This class represents a recipe, to actually 
-#' add targets to a planning problem, see the help page on
-#' \code{\link{targets}}. Only experts should use this class directly.} This 
-#' class inherits from the \code{\link{ConservationModifier-class}}. 
+#' This prototype is used to represent the targets used when making a
+#' prioritization. This prototype inherits from the 
+#' \code{\link{ConservationModifier-class}}. \strong{This class represents a 
+#' recipe, to actually add targets to a planning problem, see the help page on
+#' \code{\link{targets}}. Only experts should use this class directly.} 
 #'
 #' @seealso \code{\link{ConservationModifier-class}}.
 #'

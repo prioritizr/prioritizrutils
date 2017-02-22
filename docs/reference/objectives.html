@@ -81,10 +81,13 @@
     </div>
 
     
-    <p>The problem objective specifies how the problem <code><a href='targets.html'>targets</a></code> should
-be used to generate a solution. All conservation planning problems require
-an objective in order to be solved. See below for a list of the problem
-objectives that are available.</p>
+    <p>Conservation planning problems involve minimizing or maximizing an objective.
+For instance, the planner may require a solution that conserves
+enough habitat for each species while minimizing the overall cost of the
+reserve network. Alternatively, the planner may require a solution
+that maximizes the number of conserved species while ensuring that the cost
+of the reserve network does not exceed the budget. The problem objective 
+specifies the overall goal of the problem.</p>
     
 
     <pre><span class='fu'>add_minimum_set_objective</span>(<span class='no'>x</span>)
@@ -110,7 +113,19 @@ the prioritization.</dd>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
+    <p>All conservation planning problems require an objective in order to 
+be solved. While some users may feel that explicitly defining an objective 
+for a conservation problem adds some element of arbitrariness or 
+subjectivity to the decision making process, we remind them that &quot;canned&quot; 
+decision support tools (such as Marxan or Zonation) also have objectives. The 
+key difference here is that instead of choosing between different software 
+programs here the user is explicitly choosing their objective within the
+single environment. See below for a list of the objectives that can be 
+added to a conservation problem.</p>
     <p><dl class='dl-horizontal'></p>
+    <p><dt><code>add_default_objective</code></dt><dd>This objective is used when no objective
+    has been explicitly specified by the user. This will result in an error
+    because there is no sensible default.</dd></p>
     <p><dt><code>add_minimum_set_objective</code></dt><dd>The objective here is to find the 
     the solution that fulfills all the targets and constraints for 
     the smallest cost. This objective is similar to that used in Marxan.</dd></p>
@@ -127,17 +142,11 @@ the prioritization.</dd>
     placed on preserving as much of a representative sample a phylogenetic
     tree as possible given a budget. This objective requires the
     &quot;ape&quot; R package to be installed.</dd></p>
-    <p><dt><code>default_objective</code></dt><dd>This objective is used when no objective
-    has been explicitly specified. This will result in an error because
-    <em>&quot;Let the computer find out&quot; is a poor strategy and usually
-    reflects the fact that the researcher did not bother to think
-    clearly about the problem of interest and its scientific setting
-    (Burnham and Anderson, 2002).</em></dd></p>
     <p></dl></p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code>link{constraints}</code>, <code>link{problem}</code>,
+    <p><code><a href='constraints.html'>constraints</a></code>, <code><a href='problem.html'>problem</a></code>,
   <code><a href='targets.html'>targets</a></code>.</p>
     
 

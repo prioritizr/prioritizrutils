@@ -165,39 +165,70 @@ reporting progress on solving the problem?</dd>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='co'># create basic problem with defaults</span>
+<span class='co'># create basic problem</span>
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_pu_raster</span>, <span class='no'>sim_features</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='objectives.html'>add_minimum_set_objective</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='targets.html'>add_relative_targets</a></span>(<span class='fl'>0.1</span>)
 
-<span class='co'># add rsymphony solver with default settings</span>
-<span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_rsymphony_solver</span>()</div><div class='output co'>#&gt; <span class='message'>Conservation Problem</span>
-#&gt; <span class='message'>  planning units: RasterLayer (90 units)</span>
-#&gt; <span class='message'>  cost:           min: 190.13276, max: 215.86384</span>
-#&gt; <span class='message'>  features:       layer.1, layer.2, layer.3, layer.4, layer.5</span>
-#&gt; <span class='message'>  objective:      Minimum set objective </span>
-#&gt; <span class='message'>  targets:        Relative targets [targets (min: 0.1, max: 0.1)]</span>
-#&gt; <span class='message'>  decision:       default</span>
-#&gt; <span class='message'>  constraints:    &lt;none&gt;</span>
-#&gt; <span class='message'>  solver:         Rsymphony [verbosity (1), gap (0.1), time_limit (-1), first_feasible (0)]</span></div><div class='input'>
-<span class='co'># add rsymphony solver with custom settings</span>
-<span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_rsymphony_solver</span>(<span class='kw'>gap</span><span class='kw'>=</span><span class='fl'>0.05</span>, <span class='kw'>time_limit</span><span class='kw'>=</span><span class='fl'>100</span>)</div><div class='output co'>#&gt; <span class='message'>Conservation Problem</span>
-#&gt; <span class='message'>  planning units: RasterLayer (90 units)</span>
-#&gt; <span class='message'>  cost:           min: 190.13276, max: 215.86384</span>
-#&gt; <span class='message'>  features:       layer.1, layer.2, layer.3, layer.4, layer.5</span>
-#&gt; <span class='message'>  objective:      Minimum set objective </span>
-#&gt; <span class='message'>  targets:        Relative targets [targets (min: 0.1, max: 0.1)]</span>
-#&gt; <span class='message'>  decision:       default</span>
-#&gt; <span class='message'>  constraints:    &lt;none&gt;</span>
-#&gt; <span class='message'>  solver:         Rsymphony [verbosity (1), gap (0.05), time_limit (100), first_feasible (0)]</span></div><div class='input'>
-<span class='co'>## Not run: ------------------------------------</span>
-<span class='co'># # add gurobi solver</span>
-<span class='co'># p %&gt;% add_gurobi_solver(gap=0.1, presolve=2, time_limit=100)</span>
-<span class='co'># </span>
-<span class='co'># # add lpsolver solver</span>
-<span class='co'># p %&gt;% add_lpsymphony_solver(gap=0.1, time_limit=100)</span>
-<span class='co'># </span>
-<span class='co'>## ---------------------------------------------</span></div></pre>
+<span class='co'># create problem with added rsymphony solver and limit the time spent </span>
+<span class='co'># searching for the optimal solution to 2 seconds</span>
+<span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_rsymphony_solver</span>(<span class='kw'>time_limit</span><span class='kw'>=</span><span class='fl'>2</span>)
+
+<span class='co'># create problem with added rsymphony solver and limit the time spent </span>
+<span class='co'># searching for the optimal solution to 5 seconds</span>
+<span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_rsymphony_solver</span>(<span class='kw'>time_limit</span><span class='kw'>=</span><span class='fl'>5</span>)
+
+<span class='co'># solve problems</span>
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>stack</span>(<span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>))
+
+<span class='co'># create character vector to store plot titles</span>
+<span class='no'>titles</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>'rsymphony (2s)'</span>, <span class='st'>'rsymphony (5s)'</span>)
+
+<span class='co'># if the gurobi is installed: create problem with added gurobi solver </span>
+<span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>'gurobi'</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)) {
+  <span class='no'>titles</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='no'>titles</span>, <span class='st'>'gurobi (5s)'</span>)
+  <span class='no'>p3</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_gurobi_solver</span>(<span class='kw'>gap</span><span class='kw'>=</span><span class='fl'>0.1</span>, <span class='kw'>presolve</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>time_limit</span><span class='kw'>=</span><span class='fl'>5</span>)
+  <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>addLayer</span>(<span class='no'>s</span>, <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>))
+}</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
+#&gt; Variable types: 0 continuous, 90 integer (90 binary)
+#&gt; Coefficient statistics:
+#&gt;   Matrix range     [2e-01, 9e-01]
+#&gt;   Objective range  [2e+02, 2e+02]
+#&gt;   Bounds range     [1e+00, 1e+00]
+#&gt;   RHS range        [3e+00, 7e+00]
+#&gt; Found heuristic solution: objective 2140.26
+#&gt; Presolve time: 0.00s
+#&gt; Presolved: 5 rows, 90 columns, 450 nonzeros
+#&gt; Variable types: 0 continuous, 90 integer (90 binary)
+#&gt; Presolved: 5 rows, 90 columns, 450 nonzeros
+#&gt; 
+#&gt; 
+#&gt; Root relaxation: objective 1.720638e+03, 10 iterations, 0.00 seconds
+#&gt; 
+#&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
+#&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+#&gt; 
+#&gt;      0     0 1720.63823    0    4 2140.25691 1720.63823  19.6%     -    0s
+#&gt; H    0     0                    1782.9782753 1720.63823  3.50%     -    0s
+#&gt; 
+#&gt; Explored 0 nodes (10 simplex iterations) in 0.01 seconds
+#&gt; Thread count was 1 (of 2 available processors)
+#&gt; 
+#&gt; Solution count 2: 1782.98 2140.26 
+#&gt; Pool objective bound 1720.64
+#&gt; 
+#&gt; Optimal solution found (tolerance 1.00e-01)
+#&gt; Best objective 1.782978275316e+03, best bound 1.720638226500e+03, gap 3.4964%</div><div class='input'>
+<span class='co'># if the lpsymphony is installed: create problem with added lpsymphony solver </span>
+<span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>'lpsymphony'</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)) {
+  <span class='no'>titles</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='no'>titles</span>, <span class='st'>'lpsymphony'</span>)
+  <span class='no'>p4</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_lpsymphony_solver</span>(<span class='kw'>gap</span><span class='kw'>=</span><span class='fl'>0.1</span>, <span class='kw'>time_limit</span><span class='kw'>=</span><span class='fl'>5</span>)
+  <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>addLayer</span>(<span class='no'>s</span>, <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p4</span>))
+}
+
+<span class='co'># plot solutions</span>
+<span class='fu'>plot</span>(<span class='no'>s</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='no'>titles</span>)</div><img src='solvers-4.png' alt='' width='540' height='400' /><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

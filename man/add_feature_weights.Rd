@@ -9,9 +9,9 @@ add_feature_weights(x, weights)
 \arguments{
 \item{x}{\code{\link{ConservationProblem-class}} object.}
 
-\item{weights}{\code{numeric} weights. Higher values for a feature 
-indicate that it is more desireable to represent the feature in a network. 
-Weights cannot have negative values.}
+\item{weights}{\code{numeric} weights. Features with higher weights indicate
+that it is more desireable to represent them in the solution. Weights 
+cannot have negative values.}
 }
 \value{
 \code{\link{ConservationProblem-class}} object with the weights
@@ -19,17 +19,19 @@ Weights cannot have negative values.}
 }
 \description{
 Conservation planning problems that aim to maximize the representation of 
-features the budget is not high enough. In such budget-limited problems,
-it may be desirable to prefer the representation of some features
-over other features. Feature weights can be be applied to a conservation
-planning problem to favour the representation of some features over other 
-other features when making decisions about how the budget should be 
-allocated.
+enough. In such budget-limited problems, it may be desirable to prefer the 
+representation of some features over others. Weights can be be applied to 
+a problem to favour the representation of some features over others when 
+making decisions about how the budget should be allocated.
 }
 \details{
 Weights can only be applied to a budget-limited 
   type of planning problem (ie. \code{\link{add_maximum_coverage_objective}},
-  and \code{\link{add_maximum_representation_objective}}.
+  and \code{\link{add_maximum_representation_objective}}. Weights can also
+  be applied to problems that aim to maximise phylogenetic representation
+  (\code{\link{add_phylogenetic_representation_objective}}) to favour the 
+  representation of specific features over the representation of
+  some phylogenetic branches.
 }
 \examples{
 # create problem
@@ -37,7 +39,7 @@ p1 <- problem(sim_pu_raster, sim_features) \%>\%
   add_maximum_coverage_objective(budget=5000)
 
 # create weights based on rarity (1/number occurrences)
-w <- 1/raster::cellStats(sim_features, 'sum') * 100
+w <- 1/raster::cellStats(sim_features, 'sum') * 1000
 
 # create new problem with added weights according to rarity
 p2 <- p1 \%>\% add_feature_weights(w)

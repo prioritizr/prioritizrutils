@@ -81,10 +81,10 @@
     </div>
 
     
-    <p>Add constraints to ensure that certain planning units are locked out 
-from the solution. For example, it may be useful to lock out planning 
-units that have been substantially altered by anthropogenic development,
-and so contain little remaining habitat.</p>
+    <p>Add constraints to ensure that certain planning units are not prioritized
+in the solution. For example, it may be useful to lock out planning 
+units that have been degraded and are not longer suitable for conserving
+species.</p>
     
 
     
@@ -106,19 +106,20 @@ locked out. See details for more information.</dd>
     <p>The locked out planning units can be specified in several 
   different ways:</p>
     <p><dl class='dl-horizontal'></p>
-    <p><dt><code>integer</code> <code>vector</code></dt><dd>indices for which planning units should
-    be locked out.</dd></p>
-    <p><dt><code>character</code></dt><dd>column name in the attribute table with 
-    <code>logical</code> values indicating if planning units should be locked out. 
-    Note that <code>locked_out</code> can only a <code>character</code> if the planning
-    units in <code>x</code> are a <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPolygonsDataFrame-class'>SpatialPolygonsDataFrame-class</a></code>, 
-    <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialLinesDataFrame-class'>SpatialLinesDataFrame-class</a></code>, or 
-    <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPointsDataFrame-class'>SpatialPointsDataFrame-class</a></code> object.</dd></p>
-    <p><dt><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> object</dt><dd>with <code>logical</code> cells 
-    values. Planning units in <code>x</code> that spatially intersect with at 
-    least one <code>TRUE</code> pixel are locked in.</dd></p>
+    <p><dt><code>integer</code></dt><dd><code>vector</code> of indices pertaining to which 
+    planning units should be locked out.</dd></p>
+    <p><dt><code>character</code></dt><dd>column name in the attribute table values 
+    indicating if planning units should be locked out. This option is
+    only available if the planning units in <code>x</code> are a 
+    <code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code> object. The column in the attribute
+    table should have <code>logical</code>  (ie. <code>TRUE</code> or <code>FALSE</code>) 
+    values indicating if the planning unit is to be locked out.</dd></p>
+    <p><dt><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> object</dt><dd>planning units in <code>x</code> 
+    that intersect with cells in <code>y</code> are locked out. Specifically, 
+    only if the intersect with cells in <code>y</code> are that are not equal to 
+    zero or <code>NA</code>.</dd></p>
     <p><dt><code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code> object.</dt><dd>planning units in <code>x</code> 
-    that spatially intersect with <code>locked_in</code> are locked in.</dd></p>
+    that spatially intersect with <code>locked_in</code> are locked out.</dd></p>
     <p></dl></p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>

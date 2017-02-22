@@ -92,8 +92,6 @@
       <dd><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> object.</dd>
       <dt>y</dt>
       <dd><code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code> object.</dd>
-      <dt>fun</dt>
-      <dd><code>function</code> to compute values.</dd>
       <dt>...</dt>
       <dd>additional arguments passed to <code><a href='http://www.rdocumentation.org/packages/raster/topics/extract'>extract</a></code>.</dd>
     </dl>
@@ -103,10 +101,17 @@
     <p><code>data.frame</code>, <code>matrix</code>, or <code>list</code> object 
   depending on the arguments.</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Spatial analyses will be conducted using the 
+  <code><a href='http://www.rdocumentation.org/packages/velox/topics/velox'>velox</a></code> package if it is installed. Additionally, 
+  multiple threads can be used to speed up computation using the 
+  <code><a href='parallel.html'>set_number_of_threads</a></code> function.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <p><code><a href='http://www.rdocumentation.org/packages/raster/topics/extract'>extract</a></code>,
-  <code><a href='http://www.rdocumentation.org/packages/velox/topics/VeloxRaster_extract'>VeloxRaster_extract</a></code></p>
+  <code><a href='http://www.rdocumentation.org/packages/velox/topics/VeloxRaster_extract'>VeloxRaster_extract</a></code>.</p>
     
 
   </div>
@@ -116,6 +121,8 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
           </ul>

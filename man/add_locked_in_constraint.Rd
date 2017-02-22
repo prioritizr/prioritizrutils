@@ -17,11 +17,10 @@ locked in. See details for more information.}
 \code{\link{ConservationProblem-class}} object.
 }
 \description{
-Add constraints constraints to lock in planning units
-so that they are selected in the solution. For example, it may
-be desirable to lock in planning units already within existing
-protected areas so that the solutions fills in the gaps in the existing
-reserve network.
+Add constraints to ensure that they are prioritized in the solution. 
+For example, it may be desirable to lock in planning units that are 
+inside existing protected areas so that the solution fills in the gaps in the 
+existing reserve network.
 }
 \details{
 The locked in planning units can be specified in several 
@@ -29,19 +28,20 @@ The locked in planning units can be specified in several
 
   \describe{
   
-  \item{\code{integer} \code{vector}}{indices for which planning units should
-    be locked in.}
+  \item{\code{integer}}{\code{vector} of indices pertaining to which 
+    planning units should be locked in.}
 
-  \item{\code{character}}{column name in the attribute table with 
-    \code{logical} values indicating if planning units should be locked in. 
-    Note that \code{locked_in} can only a \code{character} if the planning
-    units in \code{x} are a \code{\link[sp]{SpatialPolygonsDataFrame-class}}, 
-    \code{\link[sp]{SpatialLinesDataFrame-class}}, or 
-    \code{\link[sp]{SpatialPointsDataFrame-class}} object.}
+  \item{\code{character}}{column name in the attribute table values 
+    indicating if planning units should be locked in. This option is
+    only available if the planning units in \code{x} are a 
+    \code{\link[sp]{Spatial-class}} object. The column in the attribute
+    table should have \code{logical}  (ie. \code{TRUE} or \code{FALSE}) 
+    values indicating if the planning unit is to be locked in.}
 
-  \item{\code{\link[raster]{Raster-class}} object}{Planning units in \code{x} 
-    that intersect with cells in \code{y} that are not equal to zero and 
-    not \code{NA} are locked in.}
+  \item{\code{\link[raster]{Raster-class}} object}{planning units in \code{x} 
+    that intersect with cells in \code{y} are locked in. Specifically, 
+    only if the intersect with cells in \code{y} are that are not equal to 
+    zero or \code{NA}.}
 
   \item{\code{\link[sp]{Spatial-class}} object.}{planning units in \code{x} 
     that spatially intersect with \code{locked_in} are locked in.}
@@ -76,19 +76,19 @@ s5 <- solve(p5)
 
 # plot solutions
 par(mfrow=c(3,2))
-plot(s1, main='none locked out')
+plot(s1, main='none locked in')
 plot(s1[s1$solution==1,], col='darkgreen', add=TRUE)
 
-plot(s2, main='locked out (integer input)')
+plot(s2, main='locked in (integer input)')
 plot(s2[s2$solution==1,], col='darkgreen', add=TRUE)
 
-plot(s3, main='locked out (character input)')
+plot(s3, main='locked in (character input)')
 plot(s3[s3$solution==1,], col='darkgreen', add=TRUE)
 
-plot(s4, main='locked out (raster input)')
+plot(s4, main='locked in (raster input)')
 plot(s4[s4$solution==1,], col='darkgreen', add=TRUE)
 
-plot(s5, main='locked out (polygon input)')
+plot(s5, main='locked in (polygon input)')
 plot(s5[s5$solution==1,], col='darkgreen', add=TRUE)
 
 }

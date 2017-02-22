@@ -81,7 +81,7 @@
     </div>
 
     
-    <p>Generate a matrix showing which planning units are connected.</p>
+    <p>Create a matrix showing which planning units are spatially connected.</p>
     
 
     
@@ -99,20 +99,20 @@ layer.</dd>
  16 (knight and one-cell queen moves), or &#39;bishop&#39; to connect cells with
  one-cell diagonal moves.</dd>
       <dt>distance</dt>
-      <dd><code>numeric</code> If <code>x</code> is a <code>SpatialPoints</code> object,
-the distance that planning units have to be within in order
-to qualify as being connected.</dd>
+      <dd><code>numeric</code> If <code>x</code> is a 
+<code>SpatialPoints-class</code> object, the distance that planning units 
+have to be within in order to qualify as being connected.</dd>
     </dl>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>Matrix{dsCMatrix-class}</code> object.</p>
+    <p><code><a href='http://www.rdocumentation.org/packages/Matrix/topics/dsCMatrix-class'>dsCMatrix-class</a></code> object.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function returns a matrix. Cells along the off-diagonal 
-  indicating if two planning units are connected. Cells along the 
-  diagonal are zero to reduce computation burden.</p>
+    <p>This function returns a <code><a href='http://www.rdocumentation.org/packages/Matrix/topics/dgCMatrix-class'>dgCMatrix-class</a></code> sparse
+  matrix. Cells along the off-diagonal indicate if two planning units are 
+  connected. Cells along the diagonal are zero to reduce memory consumption.</p>
     
 
   </div>

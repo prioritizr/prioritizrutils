@@ -1,26 +1,33 @@
 #' @include internal.R
 NULL
 
-# Number of threads for data processing
+#' Number of threads for data processing
 #' 
-#' This function set and get the number of threads for processing data when 
-#' processing data. Note that this does not influence the number of 
-#' threads used when solving a conservation problem.
+#' Set and get the number of threads used for processing data. Note 
+#' that this does not influence the number of threads used when solving a 
+#' conservation problem and this must be set when adding the 
+#' solver to the problem.
 #' 
 #' @param x \code{integer} number of threads to use for processing.
 #'
-#' @return \describe{
+#' @return
+#'
+#' \describe{
+#'
 #'   \item{get_number_of_threads}{\code{integer} number of threads.}
+#'
 #'   \item{set_number_of_threads}{invisible \code{logical} indicating 
 #'     success.}
+#'
 #' }
 #'
-#' @details To cease processing data in parallel, set the number of 
+#' @details To stop processing data in parallel, set the number of 
 #'   threads to one.
 #'
-#' @seealso \code{\link{is.parallel}}.
+#' @seealso \code{\link{is.parallel}}, \code{\link{solvers}}.
 #'
 #' @name parallel
+#'
 #' @aliases set_number_of_threads get_number_of_threads
 NULL
 
@@ -54,13 +61,14 @@ get_number_of_threads <- function() {
 
 #' Is parallel?
 #' 
-#' This function determines if parallel processing capabilities have been set 
-#' up.
+#' This function determines if parallel processing capabilities have been 
+#' initialized.
 #'
 #' @return \code{logical} indicating if parallel computations will be
-#'   performed in parallel.
+#'   performed in parallel where possible.
 #'
-#' @seealso \code{\link{set_number_of_threads}}.
+#' @seealso \code{\link{set_number_of_threads}}, 
+#'   \code{\link{get_number_of_threads}}.
 #' 
 #' @export
 is.parallel <- function() {
@@ -69,16 +77,16 @@ is.parallel <- function() {
 
 #' Distribute load
 #'
-#' This function helps with distributing a work load among processors
-#' for parallel processing by returning a list with index that 
+#' Utility function for distributing computations among a pool of workers
+#' for parallel processing.
 #'
 #' @param x \code{integer} number of item to process.
 #'
 #' @param n \code{integer} number of threads.
 #'
 #' @details This function returns a \code{list} containing an element for
-#'   each thread. Each element contains a \code{integer} vector 
-#'   specifying the indices that a thread should process.
+#'   each worker. Each element contains a \code{integer} \code{vector} 
+#'   specifying the indices that the worker should process.
 #'
 #' @return \code{list} object.
 #'

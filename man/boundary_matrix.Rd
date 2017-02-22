@@ -10,7 +10,7 @@
 \arguments{
 \item{x}{\code{\link[raster]{Raster-class}},
 \code{\link[sp]{SpatialLines-class}}, or
-\code{\link[sp]{SpatialPolygons-class}} object. Note that if \code{x} is a 
+\code{\link[sp]{SpatialPolygons-class}} object. If \code{x} is a 
 \code{\link[raster]{Raster-class}} object then it must have only one
 layer.}
 
@@ -22,16 +22,19 @@ Defaults to 4. Valid values are 4 and 6.}
 \code{\link{Matrix}{dsCMatrix-class}} object.
 }
 \description{
-Generate a boundary matrix showing the shared and exposed edges of 
-planning units. \strong{This function assumes the 
-data are in a projected coordinate system where distances can
-be correctly calculated. Thus spatial data in a longitude/latitude
-coordinate system should be reprojected prior to using this function.}
+Generate a boundary matrix describing the shared and exposed edges of 
+planning units.
 }
 \details{
-This function returns a matrix. Cells along the off-diagonal 
-  indicating the length of the shared boundary between two planning units. 
-  Cells along the diagonal indicate length of a given planning unit's edges 
-  that have no neighbors (eg. for edges of planning units found along the 
-  coastline).
+This function returns a \code{\link[Matrix]{dsCMatrix-class}} 
+  symmetric sparse matrix. Cells on the off-diagonal indicate the length of 
+  the shared boundary between two different planning units. Cells on the 
+  diagonal indicate length of a given planning unit's edges that have no 
+  neighbors (eg. for edges of planning units found along the 
+  coastline). \strong{This function assumes the data are in a coordinate
+  system where Euclidean distances accurately describe the proximity
+  between two points on the earth}. Thus spatial data in a longitude/latitude
+  coordinate system (aka \href{http://spatialreference.org/ref/epsg/wgs-84/}{WGS84})
+  should be reprojected to another coordinate system before using this 
+  function.
 }

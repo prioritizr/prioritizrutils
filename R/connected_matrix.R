@@ -3,7 +3,7 @@ NULL
 
 #' Connected matrix
 #'
-#' Generate a matrix showing which planning units are connected.
+#' Create a matrix showing which planning units are spatially connected.
 #' 
 #' @param x \code{\link[raster]{Raster-class}} or 
 #'   \code{\link[sp]{Spatial-class}} object. Note that if \code{x} is a 
@@ -16,15 +16,15 @@ NULL
 #'    16 (knight and one-cell queen moves), or 'bishop' to connect cells with
 #'    one-cell diagonal moves. 
 
-#' @param distance \code{numeric} If \code{x} is a \code{SpatialPoints} object,
-#'   the distance that planning units have to be within in order
-#'   to qualify as being connected.
+#' @param distance \code{numeric} If \code{x} is a 
+#'   \code{\link{SpatialPoints-class}} object, the distance that planning units 
+#'   have to be within in order to qualify as being connected.
 #' 
-#' @details This function returns a matrix. Cells along the off-diagonal 
-#'   indicating if two planning units are connected. Cells along the 
-#'   diagonal are zero to reduce computation burden.
+#' @details This function returns a \code{\link[Matrix]{dgCMatrix-class}} sparse
+#'   matrix. Cells along the off-diagonal indicate if two planning units are 
+#'   connected. Cells along the diagonal are zero to reduce memory consumption.
 #'
-#' @return \code{\link{Matrix}{dsCMatrix-class}} object.
+#' @return \code{\link[Matrix]{dsCMatrix-class}} object.
 #'
 #' @name connected_matrix
 #'

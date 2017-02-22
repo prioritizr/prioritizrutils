@@ -4,15 +4,15 @@ NULL
 #' @export
 methods::setOldClass('ArrayParameter')
 
-#' Array Parameter class
+#' Array Parameter prototype
 #'
-#' This class is used to represent a parameter has multiple values. Each value 
-#' is has a label to differentiate values. \strong{Only experts should interact
-#' directly with this class.}
+#' This prototype is used to represent a parameter has multiple values. Each 
+#' value is has a label to differentiate values. \strong{Only experts should 
+#' interact directly with this prototype.}
 #'
 #' @section Fields: 
 #'
-#' \itemize{
+#' \describe{
 #'
 #' \item{$id}{\code{character} identifier for parameter.}
 #'
@@ -39,13 +39,21 @@ methods::setOldClass('ArrayParameter')
 #' } 
 #'
 #' @section Usage: 
+#'
 #' \code{x$print()}
+#'
 #' \code{x$show()}
+#'
 #' \code{x$repr()}
+#'
 #' \code{x$validate(tbl)}
+#'
 #' \code{x$get()}
+#'
 #' \code{x$set(tbl)}
+#'
 #' \code{x$reset()}
+#'
 #' \code{x$render(...)}
 #'
 #' @section Arguments: 
