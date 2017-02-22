@@ -2,6 +2,8 @@
 % Please edit documentation in R/rij_matrix.R
 \name{rij_matrix}
 \alias{rij_matrix}
+\alias{rij_matrix,Raster,Raster-method}
+\alias{rij_matrix,Spatial,Raster-method}
 \alias{rij_matrix}
 \alias{rij_matrix}
 \title{\code{rij} matrix}

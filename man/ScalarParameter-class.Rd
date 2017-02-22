@@ -2,6 +2,7 @@
 % Please edit documentation in R/ScalarParameter-proto.R
 \name{ScalarParameter-class}
 \alias{ScalarParameter-class}
+\alias{ScalarParameter}
 \title{Scalar Parameter prototype}
 \description{
 This prototype is used to represent a parameter has a single value.
@@ -35,20 +36,31 @@ This prototype is used to represent a parameter has a single value.
 
 \section{Usage}{
  
+
 \code{x$print()}
+
 \code{x$show()}
+
 \code{x$validate(x)}
+
 \code{x$get()}
+
 \code{x$set(x)}
+
 \code{x$reset()}
+
 \code{x$render(...)}
 }
 
 \section{Arguments}{
  
+
 \describe{
+
 \item{x}{object used to set a new parameter value.}
+
 \item{...}{arguments passed to \code{$widget}.}
+
  }
 }
 

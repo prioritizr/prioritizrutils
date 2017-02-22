@@ -2,6 +2,9 @@
 % Please edit documentation in R/fast_extract.R
 \name{fast_extract}
 \alias{fast_extract}
+\alias{fast_extract,Raster,SpatialLines-method}
+\alias{fast_extract,Raster,SpatialPoints-method}
+\alias{fast_extract,Raster,SpatialPolygons-method}
 \alias{fast_extract}
 \alias{fast_extract}
 \alias{fast_extract}

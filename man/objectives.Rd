@@ -82,7 +82,8 @@ data(sim_pu_raster, sim_features, sim_phlyogeny)
 
 # create base problem
 p <- problem(sim_pu_raster, sim_features) \%>\%
- add_relative_targets(0.1)
+ add_relative_targets(0.1) \%>\%
+ add_default_solver(time_limit=5)
 
 p1 <- p \%>\% add_minimum_set_objective()
 

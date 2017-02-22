@@ -2,6 +2,7 @@
 % Please edit documentation in R/Solver-proto.R
 \name{Solver-class}
 \alias{Solver-class}
+\alias{Solver}
 \title{Solver prototype}
 \description{
 This prototype is used to generate objects that represent methods for solving

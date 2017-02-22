@@ -13,6 +13,8 @@ methods::setOldClass('Objective')
 #' class directly.}
 #'
 #' @name Objective-class
+#'
+#' @aliases Objective
 NULL
 
 #' @export

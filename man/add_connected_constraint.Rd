@@ -23,7 +23,8 @@ planning units are connected.
 # create basic problem
 p1 <- problem(sim_pu_raster, sim_features) \%>\%
   add_minimum_set_objective() \%>\%
-  add_relative_targets(0.2)
+  add_relative_targets(0.2) \%>\%
+  add_default_solver(time_limit=5)
 
 # create problem with added connected constraints
 p2 <- p \%>\% add_connected_constraint()

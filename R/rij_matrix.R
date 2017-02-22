@@ -60,6 +60,8 @@ NULL
 #'
 #' @exportMethod rij_matrix
 #'
+#' @aliases rij_matrix,Raster,Raster-method rij_matrix,Spatial,Raster-method
+#'
 #' @export
 methods::setGeneric('rij_matrix', 
                     signature=methods::signature('x', 'y'),
@@ -83,14 +85,14 @@ methods::setMethod('rij_matrix', signature(x='Raster', y='Raster'),
       if (!is.matrix(m))
         m <- matrix(m, ncol=1)
       m[is.na(m)] <- 0
-      m <- as(m, 'dgCMatrix')
+      m <- methods::as(m, 'dgCMatrix')
     } else {
       # othewise, process each feature seperately
         m <- plyr::llply(seq_len(raster::nlayers(y)), .parallel=FALSE,
           function(i) {
             m <- matrix(y[included], ncol=1)
             m[is.na(m)] <- 0
-            m <- as(m, 'dgCMatrix')
+            m <- methods::as(m, 'dgCMatrix')
           })
       m <- do.call(rbind, m)
     }
@@ -106,7 +108,7 @@ methods::setMethod('rij_matrix', signature(x='Spatial', y='Raster'),
     if (raster::nlayers(y)==1)
       m <- matrix(m, ncol=1)
     m[is.na(m[])] <- 0
-    m <- as(m, 'dgCMatrix')
+    m <- methods::as(m, 'dgCMatrix')
     return(Matrix::t(m))
 })
 

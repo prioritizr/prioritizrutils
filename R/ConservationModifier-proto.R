@@ -116,6 +116,8 @@ methods::setOldClass('ConservationModifier')
 #' }
 #'
 #' @name ConservationModifier-class
+#'
+#' @aliases ConservationModifier
 NULL
 
 #' @export

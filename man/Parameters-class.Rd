@@ -2,6 +2,7 @@
 % Please edit documentation in R/Parameters-proto.R
 \name{Parameters-class}
 \alias{Parameters-class}
+\alias{Parameters}
 \title{Parameters class}
 \description{
 This class represents a collection of \code{\link{Parameter-class}} objects.

@@ -57,7 +57,7 @@ loglinear_interpolate <- function(x, coordinate_one_x, coordinate_one_y,
   out[x <= coordinate_one_x] <- coordinate_one_y
   out[x >= coordinate_two_x] <- coordinate_two_y
   between.pos <- which(is.na(out))
-  out[between.pos] <- approx(x=log(c(coordinate_one_x, coordinate_two_x)),
+  out[between.pos] <- stats::approx(x=log(c(coordinate_one_x, coordinate_two_x)),
                              y=c(coordinate_one_y, coordinate_two_y),
                              xout=log(x[between.pos]), method='linear')$y
   out
@@ -120,8 +120,8 @@ parallelized_extract <- function(x, y, fun=mean, ...) {
   # assert that arguments are valid
   assertthat::assert_that(inherits(x, 'Raster'), inherits(y, 'Spatial'),
       inherits(fun, 'function'), raster::compareCRS(x@crs, y@proj4string),
-      rgeos::gIntersects(as(raster::extent(x[[1]]), 'SpatialPolygons'),
-        as(raster::extent(y), 'SpatialPolygons')), is.parallel())
+      rgeos::gIntersects(methods::as(raster::extent(x[[1]]), 'SpatialPolygons'),
+        methods::as(raster::extent(y), 'SpatialPolygons')), is.parallel())
   # data processing
   args <- list(...)
   parallel::clusterExport(.pkgenv$cluster, c('x', 'y', 'fun', 'args'),

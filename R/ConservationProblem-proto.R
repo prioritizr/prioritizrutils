@@ -221,6 +221,8 @@ methods::setOldClass('ConservationProblem')
 #'
 #' }
 #' @name ConservationProblem-class
+#'
+#' @aliases ConservationProblem
 NULL
 
 #' @export

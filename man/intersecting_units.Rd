@@ -2,6 +2,10 @@
 % Please edit documentation in R/intersecting_units.R
 \name{intersecting_units}
 \alias{intersecting_units}
+\alias{intersecting_units,Raster,Raster-method}
+\alias{intersecting_units,Raster,Spatial-method}
+\alias{intersecting_units,Spatial,Raster-method}
+\alias{intersecting_units,Spatial,Spatial-method}
 \alias{intersecting_units}
 \alias{intersecting_units}
 \alias{intersecting_units}

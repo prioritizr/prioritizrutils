@@ -25,7 +25,8 @@ NULL
 #' # create basic problem
 #' p <- problem(sim_pu_raster, sim_features) %>%
 #'   add_minimum_set_objective() %>%
-#'   add_relative_targets(0.2)
+#'   add_relative_targets(0.2) %>%
+#'   add_default_solver(time_limit=5)
 #'
 #' # create problem with low boundary penalties
 #' p2 <- p %>% add_boundary_constraint(5, 1)

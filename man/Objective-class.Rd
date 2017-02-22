@@ -2,6 +2,7 @@
 % Please edit documentation in R/Objective-proto.R
 \name{Objective-class}
 \alias{Objective-class}
+\alias{Objective}
 \title{Objective prototype}
 \description{
 This prototype is used to represent an objective that can be added to a

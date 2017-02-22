@@ -16,6 +16,8 @@ methods::setOldClass('Decision')
 #' @seealso \code{\link{ConservationModifier-class}}.
 #'
 #' @name Decision-class
+#'
+#' @aliases Decision
 NULL
 
 #' @export

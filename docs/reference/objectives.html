@@ -155,7 +155,8 @@ added to a conservation problem.</p>
 <span class='fu'>data</span>(<span class='no'>sim_pu_raster</span>, <span class='no'>sim_features</span>, <span class='no'>sim_phlyogeny</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: data set &#39;sim_phlyogeny&#39; not found</span></div><div class='input'>
 <span class='co'># create base problem</span>
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_pu_raster</span>, <span class='no'>sim_features</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='targets.html'>add_relative_targets</a></span>(<span class='fl'>0.1</span>)
+ <span class='fu'><a href='targets.html'>add_relative_targets</a></span>(<span class='fl'>0.1</span>) <span class='kw'>%&gt;%</span>
+ <span class='fu'><a href='solvers.html'>add_default_solver</a></span>(<span class='kw'>time_limit</span><span class='kw'>=</span><span class='fl'>5</span>)
 
 <span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_minimum_set_objective</span>()
 

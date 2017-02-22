@@ -2,6 +2,10 @@
 % Please edit documentation in R/connected_matrix.R
 \name{connected_matrix}
 \alias{connected_matrix}
+\alias{connected_matrix,Raster-method}
+\alias{connected_matrix,SpatialLines-method}
+\alias{connected_matrix,SpatialPoints-method}
+\alias{connected_matrix,SpatialPolygons-method}
 \alias{connected_matrix}
 \alias{connected_matrix}
 \alias{connected_matrix}

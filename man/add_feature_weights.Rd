@@ -36,7 +36,8 @@ Weights can only be applied to a budget-limited
 \examples{
 # create problem
 p1 <- problem(sim_pu_raster, sim_features) \%>\%
-  add_maximum_coverage_objective(budget=5000)
+  add_maximum_coverage_objective(budget=5000) \%>\%
+  add_default_solver(time_limit=5)
 
 # create weights based on rarity (1/number occurrences)
 w <- 1/raster::cellStats(sim_features, 'sum') * 1000

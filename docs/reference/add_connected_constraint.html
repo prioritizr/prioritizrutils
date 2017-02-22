@@ -109,7 +109,8 @@ planning units are connected.</p>
 <span class='co'># # create basic problem</span>
 <span class='co'># p1 &lt;- problem(sim_pu_raster, sim_features) %&gt;%</span>
 <span class='co'>#   add_minimum_set_objective() %&gt;%</span>
-<span class='co'>#   add_relative_targets(0.2)</span>
+<span class='co'>#   add_relative_targets(0.2) %&gt;%</span>
+<span class='co'>#   add_default_solver(time_limit=5)</span>
 <span class='co'># </span>
 <span class='co'># # create problem with added connected constraints</span>
 <span class='co'># p2 &lt;- p %&gt;% add_connected_constraint()</span>

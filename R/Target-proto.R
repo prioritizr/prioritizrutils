@@ -15,6 +15,8 @@ methods::setOldClass('Target')
 #' @seealso \code{\link{ConservationModifier-class}}.
 #'
 #' @name Target-class
+#'
+#' @aliases Target
 NULL
 
 #' @export

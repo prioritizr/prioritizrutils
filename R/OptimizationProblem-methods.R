@@ -69,7 +69,7 @@ new_optimization_problem <- function() {
 #'
 #' @name OptimizationProblem-methods
 #'
-#' @aliases nrow ncol ncell modelsense vtype obj A rhs sense lb ub number_of_features number_of_planning_units col_ids row_ids
+#' @aliases nrow ncol ncell modelsense vtype obj A rhs sense lb ub number_of_features number_of_planning_units col_ids row_ids ncell,OptimizationProblem-method A,OptimizationProblem-method col_ids,OptimizationProblem-method lb,OptimizationProblem-method modelsense,OptimizationProblem-method ncol,OptimizationProblem-method nrow,OptimizationProblem-method number_of_features,OptimizationProblem-method number_of_planning_units,OptimizationProblem-method obj,OptimizationProblem-method rhs,OptimizationProblem-method row_ids,OptimizationProblem-method sense,OptimizationProblem-method ub,OptimizationProblem-method vtype,OptimizationProblem-method 
 NULL
 
 #' @name OptimizationProblem-methods
@@ -100,9 +100,9 @@ methods::setMethod('ncol', 'OptimizationProblem', function(x) x$ncol())
 #'
 #' @rdname OptimizationProblem-methods
 #'
-#' @importFrom raster ncol
+#' @importFrom raster ncell
 #'
-#' @exportMethod ncol
+#' @exportMethod ncell
 #'
 #' @usage ncell(x)
 #'

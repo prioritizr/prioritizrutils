@@ -9,8 +9,10 @@ NULL
 #' @param a \code{\link{ConservationProblem-class}} or an
 #'   \code{\link{OptimizationProblem-class}} object.
 #'
-#' @param b \code{\link{Solver-class}} object. Not need if \code{a} is an
+#' @param b \code{\link{Solver-class}} object. Not used if \code{a} is an
 #'   \code{\link{ConservationProblem-class}} object.
+#'
+#' @param ... not used.
 #'
 #' @details If a \code{\link{OptimizationProblem-class}} is supplied, then the 
 #'   solution is returned as a \code{logical} showing the status of each 
@@ -37,7 +39,7 @@ NULL
 #'   add_minimum_set_objective() %>%
 #'   add_relative_targets(0.1) %>%
 #'   add_binary_decision() %>%
-#'   add_default_solver()
+#'   add_default_solver(time_limit=5)
 #'
 #' # solve the problem
 #' s <- solve(p)
@@ -51,25 +53,23 @@ NULL
 #'
 #' @exportMethod solve
 #'
+#' @aliases solve,OptimizationProblem,Solver-method solve,ConservationProblem,missing-method
+#'
 #' @export
 NULL
 
 #' @name solve
 #'
 #' @rdname solve
-#'
-#' @usage solve(a,b) # OptimizationProblem,Solver
 methods::setMethod('solve', signature(a='OptimizationProblem', b='Solver'),
-  function(a, b) b$solve(a)
+  function(a, b, ...) b$solve(a)
 )
 
 #' @name solve
 #'
 #' @rdname solve
-#'
-#' @usage solve(a,b) # ConservationProblem,missing
 methods::setMethod('solve', signature(a='ConservationProblem', b='missing'),
-  function(a, b) {
+  function(a, b, ...) {
     # assign solver
     if (inherits(a$solver, 'Waiver'))
       a <- add_default_solver(a)

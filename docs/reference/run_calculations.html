@@ -120,7 +120,8 @@ run multiple times.</p>
 <span class='co'># create a conservation problem with no targets</span>
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_pu_raster</span>, <span class='no'>sim_features</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='objectives.html'>add_minimum_set_objective</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_boundary_constraint.html'>add_boundary_constraint</a></span>(<span class='fl'>10</span>, <span class='fl'>0.5</span>)
+  <span class='fu'><a href='add_boundary_constraint.html'>add_boundary_constraint</a></span>(<span class='fl'>10</span>, <span class='fl'>0.5</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='solvers.html'>add_default_solver</a></span>(<span class='kw'>time_limit</span><span class='kw'>=</span><span class='fl'>5</span>)
 
 <span class='co'># create a copies of p and add targets</span>
 <span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='targets.html'>add_relative_targets</a></span>(<span class='fl'>0.1</span>)
@@ -229,7 +230,8 @@ run multiple times.</p>
 <span class='co'># preliminary calculations. Note how we use the \%T&gt;\% operator here.</span>
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_pu_raster</span>, <span class='no'>sim_features</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='objectives.html'>add_minimum_set_objective</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_boundary_constraint.html'>add_boundary_constraint</a></span>(<span class='fl'>10</span>, <span class='fl'>0.5</span>) <span class='kw'>%T&gt;%</span>
+  <span class='fu'><a href='add_boundary_constraint.html'>add_boundary_constraint</a></span>(<span class='fl'>10</span>, <span class='fl'>0.5</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='solvers.html'>add_default_solver</a></span>(<span class='kw'>time_limit</span><span class='kw'>=</span><span class='fl'>5</span>) <span class='kw'>%T&gt;%</span>
   <span class='fu'>run_calculations</span>()
 
 <span class='co'># create a copies of p and add targets just like before</span>
@@ -321,7 +323,7 @@ run multiple times.</p>
 #&gt;      0     0 5320.55718    0    8 6216.37471 5320.55718  14.4%     -    0s
 #&gt; H    0     0                    5451.4066953 5320.55718  2.40%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (186 simplex iterations) in 0.02 seconds
+#&gt; Explored 0 nodes (186 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 2 available processors)
 #&gt; 
 #&gt; Solution count 2: 5451.41 6216.37 
@@ -331,8 +333,8 @@ run multiple times.</p>
 #&gt; Best objective 5.451406695283e+03, best bound 5.320557179926e+03, gap 2.4003%</div><div class='input'>
 <span class='co'># now lets compare the times</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s1</span>) <span class='co'># time spent without running preliminary calculations</span></div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   1.236   0.200   1.453 </div><div class='input'><span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>) <span class='co'># time spent after running preliminary calculations</span></div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   1.012   0.210   1.227 </div><div class='input'>
+#&gt;   1.122   0.005   1.126 </div><div class='input'><span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>) <span class='co'># time spent after running preliminary calculations</span></div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.947   0.005   0.952 </div><div class='input'>
 <span class='co'># As we can see, we can save a lot of time by running the preliminary </span>
 <span class='co'># calculations before making copies of the problem with slightly</span>
 <span class='co'># different constraints.</span></div></pre>

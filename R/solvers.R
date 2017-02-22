@@ -71,6 +71,8 @@ NULL
 #'   value of 2 indicates to that the solver should be very aggressive in 
 #'   trying to simplify the problem. 
 #' 
+#' @param ... arguments passed to the default solver.
+#'
 #' @examples
 #'
 #' # create basic problem
@@ -261,13 +263,13 @@ add_rsymphony_solver <- function(x, gap=0.1, time_limit=-1, first_feasible=0,
 
 #' @rdname solvers
 #' @export
-add_default_solver <- function(x) {
+add_default_solver <- function(x, ...) {
   if (requireNamespace('gurobi', quietly = TRUE)) {
-    return(add_gurobi_solver(x))
+    return(add_gurobi_solver(x, ...))
   } else if (requireNamespace('lpsymphony', quietly = TRUE)) {
-    return(add_lpsymphony_solver(x))
+    return(add_lpsymphony_solver(x, ...))
   } else {
-    return(add_rsymphony_solver(x))
+    return(add_rsymphony_solver(x, ...))
   }
 }
 

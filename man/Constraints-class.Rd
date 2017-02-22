@@ -2,6 +2,7 @@
 % Please edit documentation in R/Constraints-proto.R
 \name{Constraints-class}
 \alias{Constraints-class}
+\alias{Constraints}
 \title{Constraints prototype}
 \description{
 This prototype represents a collection of \code{\link{Constraint-class}} 

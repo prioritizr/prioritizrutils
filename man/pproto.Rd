@@ -18,8 +18,7 @@ inherit from any object.}
 }
 \description{
 Construct a new object with \code{pproto}. This object system is inspired
-from the \code{\link[ggplot2]{ggproto}} system used in the
-\code{\link[ggplot2]{ggplot2}} package.
+from the \code{ggproto} system used in the \emph{ggplot2} package.
 }
 \examples{
 Adder <- pproto('Adder',

@@ -2,20 +2,19 @@
 % Please edit documentation in R/solve.R
 \name{solve}
 \alias{solve}
+\alias{solve,OptimizationProblem,Solver-method}
+\alias{solve,ConservationProblem,missing-method}
 \alias{solve}
 \alias{solve}
 \title{Solve a problem}
-\usage{
-solve(a,b) # OptimizationProblem,Solver
-
-solve(a,b) # ConservationProblem,missing
-}
 \arguments{
 \item{a}{\code{\link{ConservationProblem-class}} or an
 \code{\link{OptimizationProblem-class}} object.}
 
-\item{b}{\code{\link{Solver-class}} object. Not need if \code{a} is an
+\item{b}{\code{\link{Solver-class}} object. Not used if \code{a} is an
 \code{\link{ConservationProblem-class}} object.}
+
+\item{...}{not used.}
 }
 \value{
 A \code{\link[raster]{RasterLayer-class}}, 
@@ -48,7 +47,7 @@ p <- problem(sim_pu_raster, sim_features) \%>\%
   add_minimum_set_objective() \%>\%
   add_relative_targets(0.1) \%>\%
   add_binary_decision() \%>\%
-  add_default_solver()
+  add_default_solver(time_limit=5)
 
 # solve the problem
 s <- solve(p)

@@ -17,7 +17,7 @@ add_lpsymphony_solver(x, gap = 0.1, time_limit = -1, verbosity = 1,
 add_rsymphony_solver(x, gap = 0.1, time_limit = -1, first_feasible = 0,
   verbosity = 1)
 
-add_default_solver(x)
+add_default_solver(x, ...)
 }
 \arguments{
 \item{x}{\code{\link{ConservationProblem-class}} object.}
@@ -50,6 +50,8 @@ relaxed solution, and is therefore often reasonably close to optimality.}
 
 \item{verbosity}{\code{integer} how verbose should the solver be when
 reporting progress on solving the problem?}
+
+\item{...}{arguments passed to the default solver.}
 }
 \description{
 Specify the software and configurations used to solve a conservation planning 

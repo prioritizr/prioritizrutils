@@ -45,7 +45,8 @@ used to show each dificult areas are to traverse.
 p1 <- problem(sim_pu_raster, sim_features) \%>\%
   add_minimum_set_objective() \%>\%
   add_relative_targets(0.2) \%>\%
-  add_binary_decision()
+  add_binary_decision() \%>\%
+  add_default_solver(time_limit=5)
 
 # create problem with added corridor constraints
 p2 <- p1 \%>\% add_corridors_constraint(0.2, sim_friction_raster)

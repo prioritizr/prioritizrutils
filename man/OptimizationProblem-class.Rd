@@ -2,6 +2,7 @@
 % Please edit documentation in R/OptimizationProblem-proto.R
 \name{OptimizationProblem-class}
 \alias{OptimizationProblem-class}
+\alias{OptimizationProblem}
 \title{OptimizationProblem class}
 \description{
 This class is used to represent an optimization problem. Data are stored

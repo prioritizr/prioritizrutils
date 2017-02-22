@@ -2,6 +2,7 @@
 % Please edit documentation in R/ConservationModifier-proto.R
 \name{ConservationModifier-class}
 \alias{ConservationModifier-class}
+\alias{ConservationModifier}
 \title{Conservation problem modifier prototype}
 \description{
 This super-prototype is used to represent prototypes that in turn are used to 

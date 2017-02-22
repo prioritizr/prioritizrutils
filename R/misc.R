@@ -53,31 +53,31 @@ methods::setMethod('show', 'Solver', function(object) object$show())
 #' @name print
 NULL
 
-#' @rdname print
+#' @method print ConservationModifier
 #' @export
 print.ConservationModifier <- function(x, ...) x$print()
 
-#' @rdname print
+#' @method print ConservationProblem
 #' @export
 print.ConservationProblem <- function(x, ...) x$print()
 
-#' @rdname print
+#' @method print Id
 #' @export
-print.id <- function(x, ...) message('id: ', x)
+print.Id <- function(x, ...) message('id: ', x)
 
-#' @rdname print
+#' @method print OptimizationProblem
 #' @export
 print.OptimizationProblem <- function(x, ...) x$print()
 
-#' @rdname print
+#' @method print ScalarParameter
 #' @export
 print.ScalarParameter <- function(x, ...) x$print()
 
-#' @rdname print
+#' @method print ArrayParameter
 #' @export
 print.ArrayParameter <- function(x, ...) x$print()
 
-#' @rdname print
+#' @method print Solver
 #' @export
 print.Solver <- function(x, ...) x$print()
 
@@ -95,6 +95,7 @@ print.Solver <- function(x, ...) x$print()
 NULL
 
 #' @rdname as
+#' @method as.list Parameters
 #' @export
 as.list.Parameters <- function(x, ...)
   structure(lapply(x$parameters, function(x) x$value),

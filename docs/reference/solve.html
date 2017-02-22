@@ -85,9 +85,6 @@
 <code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code>.</p>
     
 
-    <pre><span class='fu'>solve</span>(<span class='no'>a</span>,<span class='no'>b</span>) <span class='co'># OptimizationProblem,Solver</span>
-
-<span class='fu'>solve</span>(<span class='no'>a</span>,<span class='no'>b</span>) <span class='co'># ConservationProblem,missing</span></pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
@@ -95,8 +92,10 @@
       <dd><code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> or an
 <code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code> object.</dd>
       <dt>b</dt>
-      <dd><code><a href='Solver-class.html'>Solver-class</a></code> object. Not need if <code>a</code> is an
+      <dd><code><a href='Solver-class.html'>Solver-class</a></code> object. Not used if <code>a</code> is an
 <code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> object.</dd>
+      <dt>...</dt>
+      <dd>not used.</dd>
     </dl>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -131,7 +130,7 @@
   <span class='fu'><a href='objectives.html'>add_minimum_set_objective</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='targets.html'>add_relative_targets</a></span>(<span class='fl'>0.1</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='decisions.html'>add_binary_decision</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='solvers.html'>add_default_solver</a></span>()
+  <span class='fu'><a href='solvers.html'>add_default_solver</a></span>(<span class='kw'>time_limit</span><span class='kw'>=</span><span class='fl'>5</span>)
 
 <span class='co'># solve the problem</span>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>solve</span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros

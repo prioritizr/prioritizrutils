@@ -27,6 +27,8 @@ NULL
 #'
 #' @exportMethod fast_extract
 #'
+#' @aliases fast_extract,Raster,SpatialLines-method fast_extract,Raster,SpatialPoints-method fast_extract,Raster,SpatialPolygons-method 
+#'
 #' @export
 methods::setGeneric('fast_extract',
                     signature=methods::signature('x', 'y'),
@@ -40,8 +42,8 @@ methods::setMethod('fast_extract', signature(x='Raster', y='SpatialPolygons'),
     assertthat::assert_that(inherits(x, 'Raster'), inherits(y, 'SpatialPolygons'),
       isTRUE(is.null(fun) || inherits(fun, 'function')),
       assertthat::is.flag(velox), raster::compareCRS(x@crs, y@proj4string),
-      rgeos::gIntersects(as(raster::extent(x[[1]]), 'SpatialPolygons'),
-      as(raster::extent(y), 'SpatialPolygons')))
+      rgeos::gIntersects(methods::as(raster::extent(x[[1]]), 'SpatialPolygons'),
+        methods::as(raster::extent(y), 'SpatialPolygons')))
     if (velox & !requireNamespace('velox'))
       stop('the velox R package needs to be installed to use velox')
     # data processing
@@ -83,8 +85,9 @@ methods::setMethod('fast_extract', signature(x='Raster', y='SpatialLines'),
     # assert that arguments are valid
     assertthat::assert_that(inherits(x, 'Raster'), inherits(y, 'SpatialLines'),
         inherits(fun, 'function'),raster::compareCRS(x@crs, y@proj4string),
-        rgeos::gIntersects(as(raster::extent(x[[1]]), 'SpatialPolygons'),
-                         as(raster::extent(y), 'SpatialPolygons')))
+        rgeos::gIntersects(methods::as(raster::extent(x[[1]]), 
+                                       'SpatialPolygons'), 
+                           methods::as(raster::extent(y), 'SpatialPolygons')))
     # data processing
     if (is.parallel()) {
       m <- parallelized_extract(x=x, y=y, fun=fun, ...)
@@ -103,8 +106,9 @@ methods::setMethod('fast_extract', signature(x='Raster', y='SpatialPoints'),
     # assert that arguments are valid
     assertthat::assert_that(inherits(x, 'Raster'), inherits(y, 'SpatialPoints'),
         inherits(fun, 'function'),raster::compareCRS(x@crs, y@proj4string),
-        rgeos::gIntersects(as(raster::extent(x[[1]]), 'SpatialPolygons'),
-                         as(raster::extent(y), 'SpatialPolygons')))
+        rgeos::gIntersects(methods::as(raster::extent(x[[1]]), 
+                                       'SpatialPolygons'),
+                           methods::as(raster::extent(y), 'SpatialPolygons')))
     # return result
     return(raster::extract(x, y, fun=fun, ...))
   }

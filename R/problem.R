@@ -79,8 +79,8 @@ problem.Spatial <- function(x, features, cost_column = names(x)[1], ...) {
     isTRUE(all(raster::cellStats(features, 'max', na.rm=TRUE) > 0)),
     raster::nlayers(features) >= 1,
     raster::compareCRS(x@proj4string, features@crs),
-    isTRUE(rgeos::gIntersects(as(raster::extent(x), 'SpatialPolygons'),
-      as(raster::extent(features), 'SpatialPolygons'))))
+    isTRUE(rgeos::gIntersects(methods::as(raster::extent(x), 'SpatialPolygons'),
+      methods::as(raster::extent(features), 'SpatialPolygons'))))
   pproto(NULL, ConservationProblem, constraints=pproto(NULL, Constraints),
     data=list(cost=x, features=features, cost_column = cost_column,
       rij_matrix=rij_matrix(x[,cost_column], features)))

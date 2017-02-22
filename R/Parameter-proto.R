@@ -51,6 +51,8 @@ methods::setOldClass('Parameter')
 #' @seealso \code{\link{ScalarParameter-class}}.
 #'
 #' @name Parameter-class
+#'
+#' @aliases Parameter
 NULL
 
 #' @export

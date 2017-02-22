@@ -4,8 +4,7 @@ NULL
 #' Create a new pproto object
 #'
 #' Construct a new object with \code{pproto}. This object system is inspired
-#' from the \code{\link[ggplot2]{ggproto}} system used in the
-#' \code{\link[ggplot2]{ggplot2}} package.
+#' from the \code{ggproto} system used in the \emph{ggplot2} package.
 #'
 #' @param _class Class name to assign to the object. This is stored as the class
 #'   attribute of the object. This is optional: if \code{NULL} (the default),

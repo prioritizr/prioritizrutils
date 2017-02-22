@@ -98,10 +98,7 @@ Rcpp::List rcpp_boundary_data(Rcpp::DataFrame data, double tolerance=0.00001) {
       }
     }
   }
-  
-  // free memory
-//   line_id.swap(set);
-  
+    
   /// construct pairs
   {
 

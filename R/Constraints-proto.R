@@ -59,6 +59,8 @@ methods::setOldClass('Constraints')
 #' @seealso \code{\link{Constraint-class}}.
 #'
 #' @name Constraints-class
+#'
+#' @aliases Constraints
 NULL
 
 #' @export

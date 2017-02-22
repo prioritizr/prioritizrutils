@@ -59,6 +59,8 @@ methods::setOldClass('Solver')
 #' }
 #'
 #' @name Solver-class
+#'
+#' @aliases Solver
 NULL
 
 #' @export

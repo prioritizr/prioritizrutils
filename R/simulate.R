@@ -28,7 +28,7 @@ NULL
 #' @export
 simulate_data <- function(x, n, model, transform=identity, ...) {
   # assert valid arguments
-  if (!'RandomFields' %in% rownames(installed.packages()))
+  if (!requireNamespace('RandomFields'))
     stop('the "RandomFields" package needs to be installed to simulate data')
   assertthat::assert_that(
     inherits(x, 'RasterLayer'),
@@ -37,7 +37,7 @@ simulate_data <- function(x, n, model, transform=identity, ...) {
     inherits(model, 'RMmodel'),
     inherits(transform, 'function'))
   # generate values for rasters
-  coords <- as(x, 'SpatialPoints')@coords
+  coords <- methods::as(x, 'SpatialPoints')@coords
   mtx <- RandomFields::RFsimulate(model=model, x=coords[,1], y=coords[,2],
                                   n=n, spConform=FALSE, ...)
   # convert to matrix if not a matrix
@@ -66,7 +66,7 @@ simulate_data <- function(x, n, model, transform=identity, ...) {
 #'
 #' @export
 simulate_species <- function(x, n=1, model=RandomFields::RMgauss(),
-                             transform=plogis, ...) {
+                             transform=stats::plogis, ...) {
   simulate_data(x=x, n=n, model=model, transform=transform, ...)
 }
 

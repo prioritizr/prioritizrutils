@@ -11,7 +11,7 @@ as.id(x, ...)
 
 as.Id.character(x, ...)
 
-as.list.Parameters(x, ...)
+\method{as.list}{Parameters}(x, ...)
 }
 \arguments{
 \item{x}{Object.}

@@ -75,6 +75,8 @@ methods::setOldClass('Parameters')
 #' }
 #'
 #' @name Parameters-class
+#'
+#' @aliases Parameters
 NULL
 
 #' @export

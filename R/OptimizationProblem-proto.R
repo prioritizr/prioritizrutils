@@ -102,6 +102,8 @@ methods::setOldClass('OptimizationProblem')
 #' }
 #'
 #' @name OptimizationProblem-class
+#'
+#' @aliases OptimizationProblem
 NULL
 
 #' @export

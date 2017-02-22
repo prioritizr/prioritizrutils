@@ -2,6 +2,7 @@
 % Please edit documentation in R/ArrayParameter-proto.R
 \name{ArrayParameter-class}
 \alias{ArrayParameter-class}
+\alias{ArrayParameter}
 \title{Array Parameter prototype}
 \description{
 This prototype is used to represent a parameter has multiple values. Each 

@@ -30,6 +30,8 @@ NULL
 #'
 #' @exportMethod connected_matrix
 #'
+#' @aliases connected_matrix,Raster-method connected_matrix,SpatialLines-method connected_matrix,SpatialPoints-method connected_matrix,SpatialPolygons-method
+#'
 #' @export
 methods::setGeneric('connected_matrix', 
                     signature=methods::signature('x'),

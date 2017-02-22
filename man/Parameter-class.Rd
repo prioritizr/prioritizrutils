@@ -2,6 +2,7 @@
 % Please edit documentation in R/Parameter-proto.R
 \name{Parameter-class}
 \alias{Parameter-class}
+\alias{Parameter}
 \title{Parameter class}
 \description{
 This class is used to represent a parameter that has multiple values. Each 

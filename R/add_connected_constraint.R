@@ -19,7 +19,8 @@ NULL
 #' # create basic problem
 #' p1 <- problem(sim_pu_raster, sim_features) %>%
 #'   add_minimum_set_objective() %>%
-#'   add_relative_targets(0.2)
+#'   add_relative_targets(0.2) %>%
+#'   add_default_solver(time_limit=5)
 #'
 #' # create problem with added connected constraints
 #' p2 <- p %>% add_connected_constraint()
@@ -47,7 +48,7 @@ add_connected_constraint <- function(x) {
       assertthat::assert_that(inherits(x, 'ConservationProblem'))
       if (is.Waiver(x$get_data('connected_matrix'))) {
         # create matrix
-        m <- connected_matrix(y$data$cost)
+        m <- connected_matrix(x$data$cost)
         # manually coerce boundary matrix to 'dgCMatrix' class so that
         # elements in the lower diagonal are not filled in
         class(m) <- 'dgCMatrix'
@@ -60,7 +61,7 @@ add_connected_constraint <- function(x) {
       assertthat::assert_that(inherits(x, 'OptimizationProblem'),
         inherits(y, 'ConservationProblem'))
       if (self$parameters$get('Apply constraint?')==1)
-        rcpp_apply_clumping_constraint(x$ptr, y$get_data('connected_matrix'))
+        rcpp_apply_connected_constraint(x$ptr, y$get_data('connected_matrix'))
       invisible(TRUE)
     }))
 }

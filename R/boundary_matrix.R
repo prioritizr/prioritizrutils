@@ -1,7 +1,6 @@
 #' @include internal.R 
 NULL
 
-
 #' Boundary matrix
 #'
 #' Generate a boundary matrix describing the shared and exposed edges of 
@@ -34,6 +33,8 @@ NULL
 #' @name boundary_matrix
 #'
 #' @exportMethod boundary_matrix
+#'
+#' @aliases boundary_matrix-methods boundary_matrix,Raster-method boundary_matrix,SpatialLines-method boundary_matrix,SpatialPoints-method boundary_matrix,SpatialPolygons-method
 #'
 #' @export
 methods::setGeneric('boundary_matrix', 
@@ -76,7 +77,7 @@ methods::setMethod(
   # perimeter of the cell minus the boundaries of its neighbors
   diag(m) <- (sum(raster::res(x))*2) - Matrix::colSums(m)
   # return matrix
-  as(m, 'dsCMatrix')
+  methods::as(m, 'dsCMatrix')
 })
 
 #' @name boundary_matrix

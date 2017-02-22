@@ -2,6 +2,10 @@
 % Please edit documentation in R/add_locked_out_constraint.R
 \name{add_locked_out_constraint}
 \alias{add_locked_out_constraint}
+\alias{add_locked_out_constraint,ConservationProblem,character-method}
+\alias{add_locked_out_constraint,ConservationProblem,numeric-method}
+\alias{add_locked_out_constraint,ConservationProblem,Raster-method}
+\alias{add_locked_out_constraint,ConservationProblem,Spatial-method}
 \alias{add_locked_out_constraint}
 \alias{add_locked_out_constraint}
 \alias{add_locked_out_constraint}
@@ -52,7 +56,8 @@ The locked out planning units can be specified in several
 # create basic problem
 p1 <- problem(sim_pu_polygons, sim_features) \%>\%
   add_minimum_set_objective() \%>\%
-  add_relative_targets(0.2)
+  add_relative_targets(0.2) \%>\%
+  add_default_solver(time_limit=5)
 
 # create problem with added locked out constraints using integers
 p2 <- p1 \%>\% add_locked_out_constraint(which(sim_pu_polygons$locked_in))

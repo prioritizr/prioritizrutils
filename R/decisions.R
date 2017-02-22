@@ -49,8 +49,9 @@ NULL
 #' @examples
 #' # create basic problem and using the default decision (binary)
 #' p <- problem(sim_pu_raster, sim_features) %>%
-#'      add_minimum_set_objective() %>%
-#'      add_relative_targets(0.1)
+#'        add_minimum_set_objective() %>%
+#'        add_relative_targets(0.1) %>%
+#'        add_default_solver(time_limit=5)
 #'
 #' # manually specify a binary decision type 
 #' p2 <- p %>% add_binary_decision()

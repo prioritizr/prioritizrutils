@@ -5,7 +5,7 @@
 \title{Simulate species habitat suitabilities}
 \usage{
 simulate_species(x, n = 1, model = RandomFields::RMgauss(),
-  transform = plogis, ...)
+  transform = stats::plogis, ...)
 }
 \arguments{
 \item{x}{\code{\link[raster]{RasterLayer-class}} object to use as}

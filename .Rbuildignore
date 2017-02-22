@@ -10,3 +10,5 @@ NEWS.md
 ^Makefile$
 cran-comments.md
 _pkgdown.yml
+check.log
+test.log

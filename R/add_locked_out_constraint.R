@@ -44,7 +44,8 @@ NULL
 #' # create basic problem
 #' p1 <- problem(sim_pu_polygons, sim_features) %>%
 #'   add_minimum_set_objective() %>%
-#'   add_relative_targets(0.2)
+#'   add_relative_targets(0.2) %>%
+#'   add_default_solver(time_limit=5)
 #'
 #' # create problem with added locked out constraints using integers
 #' p2 <- p1 %>% add_locked_out_constraint(which(sim_pu_polygons$locked_in))
@@ -89,6 +90,8 @@ NULL
 #' @name add_locked_out_constraint
 #'
 #' @exportMethod add_locked_out_constraint
+#'
+#' @aliases add_locked_out_constraint,ConservationProblem,character-method add_locked_out_constraint,ConservationProblem,numeric-method add_locked_out_constraint,ConservationProblem,Raster-method add_locked_out_constraint,ConservationProblem,Spatial-method
 #'
 #' @export
 methods::setGeneric('add_locked_out_constraint', 
@@ -159,7 +162,7 @@ methods::setMethod('add_locked_out_constraint',
     assertthat::assert_that(inherits(x, 'ConservationProblem'),
       assertthat::is.string(locked_out),
       inherits(x$data$cost, 'Spatial'), 
-      isTRUE('data' %in% slotNames(x$data$cost)),
+      isTRUE('data' %in% methods::slotNames(x$data$cost)),
       isTRUE(locked_out %in% names(x$data$cost)),
       isTRUE(inherits(x$data$cost[[locked_out]], 'logical')))
     # add constraint

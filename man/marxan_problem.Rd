@@ -64,7 +64,9 @@ problems using exact algorithm solvers.
 # create Marxan problem using spatial data
 data(sim_pu_raster, sim_features)
 p <- marxan_problem(sim_pu_raster, features=sim_features, targets=0.2, 
-                    targets_type='relative', penalty=1, edge_factor=0.5)
+                    targets_type='relative', penalty=1, 
+                    edge_factor=0.5) \%>\%
+       add_default_solver(time_limit=5)
 
 # solve problem
 s <- solve(p)
@@ -75,7 +77,8 @@ plot(s)
 \dontrun{
 # create and solve Marxan problem using Marxan input files
 file <- system.file('extdata/input.dat', package='prioritizr')
-s <- marxan_problem(file)
+s <- marxan_problem(file) \%>\%
+  add_default_solver(time_limit=5)
 
 # count number of selected planning units
 print(sum(s))

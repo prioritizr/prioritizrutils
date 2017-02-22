@@ -23,6 +23,8 @@ NULL
 #'
 #' @exportMethod intersecting_units
 #'
+#' @aliases intersecting_units,Raster,Raster-method intersecting_units,Raster,Spatial-method intersecting_units,Spatial,Raster-method intersecting_units,Spatial,Spatial-method
+#'
 #' @export
 methods::setGeneric('intersecting_units', 
                     signature=methods::signature('x', 'y'),
@@ -58,8 +60,10 @@ methods::setMethod('intersecting_units',
     assertthat::assert_that(
       inherits(x, 'Spatial'), inherits(x, 'Spatial'),
       raster::compareCRS(x@proj4string, y@proj4string),
-      isTRUE(rgeos::gIntersects(as(raster::extent(x), 'SpatialPolygons'),
-        as(raster::extent(y), 'SpatialPolygons'))))
+      isTRUE(rgeos::gIntersects(methods::as(raster::extent(x), 
+                                            'SpatialPolygons'),
+                                methods::as(raster::extent(y), 
+                                            'SpatialPolygons'))))
     # find out which units in x intersect with any units in y
     intersects <- rgeos::gContains(x, y, byid=TRUE, 
       returnDense=FALSE)
@@ -80,8 +84,10 @@ methods::setMethod('intersecting_units',
     assertthat::assert_that(
       inherits(x, 'Raster'), inherits(y, 'Spatial'), 
       isTRUE(raster::nlayers(x)==1), raster::compareCRS(x@crs, y@proj4string),
-      isTRUE(rgeos::gIntersects(as(raster::extent(x), 'SpatialPolygons'),
-        as(raster::extent(y), 'SpatialPolygons'))))
+      isTRUE(rgeos::gIntersects(methods::as(raster::extent(x), 
+                                            'SpatialPolygons'),
+                                methods::as(raster::extent(y), 
+                                            'SpatialPolygons'))))
     # find cells in x that intersect with y 
     cells <- fast_extract(x, y, fun=NULL, cellnumbers=TRUE, sp=FALSE, df=TRUE)
     cells <- unique(cells[[2]])
@@ -99,8 +105,10 @@ methods::setMethod('intersecting_units',
     assertthat::assert_that(
       inherits(x, 'Spatial'), inherits(y, 'Raster'), 
       isTRUE(raster::nlayers(y)==1), raster::compareCRS(x@proj4string, y@crs),
-      isTRUE(rgeos::gIntersects(as(raster::extent(x), 'SpatialPolygons'),
-        as(raster::extent(y), 'SpatialPolygons'))))
+      isTRUE(rgeos::gIntersects(methods::as(raster::extent(x), 
+                                            'SpatialPolygons'),
+                                methods::as(raster::extent(y), 
+                                            'SpatialPolygons'))))
     if (inherits(y, c('RasterStack', 'RasterBrick'))) y <- y[[1]]
     y <- as.logical(y)
     # find maximum pixel value in each unit in x

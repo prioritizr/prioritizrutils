@@ -2,6 +2,7 @@
 % Please edit documentation in R/Decision-proto.R
 \name{Decision-class}
 \alias{Decision-class}
+\alias{Decision}
 \title{Decision prototype
  
 This prototype  used to represent the type of decision that is made

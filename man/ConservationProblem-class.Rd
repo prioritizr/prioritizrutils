@@ -2,6 +2,7 @@
 % Please edit documentation in R/ConservationProblem-proto.R
 \name{ConservationProblem-class}
 \alias{ConservationProblem-class}
+\alias{ConservationProblem}
 \title{Conservation problem class}
 \description{
 This class is used to represent conservation planning problems. A 

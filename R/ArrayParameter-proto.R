@@ -91,6 +91,8 @@ methods::setOldClass('ArrayParameter')
 #' @seealso \code{\link{ScalarParameter-class}}, \code{\link{Parameter-class}}.
 #'
 #' @name ArrayParameter-class
+#'
+#' @aliases ArrayParameter
 NULL
 
 #' @export

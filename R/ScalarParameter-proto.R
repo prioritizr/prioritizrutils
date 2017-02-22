@@ -34,18 +34,29 @@ methods::setOldClass('ScalarParameter')
 #' }
 #'
 #' @section Usage: 
+#'
 #' \code{x$print()}
+#'
 #' \code{x$show()}
+#'
 #' \code{x$validate(x)}
+#'
 #' \code{x$get()}
+#'
 #' \code{x$set(x)}
+#'
 #' \code{x$reset()}
+#'
 #' \code{x$render(...)}
 #'
 #' @section Arguments: 
+#'
 #' \describe{
+#'
 #' \item{x}{object used to set a new parameter value.}
+#'
 #' \item{...}{arguments passed to \code{$widget}.}
+#'
 #'  }
 #'
 #' @section Details:
@@ -71,6 +82,8 @@ methods::setOldClass('ScalarParameter')
 #' @name ScalarParameter-class
 #'
 #' @seealso \code{\link{Parameter-class}}, \code{\link{ArrayParameter-class}}.
+#'
+#' @aliases ScalarParameter
 NULL
 
 #' @export

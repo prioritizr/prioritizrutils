@@ -2,6 +2,11 @@
 % Please edit documentation in R/boundary_matrix.R
 \name{boundary_matrix}
 \alias{boundary_matrix}
+\alias{boundary_matrix-methods}
+\alias{boundary_matrix,Raster-method}
+\alias{boundary_matrix,SpatialLines-method}
+\alias{boundary_matrix,SpatialPoints-method}
+\alias{boundary_matrix,SpatialPolygons-method}
 \alias{boundary_matrix}
 \alias{boundary_matrix}
 \alias{boundary_matrix}

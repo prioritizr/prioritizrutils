@@ -132,7 +132,8 @@ used to show each dificult areas are to traverse.</p>
 <span class='co'># p1 &lt;- problem(sim_pu_raster, sim_features) %&gt;%</span>
 <span class='co'>#   add_minimum_set_objective() %&gt;%</span>
 <span class='co'>#   add_relative_targets(0.2) %&gt;%</span>
-<span class='co'>#   add_binary_decision()</span>
+<span class='co'>#   add_binary_decision() %&gt;%</span>
+<span class='co'>#   add_default_solver(time_limit=5)</span>
 <span class='co'># </span>
 <span class='co'># # create problem with added corridor constraints</span>
 <span class='co'># p2 &lt;- p1 %&gt;% add_corridors_constraint(0.2, sim_friction_raster)</span>

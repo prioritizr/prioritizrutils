@@ -2,6 +2,7 @@
 % Please edit documentation in R/Target-proto.R
 \name{Target-class}
 \alias{Target-class}
+\alias{Target}
 \title{Target prototype
  
 This prototype is used to represent the targets used when making a

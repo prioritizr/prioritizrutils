@@ -15,6 +15,8 @@ methods::setOldClass('Constraint')
 #' @seealso \code{\link{ConservationModifier-class}}.
 #'
 #' @name Constraint-class
+#'
+#' @aliases Constraint
 NULL
 
 #' @export

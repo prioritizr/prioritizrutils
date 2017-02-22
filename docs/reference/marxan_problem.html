@@ -146,7 +146,9 @@ of <code>0.5</code> is commonly used for planning units along the coast line.</d
     <pre class="examples"><div class='input'><span class='co'># create Marxan problem using spatial data</span>
 <span class='fu'>data</span>(<span class='no'>sim_pu_raster</span>, <span class='no'>sim_features</span>)
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'>marxan_problem</span>(<span class='no'>sim_pu_raster</span>, <span class='kw'>features</span><span class='kw'>=</span><span class='no'>sim_features</span>, <span class='kw'>targets</span><span class='kw'>=</span><span class='fl'>0.2</span>,
-                    <span class='kw'>targets_type</span><span class='kw'>=</span><span class='st'>'relative'</span>, <span class='kw'>penalty</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>edge_factor</span><span class='kw'>=</span><span class='fl'>0.5</span>)
+                    <span class='kw'>targets_type</span><span class='kw'>=</span><span class='st'>'relative'</span>, <span class='kw'>penalty</span><span class='kw'>=</span><span class='fl'>1</span>,
+                    <span class='kw'>edge_factor</span><span class='kw'>=</span><span class='fl'>0.5</span>) <span class='kw'>%&gt;%</span>
+       <span class='fu'><a href='solvers.html'>add_default_solver</a></span>(<span class='kw'>time_limit</span><span class='kw'>=</span><span class='fl'>5</span>)
 
 <span class='co'># solve problem</span>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 295 rows, 235 columns and 1030 nonzeros
@@ -184,7 +186,8 @@ of <code>0.5</code> is commonly used for planning units along the coast line.</d
 <span class='co'>## Not run: ------------------------------------</span>
 <span class='co'># # create and solve Marxan problem using Marxan input files</span>
 <span class='co'># file &lt;- system.file('extdata/input.dat', package='prioritizr')</span>
-<span class='co'># s &lt;- marxan_problem(file)</span>
+<span class='co'># s &lt;- marxan_problem(file) %&gt;%</span>
+<span class='co'>#   add_default_solver(time_limit=5)</span>
 <span class='co'># </span>
 <span class='co'># # count number of selected planning units</span>
 <span class='co'># print(sum(s))</span>
