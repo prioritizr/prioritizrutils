@@ -30,10 +30,11 @@ NULL
 #' @seealso \code{\link{targets}}.
 #'
 #' @examples
+#' \donttest{
+#'
 #' # create problem
 #' p1 <- problem(sim_pu_raster, sim_features) %>%
-#'   add_maximum_coverage_objective(budget=5000) %>%
-#'   add_default_solver(time_limit=5)
+#'   add_maximum_coverage_objective(budget=5000)
 #' 
 #' # create weights based on rarity (1/number occurrences)
 #' w <- 1/raster::cellStats(sim_features, 'sum') * 1000
@@ -46,6 +47,8 @@ NULL
 #'
 #' # plot solutions
 #' plot(s, main = c('equal weights', 'rarity weights'))
+#'
+#'}
 #'
 #' @export
 add_feature_weights <- function(x, weights) {

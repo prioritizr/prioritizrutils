@@ -30,7 +30,7 @@ NULL
 #'
 #' @return \code{\link{ConservationProblem-class}} object.
 #'
-#' @seealso \code{\link{constraints}} for all the available constraints.
+#' @seealso \code{\link{constraints}}, \code{\link{penalties}}.
 #'
 #' @examples
 #'
@@ -40,11 +40,10 @@ NULL
 #' p1 <- problem(sim_pu_raster, sim_features) %>%
 #'   add_minimum_set_objective() %>%
 #'   add_relative_targets(0.2) %>%
-#'   add_binary_decision() %>%
-#'   add_default_solver(time_limit=5)
+#'   add_binary_decision()
 #'
 #' # create problem with added corridor constraints
-#' p2 <- p1 %>% add_corridors_constraint(0.2, sim_friction_raster)
+#' p2 <- p1 %>% add_corridors_constraints(0.2, sim_friction_raster)
 #'
 #' # solve problems
 #' s <- stack(solve(p1), solve(p2))
@@ -54,7 +53,7 @@ NULL
 #'
 #' }
 #' @export
-add_corridors_constraint <- function(x, targets, friction) {
+add_corridors_constraints <- function(x, targets, friction) {
   # assert valid arguments
   assertthat::assert_that(inherits(x, 'RasterStack'), 
     is.numeric(targets), isTRUE(all(is.finite(targets))), 
@@ -75,6 +74,6 @@ add_corridors_constraint <- function(x, targets, friction) {
     apply = function(self, x, y) {
       assertthat::assert_that(inherits(x, 'OptimizationProblem'),
         inherits(y, 'ConservationProblem'))
-      stop('TODO: implement apply method for add_corridors_constraint')
+      stop('TODO: implement apply method for add_corridors_constraints')
     }))
 }

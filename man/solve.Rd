@@ -42,12 +42,13 @@ If a \code{\link{OptimizationProblem-class}} is supplied, then the
   }
 }
 \examples{
+\donttest{
+
 # build minimal conservation problem
 p <- problem(sim_pu_raster, sim_features) \%>\%
   add_minimum_set_objective() \%>\%
   add_relative_targets(0.1) \%>\%
-  add_binary_decision() \%>\%
-  add_default_solver(time_limit=5)
+  add_binary_decision()
 
 # solve the problem
 s <- solve(p)
@@ -55,4 +56,5 @@ s <- solve(p)
 # print the solution
 print(s)
 
+}
 }

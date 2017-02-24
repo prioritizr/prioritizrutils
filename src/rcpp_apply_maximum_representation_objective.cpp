@@ -1,4 +1,4 @@
-#include "prioritizrutils.h"
+#include "package.h"
 #include "optimization_problem.h" 
 
 // [[Rcpp::export]]

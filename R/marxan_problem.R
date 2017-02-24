@@ -1,4 +1,5 @@
 # @include internal.R
+NULL
 
 #' Marxan conservation problem
 #'
@@ -22,42 +23,45 @@
 #'   in the solution.
 #'
 #' @param targets_type \code{character} name indicating if the \code{targets}
-#'   are expressed as \code{'relative'} (eg. \code{0.2} meaning that 20 \% of a feature 
-#'   needs to be conserved), or \code{'absolute'} (eg. \code{200} meaning that 
-#'   200 units of a feature need to be conserved) amounts. 
+#'   are expressed as \code{'relative'} (eg. \code{0.2} meaning that 20 \% of a 
+#'   feature needs to be conserved), or \code{'absolute'} (eg. \code{200} 
+#'   meaning that 200 units of a feature need to be conserved) amounts. 
 #'
-#' @inheritParams add_boundary_constraint
+#' @inheritParams add_boundary_penalties
 #'
-#' @inheritParams add_locked_in_constraint
+#' @inheritParams add_locked_in_constraints
 #'
-#' @inheritParams add_locked_out_constraint
+#' @inheritParams add_locked_out_constraints
 #'
 #' @param ... not used
 #'
 #' @return \code{\link{ConservationProblem-class}} object.
 #'
 #' @examples
+#' \donttest{
+#'
 #' # create Marxan problem using spatial data
 #' data(sim_pu_raster, sim_features)
-#' p <- marxan_problem(sim_pu_raster, features=sim_features, targets=0.2, 
-#'                     targets_type='relative', penalty=1, 
-#'                     edge_factor=0.5) %>%
-#'        add_default_solver(time_limit=5)
+#' p1 <- marxan_problem(sim_pu_raster, features=sim_features, targets=0.2, 
+#'                      targets_type='relative', penalty=1, 
+#'                      edge_factor=0.5)
 #'
 #' # solve problem
-#' s <- solve(p)
+#' s1 <- solve(p1)
 #'
 #' # show solution
-#' plot(s)
+#' plot(s1)
 #'
-#' \dontrun{
-#' # create and solve Marxan problem using Marxan input files
-#' file <- system.file('extdata/input.dat', package='prioritizr')
-#' s <- marxan_problem(file) %>%
-#'   add_default_solver(time_limit=5)
+#' # create marxan problem using marxan input files
+#' input_file <- system.file('extdata/input.dat', package='prioritizrutils')
+#' p2 <- marxan_problem(input_file)
+#' 
+#' # solve problem
+#' s2 <- solve(p2)
 #'
-#' # count number of selected planning units
-#' print(sum(s))
+#' # count number of selected planning units in solution
+#' print(sum(s2))
+#'
 #' }
 #'
 #' @name marxan_problem
@@ -66,6 +70,7 @@
 marxan_problem <- function(x, ...) UseMethod('marxan_problem')
 
 #' @rdname marxan_problem
+#' @method marxan_problem default
 #' @export
 marxan_problem.default <- function(x, features, targets, 
                                   targets_type=c('relative', 'absolute'), 
@@ -74,22 +79,127 @@ marxan_problem.default <- function(x, features, targets,
   # create problem
   p <- problem(x, features) %>%
     add_minimum_set_objective() %>%
-    add_boundary_constraint(penalty, edge_factor)
+    add_boundary_penalties(penalty, edge_factor)
   if (targets_type=='relative')
     p <- p %>% add_relative_targets(targets)
   if (targets_type=='absolute')
     p <- p %>% add_absolute_targets(targets)
   if (!is.Waiver(locked_in))
-    p <- p %>% add_locked_in_constraint(locked_in)
+    p <- p %>% add_locked_in_constraints(locked_in)
   if (!is.Waiver(locked_out))
-    p <- p %>% add_locked_out_constraint(locked_out)
+    p <- p %>% add_locked_out_constraints(locked_out)
   # return problem
   return(p)
 }
 
 #' @rdname marxan_problem
+#' @method marxan_problem data.frame
+#' @export
+marxan_problem.data.frame <- function(x, spec, puvspr, bound=NULL, 
+                                      blm=0, asymmetric_connectivity=FALSE, 
+                                      ...) {
+  # assert arguments are valid
+  assertthat::assert_that(
+    inherits(x, 'data.frame'), inherits(spec, 'data.frame'),
+    inherits(puvspr, 'data.frame'), 
+    is.null(bound) || inherits(bound, 'data.frame'),
+    assertthat::is.scalar(blm),
+    assertthat::is.flag(asymmetric_connectivity))
+  # create locked in data
+  if (assertthat::has_name(x, 'status')) {
+    x$locked_in <- x$status==2
+    x$locked_out <- x$status==3
+  }
+  # add in feature names if not present
+  if (!assertthat::has_name(spec, 'name'))
+    spec$name <- paste0('feature.', seq_len(nrow(spec)))
+  # create problem
+  p <- problem(x, spec, puvspr) %>%
+    add_minimum_set_objective()
+  # add locked in/out constraints
+  if (sum(x$locked_in)>0)
+    p <- p %>% add_locked_in_constraints('locked_in')
+  if (sum(x$locked_out)>0)
+    p <- p %>% add_locked_out_constraints('locked_out')
+  # add targets
+  if (assertthat::has_name(spec, 'prop')) {
+    p <- p %>% add_relative_targets('prop')
+  } else {
+  if (assertthat::has_name(spec, 'amount'))
+    p <- p %>% add_relative_targets('amount')
+  }
+  # add bounday data
+  if (is.null(bound) & (blm > 1e-10))
+    warning('no boundary data supplied to blm will have no effect on results')
+  if (!is.null(bound)) {
+    # sanity checks
+    if (!'id1' %in% names(bound))
+      stop('file path listed under BOUNDNAME is missing the "id1" column')
+    if (!'id2' %in% names(bound))
+      stop('file path listed under BOUNDNAME is missing the "id2" column')
+    if (!'boundary' %in% names(bound))
+      stop('file path listed under BOUNDNAME is missing the "boundary" column')
+    # appply penalties
+    if (!asymmetric_connectivity) {
+      p <- p %>% add_boundary_penalties(blm, 1, bound)
+    } else {
+      p <- p %>% add_connectivity_penalties(blm, bound)
+    }
+  }
+  # return problem
+  return(p)
+}
+
+#' @rdname marxan_problem
+#' @method marxan_problem character
 #' @export
 marxan_problem.character <- function(x, ...) {
-  stop('TODO: implement this')
+ assertthat::assert_that(assertthat::is.string(x), assertthat::is.readable(x))
+  # declare local functions
+  parse_field <- function(field, lines) {
+      x <- grep(field, lines, value=TRUE)
+      if (length(x)==0)
+        return(NA)
+      x <- sub(paste0(field, ' '), '', x)
+      return(x)
+  }
+  load_file <- function(field, lines, input_dir, force=TRUE) {
+    x <- parse_field(field, lines)
+    if (is.na(x)) {
+      if (force)
+        stop('input file does not contain ',field,' field')
+      return(NULL)
+    }
+    x <- file.path(input_dir, x)
+    if (file.exists(x)) {
+      if (requireNamespace('data.table'))
+        return(data.table::fread(x, data.table=FALSE))
+      return(read.table(x, header=TRUE))
+    } else if (force) {
+      stop('file path in ',field,' field does not exist')
+    } else {
+      return(NULL)
+    }
+  }
+ # read marxan file
+  input_dir <- dirname(x)
+  x <- readLines(x)
+  # parse working directory
+  base_input_dir <- parse_field('INPUTDIR', x)
+  if (!is.na(base_input_dir))
+      input_dir <- file.path(input_dir, base_input_dir)
+  # parse data
+  pu_data <- load_file('PUNAME', x, input_dir)
+  spec_data <- load_file('SPECNAME', x, input_dir)
+  puvspr_data <- load_file('PUVSPRNAME', x, input_dir)
+  bound_data <- load_file('BOUNDNAME', x, input_dir, force=TRUE)
+  blm <- as.numeric(parse_field('BLM', x))
+  asym <- as.logical(parse_field('ASYMMETRICCONNECTIVITY', x))
+  if (is.na(asym)) 
+   asym <- FALSE
+  # return problem
+  marxan_problem(x=pu_data, spec=spec_data, puvspr=puvspr_data, 
+                 bound=bound_data, blm=blm, 
+                 asymmetric_connectivity=asym)
 }
 

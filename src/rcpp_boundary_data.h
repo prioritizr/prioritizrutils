@@ -1,7 +1,7 @@
 #ifndef RCPP_BOUNDARY_DATA_H
 #define RCPP_BOUNDARY_DATA_H
 
-#include "prioritizrutils.h"
+#include "package.h"
 #include <vector>
 #include <string>
 #include <algorithm>

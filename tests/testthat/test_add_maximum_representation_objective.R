@@ -43,8 +43,8 @@ test_that('solution', {
   # create problem
   p <- problem(cost, features) %>%
         add_maximum_representation_objective(budget=budget) %>%
-        add_locked_in_constraint(locked_in) %>%
-        add_locked_out_constraint(locked_out) %>%
+        add_locked_in_constraints(locked_in) %>%
+        add_locked_out_constraints(locked_out) %>%
         add_absolute_targets(c(2,10))  
   # solve problem
   s <- solve(p)

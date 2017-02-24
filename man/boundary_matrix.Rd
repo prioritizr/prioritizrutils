@@ -2,24 +2,21 @@
 % Please edit documentation in R/boundary_matrix.R
 \name{boundary_matrix}
 \alias{boundary_matrix}
-\alias{boundary_matrix-methods}
-\alias{boundary_matrix,Raster-method}
-\alias{boundary_matrix,SpatialLines-method}
-\alias{boundary_matrix,SpatialPoints-method}
-\alias{boundary_matrix,SpatialPolygons-method}
-\alias{boundary_matrix}
-\alias{boundary_matrix}
-\alias{boundary_matrix}
-\alias{boundary_matrix}
+\alias{boundary_matrix.Raster}
+\alias{boundary_matrix.SpatialPolygons}
+\alias{boundary_matrix.SpatialLines}
+\alias{boundary_matrix.SpatialPoints}
 \title{Boundary matrix}
 \usage{
-boundary_matrix(x) # Raster
+boundary_matrix(x, ...)
 
-boundary_matrix(x) # SpatialPolygons
+\method{boundary_matrix}{Raster}(x, ...)
 
-boundary_matrix(x) # SpatialLines
+\method{boundary_matrix}{SpatialPolygons}(x, ...)
 
-boundary_matrix(x) # SpatialPoints
+\method{boundary_matrix}{SpatialLines}(x, ...)
+
+\method{boundary_matrix}{SpatialPoints}(x, ...)
 }
 \arguments{
 \item{x}{\code{\link[raster]{Raster-class}},

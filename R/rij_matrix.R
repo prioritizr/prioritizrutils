@@ -14,24 +14,9 @@ NULL
 #' @param y \code{\link[raster]{Raster-class}} object representing the 
 #'   features
 #'
-#' @param fun \code{function} used to summarise values. Defaults to
-#'   \code{\link{sum}}. Note that this only used when \code{x} is a
-#'   \code{\link[sp]{SpatialPolygons-class}} or a 
-#'   \code{\link[sp]{SpatialLines-class}} object. This function must
-#'   have an 'na.rm' argument.
-#'
-#' @param na.rm \code{logical} should missing values be omitted when
-#'   performing calculations? Defaults to \code{TRUE}. Note this argument
-#'   only has an effect when \code{x} is a 
-#'   \code{\link[sp]{SpatialPolygons-class}} or a 
-#'   \code{\link[sp]{SpatialLines-class}} and \code{velox} is \code{FALSE}.
-#'
-#' @param velox \code{logical} should the \code{\link[velox]{velox}}
-#'   be used for geoprocessing? Defaults to \code{TRUE} if the package
-#'   is installed. Note that this only used when \code{x} is a
-#'   \code{\link[sp]{SpatialPolygons-class}} object.
-#'
-#' @param ... not used.
+#' @param ... additional arguments passed to \code{\link{fast_extract}} if
+#'   argument to \code{x} inherits from a \code{\link[sp]{Spatial-class}} 
+#'   object.
 #'
 #' @details The sparse matrix represents the spatial intersection between the
 #'   planning units and the features. Rows correspond to planning units,
@@ -69,7 +54,7 @@ methods::setGeneric('rij_matrix',
                     function(x, y, ...) standardGeneric('rij_matrix'))
 
 #' @name rij_matrix
-#' @usage rij_matrix(x, y) # Raster, Raster
+#' @usage rij_matrix(x, y, ...) # x=Raster, y=Raster
 #' @rdname rij_matrix
 methods::setMethod('rij_matrix', signature(x='Raster', y='Raster'),
   function(x, y, ...) {
@@ -103,11 +88,11 @@ methods::setMethod('rij_matrix', signature(x='Raster', y='Raster'),
 })
 
 #' @name rij_matrix
-#' @usage rij_matrix(x, y) # Spatial, Raster
+#' @usage rij_matrix(x, y, velox...) # x=Spatial, y=Raster
 #' @rdname rij_matrix
 methods::setMethod('rij_matrix', signature(x='Spatial', y='Raster'),
-  function(x, y, fun=sum, velox=requireNamespace('velox'), ...) {
-    m <- fast_extract(x=y, y=x, fun=fun, velox=velox, df=FALSE, sp=FALSE)
+  function(x, y,  ...) {
+    m <- fast_extract(x=y, y=x, df=FALSE, sp=FALSE, ...)
     if (raster::nlayers(y)==1)
       m <- matrix(m, ncol=1)
     m[is.na(m[])] <- 0

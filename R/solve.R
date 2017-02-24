@@ -34,12 +34,13 @@ NULL
 #'   solution depending on the argument to \code{a}.
 #'
 #' @examples
+#' \donttest{
+#'
 #' # build minimal conservation problem
 #' p <- problem(sim_pu_raster, sim_features) %>%
 #'   add_minimum_set_objective() %>%
 #'   add_relative_targets(0.1) %>%
-#'   add_binary_decision() %>%
-#'   add_default_solver(time_limit=5)
+#'   add_binary_decision()
 #'
 #' # solve the problem
 #' s <- solve(p)
@@ -47,6 +48,7 @@ NULL
 #' # print the solution
 #' print(s)
 #'
+#' }
 #' @name solve
 #'
 #' @importFrom Matrix solve
@@ -84,8 +86,10 @@ methods::setMethod('solve', signature(a='ConservationProblem', b='missing'),
     pu <- a$data$cost
     if (inherits(pu, 'Raster')) {
       pu[raster::Which(!is.na(pu))] <- sol
-    } else if (inherits(pu, 'Spatial')) {
+    } else if (inherits(pu, c('data.frame', 'Spatial'))) {
       pu$solution <- sol
+    } else {
+      stop('planning unit data is of an unrecognized class')
     }
     return(pu)
   }

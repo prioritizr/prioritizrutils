@@ -1,7 +1,7 @@
 #ifndef OPTIMIZATION_PROBLEM_H
 #define OPTIMIZATION_PROBLEM_H
 
-#include "prioritizrutils.h"
+#include "package.h"
 #include <vector>
 #include <algorithm>
  

@@ -26,6 +26,7 @@ This function is used for the effect of modifying the input
   \code{\%T>\%} operator and not the \code{\%>\%} operator.
 }
 \examples{
+\donttest{
 
 # Let us imagine a scenario where we wanted to understand the effect of 
 # setting different targets on our solution.
@@ -33,8 +34,7 @@ This function is used for the effect of modifying the input
 # create a conservation problem with no targets
 p <- problem(sim_pu_raster, sim_features) \%>\%
   add_minimum_set_objective() \%>\%
-  add_boundary_constraint(10, 0.5) \%>\%
-  add_default_solver(time_limit=5)
+  add_boundary_penalties(10, 0.5)
 
 # create a copies of p and add targets
 p1 <- p \%>\% add_relative_targets(0.1)
@@ -55,8 +55,7 @@ s1 <- system.time({solve(p1); solve(p2); solve(p3)})
 # preliminary calculations. Note how we use the \\\%T>\\\% operator here.
 p <- problem(sim_pu_raster, sim_features) \%>\%
   add_minimum_set_objective() \%>\%
-  add_boundary_constraint(10, 0.5) \%>\%
-  add_default_solver(time_limit=5) \%T>\%
+  add_boundary_penalties(10, 0.5) \%T>\%
   run_calculations()
 
 # create a copies of p and add targets just like before
@@ -75,6 +74,8 @@ print(s2) # time spent after running preliminary calculations
 # As we can see, we can save a lot of time by running the preliminary 
 # calculations before making copies of the problem with slightly
 # different constraints.
+
+}
 
 }
 \seealso{

@@ -30,27 +30,18 @@ NULL
 #'
 #' @name boundary_matrix
 #'
-#' @exportMethod boundary_matrix
-#'
-#' @aliases boundary_matrix-methods boundary_matrix,Raster-method boundary_matrix,SpatialLines-method boundary_matrix,SpatialPoints-method boundary_matrix,SpatialPolygons-method
+#' @rdname boundary_matrix
 #'
 #' @export
-methods::setGeneric('boundary_matrix', 
-                    signature=methods::signature('x'),
-                    function(x, ...) standardGeneric('boundary_matrix'))
+boundary_matrix <- function(x, ...) UseMethod('boundary_matrix')
 
-
-#' @name boundary_matrix
-#' @usage boundary_matrix(x) # Raster
 #' @rdname boundary_matrix
-methods::setMethod(
-  'boundary_matrix',
-  signature(x='Raster'),
-  function(x, ...) {
+#' @method boundary_matrix Raster
+#' @export
+boundary_matrix.Raster <- function(x, ...) {
   # assert that arguments are valid
-    assertthat::assert_that(inherits(x, 'Raster'))
-    assertthat::assert_that(
-      isTRUE(raster::nlayers(x)==1))
+  assertthat::assert_that(inherits(x, 'Raster'),    
+                                   isTRUE(raster::nlayers(x)==1))
   # indices of cells with finite values
   include <- raster::Which(is.finite(x), cells=TRUE)
   # find the neighboring indices of these cells
@@ -77,47 +68,38 @@ methods::setMethod(
   diag(m) <- (sum(raster::res(x))*2) - Matrix::colSums(m)
   # return matrix
   methods::as(m, 'dsCMatrix')
-})
+}
 
-#' @name boundary_matrix
-#' @usage boundary_matrix(x) # SpatialPolygons
 #' @rdname boundary_matrix
-methods::setMethod(
-  'boundary_matrix',
-  signature(x='SpatialPolygons'),
-  function(x, ...) {
-    # assert that arguments are valid
-    assertthat::assert_that(inherits(x, 'SpatialPolygons'))
-    # calculate boundary data
-    x <- rcpp_boundary_data(rcpp_sp_to_polyset(x@polygons, 'Polygons'))$data
-    # show warnings generated if any
-    if (length(x$warnings) > 0)
-      sapply(x$warnings, warning)
-    # return result
-    Matrix::sparseMatrix(i=x[[1]], j=x[[2]], x=x[[3]], giveCsparse=TRUE,
-                         symmetric=TRUE)
-})
+#' @method boundary_matrix SpatialPolygons
+#' @export
+boundary_matrix.SpatialPolygons <- function(x, ...) {
+  # assert that arguments are valid
+  assertthat::assert_that(inherits(x, 'SpatialPolygons'))
+  # calculate boundary data
+  x <- rcpp_boundary_data(rcpp_sp_to_polyset(x@polygons, 'Polygons'))$data
+  # show warnings generated if any
+  if (length(x$warnings) > 0)
+    sapply(x$warnings, warning)
+  # return result
+  Matrix::sparseMatrix(i=x[[1]], j=x[[2]], x=x[[3]], giveCsparse=TRUE,
+                       symmetric=TRUE)
+}
 
-#' @name boundary_matrix
-#' @usage boundary_matrix(x) # SpatialLines
 #' @rdname boundary_matrix
-methods::setMethod(
-  'boundary_matrix',
-  signature(x='SpatialLines'),
-  function(x, ...) {
-    assertthat::assert_that(inherits(x, 'SpatialLines'))
-    stop('Data represented by lines have no boundaries. ',
-      'See ?constraints for alternative constraints.')
-})
+#' @method boundary_matrix SpatialLines
+#' @export
+boundary_matrix.SpatialLines <- function(x, ...) {
+  assertthat::assert_that(inherits(x, 'SpatialLines'))
+  stop('Data represented by lines have no boundaries. ',
+    'See ?constraints for alternative constraints.')
+}
 
-#' @name boundary_matrix
-#' @usage boundary_matrix(x) # SpatialPoints
 #' @rdname boundary_matrix
-methods::setMethod(
-  'boundary_matrix',
-  signature(x='SpatialPoints'),
-  function(x, ...) {
-    assertthat::assert_that(inherits(x, 'SpatialPoints'))
-    stop('Data represented by points have no boundaries. ',
-      'See ?constraints alternative constraints.')
-})
+#' @method boundary_matrix SpatialPoints
+#' @export
+boundary_matrix.SpatialPoints <- function(x, ...) {
+  assertthat::assert_that(inherits(x, 'SpatialPoints'))
+  stop('Data represented by points have no boundaries. ',
+    'See ?constraints alternative constraints.')
+}

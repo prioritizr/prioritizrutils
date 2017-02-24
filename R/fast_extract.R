@@ -10,6 +10,17 @@ NULL
 #'
 #' @param y \code{\link[sp]{Spatial-class}} object.
 #'
+#' @param fun \code{function} used to summarise values. Defaults to
+#'   \code{\link{sum}}. Note that this only used when \code{x} is a
+#'   \code{\link[sp]{SpatialPolygons-class}} or a 
+#'   \code{\link[sp]{SpatialLines-class}} object. This function must
+#'   have an 'na.rm' argument.
+#'
+#' @param velox \code{logical} should the \code{\link[velox]{velox}}
+#'   be used for geoprocessing? Defaults to \code{TRUE} if the package
+#'   is installed. Note that this only used when \code{x} is a
+#'   \code{\link[sp]{SpatialPolygons-class}} object.
+#'
 #' @param ... additional arguments passed to \code{\link[raster]{extract}}.
 #'
 #' @return \code{data.frame}, \code{matrix}, or \code{list} object 
@@ -35,7 +46,7 @@ methods::setGeneric('fast_extract',
                     function(x, y, ...) standardGeneric('fast_extract'))
 
 #' @name fast_extract
-#' @usage fast_extract(x, y) # Raster, SpatialPolygons
+#' @usage fast_extract(x, y, ...) # x=Raster, y=SpatialPolygons
 #' @rdname fast_extract
 methods::setMethod('fast_extract', signature(x='Raster', y='SpatialPolygons'), 
   function(x, y, fun=mean, velox=requireNamespace('velox'), ...) {
@@ -80,7 +91,7 @@ methods::setMethod('fast_extract', signature(x='Raster', y='SpatialPolygons'),
 )
 
 #' @name fast_extract
-#' @usage fast_extract(x, y) # Raster, SpatialLines
+#' @usage fast_extract(x, y, ...) # x=Raster, y=SpatialLines
 #' @rdname fast_extract
 methods::setMethod('fast_extract', signature(x='Raster', y='SpatialLines'), 
   function(x, y, fun=mean, ...) {
@@ -102,7 +113,7 @@ methods::setMethod('fast_extract', signature(x='Raster', y='SpatialLines'),
 )
 
 #' @name fast_extract
-#' @usage fast_extract(x, y) # Raster, SpatialPoints
+#' @usage fast_extract(x, y, ...) # x=Raster, y=SpatialPoints
 #' @rdname fast_extract
 methods::setMethod('fast_extract', signature(x='Raster', y='SpatialPoints'), 
   function(x, y, fun=mean, ...) {
@@ -116,3 +127,4 @@ methods::setMethod('fast_extract', signature(x='Raster', y='SpatialPoints'),
     return(raster::extract(x, y, fun=fun, ...))
   }
 )
+

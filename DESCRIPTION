@@ -20,12 +20,10 @@ Imports:
     plyr,
     parallel,
     doParallel,
-    magrittr,
-    Rsymphony
+    magrittr
 Suggests:
     testthat,
     knitr,
-    gurobi,
     ape,
     shiny,
     rhandsontable,
@@ -33,7 +31,9 @@ Suggests:
     velox,
     maptools,
     spdep,
+    gurobi,
     lpsymphony,
+    Rsymphony,  
     prioritizrdata
 Depends:
     R(>= 3.3.2),
@@ -57,44 +57,47 @@ Collate:
     'ScalarParameter-proto.R'
     'parameters.R'
     'ConservationModifier-proto.R'
+    'Penalty-proto.R'
     'Constraint-proto.R'
-    'Constraints-proto.R'
-    'Solver-proto.R'
-    'solvers.R'
-    'Decision-proto.R'
-    'decisions.R'
-    'Objective-proto.R'
-    'objectives.R'
-    'Target-proto.R'
-    'targets.R'
+    'Collection-proto.R'
     'ConservationProblem-proto.R'
+    'Decision-proto.R'
     'Id.R'
+    'Objective-proto.R'
     'OptimizationProblem-proto.R'
     'OptimizationProblem-methods.R'
     'RcppExports.R'
-    'add_boundary_constraint.R'
-    'add_connected_constraint.R'
-    'add_corridors_constraint.R'
+    'Solver-proto.R'
+    'Target-proto.R'
+    'add_boundary_penalties.R'
+    'add_connected_constraints.R'
+    'add_connectivity_penalties.R'
+    'add_corridors_constraints.R'
     'add_feature_weights.R'
     'intersecting_units.R'
-    'add_locked_in_constraint.R'
-    'add_locked_out_constraint.R'
+    'add_locked_in_constraints.R'
+    'add_locked_out_constraints.R'
     'boundary_matrix.R'
     'branch_matrix.R'
     'compile.R'
     'connected_matrix.R'
     'constraints.R'
     'data.R'
+    'decisions.R'
     'parallel.R'
     'fast_extract.R'
     'magrittr-operators.R'
     'marxan_problem.R'
     'misc.R'
+    'objectives.R'
     'package.R'
+    'penalties.R'
     'problem.R'
     'rij_matrix.R'
     'run_calculations.R'
     'simulate.R'
     'solve.R'
+    'solvers.R'
+    'targets.R'
     'waiver.R'
     'zzz.R'

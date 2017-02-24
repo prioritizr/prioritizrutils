@@ -10,16 +10,27 @@
 \alias{fast_extract}
 \title{Fast extract}
 \usage{
-fast_extract(x, y) # Raster, SpatialPolygons
+fast_extract(x, y, ...) # x=Raster, y=SpatialPolygons
 
-fast_extract(x, y) # Raster, SpatialLines
+fast_extract(x, y, ...) # x=Raster, y=SpatialLines
 
-fast_extract(x, y) # Raster, SpatialPoints
+fast_extract(x, y, ...) # x=Raster, y=SpatialPoints
 }
 \arguments{
 \item{x}{\code{\link[raster]{Raster-class}} object.}
 
 \item{y}{\code{\link[sp]{Spatial-class}} object.}
+
+\item{fun}{\code{function} used to summarise values. Defaults to
+\code{\link{sum}}. Note that this only used when \code{x} is a
+\code{\link[sp]{SpatialPolygons-class}} or a 
+\code{\link[sp]{SpatialLines-class}} object. This function must
+have an 'na.rm' argument.}
+
+\item{velox}{\code{logical} should the \code{\link[velox]{velox}}
+be used for geoprocessing? Defaults to \code{TRUE} if the package
+is installed. Note that this only used when \code{x} is a
+\code{\link[sp]{SpatialPolygons-class}} object.}
 
 \item{...}{additional arguments passed to \code{\link[raster]{extract}}.}
 }

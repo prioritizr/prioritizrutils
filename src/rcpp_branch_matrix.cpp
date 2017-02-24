@@ -1,4 +1,4 @@
-#include "prioritizrutils.h"
+#include "package.h"
 
 // [[Rcpp::export]]
 arma::sp_mat rcpp_branch_matrix(Rcpp::List x) {

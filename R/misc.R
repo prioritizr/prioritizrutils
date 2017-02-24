@@ -44,8 +44,6 @@ methods::setMethod('show', 'Solver', function(object) object$show())
 #'
 #' Print an object.
 #'
-#' @usage print(x, ...) 
-#'
 #' @param x An object.
 #'
 #' @param ... not used.

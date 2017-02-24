@@ -35,7 +35,10 @@ class directly.}
 \item{$targets}{\code{\link{Target-class}} object used to represent
   representation targets for features.}
 
-\item{$constraints}{\code{\link{Constraints-class}} object used to represent
+\item{$penalties}{\code{\link{Collection-class}} object used to represent
+  additional \code{\link{penalties}} that the problem is subject to.}
+
+\item{$constraints}{\code{\link{Collection-class}} object used to represent
   additional \code{\link{constraints}} that the problem is subject to.}
 
 \item{$solver}{\code{\link{Solver-class}} object used to solve the problem.}

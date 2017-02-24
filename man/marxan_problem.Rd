@@ -3,6 +3,7 @@
 \name{marxan_problem}
 \alias{marxan_problem}
 \alias{marxan_problem.default}
+\alias{marxan_problem.data.frame}
 \alias{marxan_problem.character}
 \title{Marxan conservation problem}
 \usage{
@@ -11,6 +12,9 @@ marxan_problem(x, ...)
 \method{marxan_problem}{default}(x, features, targets,
   targets_type = c("relative", "absolute"), locked_in = waiver(),
   locked_out = waiver(), penalty = 0, edge_factor = 0.5, ...)
+
+\method{marxan_problem}{data.frame}(x, spec, puvspr, bound = NULL, blm = 0,
+  asymmetric_connectivity = FALSE, ...)
 
 \method{marxan_problem}{character}(x, ...)
 }
@@ -28,9 +32,9 @@ data on the distribution of features across the study area.}
 in the solution.}
 
 \item{targets_type}{\code{character} name indicating if the \code{targets}
-are expressed as \code{'relative'} (eg. \code{0.2} meaning that 20 \% of a feature 
-needs to be conserved), or \code{'absolute'} (eg. \code{200} meaning that 
-200 units of a feature need to be conserved) amounts.}
+are expressed as \code{'relative'} (eg. \code{0.2} meaning that 20 \% of a 
+feature needs to be conserved), or \code{'absolute'} (eg. \code{200} 
+meaning that 200 units of a feature need to be conserved) amounts.}
 
 \item{locked_in}{Object that determines which planning units that should be 
 locked in. See details for more information.}
@@ -61,27 +65,30 @@ can also be used to read Marxan data files and solve the Marxan-style
 problems using exact algorithm solvers.
 }
 \examples{
+\donttest{
+
 # create Marxan problem using spatial data
 data(sim_pu_raster, sim_features)
-p <- marxan_problem(sim_pu_raster, features=sim_features, targets=0.2, 
-                    targets_type='relative', penalty=1, 
-                    edge_factor=0.5) \%>\%
-       add_default_solver(time_limit=5)
+p1 <- marxan_problem(sim_pu_raster, features=sim_features, targets=0.2, 
+                     targets_type='relative', penalty=1, 
+                     edge_factor=0.5)
 
 # solve problem
-s <- solve(p)
+s1 <- solve(p1)
 
 # show solution
-plot(s)
+plot(s1)
 
-\dontrun{
-# create and solve Marxan problem using Marxan input files
-file <- system.file('extdata/input.dat', package='prioritizr')
-s <- marxan_problem(file) \%>\%
-  add_default_solver(time_limit=5)
+# create marxan problem using marxan input files
+input_file <- system.file('extdata/input.dat', package='prioritizrutils')
+p2 <- marxan_problem(input_file)
 
-# count number of selected planning units
-print(sum(s))
+# solve problem
+s2 <- solve(p2)
+
+# count number of selected planning units in solution
+print(sum(s2))
+
 }
 
 }

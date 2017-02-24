@@ -63,13 +63,14 @@ NULL
 #'   \code{\link{targets}}.
 #'
 #' @examples
+#' \donttest{
+#'
 #' # load data
 #' data(sim_pu_raster, sim_features, sim_phlyogeny)
 #'
 #' # create base problem
 #' p <- problem(sim_pu_raster, sim_features) %>%
-#'  add_relative_targets(0.1) %>%
-#'  add_default_solver(time_limit=5)
+#'  add_relative_targets(0.1)
 #' 
 #  # create problem with added minimum set objective
 #' p1 <- p %>% add_minimum_set_objective()
@@ -90,6 +91,8 @@ NULL
 #' # plot solutions
 #' plot(s, main=c('minimum set', 'maximum coverage', 'maximum representation',
 #'                'phylogenetic representation'))
+#'
+#' }
 #'
 #' @name objectives
 NULL

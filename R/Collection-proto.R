@@ -1,18 +1,18 @@
-#' @include internal.R pproto.R Constraint-proto.R
+#' @include internal.R pproto.R Constraint-proto.R Penalty-proto.R
 NULL
 
 #' @export
-methods::setOldClass('Constraints')
+methods::setOldClass('Collection')
 
-#' Constraints prototype
+#' Collection prototype
 #'
-#' This prototype represents a collection of \code{\link{Constraint-class}} 
-#' objects.
+#' This prototype represents a collection of 
+#' \code{\link{ConservationModifier-class}} objects.
 #'
 #' @section Fields:
 #' \describe{
-#'   \item{$constraints}{\code{list} object containing 
-#'     \code{\link{Constraint-class}} objects.}
+#'   \item{$data}{\code{list} object containing 
+#'      \code{\link{ConservationModifier-class}} objects.}
 #' }
 #'
 #' @section Usage:
@@ -44,7 +44,7 @@ methods::setOldClass('Constraints')
 #' \item{show}{show the object.}
 #' \item{repr}{\code{character} representation of object.}
 #'
-#' \item{add}{add \code{\link{Constraint-class}} object.}
+#' \item{add}{add \code{\link{ConservationModifier-class}} object.}
 #'
 #' \item{get_parameter}{retrieve the value of a parameter in the object
 #'   using an \code{id} object.}
@@ -56,25 +56,25 @@ methods::setOldClass('Constraints')
 #'   containing all the parameters' widgets.}
 #' }
 #'
-#' @seealso \code{\link{Constraint-class}}.
+#' @seealso \code{\link{Constraint-class}}, \code{\link{Penalties-class}}.
 #'
-#' @name Constraints-class
+#' @name Collection-class
 #'
-#' @aliases Constraints
+#' @aliases Collection
 NULL
 
 #' @export
-Constraints <- pproto(
-  'Constraints',
-  constraints = list(),
+Collection <- pproto(
+  'Collection',
+  data = list(),
   repr = function(self) {
-    if (length(self$constraints)>0)
-      return(paste0('<', paste(sapply(self$constraints, function(z) {z$repr()}),
+    if (length(self$data)>0)
+      return(paste0('<', paste(sapply(self$data, function(z) {z$repr()}),
         collapse='\n'), '>'))
     return('<none>')
   },
   find_parameter = function(id) {
-    r <- sapply(self$constraints,
+    r <- sapply(self$data,
                 function(x) {
                   id %in% sapply(x$parameters, 
                                  function(z) {z$id})})
@@ -87,24 +87,24 @@ Constraints <- pproto(
     which(r)
   },  
   add = function(self, x) {
-    assertthat::assert_that(inherits(x, 'Constraint'))
-    self$constraints <- append(self$constraints, x)
+    assertthat::assert_that(inherits(x, 'ConservationModifier'))
+    self$data <- append(self$data, x)
   },
   get_parameter = function(self, id) {
     assertthat::assert_that(inherits(id), 'Id')
-    self$constraints[[self$find_parameter(id)]]$get_parameter(id)
+    self$data[[self$find_parameter(id)]]$get_parameter(id)
   },
   set_parameter = function(self, id, value) {
     assertthat::assert_that(inherits(id), 'Id')
-    self$constraints[[self$find_parameter(id)]]$set_parameter(id, value)
+    self$data[[self$find_parameter(id)]]$set_parameter(id, value)
   },
   render_parameter = function(self, id, value) {
     assertthat::assert_that(inherits(id), 'Id')
-    self$constraints[[self$find_parameter(id)]]$render_parameter(id)
+    self$data[[self$find_parameter(id)]]$render_parameter(id)
   },
   render_all_parameters = function(self) {
     do.call(shiny::div, 
-        append(list(class='Constraints'), 
-                lapply(self$constraints,
+        append(list(class='Collection'), 
+                lapply(self$data,
                        function(x) {x$render_all_parameters()})))
   })

@@ -1,14 +1,14 @@
 #' @include internal.R Constraint-proto.R intersecting_units.R
 NULL
 
-#' Add locked out constraint
+#' Add locked out constraints
 #'
 #' Add constraints to ensure that certain planning units are not prioritized
 #' in the solution. For example, it may be useful to lock out planning 
 #' units that have been degraded and are not longer suitable for conserving
 #' species.
 #' 
-#' @usage add_locked_out_constraint(x, locked_out)
+#' @usage add_locked_out_constraints(x, locked_out)
 #' 
 #' @param x \code{\link{ConservationProblem-class}} object.
 #'
@@ -43,25 +43,26 @@ NULL
 #' @return \code{\link{ConservationProblem-class}} object.
 #'
 #' @examples
+#' \donttest{
+#'
 #' # create basic problem
 #' p1 <- problem(sim_pu_polygons, sim_features) %>%
 #'   add_minimum_set_objective() %>%
-#'   add_relative_targets(0.2) %>%
-#'   add_default_solver(time_limit=5)
+#'   add_relative_targets(0.2)
 #'
 #' # create problem with added locked out constraints using integers
-#' p2 <- p1 %>% add_locked_out_constraint(which(sim_pu_polygons$locked_in))
+#' p2 <- p1 %>% add_locked_out_constraints(which(sim_pu_polygons$locked_in))
 #'
 #' # create problem with added locked out constraints using a field name
-#' p3 <- p1 %>% add_locked_out_constraint('locked_out')
+#' p3 <- p1 %>% add_locked_out_constraints('locked_out')
 #'
 #' # create problem with added locked out constraints using raster data
-#' p4 <- p1 %>% add_locked_out_constraint(sim_locked_out_raster)
+#' p4 <- p1 %>% add_locked_out_constraints(sim_locked_out_raster)
 #'
 #' # create problem with added locked out constraints using spatial polygons 
 #' # data
 #' locked_out <- sim_pu_polygons[sim_pu_polygons$locked_out == 1,]
-#' p5 <- p1 %>% add_locked_out_constraint(locked_out)
+#' p5 <- p1 %>% add_locked_out_constraints(locked_out)
 #'
 #' # solve problems
 #' s1 <- solve(p1)
@@ -87,24 +88,26 @@ NULL
 #' plot(s5, main='locked out (polygon input)')
 #' plot(s5[s5$solution==1,], col='darkgreen', add=TRUE)
 #' 
-#' @seealso \code{\link{constraints}} for all the available constraints.
+#' }
 #'
-#' @name add_locked_out_constraint
+#' @seealso \code{\link{constraints}}, \code{\link{penalties}}.
 #'
-#' @exportMethod add_locked_out_constraint
+#' @name add_locked_out_constraints
 #'
-#' @aliases add_locked_out_constraint,ConservationProblem,character-method add_locked_out_constraint,ConservationProblem,numeric-method add_locked_out_constraint,ConservationProblem,Raster-method add_locked_out_constraint,ConservationProblem,Spatial-method
+#' @exportMethod add_locked_out_constraints
+#'
+#' @aliases add_locked_out_constraints,ConservationProblem,character-method add_locked_out_constraints,ConservationProblem,numeric-method add_locked_out_constraints,ConservationProblem,Raster-method add_locked_out_constraints,ConservationProblem,Spatial-method
 #'
 #' @export
-methods::setGeneric('add_locked_out_constraint', 
+methods::setGeneric('add_locked_out_constraints', 
                     signature=methods::signature('x', 'locked_out'),
                     function(x, locked_out) 
-                      standardGeneric('add_locked_out_constraint'))
+                      standardGeneric('add_locked_out_constraints'))
 
 
-#' @name add_locked_out_constraint
-#' @rdname add_locked_out_constraint
-methods::setMethod('add_locked_out_constraint', 
+#' @name add_locked_out_constraints
+#' @rdname add_locked_out_constraints
+methods::setMethod('add_locked_out_constraints', 
   methods::signature('ConservationProblem', 'numeric'),
   function(x, locked_out) {
     # assert valid arguments
@@ -147,7 +150,7 @@ methods::setMethod('add_locked_out_constraint',
           inherits(y, 'ConservationProblem'))
         if (self$parameters$get('apply constraint?')==1) {
           # apply constraint
-          rcpp_apply_locked_out_constraint(x$ptr, 
+          rcpp_apply_locked_out_constraints(x$ptr, 
             self$get_data('locked_out_indices'))
         }
         invisible(TRUE)
@@ -155,45 +158,46 @@ methods::setMethod('add_locked_out_constraint',
   }
 )
 
-#' @name add_locked_out_constraint
-#' @rdname add_locked_out_constraint
-methods::setMethod('add_locked_out_constraint', 
+#' @name add_locked_out_constraints
+#' @rdname add_locked_out_constraints
+methods::setMethod('add_locked_out_constraints', 
   methods::signature('ConservationProblem', 'character'),
   function(x, locked_out) {
     # assert valid arguments
     assertthat::assert_that(inherits(x, 'ConservationProblem'),
       assertthat::is.string(locked_out),
-      inherits(x$data$cost, 'Spatial'), 
-      isTRUE('data' %in% methods::slotNames(x$data$cost)),
+      inherits(x$data$cost, 'data.frame') || 
+        isTRUE('data' %in% methods::slotNames(x$data$cost)),
       isTRUE(locked_out %in% names(x$data$cost)),
       isTRUE(inherits(x$data$cost[[locked_out]], 'logical')))
     # add constraint
-    add_locked_out_constraint(x, which(x$data$cost[[locked_out]]))
+    add_locked_out_constraints(x, which(x$data$cost[[locked_out]]))
   }
 )
 
-#' @name add_locked_out_constraint
-#' @rdname add_locked_out_constraint
-methods::setMethod('add_locked_out_constraint', 
+#' @name add_locked_out_constraints
+#' @rdname add_locked_out_constraints
+methods::setMethod('add_locked_out_constraints', 
   methods::signature('ConservationProblem', 'Spatial'),
   function(x, locked_out) {
     # assert valid arguments
     assertthat::assert_that(inherits(x, 'ConservationProblem'),
       inherits(locked_out, 'Spatial'))
     # add constraints
-    add_locked_out_constraint(x, intersecting_units(x$data$cost, locked_out))
+    add_locked_out_constraints(x, intersecting_units(x$data$cost, locked_out))
   }
 )
 
-#' @name add_locked_out_constraint
-#' @rdname add_locked_out_constraint
-methods::setMethod('add_locked_out_constraint', 
+#' @name add_locked_out_constraints
+#' @rdname add_locked_out_constraints
+methods::setMethod('add_locked_out_constraints', 
   methods::signature('ConservationProblem', 'Raster'),
   function(x, locked_out) {
     # assert valid arguments
     assertthat::assert_that(inherits(x, 'ConservationProblem'),
       inherits(locked_out, 'Raster'), 
       isTRUE(raster::cellStats(locked_out, 'sum') > 0))
-    add_locked_out_constraint(x, intersecting_units(x$data$cost, locked_out))
+    # add constraints
+    add_locked_out_constraints(x, intersecting_units(x$data$cost, locked_out))
   }
 )

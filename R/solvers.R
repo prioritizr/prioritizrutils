@@ -125,8 +125,10 @@ add_default_solver <- function(x, ...) {
     return(add_gurobi_solver(x, ...))
   } else if (requireNamespace('lpsymphony', quietly = TRUE)) {
     return(add_lpsymphony_solver(x, ...))
-  } else {
+  } else if (requireNamespace('Rsymphony', quietly = TRUE)) {
     return(add_rsymphony_solver(x, ...))
+  } else {
+    stop('no optimization problem solvers found on system.')
   }
 }
 

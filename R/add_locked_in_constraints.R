@@ -8,7 +8,7 @@ NULL
 #' inside existing protected areas so that the solution fills in the gaps in the 
 #' existing reserve network.
 #'
-#' @usage add_locked_in_constraint(x, locked_in)
+#' @usage add_locked_in_constraints(x, locked_in)
 #'
 #' @param x \code{\link{ConservationProblem-class}} object.
 #'
@@ -43,24 +43,25 @@ NULL
 #' @return \code{\link{ConservationProblem-class}} object.
 #'
 #' @examples
+#' \donttest{
+#'
 #' # create basic problem
 #' p1 <- problem(sim_pu_polygons, sim_features) %>%
 #'   add_minimum_set_objective() %>%
-#'   add_relative_targets(0.2) %>%
-#'   add_default_solver(time_limit=5)
+#'   add_relative_targets(0.2)
 #'
 #' # create problem with added locked in constraints using integers
-#' p2 <- p1 %>% add_locked_in_constraint(which(sim_pu_polygons$locked_in))
+#' p2 <- p1 %>% add_locked_in_constraints(which(sim_pu_polygons$locked_in))
 #'
 #' # create problem with added locked in constraints using a field name
-#' p3 <- p1 %>% add_locked_in_constraint('locked_in')
+#' p3 <- p1 %>% add_locked_in_constraints('locked_in')
 #'
 #' # create problem with added locked in constraints using raster data
-#' p4 <- p1 %>% add_locked_in_constraint(sim_locked_in_raster)
+#' p4 <- p1 %>% add_locked_in_constraints(sim_locked_in_raster)
 #'
 #' # create problem with added locked in constraints using spatial polygons data
 #' locked_in <- sim_pu_polygons[sim_pu_polygons$locked_in == 1,]
-#' p5 <- p1 %>% add_locked_in_constraint(locked_in)
+#' p5 <- p1 %>% add_locked_in_constraints(locked_in)
 #'
 #' # solve problems
 #' s1 <- solve(p1)
@@ -86,25 +87,27 @@ NULL
 #' plot(s5, main='locked in (polygon input)')
 #' plot(s5[s5$solution==1,], col='darkgreen', add=TRUE)
 #'
-#' @seealso \code{\link{constraints}} for all the available constraints.
+#' }
 #'
-#' @name add_locked_in_constraint
+#' @seealso \code{\link{constraints}}, \code{\link{penalties}}.
 #'
-#' @exportMethod add_locked_in_constraint
+#' @name add_locked_in_constraints
 #'
-#' @aliases add_locked_in_constraint,ConservationProblem,character-method add_locked_in_constraint,ConservationProblem,numeric-method add_locked_in_constraint,ConservationProblem,Raster-method add_locked_in_constraint,ConservationProblem,Spatial-method
+#' @exportMethod add_locked_in_constraints
+#'
+#' @aliases add_locked_in_constraints,ConservationProblem,character-method add_locked_in_constraints,ConservationProblem,numeric-method add_locked_in_constraints,ConservationProblem,Raster-method add_locked_in_constraints,ConservationProblem,Spatial-method
 
 #'
 #' @export
-methods::setGeneric('add_locked_in_constraint', 
+methods::setGeneric('add_locked_in_constraints', 
                     signature=methods::signature('x', 'locked_in'),
                     function(x, locked_in) 
-                      standardGeneric('add_locked_in_constraint'))
+                      standardGeneric('add_locked_in_constraints'))
 
 
-#' @name add_locked_in_constraint
-#' @rdname add_locked_in_constraint
-methods::setMethod('add_locked_in_constraint', 
+#' @name add_locked_in_constraints
+#' @rdname add_locked_in_constraints
+methods::setMethod('add_locked_in_constraints', 
   methods::signature('ConservationProblem', 'numeric'),
   function(x, locked_in) {
     # assert valid arguments
@@ -147,7 +150,7 @@ methods::setMethod('add_locked_in_constraint',
           inherits(y, 'ConservationProblem'))
         if (self$parameters$get('apply constraint?')==1) {          
           # apply constraint
-          invisible(rcpp_apply_locked_in_constraint(x$ptr, 
+          invisible(rcpp_apply_locked_in_constraints(x$ptr, 
             self$get_data('locked_in_indices')))
         }
         invisible(TRUE)
@@ -155,45 +158,46 @@ methods::setMethod('add_locked_in_constraint',
   }
 )
 
-#' @name add_locked_in_constraint
-#' @rdname add_locked_in_constraint
-methods::setMethod('add_locked_in_constraint', 
+#' @name add_locked_in_constraints
+#' @rdname add_locked_in_constraints
+methods::setMethod('add_locked_in_constraints', 
   methods::signature('ConservationProblem', 'character'),
   function(x, locked_in) {
     # assert valid arguments
     assertthat::assert_that(inherits(x, 'ConservationProblem'),
       assertthat::is.string(locked_in),
-      inherits(x$data$cost, 'Spatial'), 
-      isTRUE('data' %in% methods::slotNames(x$data$cost)),
+      inherits(x$data$cost, c('data.frame','Spatial')),
+      inherits(x$data$cost, 'data.frame') || 
+        isTRUE('data' %in% methods::slotNames(x$data$cost)),
       isTRUE(locked_in %in% names(x$data$cost)),
       isTRUE(inherits(x$data$cost[[locked_in]], 'logical')))
     # add constraint
-    add_locked_in_constraint(x, which(x$data$cost[[locked_in]]))
+    add_locked_in_constraints(x, which(x$data$cost[[locked_in]]))
   }
 )
 
-#' @name add_locked_in_constraint
-#' @rdname add_locked_in_constraint
-methods::setMethod('add_locked_in_constraint', 
+#' @name add_locked_in_constraints
+#' @rdname add_locked_in_constraints
+methods::setMethod('add_locked_in_constraints', 
   methods::signature('ConservationProblem', 'Spatial'),
   function(x, locked_in) {
     # assert valid arguments
     assertthat::assert_that(inherits(x, 'ConservationProblem'),
       inherits(locked_in, 'Spatial'))
     # add constraints
-    add_locked_in_constraint(x, intersecting_units(x$data$cost, locked_in))
+    add_locked_in_constraints(x, intersecting_units(x$data$cost, locked_in))
   }
 )
 
-#' @name add_locked_in_constraint
-#' @rdname add_locked_in_constraint
-methods::setMethod('add_locked_in_constraint', 
+#' @name add_locked_in_constraints
+#' @rdname add_locked_in_constraints
+methods::setMethod('add_locked_in_constraints', 
   methods::signature('ConservationProblem', 'Raster'),
   function(x, locked_in) {
     # assert valid arguments
     assertthat::assert_that(inherits(x, 'ConservationProblem'),
       inherits(locked_in, 'Raster'), 
       isTRUE(raster::cellStats(locked_in, 'sum') > 0))
-    add_locked_in_constraint(x, intersecting_units(x$data$cost, locked_in))
+    add_locked_in_constraints(x, intersecting_units(x$data$cost, locked_in))
   }
 )

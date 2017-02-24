@@ -47,11 +47,12 @@ NULL
 #' @return \code{\link{Decision-class}} object.
 #'
 #' @examples
+#' \donttest{
+#'
 #' # create basic problem and using the default decision (binary)
 #' p <- problem(sim_pu_raster, sim_features) %>%
 #'        add_minimum_set_objective() %>%
-#'        add_relative_targets(0.1) %>%
-#'        add_default_solver(time_limit=5)
+#'        add_relative_targets(0.1)
 #'
 #' # manually specify a binary decision type 
 #' p2 <- p %>% add_binary_decision()
@@ -68,6 +69,8 @@ NULL
 #' # plot solutions
 #' plot(s, main = c('default (binary)', 'binary', 'proportion', 
 #'                  'semicontinuous (upper=0.5)'))
+#'
+#' }
 #'
 #' @name decisions
 NULL

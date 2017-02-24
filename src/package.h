@@ -1,5 +1,5 @@
-#ifndef PRIORITIZRUTILS_H
-#define PRIORITIZRUTILS_H
+#ifndef PACKAGE_H
+#define PACKAGE_H
 
 
 #define BOOST_DISABLE_ASSERTS true
@@ -15,3 +15,4 @@
 using namespace Rcpp;
 
 #endif
+ 

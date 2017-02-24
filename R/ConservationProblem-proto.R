@@ -1,4 +1,4 @@
-#' @include internal.R pproto.R targets.R objectives.R decisions.R solvers.R Constraints-proto.R
+#' @include internal.R pproto.R Collection-proto.R
 NULL
 
 #' @export
@@ -8,7 +8,7 @@ methods::setOldClass('ConservationProblem')
 #'
 #' This class is used to represent conservation planning problems. A 
 #' conservation planning problem has spatially explicit planning units.
-#' A prioritisation involves making a decision on each planning unit (eg. is 
+#' A prioritization involves making a decision on each planning unit (eg. is 
 #' the planning unit going to be turned into a protected area?). Each 
 #' planning unit is associated with a cost that represents the cost incurred
 #' by applying the decision to the planning unit. The problem also has a set 
@@ -35,7 +35,10 @@ methods::setOldClass('ConservationProblem')
 #' \item{$targets}{\code{\link{Target-class}} object used to represent
 #'   representation targets for features.}
 #'
-#' \item{$constraints}{\code{\link{Constraints-class}} object used to represent
+#' \item{$penalties}{\code{\link{Collection-class}} object used to represent
+#'   additional \code{\link{penalties}} that the problem is subject to.}
+#'
+#' \item{$constraints}{\code{\link{Collection-class}} object used to represent
 #'   additional \code{\link{constraints}} that the problem is subject to.}
 #'
 #' \item{$solver}{\code{\link{Solver-class}} object used to solve the problem.}
@@ -232,7 +235,8 @@ ConservationProblem <- pproto(
   objective = waiver(),
   decision = waiver(),
   targets = waiver(),
-  constraints = pproto(NULL, Constraints),
+  constraints = pproto(NULL, Collection),
+  penalties = pproto(NULL, Collection),
   solver  = waiver(),
   print = function(self) {
     r <- sapply(list(self$objective, self$targets), function(x) {
@@ -255,6 +259,7 @@ ConservationProblem <- pproto(
     '\n  targets:        ',r[2],
     '\n  decision:       ',d[2],
     '\n  constraints:    ',self$constraints$repr(),
+    '\n  penalties:      ',self$penalties$repr(),
     '\n  solver:         ',d[1]))
   },
   show = function(self) {
@@ -277,7 +282,7 @@ ConservationProblem <- pproto(
   number_of_planning_units = function(self) {
     if (inherits(self$data$cost, 'Raster')) {
       return(raster::cellStats(raster::Which(!is.na(self$data$cost)), 'sum'))
-    } else if (inherits(self$data$cost, 'Spatial')) {
+    } else if (inherits(self$data$cost, c('data.frame', 'Spatial'))) {
       return(nrow(self$data$cost))
     } else {
       stop('cost is of unknown class')
@@ -286,7 +291,7 @@ ConservationProblem <- pproto(
   number_of_total_units = function(self) {
     if (inherits(self$data$cost, 'Raster')) {
       return(raster::ncell(self$data$cost))
-    } else if (inherits(self$data$cost, 'Spatial')) {
+    } else if (inherits(self$data$cost, c('data.frame', 'Spatial'))) {
       return(nrow(self$data$cost))
     } else {
       stop('cost is of unknown class')
@@ -295,18 +300,31 @@ ConservationProblem <- pproto(
   planning_unit_costs = function(self) {
     if (inherits(self$data$cost, 'Raster')) {
       return(self$data$cost[raster::Which(!is.na(self$data$cost))])
-    } else if (inherits(self$data$cost, c('SpatialPolygonsDataFrame',
-              'SpatialLinesDataFrame', 'SpatialPointsDataFrame'))) {
+    } else if (inherits(self$data$cost, c('data.frame',
+               'SpatialPolygonsDataFrame', 'SpatialLinesDataFrame', 
+               'SpatialPointsDataFrame'))) {
       return(self$data$cost[[self$data$cost_column]])
     } else {
       stop('cost is of unknown class')
     }
   },
   number_of_features = function(self) {
-    raster::nlayers(self$data$features)
+    if (inherits(self$data$features, 'Raster')) {
+      return(raster::nlayers(self$data$features))
+    } else if (inherits(self$data$features, 'data.frame')) {
+      return(nrow(self$data$features))
+    } else {
+      stop('feature data is of an unrecognized class')
+    }
   },
   feature_names = function(self) {
-    names(self$data$features)
+    if (inherits(self$data$features, 'Raster')) {
+      return(names(self$data$features))
+    } else if (inherits(self$data$features, 'data.frame')) {
+      return(as.character(self$data$features$name))
+    } else {
+      stop('feature data is of an unrecognized class')
+    }
   },
   feature_abundances_in_planning_units = function(self) {
     Matrix::rowSums(self$data$rij_matrix)
@@ -346,6 +364,12 @@ ConservationProblem <- pproto(
     p$constraints$add(x)
     return(p)
   },
+  add_penalty = function(self, x) {
+    assertthat::assert_that(inherits(x, 'Penalty'))
+    p <- pproto(NULL, self)
+    p$penalties$add(x)
+    return(p)
+  },
   get_constraint_parameter = function(self, id) {
     self$constraints$get_parameter(id)
   },
@@ -381,4 +405,16 @@ ConservationProblem <- pproto(
   },
   render_all_solver_parameters = function(self) {
     self$solver$render_all_parameter()
+  },
+  get_penalty_parameter = function(self, id) {
+    self$penalty$get_parameter(id)
+  },
+  set_penalty_parameter = function(self, id, value) {
+    self$penalty$set_parameter(id, value)
+  },
+  render_penalty_parameter = function(self, id) {
+    self$penalty$render_parameter(id)
+  },
+  render_all_penalty_parameters = function(self) {
+    self$penalty$render_all_parameter()
   })

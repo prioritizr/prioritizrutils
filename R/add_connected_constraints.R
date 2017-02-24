@@ -4,7 +4,7 @@ NULL
 #' Add connected constraint
 #'
 #' Add constraints to a conservation problem to ensure that all selected
-#' planning units are connected.
+#' planning units are spatially connected to each other.
 #'
 #' @param x \code{\link{ConservationProblem-class}} object.
 #'
@@ -23,7 +23,7 @@ NULL
 #'   add_default_solver(time_limit=5)
 #'
 #' # create problem with added connected constraints
-#' p2 <- p %>% add_connected_constraint()
+#' p2 <- p1 %>% add_connected_constraints()
 #'
 #' # solve problems
 #' s <- stack(solve(p1), solve(p2))
@@ -33,7 +33,7 @@ NULL
 #'
 #' }
 #' @export
-add_connected_constraint <- function(x) {
+add_connected_constraints <- function(x) {
   # assert argumnt is valid
   assertthat::assert_that(inherits(x, 'ConservationProblem'))
   # check that at least two planning units are touching each other
@@ -61,7 +61,7 @@ add_connected_constraint <- function(x) {
       assertthat::assert_that(inherits(x, 'OptimizationProblem'),
         inherits(y, 'ConservationProblem'))
       if (self$parameters$get('Apply constraint?')==1)
-        rcpp_apply_connected_constraint(x$ptr, y$get_data('connected_matrix'))
+        rcpp_apply_connected_constraints(x$ptr, y$get_data('connected_matrix'))
       invisible(TRUE)
     }))
 }

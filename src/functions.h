@@ -1,7 +1,7 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
-#include "prioritizrutils.h"
+#include "package.h"
 #include <vector>
 #include <math.h>
 #include <string>

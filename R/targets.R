@@ -1,4 +1,4 @@
-#' @include internal.R Target-proto.R
+#' @include internal.R pproto.R ConservationProblem-proto.R
 NULL
 
 #' Targets 
@@ -45,7 +45,11 @@ NULL
 #' @param targets \code{numeric} targets for features. If all features should
 #'   have the same target, \code{targets} can be a single number. Otherwise, 
 #'   \code{targets} should be a \code{numeric} \code{vector} specifying a 
-#'   target for each feature.
+#'   target for each feature. Alternatively, if the features in
+#'   \code{x} were specified using a \code{data.frame} object, then
+#'   argument to \code{targets} may refer to a column name.
+#'
+#' @param ... not used.
 #'
 #' @param lower_bound_amount \code{numeric} lower bound for the total amount
 #'   of the features.
@@ -68,10 +72,11 @@ NULL
 #'   \code{\link{problem}}, \code{\link{add_feature_weights}}.
 #'
 #' @examples
+#' \donttest{
+#'
 #' # create basic problem
 #' p <- problem(sim_pu_raster, sim_features) %>%
-#'   add_minimum_set_objective() %>%
-#'   add_default_solver(time_limit=5)
+#'   add_minimum_set_objective()
 #'
 #' # create problem with added relative targets
 #' p1 <- p %>% add_relative_targets(0.1)
@@ -89,7 +94,15 @@ NULL
 #' plot(s, main=c('relative targets', 'absolute targets', 
 #'                'loglinear targets'))
 #'
+#' }
+#'
+#' @aliases add_relative_targets-methods add_relative_targets,ConservationProblem,numeric-methods add_relative_targets,ConservationProblem,character-methods add_absolute_targets-methods add_absolute_targets,ConservationProblem,numeric-methods add_absolute_targets,ConservationProblem,character-methods 
+#'
 #' @name targets
+#'
+#' @rdname targets
+#' 
+#' @docType methods
 NULL
 
 #' @rdname targets
@@ -101,63 +114,114 @@ add_default_targets <- function(x) {
   stop('problem is missing targets and they must be explicitly defined')
 }
 
+#' @name add_relative_targets
 #' @rdname targets
+#' @exportMethod add_relative_targets
 #' @export
-add_relative_targets <- function(x, targets) {
-  # assert that arguments are valid
-  assertthat::assert_that(
-    inherits(x, 'ConservationProblem'),
-    inherits(targets, 'numeric'), isTRUE(all(is.finite(targets))), 
-    isTRUE(all(targets >= 0.0)),  isTRUE(all(targets <= 1.0)), 
-    isTRUE(length(targets) > 0))
-  # assert that targets are compatible with problem
-  if (length(targets) != 1)
-    assertthat::assert_that(length(targets) == x$number_of_features())
-  # create target parameters
-  if (length(targets)==1) {
-    targets <- rep(targets, x$number_of_features())
-  }
-  targets <- proportion_parameter_array('targets', targets, x$feature_names())
-  # add targets to problem
-  x$add_targets(pproto(
-    'RelativeTargets',
-    Target,
-    name='Relative targets',
-    data = list(abundances=x$feature_abundances_in_planning_units()),
-    parameters=parameters(targets),
-    output = function(self) {
-      self$parameters$get('targets')[[1]] * self$get_data('abundances')
-    }))
-}
+methods::setGeneric('add_relative_targets', 
+                    signature=methods::signature('x', 'targets'),
+                    function(x, targets, ...) methods::standardGeneric('add_relative_targets'))
 
+#' @name add_relative_targets
 #' @rdname targets
+#' @usage add_relative_targets(x, targets, ...) # x=ConservationProblem, targets=numeric
+methods::setMethod('add_relative_targets',
+  methods::signature('ConservationProblem', 'numeric'),
+  function(x, targets, ...) {
+    # assert that arguments are valid
+    assertthat::assert_that(
+      inherits(x, 'ConservationProblem'),
+      inherits(targets, 'numeric'), isTRUE(all(is.finite(targets))), 
+      isTRUE(all(targets >= 0.0)),  isTRUE(all(targets <= 1.0)), 
+      isTRUE(length(targets) > 0))
+    # assert that targets are compatible with problem
+    if (length(targets) != 1)
+      assertthat::assert_that(length(targets) == x$number_of_features())
+    # create target parameters
+    if (length(targets)==1) {
+      targets <- rep(targets, x$number_of_features())
+    }
+    targets <- proportion_parameter_array('targets', targets, x$feature_names())
+    # add targets to problemcharacter
+    x$add_targets(pproto(
+      'RelativeTargets',
+      Target,
+      name='Relative targets',
+      data = list(abundances=x$feature_abundances_in_planning_units()),
+      parameters=parameters(targets),
+      output = function(self) {
+        self$parameters$get('targets')[[1]] * self$get_data('abundances')
+      }))
+  })
+
+#' @name add_relative_targets
+#' @rdname targets
+#' @usage add_relative_targets(x, targets, ...) # x=ConservationProblem, targets=character
+methods::setMethod('add_relative_targets',
+  methods::signature('ConservationProblem', 'character'),
+  function(x, targets, ...) {
+    # assert that arguments are valid
+    assertthat::assert_that(inherits(x, 'ConservationProblem'),
+      inherits(x$data$features, 'data.frame'),
+      assertthat::has_name(x$data$features, targets))
+    # add targets
+    add_relative_targets(x, x$data$features[[targets]])
+  })
+
+
+#' @name add_absolute_targets
+#' @rdname targets
+#' @exportMethod add_absolute_targets
 #' @export
-add_absolute_targets <- function(x, targets) {
-  # assert that arguments are valid
-  assertthat::assert_that(
-    inherits(x, 'ConservationProblem'),
-    inherits(targets, 'numeric'), isTRUE(all(is.finite(targets))), 
-    isTRUE(all(targets >= 0.0)), isTRUE(length(targets) > 0))
-  # assert that targets are compatible with problem
-  if (length(targets)==1) {
-    targets <- rep(targets, x$number_of_features())
-  }
-  assertthat::assert_that(length(targets)==x$number_of_features(),
-    isTRUE(all(targets <= x$feature_abundances_in_planning_units())))
-  # create target parameters
-  targets <- numeric_parameter_array('targets', targets, x$feature_names(),
-    lower_limit=rep(0, x$number_of_features()), 
-    upper_limit=x$feature_abundances_in_planning_units())
-  # add targets to problem  
-  x$add_targets(pproto(
-    'AbsoluteTargets',
-    Target,
-    name='Absolute targets',
-    parameters=parameters(targets),
-    output = function(self) {
-      self$parameters$get('targets')[[1]]
-    }))
-}
+methods::setGeneric('add_absolute_targets', 
+                    signature=methods::signature('x', 'targets'),
+                    function(x, targets, ...) methods::standardGeneric('add_absolute_targets'))
+
+#' @name add_absolute_targets
+#' @rdname targets
+#' @usage add_absolute_targets(x, targets, ...) # x=ConservationProblem, targets=numeric
+methods::setMethod('add_absolute_targets',
+  methods::signature('ConservationProblem', 'numeric'),
+  function(x, targets, ...) {
+    # assert that arguments are valid
+    assertthat::assert_that(
+      inherits(x, 'ConservationProblem'),
+      inherits(targets, 'numeric'), isTRUE(all(is.finite(targets))), 
+      isTRUE(all(targets >= 0.0)), isTRUE(length(targets) > 0))
+    # assert that targets are compatible with problem
+    if (length(targets)==1) {
+      targets <- rep(targets, x$number_of_features())
+    }
+    assertthat::assert_that(length(targets)==x$number_of_features(),
+      isTRUE(all(targets <= x$feature_abundances_in_planning_units())))
+    # create target parameters
+    targets <- numeric_parameter_array('targets', targets, x$feature_names(),
+      lower_limit=rep(0, x$number_of_features()), 
+      upper_limit=x$feature_abundances_in_planning_units())
+    # add targets to problem  
+    x$add_targets(pproto(
+      'AbsoluteTargets',
+      Target,
+      name='Absolute targets',
+      parameters=parameters(targets),
+      output = function(self) {
+        self$parameters$get('targets')[[1]]
+      }))
+  })
+
+#' @name add_absolute_targets
+#' @rdname targets
+#' @usage add_absolute_targets(x, targets, ...) # x=ConservationProblem, targets=character
+methods::setMethod('add_absolute_targets',
+  methods::signature('ConservationProblem', 'character'),
+  function(x, targets, ...) {
+    # assert that arguments are valid
+    assertthat::assert_that(inherits(x, 'ConservationProblem'),
+      inherits(x$data$features, 'data.frame'),
+      assertthat::has_name(x$data$features, targets))
+    # add targets
+    add_absolute_targets(x, x$data$features[[targets]])
+  })
 
 #' @rdname targets
 #' @export

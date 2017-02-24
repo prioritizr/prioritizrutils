@@ -34,7 +34,7 @@ methods::setGeneric('intersecting_units',
                       standardGeneric('intersecting_units'))
 
 #' @name intersecting_units
-#' @usage intersecting_units(x, y) # Raster, Raster
+#' @usage intersecting_units(x, y, ...) # x=Raster, y=Raster
 #' @rdname intersecting_units
 methods::setMethod('intersecting_units',
   methods::signature(x='Raster', y='Raster'),
@@ -55,7 +55,7 @@ methods::setMethod('intersecting_units',
 )
 
 #' @name intersecting_units
-#' @usage intersecting_units(x, y) # Spatial, Spatial
+#' @usage intersecting_units(x, y, ...) # x=Spatial, y=Spatial
 #' @rdname intersecting_units
 methods::setMethod('intersecting_units',
   methods::signature(x='Spatial', y='Spatial'),
@@ -80,7 +80,7 @@ methods::setMethod('intersecting_units',
 )
 
 #' @name intersecting_units
-#' @usage intersecting_units(x, y) # Raster, Spatial
+#' @usage intersecting_units(x, y, ...) # x=Raster, y=Spatial
 #' @rdname intersecting_units
 methods::setMethod('intersecting_units',
   methods::signature(x='Raster', y='Spatial'),
@@ -102,7 +102,7 @@ methods::setMethod('intersecting_units',
 )
 
 #' @name intersecting_units
-#' @usage intersecting_units(x, y, ...) # Spatial, Raster
+#' @usage intersecting_units(x, y, ...) # x=Spatial, y=Raster
 #' @rdname intersecting_units
 methods::setMethod('intersecting_units',
   methods::signature(x='Spatial', y='Raster'),
@@ -124,3 +124,16 @@ methods::setMethod('intersecting_units',
     return(units)
   }
 )
+
+#' @name intersecting_units
+#' @usage intersecting_units(x, y, ...) # x=data.frame, y=ANY
+#' @rdname intersecting_units
+methods::setMethod('intersecting_units',
+  methods::signature(x='data.frame', y='ANY'),
+  function(x, y, ...) {
+    stop('planning units are stored as a data.frame and so the required ',
+         'spatial analysis cannot be performed.')
+  }
+)
+
+

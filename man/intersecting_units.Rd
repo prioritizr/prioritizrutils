@@ -10,15 +10,18 @@
 \alias{intersecting_units}
 \alias{intersecting_units}
 \alias{intersecting_units}
+\alias{intersecting_units}
 \title{Find intersecting units}
 \usage{
-intersecting_units(x, y) # Raster, Raster
+intersecting_units(x, y, ...) # x=Raster, y=Raster
 
-intersecting_units(x, y) # Spatial, Spatial
+intersecting_units(x, y, ...) # x=Spatial, y=Spatial
 
-intersecting_units(x, y) # Raster, Spatial
+intersecting_units(x, y, ...) # x=Raster, y=Spatial
 
-intersecting_units(x, y, ...) # Spatial, Raster
+intersecting_units(x, y, ...) # x=Spatial, y=Raster
+
+intersecting_units(x, y, ...) # x=data.frame, y=ANY
 }
 \arguments{
 \item{x}{\code{\link{Spatial-class}} or \code{\link{Raster-class}} object.}

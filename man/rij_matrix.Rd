@@ -8,9 +8,9 @@
 \alias{rij_matrix}
 \title{Feature by planning unit matrix}
 \usage{
-rij_matrix(x, y) # Raster, Raster
+rij_matrix(x, y, ...) # x=Raster, y=Raster
 
-rij_matrix(x, y) # Spatial, Raster
+rij_matrix(x, y, velox...) # x=Spatial, y=Raster
 }
 \arguments{
 \item{x}{\code{\link[raster]{RasterLayer-class}} or
@@ -20,24 +20,9 @@ planning units}
 \item{y}{\code{\link[raster]{Raster-class}} object representing the 
 features}
 
-\item{fun}{\code{function} used to summarise values. Defaults to
-\code{\link{sum}}. Note that this only used when \code{x} is a
-\code{\link[sp]{SpatialPolygons-class}} or a 
-\code{\link[sp]{SpatialLines-class}} object. This function must
-have an 'na.rm' argument.}
-
-\item{na.rm}{\code{logical} should missing values be omitted when
-performing calculations? Defaults to \code{TRUE}. Note this argument
-only has an effect when \code{x} is a 
-\code{\link[sp]{SpatialPolygons-class}} or a 
-\code{\link[sp]{SpatialLines-class}} and \code{velox} is \code{FALSE}.}
-
-\item{velox}{\code{logical} should the \code{\link[velox]{velox}}
-be used for geoprocessing? Defaults to \code{TRUE} if the package
-is installed. Note that this only used when \code{x} is a
-\code{\link[sp]{SpatialPolygons-class}} object.}
-
-\item{...}{not used.}
+\item{...}{additional arguments passed to \code{\link{fast_extract}} if
+argument to \code{x} inherits from a \code{\link[sp]{Spatial-class}} 
+object.}
 }
 \value{
 \code{\link{Matrix}{dgCMatrix-class}} object.

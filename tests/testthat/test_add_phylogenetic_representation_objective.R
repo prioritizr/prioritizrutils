@@ -72,8 +72,8 @@ test_that('solution', {
   p <- problem(cost, features) %>%
           add_phylogenetic_representation_objective(budget=budget, tree=tr) %>%
           add_absolute_targets(c(2, 12, 2)) %>%
-          add_locked_in_constraint(locked_in) %>%
-          add_locked_out_constraint(locked_out)
+          add_locked_in_constraints(locked_in) %>%
+          add_locked_out_constraints(locked_out)
   # solve problem
   s <- solve(p)
   # test for correct solution

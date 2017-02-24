@@ -1,4 +1,4 @@
-#include "prioritizrutils.h"
+#include "package.h"
 #include "rcpp_boundary_data.h"
 
 // [[Rcpp::export]]

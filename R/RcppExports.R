@@ -73,12 +73,12 @@ rcpp_add_rij_data <- function(x, rij) {
     .Call('prioritizrutils_rcpp_add_rij_data', PACKAGE = 'prioritizrutils', x, rij)
 }
 
-rcpp_apply_boundary_constraint <- function(x, boundary_matrix, penalty, edge_factor) {
-    .Call('prioritizrutils_rcpp_apply_boundary_constraint', PACKAGE = 'prioritizrutils', x, boundary_matrix, penalty, edge_factor)
+rcpp_apply_asymmetric_boundary_constraints <- function(x, boundary_matrix, penalty, edge_factor) {
+    .Call('prioritizrutils_rcpp_apply_asymmetric_boundary_constraints', PACKAGE = 'prioritizrutils', x, boundary_matrix, penalty, edge_factor)
 }
 
-rcpp_apply_connected_constraint <- function(x, boundary_matrix) {
-    .Call('prioritizrutils_rcpp_apply_connected_constraint', PACKAGE = 'prioritizrutils', x, boundary_matrix)
+rcpp_apply_connected_constraints <- function(x, boundary_matrix) {
+    .Call('prioritizrutils_rcpp_apply_connected_constraints', PACKAGE = 'prioritizrutils', x, boundary_matrix)
 }
 
 rcpp_apply_binary_decision <- function(x) {
@@ -97,12 +97,12 @@ rcpp_apply_feature_weights <- function(x, weights) {
     .Call('prioritizrutils_rcpp_apply_feature_weights', PACKAGE = 'prioritizrutils', x, weights)
 }
 
-rcpp_apply_locked_in_constraint <- function(x, indices) {
-    .Call('prioritizrutils_rcpp_apply_locked_in_constraint', PACKAGE = 'prioritizrutils', x, indices)
+rcpp_apply_locked_in_constraints <- function(x, indices) {
+    .Call('prioritizrutils_rcpp_apply_locked_in_constraints', PACKAGE = 'prioritizrutils', x, indices)
 }
 
-rcpp_apply_locked_out_constraint <- function(x, indices) {
-    .Call('prioritizrutils_rcpp_apply_locked_out_constraint', PACKAGE = 'prioritizrutils', x, indices)
+rcpp_apply_locked_out_constraints <- function(x, indices) {
+    .Call('prioritizrutils_rcpp_apply_locked_out_constraints', PACKAGE = 'prioritizrutils', x, indices)
 }
 
 rcpp_apply_maximum_coverage_objective <- function(x, abundances, costs, budget) {
@@ -119,6 +119,10 @@ rcpp_apply_minimum_set_objective <- function(x, targets, costs) {
 
 rcpp_apply_phylogenetic_representation_objective <- function(x, targets, costs, budget, branch_matrix, branch_lengths) {
     .Call('prioritizrutils_rcpp_apply_phylogenetic_representation_objective', PACKAGE = 'prioritizrutils', x, targets, costs, budget, branch_matrix, branch_lengths)
+}
+
+rcpp_apply_symmetric_boundary_constraints <- function(x, boundary_matrix, penalty, edge_factor) {
+    .Call('prioritizrutils_rcpp_apply_symmetric_boundary_constraints', PACKAGE = 'prioritizrutils', x, boundary_matrix, penalty, edge_factor)
 }
 
 rcpp_boundary_data <- function(data, tolerance = 0.00001) {

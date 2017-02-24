@@ -4,6 +4,7 @@
 \alias{problem}
 \alias{problem.Raster}
 \alias{problem.Spatial}
+\alias{problem.data.frame}
 \title{Conservation planning problem}
 \usage{
 problem(x, features, ...)
@@ -11,6 +12,8 @@ problem(x, features, ...)
 \method{problem}{Raster}(x, features, ...)
 
 \method{problem}{Spatial}(x, features, cost_column = names(x)[1], ...)
+
+\method{problem}{data.frame}(x, feature_data, rij_data, ....)
 }
 \arguments{
 \item{x}{\code{\link[raster]{Raster-class}}, 

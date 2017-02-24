@@ -1,4 +1,4 @@
-#include "prioritizrutils.h"
+#include "package.h"
 #include <vector>
 
 // [[Rcpp::export]]

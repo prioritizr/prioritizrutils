@@ -2,29 +2,29 @@
 % Please edit documentation in R/connected_matrix.R
 \name{connected_matrix}
 \alias{connected_matrix}
-\alias{connected_matrix,Raster-method}
-\alias{connected_matrix,SpatialLines-method}
-\alias{connected_matrix,SpatialPoints-method}
-\alias{connected_matrix,SpatialPolygons-method}
-\alias{connected_matrix}
-\alias{connected_matrix}
-\alias{connected_matrix}
-\alias{connected_matrix}
+\alias{connected_matrix.Raster}
+\alias{connected_matrix.SpatialPolygons}
+\alias{connected_matrix.SpatialLines}
+\alias{connected_matrix.SpatialPoints}
 \title{Connected matrix}
 \usage{
-connected_matrix(x, directions = 4) # Raster
+connected_matrix(x, ...)
 
-connected_matrix(x) # SpatialPolygons
+\method{connected_matrix}{Raster}(x, directions = 4L, ...)
 
-connected_matrix(x) # SpatialLines
+\method{connected_matrix}{SpatialPolygons}(x, ...)
 
-connected_matrix(x, distance) # SpatialPoints
+\method{connected_matrix}{SpatialLines}(x, ...)
+
+\method{connected_matrix}{SpatialPoints}(x, distance, ...)
 }
 \arguments{
 \item{x}{\code{\link[raster]{Raster-class}} or 
 \code{\link[sp]{Spatial-class}} object. Note that if \code{x} is a 
 \code{\link[raster]{Raster-class}} object then it must have only one
 layer.}
+
+\item{...}{not used.}
 
 \item{directions}{\code{integer} If \code{x} is a
 \code{\link[raster]{Raster-class}} object, the number of directions

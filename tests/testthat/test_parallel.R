@@ -2,18 +2,18 @@ context('parallel')
 
 test_that('cluster functions', {
   # no parallel backend initially setup
-  expect_true(is.null(asNamespace('prioritizr')$.pkgenv$cluster))
+  expect_true(is.null(asNamespace('prioritizrutils')$.pkgenv$cluster))
   # create parallel backend
   set_number_of_threads(2)
   # check that it is created
   expect_true(is.parallel())
-  expect_false(is.null(asNamespace('prioritizr')$.pkgenv$cluster))
+  expect_false(is.null(asNamespace('prioritizrutils')$.pkgenv$cluster))
   expect_equal(get_number_of_threads(), 2L)
   # kill parallel backend
   set_number_of_threads(1)
   # check that is is killed
   expect_false(is.parallel())
-  expect_true(is.null(asNamespace('prioritizr')$.pkgenv$cluster))
+  expect_true(is.null(asNamespace('prioritizrutils')$.pkgenv$cluster))
   expect_equal(get_number_of_threads(), 1L)
   # errors
   expect_error(set_number_of_threads(0))

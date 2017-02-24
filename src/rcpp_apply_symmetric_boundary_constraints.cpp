@@ -1,8 +1,8 @@
-#include "prioritizrutils.h"
+#include "package.h"
 #include "optimization_problem.h"
 
 // [[Rcpp::export]]
-bool rcpp_apply_boundary_constraint(SEXP x, 
+bool rcpp_apply_symmetric_boundary_constraints(SEXP x, 
                                     arma::sp_mat boundary_matrix, 
                                     double penalty, 
                                     double edge_factor) {
@@ -71,7 +71,7 @@ bool rcpp_apply_boundary_constraint(SEXP x,
   if (ptr->_modelsense == "max") {
     // add total boundaries to planning unit costs in obj
     for (std::size_t i=0; i<(ptr->_number_of_planning_units); ++i)
-      ptr->_obj[i] += (total_boundaries[i] * -1.0);
+      ptr->_obj[i] -= total_boundaries[i];
     // add exposed boundaries to obj
     for (auto i=pu_b.cbegin(); i!=pu_b.cend(); ++i)
       ptr->_obj.push_back((*i));
@@ -102,7 +102,7 @@ bool rcpp_apply_boundary_constraint(SEXP x,
     ptr->_A_j.push_back(A_original_ncol + i); 
     ptr->_A_j.push_back(pu_i[i]);
     ptr->_A_x.push_back(1.0);
-    ptr->_A_x.push_back(-1.0);    
+    ptr->_A_x.push_back(-1.0);
     ptr->_sense.push_back("<=");
     ptr->_rhs.push_back(0.0);
     ptr->_row_ids.push_back("b1");
@@ -120,10 +120,12 @@ bool rcpp_apply_boundary_constraint(SEXP x,
     ptr->_rhs.push_back(0.0);
     ptr->_row_ids.push_back("b2");
 
-    // constraint to ensure that decision variable pu_i_j is calculated
-    // correctly. This is not needed if the pu_i and pu_j decsion variables
-    // are binary.
     if (ptr->_vtype[0] != "B") {
+    
+      // constraint to ensure that decision variable pu_i_j is calculated
+      // correctly. This is not needed if the pu_i and pu_j decision variables
+      // are binary.
+
       ++A_row;
       ptr->_A_i.push_back(A_row);
       ptr->_A_i.push_back(A_row);
@@ -137,7 +139,9 @@ bool rcpp_apply_boundary_constraint(SEXP x,
       ptr->_sense.push_back(">=");
       ptr->_rhs.push_back(-1.0);
       ptr->_row_ids.push_back("b3");
+      
     }
+    
   }
   
   // return result

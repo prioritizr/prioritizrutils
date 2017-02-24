@@ -83,7 +83,7 @@ check_that <- function(x) {
   invisible(TRUE)
 }
 
-#' As triplet dataframe
+#' As triplet data.frame
 #'
 #' Convert a sparse matrix to a triplet \code{data.frame}.
 #'
@@ -94,6 +94,36 @@ as_triplet_dataframe <- function(x) {
   data.frame(i=x@i, j=x@j, x=x@x)
 }
 
+#' Convert a triplet data.frame to a matrix
+#'
+#' Convert a triplet data.framr object to a sparse matrix.
+#'
+#' @param x \code{data.frame} object. The first column contains the row 
+#'   numbers, the second column contains the column numbers, and the
+#'   third column contains the cell values.
+#
+#' @return \code{\link[Matrix]{dgCMatrix-class}} object.
+#'
+#' @noRd
+convert_triplet_dataframe_to_matrix <- function(x, forceSymmetric=FALSE, ...) {
+  assertthat::assert_that(inherits(x, 'data.frame'), isTRUE(ncol(x) == 3),
+    isTRUE(all(x[[1]]==round(x[[1]]))), isTRUE(all(x[[2]]==round(x[[2]]))))
+  # create sparse amtrix
+  m <- Matrix::sparseMatrix(i=x[[1]], j=x[[2]], x=x[[3]], giveCsparse=FALSE, 
+                            ...)
+  if (forceSymmetric) {
+    # force the matrix to be symmetric
+    # we cannot gurantee that the cells that are filled in belong to either
+    # the upper or the lower diagonal
+    m2 <- matrix(c(m@j+1, m@i+1, m@x), ncol=3)
+    m2 <- m2[m2[,1] != m2[,2], ]
+    m[m2[,1:2]] <- m2[,3]
+    return(Matrix::forceSymmetric(m))
+  } else {
+    # return matrix in compressed format
+    return(as(m, 'dgCMatrix'))
+  }
+}
 
 #' Parallel extract
 #'
