@@ -98,9 +98,8 @@ NULL
 #' @method as.list Parameters
 #' @export
 as.list.Parameters <- function(x, ...)
-  structure(lapply(x$parameters, function(x) x$value),
-            .Names=sapply(x$parameters, function(x) x$name),
-            id=sapply(x$parameters, function(x) x$id))
+  structure(lapply(x$ids(), function(i) x[[i]]$value),
+            .Names=x$names(), id=x$ids())
 
 #' Is it?
 #'

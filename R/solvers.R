@@ -159,7 +159,7 @@ add_gurobi_solver <- function(x, gap=0.1, time_limit=.Machine$integer.max,
         upper_limit=as.integer(.Machine$integer.max)),
       integer_parameter('threads', threads, lower_limit=1L, 
         upper_limit=parallel::detectCores()),
-      binary_parameter('first feasible', first_feasible)),
+      binary_parameter('first_feasible', first_feasible)),
     solve=function(self, x) {
       model <- list(
         modelsense = x$modelsense(),
@@ -170,12 +170,14 @@ add_gurobi_solver <- function(x, gap=0.1, time_limit=.Machine$integer.max,
         sense = x$sense(),
         lb = x$lb(),
         ub = x$ub())
-      p <- as.list(self$parameters)
-      names(p) <- c('Presolve', 'MIPGap', 'TimeLimit', 'Threads',
-        'SolutionLimit')
+      p <- list(Presolve=self$parameters$get('presolve'), 
+                MIPGap=self$parameters$get('gap'), 
+                TimeLimit=self$parameters$get('time_limit'),
+                Threads=self$parameters$get('threads'),
+                SolutionLimit=self$parameters$get('first_feasible'))
       if (p$SolutionLimit==0)
         p$SolutionLimit <- NULL
-      x <- do.call(gurobi::gurobi, list(model=model, params=p))$x
+      x <- gurobi::gurobi(model=model, params=p)$x
       if (file.exists('gurobi.log')) unlink('gurobi.log')
       return(x)
     }))
@@ -222,7 +224,7 @@ add_rsymphony_solver <- function(x, gap=0.1, time_limit=-1, first_feasible=0,
       p <- as.list(self$parameters)
       model$dir <- replace(model$dir, model$dir=='=', '==')
       model$types <- replace(model$types, model$types=='S', 'C')
-      names(p)[2] <- 'gap_limit'
+      names(p)[which(names(p)=='gap')] <- 'gap_limit'
       p$first_feasible <- as.logical(p$first_feasible)
       do.call(Rsymphony::Rsymphony_solve_LP, append(model, p))$solution
     }))
@@ -268,7 +270,7 @@ add_lpsymphony_solver <- function(x, gap=0.1, time_limit=-1, verbosity=1,
         bounds = list(lower = x$lb(), upper=x$ub()),
         max = x$modelsense()=='max')
       p <- as.list(self$parameters)
-      names(p)[2] <- 'gap_limit'
+      names(p)[which(names(p)=='gap')] <- 'gap_limit'
       model$dir <- replace(model$dir, model$dir=='=', '==')
       model$types <- replace(model$types, model$types=='S', 'C')
       p$first_feasible <- as.logical(p$first_feasible)

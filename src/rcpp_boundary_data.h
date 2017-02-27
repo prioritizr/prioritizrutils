@@ -8,6 +8,7 @@
 #include <unordered_map>
 #include <boost/functional/hash.hpp>
 #include <boost/unordered_set.hpp>
+#include <boost/unordered_map.hpp>
 #include "functions.h"
 
 class LINE

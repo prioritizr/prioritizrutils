@@ -114,6 +114,6 @@ test_that('inheritance', {
   data(sim_pu_raster, sim_features)
   p1 <- problem(sim_pu_polygons, sim_features)
   p2 <- p1 %>% add_locked_in_constraints('locked_in')
-  expect_true(length(p1$constraints$data)==0)
-  expect_true(length(p2$constraints$data)==1)
+  expect_equal(p1$constraints$length(), 0)
+  expect_equal(p2$constraints$length(), 1)
 })

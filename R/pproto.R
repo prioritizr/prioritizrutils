@@ -40,25 +40,15 @@ NULL
 pproto <- function(`_class` = NULL, `_inherit` = NULL, ...) {
   assertthat::assert_that(assertthat::is.string(`_class`) || is.null(`_class`),
     inherits(`_inherit`, 'pproto') || is.null(`_inherit`))
-  # function to re-instance proto fields
-  reprototype_fields <- function(p) {
-    n <- p$ls()
-    cl <- sapply(n, function(i) inherits(p[[i]], 'pproto'))
-    if (isTRUE(any(cl))) {
-      for (i in which(cl)) {
-        p[[i]] <- p[[i]]$proto()
-        reprototype_fields(p[[i]])
-      }
-    } else {
-      return(p)
-    }
-  }
-  # function to copy objects from one proto to another
+  
+  # copy objects from one proto to another proto
   assign_fields <- function(p1, p2) {
-    if (!inherits(p2, 'pproto')) return(NULL)
+    if (!inherits(p2, 'proto')) return()
     for (i in p2$ls()) {
       if (inherits(p2[[i]], 'proto')) {
-        p1[[i]] <- reprototype_fields(p2$proto())
+        p1[[i]] <- proto::proto()
+        class(p1[[i]]) <- class(p2[[i]])
+        assign_fields(p1[[i]], p2[[i]])
       } else {
         p1[[i]] <- p2[[i]]
       }
@@ -66,16 +56,18 @@ pproto <- function(`_class` = NULL, `_inherit` = NULL, ...) {
     assign_fields(p1, p2$.super)
   }
   # create new proto
-  p <- proto::proto(...)
+  p <- proto::proto()
   if (!is.null(`_inherit`)) {
-    # assign objects
+    # assign inherited members
     assign_fields(p, `_inherit`)
-    # assign class
+    # assign inherited classes
     class(p) <- class(`_inherit`)
   } else {
     # assign pproto class
     class(p) <- c('pproto', class(p))
   }
+  # assign members to new proto
+  assign_fields(p, proto::proto(...))
   # assign new class if specified
   if (!is.null(`_class`))
     class(p) <- c(`_class`, class(p))

@@ -1,5 +1,6 @@
 #include "package.h"
 #include "optimization_problem.h"
+#include "rcpp_boundary_data.h"
 
 // [[Rcpp::export]]
 bool rcpp_apply_asymmetric_boundary_constraints(SEXP x, 
@@ -7,7 +8,15 @@ bool rcpp_apply_asymmetric_boundary_constraints(SEXP x,
                                     double penalty, 
                                     double edge_factor) {
   
+  /* The following code makes the following critical assumption
+   * 
+   * boundary_matrix is a sparse matrix with only cells in either the upper
+   * or lower triangle and the diagonal filled in. If this condition is not met, 
+   * then the boundary calculations will be incorrect.
+   */
+  
   // initialization
+  typedef std::pair<std::size_t,std::size_t> PUPAIRID;
   Rcpp::XPtr<OPTIMIZATIONPROBLEM> ptr = Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x);
   std::size_t A_original_ncol = ptr->_obj.size();
   std::size_t A_original_nrow = ptr->_rhs.size();  
@@ -16,21 +25,14 @@ bool rcpp_apply_asymmetric_boundary_constraints(SEXP x,
   boundary_matrix *= penalty;
   boundary_matrix.diag() *= edge_factor;
   
-  /// extract data from the boundary matrix
-  // data to represent connectivities
-  std::vector<std::size_t> pu_i;
-  pu_i.reserve(boundary_matrix.n_nonzero - ptr->_number_of_planning_units);
-  std::vector<std::size_t> pu_j;
-  pu_j.reserve(boundary_matrix.n_nonzero - ptr->_number_of_planning_units);
-  std::vector<double> pu_b;
-  pu_b.reserve(boundary_matrix.n_nonzero - ptr->_number_of_planning_units);
-  // data to represent fixed costs
-  std::vector<std::size_t> pu_fi;
-  pu_i.reserve(ptr->_number_of_planning_units);
-  std::vector<double> pu_fb;
-  pu_b.reserve(ptr->_number_of_planning_units);
+  // extract data from the boundary matrix
   std::size_t curr_i, curr_j;
+  std::vector<double> total_boundaries(ptr->_number_of_planning_units, 0.0);
+  std::unordered_map<PUPAIRID, double, boost::hash<PUPAIRID>> edges;
+  edges.reserve(boundary_matrix.n_nonzero - ptr->_number_of_planning_units);
   double curr_value;
+  std::unordered_map<PUPAIRID, double, boost::hash<PUPAIRID>>::iterator curr_itr;
+  PUPAIR curr_pu_pair;
   for (arma::sp_mat::const_iterator it=boundary_matrix.begin(); 
        it!=boundary_matrix.end();  
        ++it) {
@@ -38,112 +40,110 @@ bool rcpp_apply_asymmetric_boundary_constraints(SEXP x,
     curr_i = it.row();
     curr_j = it.col();
     curr_value = *it;
+    // add the boundary to the total for planning unit i
+    total_boundaries[curr_i] += curr_value;
     if (curr_i != curr_j) {
       // extract planning unit indices and shared boundaries from the matrix
-      pu_i.push_back(curr_i);
-      pu_j.push_back(curr_j);
-      pu_b.push_back(curr_value);
-    } else {
-      // extract fixed planning unit costs
-      pu_fi.push_back(curr_i);
-      pu_fb.push_back(curr_value);
+      curr_pu_pair = PUPAIR(curr_i, curr_j, curr_value);
+      curr_itr = edges.find(curr_pu_pair._id);
+      if (curr_itr == edges.end()) {
+        edges.insert(std::pair<PUPAIRID, double>(curr_pu_pair._id, curr_value));
+      } else {
+        (curr_itr->second)+=curr_value;
+      }
     }
   }
   
   // if the objective is to minimize the costs, then boundary penalties are
   // positive
   if (ptr->_modelsense == "min") {
-    // add fixed costs to planning units
-    for (std::size_t i=0; i<pu_fi.size(); ++i)
-      ptr->_obj[pu_fi[i]] -= pu_fb[i];
-    // add connections betweeen planning units to obj
-    for (auto i=pu_b.cbegin(); i!=pu_b.cend(); ++i)
-      ptr->_obj.push_back((*i));
+    // add total boundaries to planning unit costs in obj
+    for (std::size_t i=0; i<(ptr->_number_of_planning_units); ++i)
+      ptr->_obj[i] += total_boundaries[i];
+    // add exposed boundaries to obj
+    for (auto itr=edges.cbegin(); itr!=edges.cend(); ++itr)
+      ptr->_obj.push_back((itr->second) * -1.0);
   }
   
   // if the objective is to maximize the costs, then boundary penalties are
   // negative
   if (ptr->_modelsense == "max") {
-    // add fixed connectivity costs from planning units
-    for (std::size_t i=0; i<pu_fi.size(); ++i)
-      ptr->_obj[pu_fi[i]] += pu_fb[i];
+    // add total boundaries to planning unit costs in obj
+    for (std::size_t i=0; i<(ptr->_number_of_planning_units); ++i)
+      ptr->_obj[i] -= total_boundaries[i];
     // add exposed boundaries to obj
-    for (auto i=pu_b.cbegin(); i!=pu_b.cend(); ++i)
-      ptr->_obj.push_back((*i) * -1.0);
+    for (auto itr=edges.cbegin(); itr!=edges.cend(); ++itr)
+      ptr->_obj.push_back((itr->second));
   }
   
   // add lb for new decision variables
-  for (auto i=pu_i.cbegin(); i!=pu_i.cend(); ++i)
+  for (std::size_t i=0; i<(edges.size()); ++i)
     ptr->_lb.push_back(0.0);
+  
   // add ub for new decision variables
-  for (auto i=pu_i.cbegin(); i!=pu_i.cend(); ++i)
+  for (std::size_t i=0; i<(edges.size()); ++i)
     ptr->_ub.push_back(1.0);
+  
   // add vtype for new decision variables
-  for (auto i=pu_i.cbegin(); i!=pu_i.cend(); ++i)
+  for (std::size_t i=0; i<(edges.size()); ++i)
     ptr->_vtype.push_back(ptr->_vtype[0]);
+  
   // add col ids for new decision variables
-  for (auto i=pu_i.cbegin(); i!=pu_i.cend(); ++i)
+  for (std::size_t i=0; i<(edges.size()); ++i)
     ptr->_col_ids.push_back("b");
   
-  // add new constraints to 
+  // add new constraints to
+  std::size_t i = 0;
   std::size_t A_row = (A_original_nrow-1);
-  for (std::size_t i=0; i<(pu_i.size()); ++i) {
+  for (auto itr=edges.cbegin(); itr!=edges.cend(); ++itr) {
     // increment row
     ++A_row;
     
-    // constraint
-    // pu_ij <= pu_i
-    // pu_ij - pu_i <= 0
-    // ie. if pu_ij cannot be 1 is pu_i is 0
+    // constraint to ensure that decision variable pu_i_j is less than or 
+    // equal to pu_i    
     ptr->_A_i.push_back(A_row); 
     ptr->_A_i.push_back(A_row); 
     ptr->_A_j.push_back(A_original_ncol + i); 
-    ptr->_A_j.push_back(pu_i[i]);
-    ptr->_A_x.push_back(1.0);    
+    ptr->_A_j.push_back(itr->first.first);
+    ptr->_A_x.push_back(1.0);
     ptr->_A_x.push_back(-1.0);
     ptr->_sense.push_back("<=");
     ptr->_rhs.push_back(0.0);
     ptr->_row_ids.push_back("b1");
-
-    // increment row
+    
+    // constraint to ensure that decision variable pu_i_j is less than or 
+    // equal to pu_j
     ++A_row;
-
-    // constraint
-    // pu_ij >= pu_i - pu_j
-    // pu_ij - pu_i + pu_j >= 0
-    // ie. if pu_i is 1 then pu_i_j must be 1
-    ptr->_A_i.push_back(A_row);
-    ptr->_A_i.push_back(A_row);
-    ptr->_A_i.push_back(A_row);
-    ptr->_A_j.push_back(A_original_ncol + i);
-    ptr->_A_j.push_back(pu_i[i]);
-    ptr->_A_j.push_back(pu_j[i]);
+    ptr->_A_i.push_back(A_row); 
+    ptr->_A_i.push_back(A_row); 
+    ptr->_A_j.push_back(A_original_ncol + i); 
+    ptr->_A_j.push_back(itr->first.second);
     ptr->_A_x.push_back(1.0);
     ptr->_A_x.push_back(-1.0);
-    ptr->_A_x.push_back(1.0);
-    ptr->_sense.push_back(">=");
-    ptr->_rhs.push_back(0);
-    ptr->_row_ids.push_back("b2");    
-    
-    // increment row
-    ++A_row;
-
-    // constraint
-    // pu_ij <= 2 - pu_i - pu_j
-    // pu_ij + pu_i + pu_j <= 2
-    // ie. if pu_i and pu _j are both 1 than pu_ij = 0
-    ptr->_A_i.push_back(A_row);
-    ptr->_A_i.push_back(A_row);
-    ptr->_A_i.push_back(A_row);
-    ptr->_A_j.push_back(A_original_ncol + i);
-    ptr->_A_j.push_back(pu_i[i]);
-    ptr->_A_j.push_back(pu_j[i]);
-    ptr->_A_x.push_back(1.0);
-    ptr->_A_x.push_back(1.0);
-    ptr->_A_x.push_back(1.0);
     ptr->_sense.push_back("<=");
-    ptr->_rhs.push_back(2.0);
-    ptr->_row_ids.push_back("b3");
+    ptr->_rhs.push_back(0.0);
+    ptr->_row_ids.push_back("b2");
+
+//       // constraint to ensure that decision variable pu_i_j is calculated
+//       // correctly. This is not needed if the pu_i and pu_j decision variables
+//       // are binary.
+// 
+//       ++A_row;
+//       ptr->_A_i.push_back(A_row);
+//       ptr->_A_i.push_back(A_row);
+//       ptr->_A_i.push_back(A_row);
+//       ptr->_A_j.push_back(A_original_ncol + i);
+//       ptr->_A_j.push_back(itr->first.first);
+//       ptr->_A_j.push_back(itr->first.second);
+//       ptr->_A_x.push_back(1.0);
+//       ptr->_A_x.push_back(-1.0);
+//       ptr->_A_x.push_back(-1.0);
+//       ptr->_sense.push_back(">=");
+//       ptr->_rhs.push_back(-1.0);
+//       ptr->_row_ids.push_back("b3");
+      
+    // increment counter
+    ++i;
     
   }
   

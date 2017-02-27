@@ -18,7 +18,7 @@ Create a new collection of \code{Parameter} objects.
 \examples{
 
 # create two Parameter objects
-p1 <- binary_parameter('paramter one', 1)
+p1 <- binary_parameter('parameter one', 1)
 print(p1)
 
 p2 <- numeric_parameter('parameter two', 5)

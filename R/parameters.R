@@ -191,7 +191,7 @@ numeric_parameter_array <- function(name, value, label,
 #' @examples
 #'
 #' # create two Parameter objects
-#' p1 <- binary_parameter('paramter one', 1)
+#' p1 <- binary_parameter('parameter one', 1)
 #' print(p1)
 #'
 #' p2 <- numeric_parameter('parameter two', 5)
@@ -205,5 +205,7 @@ numeric_parameter_array <- function(name, value, label,
 parameters <- function(...) {
   args <- list(...)
   assertthat::assert_that(isTRUE(all(sapply(args, inherits, 'Parameter'))))
-  pproto(NULL, Parameters, parameters=args)
+  p <- pproto(NULL, Parameters)
+  for (i in args) p$add(i)
+  return(p)
 } 

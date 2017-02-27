@@ -56,14 +56,14 @@ compile.ConservationProblem <- function(x, ...) {
   x$objective$calculate(x)
   x$objective$apply(op, x)
   # add penalties to optimization problem
-  for (i in seq_along(x$penalties$data)) {
-    x$penalties$data[[i]]$calculate(x)
-    x$penalties$data[[i]]$apply(op, x)
+  for (i in x$penalties$ids()) {
+    x$penalties[[i]]$calculate(x)
+    x$penalties[[i]]$apply(op, x)
   }
   # add constraints to optimization problem
-  for (i in seq_along(x$constraints$data)) {
-    x$constraints$data[[i]]$calculate(x)
-    x$constraints$data[[i]]$apply(op, x)
+  for (i in x$constraints$ids()) {
+    x$constraints[[i]]$calculate(x)
+    x$constraints[[i]]$apply(op, x)
   }
   # check that planning units have not been locked in and locked out
   pu_ub <- op$ub()[seq_len(x$number_of_planning_units())]

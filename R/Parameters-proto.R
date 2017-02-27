@@ -28,6 +28,10 @@ methods::setOldClass('Parameters')
 #'
 #' \code{x$names()}
 #'
+#' \code{x$ids()}
+#'
+#' \code{x$length()}
+#'
 #' \code{x$get(id)}
 #'
 #' \code{x$set(id, value)}
@@ -60,6 +64,10 @@ methods::setOldClass('Parameters')
 #'
 #' \item{names}{return \code{character} names of parameters.}
 #'
+#' \item{ids}{return \code{character} parameter unique identifiers.}
+#'
+#' \item{length}{return \code{integer} number of parameters in object.}
+#
 #' \item{get}{retrieve the value of a parameter in the object
 #'    using an \code{Id} object.}
 #'
@@ -82,7 +90,6 @@ NULL
 #' @export
 Parameters <- pproto(
   'Parameters',
-  parameters = list(),
   print = function(self) {
     message(self$repr())
   },
@@ -92,64 +99,66 @@ Parameters <- pproto(
   repr = function(self) {
     if (self$length()>0)
       return(paste0('[',paste(sapply(
-        self$parameters, 
-        function(x) {x$repr()}), collapse=', '), ']'))
+        self$ids(), 
+        function(x) {self[[x]]$repr()}), collapse=', '), ']'))
     return('[]')
   },
+  ids = function(self) {
+    o <- self$ls()
+    o[!sapply(o, function(x) inherits(self[[x]], 'function'))]
+  },  
   find = function(self, x) {
     assertthat::assert_that(assertthat::is.string(x) || is.id(x))
-    if (inherits(x, 'Id')) {
-      i <- match(x, sapply(self$parameters, function(x) x$id))
-      if (!is.finite(i))
-        stop('parameter with matching id not found')
-      if (base::length(i) > 1)
-        stop('multiple parameters with the same id')
+      if (inherits(x, 'Id')) {
+        return(x)
     } else {
-      i <- match(x, sapply(self$parameters, function(x) x$name))
-      if (!is.finite(i))
+      n <- self$ids()
+      x <- match(x, sapply(n, function(j) self[[j]]$name))
+      if (!is.finite(x))
         stop('parameter with matching name not found')
-      if (base::length(i) > 1)
+      if (base::length(x) > 1)
         stop('multiple parameters with the same name')
+      return(n[x])
     }
-    i
   },  
   length = function(self) {
-    base::length(self$parameters)
+    base::length(self$ids())
   },
   names = function(self) {
-    sapply(self$parameters, function(x) x$name)
+    sapply(self$ids(), function(x) self[[x]]$name)
   },
   get = function(self, x) {
     assertthat::assert_that(assertthat::is.string(x) || is.id(x))
-    self$parameters[[self$find(x)]]$get()
+    self[[self$find(x)]]$get()
   },
   set = function(self, x, value) {
     assertthat::assert_that(assertthat::is.string(x) || is.id(x))
-    self$parameters[[self$find(x)]]$set(value)
+    self[[self$find(x)]]$set(value)
     invisible()
   },
   add = function(self, x) {
     assertthat::assert_that(inherits(x, 'Parameter'))
-    self$parameters <- append(self$parameters, list(x))
+    self[[x$id]] <- x
     invisible()
   },
   reset = function(self, x) {
     assertthat::assert_that(assertthat::is.string(x) || is.id(x))
-    self$parameters[[self$find(x)]]$reset()
+    self[[self$find(x)]]$reset()
     invisible()
   },
   render = function(self, x) {
     assertthat::assert_that(assertthat::is.string(x) || is.id(x))
-    self$parameters[[self$find(x)]]$render()
+    self[[self$find(x)]]$render()
   },
   render_all = function(self) {
     do.call(shiny::div, 
         append(list(class='Parameters'), 
-                lapply(self$parameters, function(x) {x$render()})))
+                lapply(self$ids(), 
+                       function(x) {self[[x]]$render()})))
   },
   reset_all = function(self) {
-    for (i in seq_along(self$parameters))
-      self$parameters[[i]]$reset()
+    for (i in self$ids())
+      self[[i]]$reset()
     invisible()
   })
 

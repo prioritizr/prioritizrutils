@@ -32,9 +32,9 @@ If a \code{\link{OptimizationProblem-class}} is supplied, then the
   then the  solution is returned in the format of the cost data contained 
   inside it:
   \itemize{
-  \item{\code{\link[raster]{RasterLayer-class}}}{the solution is returned as a
-     \code{\link[raster]{RasterLayer-class}} object. Cell values denote the 
-     decision.}
+  \item{\code{\link[raster]{RasterLayer-class}}}{the solution is returned as
+     a \code{\link[raster]{RasterLayer-class}} object. Cell values denote 
+     the decision.}
   \item{\code{\link[sp]{Spatial-class}}}{the solution is returned as a 
      \code{\link[sp]{SpatialPolygonsDataFrame}} or
      \code{\link[sp]{SpatialLinesDataFrame}} with a "Solution" column 

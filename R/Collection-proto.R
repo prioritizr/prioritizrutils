@@ -11,16 +11,20 @@ methods::setOldClass('Collection')
 #'
 #' @section Fields:
 #' \describe{
-#'   \item{$data}{\code{list} object containing 
-#'      \code{\link{ConservationModifier-class}} objects.}
+#'   \item{$...}{\code{\link{ConservationModifier-class}} objects stored
+#'      in the collection.}
 #' }
-#'
+#' 
 #' @section Usage:
 #' \code{x$print()}
 #'
 #' \code{x$show()}
 #'
 #' \code{x$repr()}
+#'
+#' \code{x$ids()}
+#'
+#' \code{x$length()}
 #'
 #' \code{x$add}
 #'
@@ -34,26 +38,41 @@ methods::setOldClass('Collection')
 #'
 #' @section Arguments:
 #' \describe{
+#'
 #' \item{id}{\code{id} object.}
+#'
 #' \item{value}{any object.}
+#'
 #' }
 #'
 #' @section Details:
+#'
 #' \describe{
+#'
 #' \item{print}{print the object.}
+#'
 #' \item{show}{show the object.}
+#'
 #' \item{repr}{\code{character} representation of object.}
+#'
+#' \item{ids}{\code{character} ids for objects inside collection.}
+#'
+#' \item{length}{\code{integer} number of objects inside collection.}
 #'
 #' \item{add}{add \code{\link{ConservationModifier-class}} object.}
 #'
 #' \item{get_parameter}{retrieve the value of a parameter in the object
 #'   using an \code{id} object.}
+#'
 #' \item{set_parameter}{change the value of a parameter in the object 
 #'   to a new object.}
+#'
 #' \item{render_parameter}{generate a \emph{shiny} widget to modify the
 #'   the value of a parameter (specified by argument \code{id}).}
+#'
 #' \item{render_all_parameters}{generate a \code{\link[shiny]{div}}
 #'   containing all the parameters' widgets.}
+#'
 #' }
 #'
 #' @seealso \code{\link{Constraint-class}}, \code{\link{Penalties-class}}.
@@ -66,45 +85,52 @@ NULL
 #' @export
 Collection <- pproto(
   'Collection',
-  data = list(),
   repr = function(self) {
-    if (length(self$data)>0)
-      return(paste0('<', paste(sapply(self$data, function(z) {z$repr()}),
-        collapse='\n'), '>'))
+    if (length(self$ids())>0)
+      return(paste0('<', paste(sapply(self$ids(), 
+                                      function(z) {self[[z]]$repr()}), 
+                         collapse='\n'), '>'))
     return('<none>')
   },
   find_parameter = function(id) {
-    r <- sapply(self$data,
-                function(x) {
-                  id %in% sapply(x$parameters, 
-                                 function(z) {z$id})})
+    n <- self$ids()
+    r <- sapply(n, function(x) {id %in% sapply(self[[x]]$parameters,
+                                               function(z) {z$id})})
     s <- sum(r)
     if (s==0) {
       stop('no parameter with matching id found')
     } else if (s > 1) {
       stop('multiple parameters with matching id found')
     }
-    which(r)
-  },  
+    n[r]
+  },
+  ids = function(self) {
+    o <- self$ls()
+    o[!sapply(o, function(x) inherits(self[[x]], 'function'))]
+  },
+  length = function(self) {
+    length(self$ids())
+  },
   add = function(self, x) {
     assertthat::assert_that(inherits(x, 'ConservationModifier'))
-    self$data <- append(self$data, x)
+    self[[new_id()]] <- x
+    invisible()
   },
   get_parameter = function(self, id) {
     assertthat::assert_that(inherits(id), 'Id')
-    self$data[[self$find_parameter(id)]]$get_parameter(id)
+    self[[self$find_parameter(id)]]$get_parameter(id)
   },
   set_parameter = function(self, id, value) {
     assertthat::assert_that(inherits(id), 'Id')
-    self$data[[self$find_parameter(id)]]$set_parameter(id, value)
+    self[[self$find_parameter(id)]]$set_parameter(id, value)
   },
   render_parameter = function(self, id, value) {
     assertthat::assert_that(inherits(id), 'Id')
-    self$data[[self$find_parameter(id)]]$render_parameter(id)
+    self[[self$find_parameter(id)]]$render_parameter(id)
   },
   render_all_parameters = function(self) {
     do.call(shiny::div, 
         append(list(class='Collection'), 
-                lapply(self$data,
-                       function(x) {x$render_all_parameters()})))
+                lapply(self$ids(),
+                       function(x) {self[[x]]$render_all_parameters()})))
   })

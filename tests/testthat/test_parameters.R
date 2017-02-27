@@ -305,7 +305,7 @@ test_that('parameters', {
   x$show()
   x$print()
   expect_equal(x$repr(), '[p1 (0.5), p2 (min: 0, max: 10)]')
-  expect_equal(x$names(), c(p1$name, p2$name))
+  expect_equal(unname(sort(x$names())), c(p1$name, p2$name))
   expect_equal(x$get(p1$id), p1$get())
   expect_equal(x$get(p1$name), p1$get())
   expect_equal(x$render(p1$id), p1$render())

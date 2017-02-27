@@ -30,6 +30,10 @@ stored inside it.
 
 \code{x$names()}
 
+\code{x$ids()}
+
+\code{x$length()}
+
 \code{x$get(id)}
 
 \code{x$set(id, value)}
@@ -66,6 +70,9 @@ stored inside it.
 
 \item{names}{return \code{character} names of parameters.}
 
+\item{ids}{return \code{character} parameter unique identifiers.}
+
+\item{length}{return \code{integer} number of parameters in object.}
 \item{get}{retrieve the value of a parameter in the object
    using an \code{Id} object.}
 

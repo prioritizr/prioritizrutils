@@ -7,7 +7,7 @@
 \description{
 This class is used to represent conservation planning problems. A 
 conservation planning problem has spatially explicit planning units.
-A prioritisation involves making a decision on each planning unit (eg. is 
+A prioritization involves making a decision on each planning unit (eg. is 
 the planning unit going to be turned into a protected area?). Each 
 planning unit is associated with a cost that represents the cost incurred
 by applying the decision to the planning unit. The problem also has a set 

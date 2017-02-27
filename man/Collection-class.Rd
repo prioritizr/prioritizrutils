@@ -11,8 +11,8 @@ This prototype represents a collection of
 \section{Fields}{
 
 \describe{
-  \item{$data}{\code{list} object containing 
-     \code{\link{ConservationModifier-class}} objects.}
+  \item{$...}{\code{\link{ConservationModifier-class}} objects stored
+     in the collection.}
 }
 }
 
@@ -23,6 +23,10 @@ This prototype represents a collection of
 \code{x$show()}
 
 \code{x$repr()}
+
+\code{x$ids()}
+
+\code{x$length()}
 
 \code{x$add}
 
@@ -38,28 +42,43 @@ This prototype represents a collection of
 \section{Arguments}{
 
 \describe{
+
 \item{id}{\code{id} object.}
+
 \item{value}{any object.}
+
 }
 }
 
 \section{Details}{
 
+
 \describe{
+
 \item{print}{print the object.}
+
 \item{show}{show the object.}
+
 \item{repr}{\code{character} representation of object.}
+
+\item{ids}{\code{character} ids for objects inside collection.}
+
+\item{length}{\code{integer} number of objects inside collection.}
 
 \item{add}{add \code{\link{ConservationModifier-class}} object.}
 
 \item{get_parameter}{retrieve the value of a parameter in the object
   using an \code{id} object.}
+
 \item{set_parameter}{change the value of a parameter in the object 
   to a new object.}
+
 \item{render_parameter}{generate a \emph{shiny} widget to modify the
   the value of a parameter (specified by argument \code{id}).}
+
 \item{render_all_parameters}{generate a \code{\link[shiny]{div}}
   containing all the parameters' widgets.}
+
 }
 }
 

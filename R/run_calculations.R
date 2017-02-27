@@ -79,10 +79,10 @@ run_calculations <- function(x) {
     x$decision$calculate(x)
   if (!is.Waiver(x$objective))
     x$objective$calculate(x)
-  for (i in seq_along(x$penalties$data))
-    x$penalties$data[[i]]$calculate(x)  
-  for (i in seq_along(x$constraints$data))
-    x$constraints$data[[i]]$calculate(x)
+  for (i in seq_along(x$penalties$ids()))
+    x$penalties[[i]]$calculate(x)
+  for (i in seq_along(x$constraints$ids()))
+    x$constraints[[i]]$calculate(x)
   invisible()
 }
 

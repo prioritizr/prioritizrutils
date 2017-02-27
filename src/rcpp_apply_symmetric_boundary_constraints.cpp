@@ -63,7 +63,7 @@ bool rcpp_apply_symmetric_boundary_constraints(SEXP x,
       ptr->_obj[i] += total_boundaries[i];
     // add exposed boundaries to obj
     for (auto i=pu_b.cbegin(); i!=pu_b.cend(); ++i)
-      ptr->_obj.push_back((*i) * -1.0);
+      ptr->_obj.push_back((*i) * -2.0);
   }
   
   // if the objective is to maximize the costs, then boundary penalties are
@@ -74,22 +74,25 @@ bool rcpp_apply_symmetric_boundary_constraints(SEXP x,
       ptr->_obj[i] -= total_boundaries[i];
     // add exposed boundaries to obj
     for (auto i=pu_b.cbegin(); i!=pu_b.cend(); ++i)
-      ptr->_obj.push_back((*i));
+      ptr->_obj.push_back((*i) * 2.0);
   }
   
   // add lb for new decision variables
   for (auto i=pu_i.cbegin(); i!=pu_i.cend(); ++i)
     ptr->_lb.push_back(0.0);
+  
   // add ub for new decision variables
   for (auto i=pu_i.cbegin(); i!=pu_i.cend(); ++i)
     ptr->_ub.push_back(1.0);
+  
   // add vtype for new decision variables
-  for (auto i=pu_i.cbegin(); i!=pu_i.cend(); ++i) {
+  for (auto i=pu_i.cbegin(); i!=pu_i.cend(); ++i)
     ptr->_vtype.push_back(ptr->_vtype[0]);
-  }
+  
   // add col ids for new decision variables
   for (auto i=pu_i.cbegin(); i!=pu_i.cend(); ++i)
     ptr->_col_ids.push_back("b");
+  
   // add new constraints to 
   std::size_t A_row = (A_original_nrow-1);
   for (std::size_t i=0; i<(pu_i.size()); ++i) {
@@ -120,27 +123,27 @@ bool rcpp_apply_symmetric_boundary_constraints(SEXP x,
     ptr->_rhs.push_back(0.0);
     ptr->_row_ids.push_back("b2");
 
-    if (ptr->_vtype[0] != "B") {
-    
-      // constraint to ensure that decision variable pu_i_j is calculated
-      // correctly. This is not needed if the pu_i and pu_j decision variables
-      // are binary.
-
-      ++A_row;
-      ptr->_A_i.push_back(A_row);
-      ptr->_A_i.push_back(A_row);
-      ptr->_A_i.push_back(A_row);
-      ptr->_A_j.push_back(A_original_ncol + i);
-      ptr->_A_j.push_back(pu_i[i]);
-      ptr->_A_j.push_back(pu_j[i]);
-      ptr->_A_x.push_back(1.0);
-      ptr->_A_x.push_back(-1.0);
-      ptr->_A_x.push_back(-1.0);
-      ptr->_sense.push_back(">=");
-      ptr->_rhs.push_back(-1.0);
-      ptr->_row_ids.push_back("b3");
-      
-    }
+//     if (ptr->_vtype[0] != "B") {
+//     
+//       // constraint to ensure that decision variable pu_i_j is calculated
+//       // correctly. This is not needed if the pu_i and pu_j decision variables
+//       // are binary.
+// 
+//       ++A_row;
+//       ptr->_A_i.push_back(A_row);
+//       ptr->_A_i.push_back(A_row);
+//       ptr->_A_i.push_back(A_row);
+//       ptr->_A_j.push_back(A_original_ncol + i);
+//       ptr->_A_j.push_back(pu_i[i]);
+//       ptr->_A_j.push_back(pu_j[i]);
+//       ptr->_A_x.push_back(1.0);
+//       ptr->_A_x.push_back(-1.0);
+//       ptr->_A_x.push_back(-1.0);
+//       ptr->_sense.push_back(">=");
+//       ptr->_rhs.push_back(-1.0);
+//       ptr->_row_ids.push_back("b3");
+//       
+//     }
     
   }
   
