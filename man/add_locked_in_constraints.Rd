@@ -75,7 +75,6 @@ locked_in <- sim_pu_polygons[sim_pu_polygons$locked_in == 1,]
 p5 <- p1 \%>\% add_locked_in_constraints(locked_in)
 
 \donttest{
-
 # solve problems
 s1 <- solve(p1)
 s2 <- solve(p2)
@@ -99,7 +98,6 @@ plot(s4[s4$solution==1,], col="darkgreen", add=TRUE)
 
 plot(s5, main="locked in (polygon input)")
 plot(s5[s5$solution==1,], col="darkgreen", add=TRUE)
-
 }
 
 }

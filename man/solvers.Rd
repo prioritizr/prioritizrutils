@@ -94,7 +94,6 @@ problem. Below is a list of different solvers that can be added to a
 }
 \examples{
 \donttest{
-
 # create basic problem
 p <- problem(sim_pu_raster, sim_features) \%>\%
   add_min_set_objective() \%>\%
@@ -130,7 +129,6 @@ if (requireNamespace("lpsymphony", quietly=TRUE)) {
 
 # plot solutions
 plot(s, main=titles)
-
 }
 
 }

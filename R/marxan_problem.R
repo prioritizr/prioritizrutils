@@ -95,14 +95,12 @@ NULL
 #'                      edge_factor=0.5)
 #'
 #' \donttest{
-#'
 #' # solve problem
 #'
 #' s1 <- solve(p1)
 #'
 #' # show solution
 #' plot(s1)
-#'
 #' }
 #'
 #' # create marxan problem using marxan input files
@@ -110,13 +108,11 @@ NULL
 #' p2 <- marxan_problem(input_file)
 #'
 #' \donttest{
-#'
 #' # solve problem
 #' s2 <- solve(p2)
 #'
 #' # count number of selected planning units in solution
 #' print(sum(s2))
-#'
 #' }
 #'
 #' @name marxan_problem

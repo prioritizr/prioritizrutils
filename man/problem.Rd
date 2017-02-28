@@ -110,16 +110,16 @@ s <- list(solve(p1), solve(p2), solve(p3), solve(p4))
 
 # plot solutions
 par(mfrow=c(2,2))
-plot(s[[1]], main='raster data')
+plot(s[[1]], main = "raster data")
 
-plot(s[[2]], main="polygon data")
-plot(s[[2]][s[[2]]$solution==1, ], col="darkgreen", add=TRUE)
+plot(s[[2]], main = "polygon data")
+plot(s[[2]][s[[2]]$solution == 1, ], col = "darkgreen", add = TRUE)
 
-plot(s[[3]], main="line data")
-lines(s[[3]][s[[3]]$solution==1, ], col="darkgreen")
+plot(s[[3]], main = "line data")
+lines(s[[3]][s[[3]]$solution == 1, ], col = "darkgreen", lwd = 2)
 
-plot(s[[4]], main="point data", pch=19)
-points(s[[4]][s[[4]]$solution==1, ], col="darkgreen", cex=2.5, pch=19)
+plot(s[[4]], main = "point data", pch = 19)
+points(s[[4]][s[[4]]$solution == 1, ], col = "darkgreen", cex = 2, pch = 19)
 
 }
 \seealso{

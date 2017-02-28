@@ -49,13 +49,14 @@ p <- problem(sim_pu_raster, sim_features) \%>\%
   add_binary_decision()
 
 \donttest{
-
 # solve the problem
 s <- solve(p)
 
 # print the solution
 print(s)
 
+# plot solution
+plot(s, main="solution")
 }
 
 }

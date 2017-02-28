@@ -46,23 +46,21 @@ selected planning units together into contiguous reserves.
 p1 <- problem(sim_pu_raster, sim_features) \%>\%
   add_min_set_objective() \%>\%
   add_relative_targets(0.2) \%>\%
-  add_default_solver(time_limit=5)
+  add_default_solver()
 
 # create problem with low boundary penalties
-p2 <- p1 \%>\% add_boundary_penalties(10000, 1)
+p2 <- p1 \%>\% add_boundary_penalties(5, 1)
 
 # create problem with high boundary penalties
 # receive half the penalty as inner edges
-p3 <- p1 \%>\% add_boundary_penalties(10000000, 1)
+p3 <- p1 \%>\% add_boundary_penalties(50, 1)
 
 \donttest{
-
 # solve problems
 s <- stack(solve(p1), solve(p2), solve(p3))
 
 # plot solutions
 plot(s, main = c("basic solution", "small penalties", "high penalties"))
-
 }
 
 }

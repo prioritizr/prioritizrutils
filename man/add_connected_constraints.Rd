@@ -19,7 +19,6 @@ planning units are spatially connected to each other.
 }
 \examples{
 \dontrun{
-
 # create basic problem
 p1 <- problem(sim_pu_raster, sim_features) \%>\%
   add_min_set_objective() \%>\%
@@ -34,7 +33,6 @@ s <- stack(solve(p1), solve(p2))
 
 # plot solutions
 plot(s, main=c("basic solution", "connected solution"))
-
 }
 }
 \seealso{

@@ -167,9 +167,7 @@ added to a conservation problem.</p>
 <span class='no'>p3</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_max_features_objective</span>(<span class='fl'>5000</span>)
 
 <span class='co'># create problem with added maximum phylogenetic representation objective</span>
-<span class='no'>p4</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_max_phylo_objective</span>(<span class='fl'>5000</span>, <span class='no'>sim_phylogeny</span>)
-
-
+<span class='no'>p4</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_max_phylo_objective</span>(<span class='fl'>5000</span>, <span class='no'>sim_phylogeny</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: ape</span></div><div class='input'>
 <span class='co'># solve problems</span>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>stack</span>(<span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p4</span>))</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
 #&gt; Variable types: 0 continuous, 90 integer (90 binary)
@@ -281,8 +279,7 @@ added to a conservation problem.</p>
 #&gt; Best objective 3.242247207042e+00, best bound 3.242247207042e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># plot solutions</span>
 <span class='fu'>plot</span>(<span class='no'>s</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"minimum set"</span>, <span class='st'>"maximum coverage"</span>, <span class='st'>"maximum representation"</span>,
-               <span class='st'>"phylogenetic representation"</span>))</div><img src='objectives-8.png' alt='' width='540' height='400' /><div class='input'>
-
+               <span class='st'>"phylogenetic representation"</span>))</div><img src='objectives-10.png' alt='' width='540' height='400' /><div class='input'>
 
 </div></pre>
   </div>

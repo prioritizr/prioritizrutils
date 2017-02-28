@@ -75,7 +75,6 @@ NULL
 #'
 #' @examples
 #' \donttest{
-#'
 #' # create basic problem
 #' p <- problem(sim_pu_raster, sim_features) %>%
 #'   add_min_set_objective() %>%
@@ -111,7 +110,6 @@ NULL
 #'
 #' # plot solutions
 #' plot(s, main=titles)
-#'
 #' }
 #'
 #' @name solvers

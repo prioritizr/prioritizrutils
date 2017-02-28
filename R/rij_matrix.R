@@ -50,7 +50,7 @@ NULL
 #'
 #' @examples
 #' # load data
-#' data(sim_pu_cost, sim_pu_raster, sim_pu_polygons)
+#' data(sim_pu_raster, sim_pu_polygons)
 #'
 #' # create rij matrix using raster planning units
 #' rij_raster <- rij_matrix(sim_pu_raster, sim_features)

@@ -151,19 +151,20 @@
      <span class='no'>sim_features</span>)
 
 <span class='co'># plot data</span>
-<span class='fu'>par</span>(<span class='kw'>mfrow</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>3</span>,<span class='fl'>3</span>))
-<span class='fu'>plot</span>(<span class='no'>sim_pu_raster</span>)
-<span class='fu'>plot</span>(<span class='no'>sim_locked_in_raster</span>)
-<span class='fu'>plot</span>(<span class='no'>sim_locked_out_raster</span>)
-<span class='fu'>plot</span>(<span class='no'>sim_pu_polygons</span>)
-<span class='fu'>plot</span>(<span class='no'>sim_pu_lines</span>)
-<span class='fu'>plot</span>(<span class='no'>sim_pu_points</span>)
-<span class='fu'>plot</span>(<span class='no'>sim_features</span>)</div><img src='sim_data-2.png' alt='' width='540' height='400' /><img src='sim_data-3.png' alt='' width='540' height='400' /><div class='input'><span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"ape"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
- <span class='kw'>ape</span><span class='kw'>::</span><span class='fu'>plot.phylo</span>(<span class='fu'>plot</span>(<span class='no'>sim_phylogeny</span>))
+<span class='fu'>par</span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>3</span>, <span class='fl'>3</span>))
+<span class='fu'>plot</span>(<span class='no'>sim_pu_raster</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"planning units (raster)"</span>)
+<span class='fu'>plot</span>(<span class='no'>sim_locked_in_raster</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"locked in units (raster)"</span>)
+<span class='fu'>plot</span>(<span class='no'>sim_locked_out_raster</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"locked out units (raster)"</span>)
+<span class='fu'>plot</span>(<span class='no'>sim_pu_polygons</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"planning units (polygons)"</span>)
+<span class='fu'>plot</span>(<span class='no'>sim_pu_lines</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"planning units (lines)"</span>)
+<span class='fu'>plot</span>(<span class='no'>sim_pu_points</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"planning units (points)"</span>)
+<span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"ape"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
+ <span class='kw'>ape</span><span class='kw'>::</span><span class='fu'>plot.phylo</span>(<span class='fu'>plot</span>(<span class='no'>sim_phylogeny</span>), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"simulated phylogeny"</span>)
 } <span class='kw'>else</span> {
  <span class='fu'>message</span>(<span class='st'>"the \"ape\" package needs to be installed to plot phylogenies"</span>)
 }</div><div class='output co'>#&gt; <span class='warning'>Warning: found less than 2 tips in the tree</span></div><div class='output co'>#&gt; NULL</div><div class='input'>
-</div><img src='sim_data-8.png' alt='' width='540' height='400' /></pre>
+<span class='fu'>par</span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>1</span>))</div><img src='sim_data-5.png' alt='' width='540' height='400' /><div class='input'><span class='fu'>plot</span>(<span class='no'>sim_features</span>)</div><img src='sim_data-7.png' alt='' width='540' height='400' /><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

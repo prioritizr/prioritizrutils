@@ -84,14 +84,12 @@ NULL
 #' p4 <- p %>% add_max_phylo_objective(5000, sim_phylogeny)
 #'
 #' \donttest{
-#'
 #' # solve problems
 #' s <- stack(solve(p1), solve(p2), solve(p3), solve(p4))
 #'
 #' # plot solutions
 #' plot(s, main=c("minimum set", "maximum coverage", "maximum representation",
 #'                "phylogenetic representation"))
-#'
 #' }
 #'
 #' @name objectives

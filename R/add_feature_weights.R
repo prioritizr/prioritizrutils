@@ -41,13 +41,11 @@ NULL
 #' p2 <- p1 %>% add_feature_weights(w)
 #'
 #' \donttest{
-#'
 #' # solve solutions
 #' s <- stack(solve(p1), solve(p2))
 #'
 #' # plot solutions
 #' plot(s, main = c("equal weights", "rarity weights"))
-#'
 #'}
 #'
 #' @export

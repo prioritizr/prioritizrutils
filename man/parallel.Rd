@@ -45,6 +45,9 @@ get_number_of_threads()
 # reset number of threads to 1
 set_number_of_threads(1)
 
+# get number of threads
+get_number_of_threads()
+
 }
 \seealso{
 \code{\link{is.parallel}}, \code{\link{solvers}}.

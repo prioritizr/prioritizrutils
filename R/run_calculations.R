@@ -22,7 +22,6 @@ NULL
 #'
 #' @examples
 #' \donttest{
-#'
 #' # Let us imagine a scenario where we wanted to understand the effect of
 #' # setting different targets on our solution.
 #'
@@ -69,7 +68,6 @@ NULL
 #' # As we can see, we can save a lot of time by running the preliminary
 #' # calculations before making copies of the problem with slightly
 #' # different constraints.
-#'
 #' }
 #'
 #' @export

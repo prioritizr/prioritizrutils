@@ -39,6 +39,9 @@ NULL
 #' # reset number of threads to 1
 #' set_number_of_threads(1)
 #'
+#' # get number of threads
+#' get_number_of_threads()
+#'
 #' @aliases set_number_of_threads get_number_of_threads
 NULL
 

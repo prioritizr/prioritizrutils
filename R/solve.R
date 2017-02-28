@@ -41,13 +41,14 @@ NULL
 #'   add_binary_decision()
 #'
 #' \donttest{
-#'
 #' # solve the problem
 #' s <- solve(p)
 #'
 #' # print the solution
 #' print(s)
 #'
+#' # plot solution
+#' plot(s, main="solution")
 #' }
 #'
 #' @name solve

@@ -122,14 +122,12 @@ p1 <- marxan_problem(sim_pu_raster, features=sim_features, targets=0.2,
                      edge_factor=0.5)
 
 \donttest{
-
 # solve problem
 
 s1 <- solve(p1)
 
 # show solution
 plot(s1)
-
 }
 
 # create marxan problem using marxan input files
@@ -137,13 +135,11 @@ input_file <- system.file("extdata/input.dat", package="prioritizrutils")
 p2 <- marxan_problem(input_file)
 
 \donttest{
-
 # solve problem
 s2 <- solve(p2)
 
 # count number of selected planning units in solution
 print(sum(s2))
-
 }
 
 }

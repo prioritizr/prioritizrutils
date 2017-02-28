@@ -113,8 +113,7 @@ run multiple times.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># Let us imagine a scenario where we wanted to understand the effect of</span>
+    <pre class="examples"><div class='input'><span class='co'># Let us imagine a scenario where we wanted to understand the effect of</span>
 <span class='co'># setting different targets on our solution.</span>
 
 <span class='co'># create a conservation problem with no targets</span>
@@ -181,7 +180,7 @@ run multiple times.</p>
 #&gt;      0     0 3503.53253    0   20 4149.87913 3503.53253  15.6%     -    0s
 #&gt; H    0     0                    3609.4316755 3503.53253  2.93%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (206 simplex iterations) in 0.00 seconds
+#&gt; Explored 0 nodes (206 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 2: 3609.43 4149.88 
@@ -291,7 +290,7 @@ run multiple times.</p>
 #&gt;      0     0 3503.53253    0   20 4149.87913 3503.53253  15.6%     -    0s
 #&gt; H    0     0                    3609.4316755 3503.53253  2.93%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (206 simplex iterations) in 0.00 seconds
+#&gt; Explored 0 nodes (206 simplex iterations) in 0.01 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 2: 3609.43 4149.88 
@@ -331,8 +330,8 @@ run multiple times.</p>
 #&gt; Best objective 5.409773960730e+03, best bound 5.287361018883e+03, gap 2.2628%</div><div class='input'>
 <span class='co'># now lets compare the times</span>
 <span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s1</span>) <span class='co'># time spent without running preliminary calculations</span></div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.328   0.092   0.439 </div><div class='input'><span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>) <span class='co'># time spent after running preliminary calculations</span></div><div class='output co'>#&gt;    user  system elapsed 
-#&gt;   0.292   0.080   0.387 </div><div class='input'>
+#&gt;   0.404   0.080   0.500 </div><div class='input'><span class='fu'><a href='print.html'>print</a></span>(<span class='no'>s2</span>) <span class='co'># time spent after running preliminary calculations</span></div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.332   0.092   0.439 </div><div class='input'>
 <span class='co'># As we can see, we can save a lot of time by running the preliminary</span>
 <span class='co'># calculations before making copies of the problem with slightly</span>
 <span class='co'># different constraints.</span></div></pre>

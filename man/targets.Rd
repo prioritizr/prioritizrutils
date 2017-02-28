@@ -116,13 +116,12 @@ p2 <- p \%>\% add_absolute_targets(3)
 p3 <- p \%>\% add_loglinear_targets(10, 0.9, 100, 0.2)
 
 \donttest{
-
 # solve solutions
 s <- stack(solve(p1), solve(p2), solve(p3))
 
 # plot solutions
 plot(s, main=c("relative targets", "absolute targets",
-               "loglinear targets"))
+               "log-linear targets"))
 
 }
 

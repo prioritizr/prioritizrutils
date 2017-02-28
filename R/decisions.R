@@ -62,14 +62,12 @@ NULL
 #' p4 <- p %>% add_semicontinuous_decision(upper_limit=0.5)
 #'
 #' \donttest{
-#'
 #' # solve problem
 #' s <- stack(solve(p), solve(p2), solve(p3), solve(p4))
 #'
 #' # plot solutions
 #' plot(s, main = c("default (binary)", "binary", "proportion",
 #'                  "semicontinuous (upper=0.5)"))
-#'
 #' }
 #'
 #' @name decisions

@@ -150,7 +150,6 @@ connecitivity between planning units.</dd>
 <span class='co'># create problem with asymmetric connectivity and high penalties</span>
 <span class='no'>p4</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_connectivity_penalties</span>(<span class='fl'>50</span>, <span class='no'>ac_matrix</span>)
 
-
 <span class='co'># solve problems</span>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>list</span>(<span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p4</span>))</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
 #&gt; Variable types: 0 continuous, 90 integer (90 binary)
@@ -190,7 +189,7 @@ connecitivity between planning units.</dd>
 #&gt;   Bounds range     [1e+00, 1e+00]
 #&gt;   RHS range        [6e+00, 1e+01]
 #&gt; Found heuristic solution: objective 5232.59
-#&gt; Presolve time: 0.01s
+#&gt; Presolve time: 0.00s
 #&gt; Presolved: 555 rows, 365 columns, 1550 nonzeros
 #&gt; Variable types: 0 continuous, 365 integer (365 binary)
 #&gt; Presolved: 555 rows, 365 columns, 1550 nonzeros
@@ -215,7 +214,7 @@ connecitivity between planning units.</dd>
 #&gt; Cutting planes:
 #&gt;   Gomory: 6
 #&gt; 
-#&gt; Explored 46 nodes (3013 simplex iterations) in 1.10 seconds
+#&gt; Explored 46 nodes (3013 simplex iterations) in 1.09 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 3: 4756.75 4843.94 5232.59 
@@ -250,16 +249,16 @@ connecitivity between planning units.</dd>
 #&gt;      0     0 4784.76956    0  356 6335.30511 4784.76956  24.5%     -    0s
 #&gt;      0     0 4785.71600    0  356 6335.30511 4785.71600  24.5%     -    0s
 #&gt;      0     0 4785.71600    0  356 6335.30511 4785.71600  24.5%     -    0s
-#&gt; H    0     0                    6190.7344980 4785.71600  22.7%     -    0s
+#&gt; H    0     0                    6190.7344980 4785.71600  22.7%     -    1s
 #&gt;      0     2 4786.48200    0  356 6190.73450 4786.48200  22.7%     -    1s
 #&gt; H  621   294                    6075.2233763 5185.11097  14.7%  35.8    2s
 #&gt; *  633   278              51    6066.6730300 5185.11097  14.5%  35.3    2s
 #&gt; H  730   268                    5973.7211891 5185.11097  13.2%  34.9    2s
 #&gt; H  731   254                    5967.0968018 5185.11097  13.1%  34.9    2s
-#&gt; H  761   245                    5931.6404415 5185.11097  12.6%  35.0    2s
+#&gt; H  761   245                    5931.6404415 5185.11097  12.6%  35.0    3s
 #&gt; H  909   221                    5814.0474633 5185.11097  10.8%  33.5    3s
 #&gt; 
-#&gt; Explored 983 nodes (33164 simplex iterations) in 3.28 seconds
+#&gt; Explored 983 nodes (33164 simplex iterations) in 3.32 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 8: 5814.05 5931.64 5967.1 ... 6335.31
@@ -305,7 +304,7 @@ connecitivity between planning units.</dd>
 #&gt; Cutting planes:
 #&gt;   Gomory: 6
 #&gt; 
-#&gt; Explored 489 nodes (15909 simplex iterations) in 2.10 seconds
+#&gt; Explored 489 nodes (15909 simplex iterations) in 2.08 seconds
 #&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 8: 5685.43 5688.06 5795.73 ... 6177.86
@@ -316,17 +315,16 @@ connecitivity between planning units.</dd>
 <span class='co'># plot solutions</span>
 <span class='fu'>par</span>(<span class='kw'>mfrow</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>2</span>,<span class='fl'>2</span>))
 
-<span class='fu'>plot</span>(<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>1</span>]], <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>19</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>"basic solution"</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2.5</span>)
-<span class='fu'>points</span>(<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>1</span>]][<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>1</span>]]$<span class='no'>solution</span><span class='kw'>==</span><span class='fl'>1</span>, ], <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"darkgreen"</span>, <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>19</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2.5</span>)
+<span class='fu'>plot</span>(<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>1</span>]], <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>19</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>"basic solution"</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2</span>)
+<span class='fu'>points</span>(<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>1</span>]][<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>1</span>]]$<span class='no'>solution</span><span class='kw'>==</span><span class='fl'>1</span>, ], <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"darkgreen"</span>, <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>19</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2</span>)
 
-<span class='fu'>plot</span>(<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>2</span>]], <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>19</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>"small penalties"</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2.5</span>)
-<span class='fu'>points</span>(<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>2</span>]][<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>2</span>]]$<span class='no'>solution</span><span class='kw'>==</span><span class='fl'>1</span>, ], <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"darkgreen"</span>, <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>19</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2.5</span>)
+<span class='fu'>plot</span>(<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>2</span>]], <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>19</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>"small penalties"</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2</span>)
+<span class='fu'>points</span>(<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>2</span>]][<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>2</span>]]$<span class='no'>solution</span><span class='kw'>==</span><span class='fl'>1</span>, ], <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"darkgreen"</span>, <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>19</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2</span>)
 
-<span class='fu'>plot</span>(<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>3</span>]], <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>19</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>"high penalties"</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2.5</span>)
-<span class='fu'>points</span>(<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>3</span>]][<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>3</span>]]$<span class='no'>solution</span><span class='kw'>==</span><span class='fl'>1</span>, ], <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"darkgreen"</span>, <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>19</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2.5</span>)
+<span class='fu'>plot</span>(<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>3</span>]], <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>19</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>"high penalties"</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2</span>)
+<span class='fu'>points</span>(<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>3</span>]][<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>3</span>]]$<span class='no'>solution</span><span class='kw'>==</span><span class='fl'>1</span>, ], <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"darkgreen"</span>, <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>19</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2</span>)
 
-<span class='fu'>plot</span>(<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>4</span>]], <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>19</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>"asymmetric connectivity"</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2.5</span>)</div><div class='input'><span class='fu'>points</span>(<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>4</span>]][<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>4</span>]]$<span class='no'>solution</span><span class='kw'>==</span><span class='fl'>1</span>, ], <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"darkgreen"</span>, <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>19</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2.5</span>)</div><img src='add_connectivity_penalties-5.png' alt='' width='540' height='400' /><div class='input'>
-
+<span class='fu'>plot</span>(<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>4</span>]], <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>19</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>"asymmetric connectivity"</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2</span>)</div><div class='input'><span class='fu'>points</span>(<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>4</span>]][<span class='no'>s</span><span class='kw'>[[</span><span class='fl'>4</span>]]$<span class='no'>solution</span><span class='kw'>==</span><span class='fl'>1</span>, ], <span class='kw'>col</span><span class='kw'>=</span><span class='st'>"darkgreen"</span>, <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>19</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2</span>)</div><img src='add_connectivity_penalties-5.png' alt='' width='540' height='400' /><div class='input'>
 
 </div></pre>
   </div>

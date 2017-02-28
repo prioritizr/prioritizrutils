@@ -183,7 +183,6 @@ argument to <code>targets</code> may refer to a column name.</dd>
 <span class='co'># create problem with added log-linear target</span>
 <span class='no'>p3</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_loglinear_targets</span>(<span class='fl'>10</span>, <span class='fl'>0.9</span>, <span class='fl'>100</span>, <span class='fl'>0.2</span>)
 
-
 <span class='co'># solve solutions</span>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>stack</span>(<span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>))</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
 #&gt; Variable types: 0 continuous, 90 integer (90 binary)
@@ -279,7 +278,7 @@ argument to <code>targets</code> may refer to a column name.</dd>
 #&gt; Best objective 1.009350574725e+04, best bound 1.001197952853e+04, gap 0.8077%</div><div class='input'>
 <span class='co'># plot solutions</span>
 <span class='fu'>plot</span>(<span class='no'>s</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"relative targets"</span>, <span class='st'>"absolute targets"</span>,
-               <span class='st'>"loglinear targets"</span>))</div><img src='targets-4.png' alt='' width='540' height='400' /><div class='input'>
+               <span class='st'>"log-linear targets"</span>))</div><img src='targets-4.png' alt='' width='540' height='400' /><div class='input'>
 
 
 </div></pre>

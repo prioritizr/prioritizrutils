@@ -151,7 +151,6 @@ to a problem object, then the last one to be added will be used.</strong></p>
 <span class='co'># specify a semicontinuous decision type</span>
 <span class='no'>p4</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_semicontinuous_decision</span>(<span class='kw'>upper_limit</span><span class='kw'>=</span><span class='fl'>0.5</span>)
 
-
 <span class='co'># solve problem</span>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>stack</span>(<span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p4</span>))</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
 #&gt; Variable types: 0 continuous, 90 integer (90 binary)
@@ -276,7 +275,6 @@ to a problem object, then the last one to be added will be used.</strong></p>
 <span class='co'># plot solutions</span>
 <span class='fu'>plot</span>(<span class='no'>s</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"default (binary)"</span>, <span class='st'>"binary"</span>, <span class='st'>"proportion"</span>,
                  <span class='st'>"semicontinuous (upper=0.5)"</span>))</div><img src='decisions-4.png' alt='' width='540' height='400' /><div class='input'>
-
 
 </div></pre>
   </div>

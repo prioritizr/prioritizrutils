@@ -65,25 +65,23 @@ ac_matrix[even_units, odd_units] <- 0.5 * ac_matrix[even_units, odd_units]
 p4 <- p1 \%>\% add_connectivity_penalties(50, ac_matrix)
 
 \donttest{
-
 # solve problems
 s <- list(solve(p1), solve(p2), solve(p3), solve(p4))
 
 # plot solutions
 par(mfrow=c(2,2))
 
-plot(s[[1]], pch=19, main="basic solution", cex=2.5)
-points(s[[1]][s[[1]]$solution==1, ], col="darkgreen", pch=19, cex=2.5)
+plot(s[[1]], pch=19, main="basic solution", cex=2)
+points(s[[1]][s[[1]]$solution==1, ], col="darkgreen", pch=19, cex=2)
 
-plot(s[[2]], pch=19, main="small penalties", cex=2.5)
-points(s[[2]][s[[2]]$solution==1, ], col="darkgreen", pch=19, cex=2.5)
+plot(s[[2]], pch=19, main="small penalties", cex=2)
+points(s[[2]][s[[2]]$solution==1, ], col="darkgreen", pch=19, cex=2)
 
-plot(s[[3]], pch=19, main="high penalties", cex=2.5)
-points(s[[3]][s[[3]]$solution==1, ], col="darkgreen", pch=19, cex=2.5)
+plot(s[[3]], pch=19, main="high penalties", cex=2)
+points(s[[3]][s[[3]]$solution==1, ], col="darkgreen", pch=19, cex=2)
 
-plot(s[[4]], pch=19, main="asymmetric connectivity", cex=2.5)
-points(s[[4]][s[[4]]$solution==1, ], col="darkgreen", pch=19, cex=2.5)
-
+plot(s[[4]], pch=19, main="asymmetric connectivity", cex=2)
+points(s[[4]][s[[4]]$solution==1, ], col="darkgreen", pch=19, cex=2)
 }
 
 }

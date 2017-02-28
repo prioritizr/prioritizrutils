@@ -35,25 +35,26 @@ NULL
 #' ply <- raster::rasterToPolygons(r)
 #' ply_with_holes <- raster::rasterToPolygons(r_with_holes)
 #'
-#' ## prepare plotting device
-#' par(mfrow=c(4, 2))
-#'
 #' ## intersect raster with raster
+#' par(mfrow = c(1, 2))
 #' plot(r, main = 'x=Raster')
 #' plot(r_with_holes, main = 'y=Raster')
 #' print(intersecting_units(r, r_with_holes))
 #'
 #' ## intersect raster with polygons
+#' par(mfrow = c(1, 2))
 #' plot(r, main = 'x=Raster')
 #' plot(ply_with_holes, main = 'y=Spatial')
 #' print(intersecting_units(r, ply_with_holes))
 #'
 #' ## intersect polygons with raster
+#' par(mfrow = c(1, 2))
 #' plot(ply, main = 'x=Spatial')
 #' plot(r_with_holes, main = 'y=Raster')
 #' print(intersecting_units(ply, r_with_holes))
 #'
 #' ## intersect polygons with polygons
+#' par(mfrow = c(1, 2))
 #' plot(ply, main = 'x=Spatial')
 #' plot(ply_with_holes, main = 'y=Spatial')
 #' print(intersecting_units(ply, ply_with_holes))

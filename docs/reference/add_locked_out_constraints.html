@@ -148,7 +148,6 @@ locked out. See details for more information.</dd>
 <span class='no'>locked_out</span> <span class='kw'>&lt;-</span> <span class='no'>sim_pu_polygons</span>[<span class='no'>sim_pu_polygons</span>$<span class='no'>locked_out</span> <span class='kw'>==</span> <span class='fl'>1</span>,]
 <span class='no'>p5</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_locked_out_constraints</span>(<span class='no'>locked_out</span>)
 
-
 <span class='co'># solve problems</span>
 <span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>)</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
 #&gt; Variable types: 0 continuous, 90 integer (90 binary)

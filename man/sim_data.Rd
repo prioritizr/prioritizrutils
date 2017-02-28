@@ -100,19 +100,21 @@ data(sim_pu_polygons, sim_pu_lines, sim_pu_points, sim_pu_raster,
      sim_features)
 
 # plot data
-par(mfrow=c(3,3))
-plot(sim_pu_raster)
-plot(sim_locked_in_raster)
-plot(sim_locked_out_raster)
-plot(sim_pu_polygons)
-plot(sim_pu_lines)
-plot(sim_pu_points)
-plot(sim_features)
+par(mfrow = c(3, 3))
+plot(sim_pu_raster, main = "planning units (raster)")
+plot(sim_locked_in_raster, main = "locked in units (raster)")
+plot(sim_locked_out_raster, main = "locked out units (raster)")
+plot(sim_pu_polygons, main = "planning units (polygons)")
+plot(sim_pu_lines, main = "planning units (lines)")
+plot(sim_pu_points, main = "planning units (points)")
 if (requireNamespace("ape", quietly = TRUE)) {
- ape::plot.phylo(plot(sim_phylogeny))
+ ape::plot.phylo(plot(sim_phylogeny), main = "simulated phylogeny")
 } else {
  message("the \\"ape\\" package needs to be installed to plot phylogenies")
 }
+
+par(mfrow = c(1, 1))
+plot(sim_features)
 
 }
 \keyword{datasets}

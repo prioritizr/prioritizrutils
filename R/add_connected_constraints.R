@@ -15,7 +15,6 @@ NULL
 #'
 #' @examples
 #' \dontrun{
-#'
 #' # create basic problem
 #' p1 <- problem(sim_pu_raster, sim_features) %>%
 #'   add_min_set_objective() %>%
@@ -30,7 +29,6 @@ NULL
 #'
 #' # plot solutions
 #' plot(s, main=c("basic solution", "connected solution"))
-#'
 #' }
 #' @export
 add_connected_constraints <- function(x) {

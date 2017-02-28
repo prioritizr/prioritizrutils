@@ -131,7 +131,6 @@ cannot have negative values.</dd>
 <span class='co'># create new problem with added weights according to rarity</span>
 <span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_feature_weights</span>(<span class='no'>w</span>)
 
-
 <span class='co'># solve solutions</span>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>stack</span>(<span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>))</div><div class='output co'>#&gt; Optimize a model with 6 rows, 95 columns and 545 nonzeros
 #&gt; Variable types: 5 continuous, 90 integer (90 binary)
@@ -197,7 +196,6 @@ cannot have negative values.</dd>
 #&gt; Best objective 1.290338376775e+03, best bound 1.291853723903e+03, gap 0.1174%</div><div class='input'>
 <span class='co'># plot solutions</span>
 <span class='fu'>plot</span>(<span class='no'>s</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"equal weights"</span>, <span class='st'>"rarity weights"</span>))</div><img src='add_feature_weights-4.png' alt='' width='540' height='400' /><div class='input'>
-
 
 </div></pre>
   </div>

@@ -27,7 +27,6 @@ This function is used for the effect of modifying the input
 }
 \examples{
 \donttest{
-
 # Let us imagine a scenario where we wanted to understand the effect of
 # setting different targets on our solution.
 
@@ -74,7 +73,6 @@ print(s2) # time spent after running preliminary calculations
 # As we can see, we can save a lot of time by running the preliminary
 # calculations before making copies of the problem with slightly
 # different constraints.
-
 }
 
 }

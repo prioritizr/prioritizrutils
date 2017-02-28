@@ -45,13 +45,11 @@ w <- 1/raster::cellStats(sim_features, "sum") * 1000
 p2 <- p1 \%>\% add_feature_weights(w)
 
 \donttest{
-
 # solve solutions
 s <- stack(solve(p1), solve(p2))
 
 # plot solutions
 plot(s, main = c("equal weights", "rarity weights"))
-
 }
 
 }
