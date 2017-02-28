@@ -46,7 +46,8 @@ test_that("solution", {
         add_max_features_objective(budget = budget) %>%
         add_locked_in_constraints(locked_in) %>%
         add_locked_out_constraints(locked_out) %>%
-        add_absolute_targets(c(2, 10))
+        add_absolute_targets(c(2, 10)) %>%
+        add_default_solver(time_limit = 5)
   # solve problem
   s <- solve(p)
   # test that solution is correct

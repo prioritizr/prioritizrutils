@@ -103,6 +103,7 @@ test_that("minimum set objective (solve binary decisions)", {
     add_relative_targets(0.1) %>%
     add_binary_decision() %>%
     add_boundary_penalties(2, 0.5) %>%
+    add_default_solver(time_limit = 5) %>%
     solve()
 })
 
@@ -205,6 +206,7 @@ test_that("maximum coverage objective (solve binary decisions)", {
     add_max_cover_objective(budget = 10000) %>%
     add_binary_decision() %>%
     add_boundary_penalties(2, 0.5) %>%
+    add_default_solver(time_limit = 5) %>%
     solve()
 
 })

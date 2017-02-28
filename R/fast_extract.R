@@ -42,6 +42,9 @@ NULL
 #' # load data
 #' data(sim_pu_polygons, sim_features)
 #'
+#' # select first three layers to reduce processing time
+#' sim_features <- sim_features[[1:3]]
+#'
 #' # we will investigate severals ways for extracting values from a raster
 #' # using polygons. Specifically, for each band in the raster,
 #' # for each polygon in the vector layer, calculate the average

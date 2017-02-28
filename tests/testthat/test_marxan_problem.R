@@ -29,7 +29,8 @@ test_that("spatial data input (solve)", {
   # make problem
   data(sim_pu_polygons, sim_features)
   p <- marxan_problem(sim_pu_polygons, features = sim_features, targets = 0.2,
-    targets_type = "relative", penalty = 1, edge_factor = 0.5)
+    targets_type = "relative", penalty = 1, edge_factor = 0.5) %>%
+      add_default_solver(time_limit = 5)
   # check that problem can be solved
   s <- solve(p)
 })
@@ -115,7 +116,8 @@ test_that("character filename input (solve symmetric boundary penalties)", {
   skip_on_cran()
   # make problem
   path <- system.file("extdata/input.dat", package = "prioritizrutils")
-  p <- marxan_problem(path)
+  p <- marxan_problem(path) %>%
+    add_default_solver(time_limit = 5)
   # check that problem can be solved
   s <- solve(p)
 })
@@ -217,7 +219,8 @@ test_that("data.frame input (solve symmetric boundary penalties)", {
   bound_data <- read.table(file.path(wd, "bound.dat"), header = TRUE,
                            sep = "\t")
   p <- marxan_problem(pu_data, spec_data, puvspr_data, bound_data,
-                      asymmetric_connectivity = TRUE, blm = 1)
+                      asymmetric_connectivity = TRUE, blm = 1) %>%
+    add_default_solver(time_limit = 5)
   # check that problem can be solved
   s <- solve(p)
 })

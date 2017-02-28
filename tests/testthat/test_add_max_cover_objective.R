@@ -43,7 +43,8 @@ test_that("solution", {
   p <- problem(cost, features) %>%
         add_max_cover_objective(budget = budget) %>%
         add_locked_in_constraints(locked_in) %>%
-        add_locked_out_constraints(locked_out)
+        add_locked_out_constraints(locked_out) %>%
+        add_default_solver(time_limit = 5)
   # solve problem
   s <- solve(p)
   # test that solution is correct

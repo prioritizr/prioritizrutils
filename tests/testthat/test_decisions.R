@@ -23,6 +23,7 @@ test_that("add_binary_decision (solve)", {
     add_min_set_objective() %>%
     add_relative_targets(0.1) %>%
     add_binary_decision() %>%
+    add_default_solver(time_limit = 5) %>%
     solve()
   # check that solutions have correct decisions
   expect_true(all(values(s) %in% c(0L, 1L, NA_integer_)))
@@ -50,7 +51,8 @@ test_that("add_proportion_decision (solve)", {
   s <- problem(sim_pu_raster, sim_features) %>%
     add_min_set_objective() %>%
     add_relative_targets(0.1) %>%
-    add_proportion_decision() %>%
+    add_proportion_decision()  %>%
+    add_default_solver(time_limit = 5) %>%
     solve()
   # check that solutions have correct decisions
   expect_true(isTRUE(all(na.omit(values(s)) <= 1)))
@@ -85,6 +87,7 @@ test_that("add_semicontinuous_decision (compile)", {
     add_min_set_objective() %>%
     add_relative_targets(0.1) %>%
     add_semicontinuous_decision(0.3) %>%
+    add_default_solver(time_limit = 5) %>%
     solve()
   # check that solutions have correct decisions
   expect_true(isTRUE(all(na.omit(values(s)) <= 0.3)))

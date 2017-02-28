@@ -31,6 +31,7 @@ test_that("integer locked in data (solve)", {
     add_relative_targets(0.1) %>%
     add_binary_decision() %>%
     add_locked_in_constraints(seq_len(raster::ncell(sim_pu_raster))) %>%
+    add_default_solver(time_limit = 5) %>%
     solve()
   # check that the solution obeys constraints as expected
   expect_true(all(raster::Which(is.na(s), cells = TRUE) ==
@@ -91,6 +92,7 @@ test_that("character locked in data (solve)", {
     add_relative_targets(0.1) %>%
     add_binary_decision() %>%
     add_locked_in_constraints("locked_in") %>%
+    add_default_solver(time_limit = 5) %>%
     solve()
   # check that the solution obeys constraints as expected
   expect_true(all(s$solution[which(sim_pu_polygons$locked_in)] == 1))
@@ -161,10 +163,11 @@ test_that("raster locked in data (compile)", {
     add_relative_targets(0.1) %>%
     add_binary_decision() %>%
     add_locked_in_constraints(sim_locked_in_raster) %>%
+    add_default_solver(time_limit = 5) %>%
     solve()
   # check that the solution obeys constraints
   locked_in_cells <- raster::Which(sim_locked_in_raster & !is.na(sim_pu_raster),
-                                   cells = TRUE)  
+                                   cells = TRUE)
   expect_true(all(s[locked_in_cells] == 1))
 })
 
@@ -219,6 +222,7 @@ test_that("spatial locked in data (solve)", {
     add_relative_targets(0.1) %>%
     add_binary_decision() %>%
     add_locked_in_constraints(sim_pu_polygons[sim_pu_polygons$locked_in, ]) %>%
+    add_default_solver(time_limit = 5) %>%
     solve()
   locked_in_units <- which(sim_pu_polygons$locked_in)
   expect_true(all(s$solution[locked_in_units] == 1))

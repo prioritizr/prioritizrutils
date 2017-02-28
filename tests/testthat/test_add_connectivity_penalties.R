@@ -114,6 +114,7 @@ test_that("minimum set objective (solve binary decisions)", {
     add_relative_targets(0.1) %>%
     add_binary_decision() %>%
     add_connectivity_penalties(1, c_matrix) %>%
+    add_default_solver(time_limit = 5) %>%
     solve()
 })
 
@@ -231,5 +232,6 @@ test_that("maximum representation objective (solve binary decisions)", {
     add_relative_targets(0.1) %>%
     add_binary_decision() %>%
     add_connectivity_penalties(1, c_matrix) %>%
+    add_default_solver(time_limit = 5) %>%
     solve()
 })

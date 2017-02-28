@@ -36,7 +36,8 @@ test_that("integer locked out data (solve)", {
     add_min_set_objective() %>%
     add_relative_targets(0.1) %>%
     add_binary_decision() %>%
-    add_locked_out_constraints(1:20)
+    add_locked_out_constraints(1:20) %>%
+    add_default_solver(time_limit = 5)
   # check that solutions match expectations
   s <- solve(p)
   locked_out_cells <- 1:20
@@ -96,7 +97,8 @@ test_that("character locked out data (solve)", {
     add_min_set_objective() %>%
     add_relative_targets(0.1) %>%
     add_binary_decision() %>%
-    add_locked_out_constraints("locked_out")
+    add_locked_out_constraints("locked_out") %>%
+    add_default_solver(time_limit = 5)
   # check that the solution obeys constraints as expected
   s <- solve(p)
   expect_true(all(s$solution[which(sim_pu_polygons$locked_out)] == 0))
@@ -166,7 +168,8 @@ test_that("raster locked out data (solve)", {
     add_min_set_objective() %>%
     add_relative_targets(0.1) %>%
     add_binary_decision() %>%
-    add_locked_out_constraints(sim_locked_out_raster)
+    add_locked_out_constraints(sim_locked_out_raster) %>%
+    add_default_solver(time_limit = 5)
   # check that the solution obeys constraints
   s <- solve(p)
   locked_out_cells <- raster::Which(sim_locked_out_raster &
@@ -220,11 +223,13 @@ test_that("spatial locked out data (solve)", {
   skip_on_cran()
   # create problem
   data(sim_pu_polygons, sim_features)
+  locked_ply <- sim_pu_polygons[sim_pu_polygons$locked_out, ]
   p <- problem(sim_pu_polygons, sim_features) %>%
     add_min_set_objective() %>%
     add_relative_targets(0.1) %>%
     add_binary_decision() %>%
-    add_locked_out_constraints(sim_pu_polygons[sim_pu_polygons$locked_out, ])
+    add_locked_out_constraints(locked_ply) %>%
+    add_default_solver(time_limit = 5)
   # check that the solution obeys constraints
   s <- solve(p)
   locked_out_units <- which(sim_pu_polygons$locked_out)

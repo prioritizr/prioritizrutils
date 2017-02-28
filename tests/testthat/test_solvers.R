@@ -7,7 +7,8 @@ test_that("add_default_solver (raster cost data)", {
   p <- problem(sim_pu_raster, sim_features) %>%
     add_min_set_objective() %>%
     add_relative_targets(0.1) %>%
-    add_binary_decision()
+    add_binary_decision() %>%
+    add_default_solver(time_limit = 5)
   s <- solve(p)
   # check that solution has correct properties
   expect_true(inherits(s, "Raster"))
@@ -23,7 +24,8 @@ test_that("add_default_solver (spatial cost data)", {
   p <- problem(sim_pu_polygons, sim_features) %>%
     add_min_set_objective() %>%
     add_relative_targets(0.1) %>%
-    add_binary_decision()
+    add_binary_decision() %>%
+    add_default_solver(time_limit = 5)
   s <- solve(p)
   # check that solution has correct properties
   expect_true(inherits(s, "SpatialPolygonsDataFrame"))
@@ -41,7 +43,7 @@ test_that("add_rsymphony_solver", {
     add_min_set_objective() %>%
     add_relative_targets(0.1) %>%
     add_binary_decision() %>%
-    add_rsymphony_solver(gap = 0.95)
+    add_rsymphony_solver(gap = 0.95, time_limit = 5)
   s <- solve(p)
   # check that solution has correct properties
   expect_true(inherits(s, "Raster"))
@@ -59,7 +61,7 @@ test_that("add_lpsymphony_solver", {
     add_min_set_objective() %>%
     add_relative_targets(0.1) %>%
     add_binary_decision() %>%
-    add_lpsymphony_solver(gap = 0.95)
+    add_lpsymphony_solver(gap = 0.95, time_limit = 5)
   s <- solve(p)
   # check that solution has correct properties
   expect_true(inherits(s, "Raster"))
@@ -78,7 +80,7 @@ test_that("add_gurobi_solver", {
     add_min_set_objective() %>%
     add_relative_targets(0.1) %>%
     add_binary_decision() %>%
-    add_gurobi_solver(gap = 0.95)
+    add_gurobi_solver(gap = 0.95, time_limit = 5)
   s <- solve(p)
   # check that solution has correct properties
   expect_is(s, "Raster")

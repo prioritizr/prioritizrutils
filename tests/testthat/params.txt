@@ -1,1 +1,0 @@
-structure(list(first_feasible = FALSE, gap_limit = 0.95, time_limit = -1L,      verbosity = 1L), .Names = c("first_feasible", "gap_limit",  "time_limit", "verbosity"), id = c("1a4a7e67-3f29-4be5-85db-5d96303b8c61",  "612a0f7a-fd60-49a1-ae72-5921b3fb6b23", "90d58023-4633-4267-bce3-5175dfc8bb2a",  "a3eab8a6-224e-4f45-9591-ab40247294d2"))
