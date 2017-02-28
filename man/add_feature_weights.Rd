@@ -39,7 +39,7 @@ p1 <- problem(sim_pu_raster, sim_features) \%>\%
   add_max_cover_objective(budget=5000)
 
 # create weights based on rarity (1/number occurrences)
-w <- 1/raster::cellStats(sim_features, "sum") * 1000
+w <- 1 / cellStats(sim_features, "sum") * 1000
 
 # create new problem with added weights according to rarity
 p2 <- p1 \%>\% add_feature_weights(w)

@@ -45,11 +45,11 @@ The \code{\link{set_number_of_threads}} can be used to distribute
 }
 \examples{
 ## create data
-r <- raster::raster(matrix(1:9, byrow = TRUE, ncol=3))
+r <- raster(matrix(1:9, byrow = TRUE, ncol=3))
 r_with_holes <- r
 r_with_holes[c(1, 5, 9)] <- NA
-ply <- raster::rasterToPolygons(r)
-ply_with_holes <- raster::rasterToPolygons(r_with_holes)
+ply <- rasterToPolygons(r)
+ply_with_holes <- rasterToPolygons(r_with_holes)
 
 ## intersect raster with raster
 par(mfrow = c(1, 2))

@@ -136,7 +136,7 @@ have to be within in order to qualify as being connected.</dd>
 
 <span class='co'>## create connected matrix using raster data</span>
 <span class='co'># crop raster to 9 cells</span>
-<span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='kw'>raster</span><span class='kw'>::</span><span class='fu'>crop</span>(<span class='no'>sim_pu_raster</span>, <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>0.3</span>, <span class='fl'>0</span>, <span class='fl'>0.3</span>))
+<span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='fu'>crop</span>(<span class='no'>sim_pu_raster</span>, <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>0.3</span>, <span class='fl'>0</span>, <span class='fl'>0.3</span>))
 <span class='co'># make connected matrix</span>
 <span class='no'>cm_raster</span> <span class='kw'>&lt;-</span> <span class='fu'>connected_matrix</span>(<span class='no'>r</span>)
 
@@ -163,19 +163,19 @@ have to be within in order to qualify as being connected.</dd>
 
 <span class='co'># plot raster and connected matrix</span>
 <span class='fu'>plot</span>(<span class='no'>r</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"raster"</span>)
-<span class='fu'>plot</span>(<span class='fu'>as.raster</span>(<span class='fu'>as.matrix</span>(<span class='no'>cm_raster</span>)), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"connected matrix"</span>)
+<span class='fu'>plot</span>(<span class='fu'>raster</span>(<span class='fu'>as.matrix</span>(<span class='no'>cm_raster</span>)), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"connected matrix"</span>)
 
 <span class='co'># plot polygons and connected matrix</span>
 <span class='fu'>plot</span>(<span class='no'>r</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"polygons"</span>)
-<span class='fu'>plot</span>(<span class='fu'>as.raster</span>(<span class='fu'>as.matrix</span>(<span class='no'>cm_ply</span>)), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"connected matrix"</span>)
+<span class='fu'>plot</span>(<span class='fu'>raster</span>(<span class='fu'>as.matrix</span>(<span class='no'>cm_ply</span>)), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"connected matrix"</span>)
 
 <span class='co'># plot lines and connected matrix</span>
 <span class='fu'>plot</span>(<span class='no'>r</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"lines"</span>)
-<span class='fu'>plot</span>(<span class='fu'>as.raster</span>(<span class='fu'>as.matrix</span>(<span class='no'>cm_lns</span>)), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"connected matrix"</span>)
+<span class='fu'>plot</span>(<span class='fu'>raster</span>(<span class='fu'>as.matrix</span>(<span class='no'>cm_lns</span>)), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"connected matrix"</span>)
 
 <span class='co'># plot points and connected matrix</span>
 <span class='fu'>plot</span>(<span class='no'>r</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"points"</span>)
-<span class='fu'>plot</span>(<span class='fu'>as.raster</span>(<span class='fu'>as.matrix</span>(<span class='no'>cm_pts</span>)), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"connected matrix"</span>)</div><img src='connected_matrix-2.png' alt='' width='540' height='400' /><div class='input'>
+<span class='fu'>plot</span>(<span class='fu'>raster</span>(<span class='fu'>as.matrix</span>(<span class='no'>cm_pts</span>)), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"connected matrix"</span>)</div><img src='connected_matrix-2.png' alt='' width='540' height='400' /><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

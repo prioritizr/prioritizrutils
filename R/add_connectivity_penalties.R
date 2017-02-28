@@ -68,17 +68,17 @@ NULL
 #' # plot solutions
 #' par(mfrow=c(2,2))
 #'
-#' plot(s[[1]], pch=19, main="basic solution", cex=2)
-#' points(s[[1]][s[[1]]$solution==1, ], col="darkgreen", pch=19, cex=2)
+#' plot(s[[1]], pch=19, main="basic solution", cex = 1.5)
+#' points(s[[1]][s[[1]]$solution==1, ], col = "darkgreen", pch = 19, cex = 1.5)
 #'
-#' plot(s[[2]], pch=19, main="small penalties", cex=2)
-#' points(s[[2]][s[[2]]$solution==1, ], col="darkgreen", pch=19, cex=2)
+#' plot(s[[2]], pch=19, main="small penalties", cex = 1.5)
+#' points(s[[2]][s[[2]]$solution==1, ], col = "darkgreen", pch = 19, cex = 1.5)
 #'
-#' plot(s[[3]], pch=19, main="high penalties", cex=2)
-#' points(s[[3]][s[[3]]$solution==1, ], col="darkgreen", pch=19, cex=2)
+#' plot(s[[3]], pch=19, main="high penalties", cex = 1.5)
+#' points(s[[3]][s[[3]]$solution==1, ], col = "darkgreen", pch = 19, cex = 1.5)
 #'
-#' plot(s[[4]], pch=19, main="asymmetric connectivity", cex=2)
-#' points(s[[4]][s[[4]]$solution==1, ], col="darkgreen", pch=19, cex=2)
+#' plot(s[[4]], pch=19, main="asymmetric connectivity", cex = 1.5)
+#' points(s[[4]][s[[4]]$solution==1, ], col = "darkgreen", pch=19, cex = 1.5)
 #' }
 #'
 #' @export

@@ -136,7 +136,7 @@ layer.</dd>
 
 <span class='co'>## create boundary matrix using raster data</span>
 <span class='co'># crop raster to 9 cells</span>
-<span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='kw'>raster</span><span class='kw'>::</span><span class='fu'>crop</span>(<span class='no'>sim_pu_raster</span>, <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>0.3</span>, <span class='fl'>0</span>, <span class='fl'>0.3</span>))
+<span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='fu'>crop</span>(<span class='no'>sim_pu_raster</span>, <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>0.3</span>, <span class='fl'>0</span>, <span class='fl'>0.3</span>))
 <span class='co'># make boundary matrix</span>
 <span class='no'>bm_raster</span> <span class='kw'>&lt;-</span> <span class='fu'>boundary_matrix</span>(<span class='no'>r</span>)
 
@@ -146,16 +146,14 @@ layer.</dd>
 <span class='co'># make boundary matrix</span>
 <span class='no'>bm_ply</span> <span class='kw'>&lt;-</span> <span class='fu'>boundary_matrix</span>(<span class='no'>ply</span>)
 
-<span class='co'>## plot data and the boundary matrices</span>
-<span class='fu'>par</span>(<span class='kw'>mfrow</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>2</span>, <span class='fl'>2</span>))
-
 <span class='co'># plot raster and connected matrix</span>
+<span class='fu'>par</span>(<span class='kw'>mfrow</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>2</span>))
 <span class='fu'>plot</span>(<span class='no'>r</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"raster"</span>)
-<span class='fu'>plot</span>(<span class='fu'>as.raster</span>(<span class='fu'>as.matrix</span>(<span class='no'>bm_raster</span>)), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"boundary matrix"</span>)
-
+<span class='fu'>plot</span>(<span class='fu'>raster</span>(<span class='fu'>as.matrix</span>(<span class='no'>bm_raster</span>)), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"boundary matrix"</span>)</div><img src='boundary_matrix-2.png' alt='' width='540' height='400' /><div class='input'>
 <span class='co'># plot polygons and connected matrix</span>
+<span class='fu'>par</span>(<span class='kw'>mfrow</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>2</span>))
 <span class='fu'>plot</span>(<span class='no'>r</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"polygons"</span>)
-<span class='fu'>plot</span>(<span class='fu'>as.raster</span>(<span class='fu'>as.matrix</span>(<span class='no'>bm_ply</span>)), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"boundary matrix"</span>)</div><img src='boundary_matrix-2.png' alt='' width='540' height='400' /><div class='input'>
+<span class='fu'>plot</span>(<span class='fu'>raster</span>(<span class='fu'>as.matrix</span>(<span class='no'>bm_ply</span>)), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"boundary matrix"</span>)</div><img src='boundary_matrix-4.png' alt='' width='540' height='400' /><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

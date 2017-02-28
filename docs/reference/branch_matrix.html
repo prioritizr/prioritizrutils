@@ -120,9 +120,9 @@ each species experienced.</p>
 
 <span class='co'># plot data</span>
 <span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"ape"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
-  <span class='fu'>par</span>(<span class='kw'>mfrow</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>1</span>,<span class='fl'>2</span>))
-  <span class='fu'>plot</span>(<span class='no'>sim_phylogeny</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='st'>'phylogeny'</span>)
-  <span class='fu'>plot</span>(<span class='fu'>as.raster</span>(<span class='fu'>as.matrix</span>(<span class='no'>m</span>)), <span class='kw'>main</span><span class='kw'>=</span><span class='st'>'branch matrix'</span>)
+  <span class='fu'>par</span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>,<span class='fl'>2</span>))
+  <span class='fu'>plot</span>(<span class='no'>sim_phylogeny</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"phylogeny"</span>)
+  <span class='fu'>plot</span>(<span class='fu'>raster</span>(<span class='fu'>as.matrix</span>(<span class='no'>m</span>)), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"branch matrix"</span>)
 } <span class='kw'>else</span> {
   <span class='fu'>message</span>(<span class='st'>"the \"ape\" package needs to be installed to plot phylogenies"</span>)
 }</div><img src='branch_matrix-2.png' alt='' width='540' height='400' /><div class='input'>

@@ -53,7 +53,7 @@ data(sim_pu_raster, sim_pu_polygons, sim_pu_lines, sim_pu_points)
 
 ## create connected matrix using raster data
 # crop raster to 9 cells
-r <- raster::crop(sim_pu_raster, c(0, 0.3, 0, 0.3))
+r <- crop(sim_pu_raster, c(0, 0.3, 0, 0.3))
 # make connected matrix
 cm_raster <- connected_matrix(r)
 
@@ -80,18 +80,18 @@ par(mfrow = c(4,2))
 
 # plot raster and connected matrix
 plot(r, main = "raster")
-plot(as.raster(as.matrix(cm_raster)), main = "connected matrix")
+plot(raster(as.matrix(cm_raster)), main = "connected matrix")
 
 # plot polygons and connected matrix
 plot(r, main = "polygons")
-plot(as.raster(as.matrix(cm_ply)), main = "connected matrix")
+plot(raster(as.matrix(cm_ply)), main = "connected matrix")
 
 # plot lines and connected matrix
 plot(r, main = "lines")
-plot(as.raster(as.matrix(cm_lns)), main = "connected matrix")
+plot(raster(as.matrix(cm_lns)), main = "connected matrix")
 
 # plot points and connected matrix
 plot(r, main = "points")
-plot(as.raster(as.matrix(cm_pts)), main = "connected matrix")
+plot(raster(as.matrix(cm_pts)), main = "connected matrix")
 
 }

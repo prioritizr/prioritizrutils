@@ -29,8 +29,8 @@ NULL
 #' \dontrun{
 #'
 #' # create raster
-#' r <- raster::raster(ncol=10, nrow=10, xmn=0, xmx=1, ymn=0, ymx=1)
-#' raster::values(r) <- 1
+#' r <- raster(ncol=10, nrow=10, xmn=0, xmx=1, ymn=0, ymx=1)
+#' values(r) <- 1
 #'
 #' # simulate data using a Gaussian field
 #' d <- simulate_data(r, n = 1, model = RandomFields::RMgauss())
@@ -84,7 +84,7 @@ simulate_data <- function(x, n, model, transform = identity, ...) {
 #' \dontrun{
 #'
 #' # create raster
-#' r <- raster::raster(ncol=10, nrow=10, xmn=0, xmx=1, ymn=0, ymx=1)
+#' r <- raster(ncol=10, nrow=10, xmn=0, xmx=1, ymn=0, ymx=1)
 #' values(r) <- 1
 #'
 #' # simulate 4 species
@@ -116,7 +116,7 @@ simulate_species <- function(x, n=1, model=RandomFields::RMgauss(),
 #' \dontrun{
 #'
 #' # create raster
-#' r <- raster::raster(ncol=10, nrow=10, xmn=0, xmx=1, ymn=0, ymx=1)
+#' r <- raster(ncol=10, nrow=10, xmn=0, xmx=1, ymn=0, ymx=1)
 #' values(r) <- 1
 #'
 #' # simulate data

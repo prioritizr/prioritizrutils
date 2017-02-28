@@ -89,7 +89,7 @@ NULL
 #' plot(sim_pu_lines, main = "planning units (lines)")
 #' plot(sim_pu_points, main = "planning units (points)")
 #' if (requireNamespace("ape", quietly = TRUE)) {
-#'  ape::plot.phylo(plot(sim_phylogeny), main = "simulated phylogeny")
+#'  ape::plot.phylo(sim_phylogeny, main = "simulated phylogeny")
 #' } else {
 #'  message("the \"ape\" package needs to be installed to plot phylogenies")
 #' }

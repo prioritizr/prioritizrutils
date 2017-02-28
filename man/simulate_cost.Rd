@@ -33,7 +33,7 @@ it returns spatially autocorrelated integer values.
 \dontrun{
 
 # create raster
-r <- raster::raster(ncol=10, nrow=10, xmn=0, xmx=1, ymn=0, ymx=1)
+r <- raster(ncol=10, nrow=10, xmn=0, xmx=1, ymn=0, ymx=1)
 values(r) <- 1
 
 # simulate data

@@ -126,7 +126,7 @@ cannot have negative values.</dd>
   <span class='fu'><a href='objectives.html'>add_max_cover_objective</a></span>(<span class='kw'>budget</span><span class='kw'>=</span><span class='fl'>5000</span>)
 
 <span class='co'># create weights based on rarity (1/number occurrences)</span>
-<span class='no'>w</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>/<span class='kw'>raster</span><span class='kw'>::</span><span class='fu'>cellStats</span>(<span class='no'>sim_features</span>, <span class='st'>"sum"</span>) * <span class='fl'>1000</span>
+<span class='no'>w</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span> / <span class='fu'>cellStats</span>(<span class='no'>sim_features</span>, <span class='st'>"sum"</span>) * <span class='fl'>1000</span>
 
 <span class='co'># create new problem with added weights according to rarity</span>
 <span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_feature_weights</span>(<span class='no'>w</span>)

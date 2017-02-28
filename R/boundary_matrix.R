@@ -38,7 +38,7 @@ NULL
 #'
 #' ## create boundary matrix using raster data
 #' # crop raster to 9 cells
-#' r <- raster::crop(sim_pu_raster, c(0, 0.3, 0, 0.3))
+#' r <- crop(sim_pu_raster, c(0, 0.3, 0, 0.3))
 #' # make boundary matrix
 #' bm_raster <- boundary_matrix(r)
 #'
@@ -48,16 +48,15 @@ NULL
 #' # make boundary matrix
 #' bm_ply <- boundary_matrix(ply)
 #'
-#' ## plot data and the boundary matrices
-#' par(mfrow=c(2, 2))
-#'
 #' # plot raster and connected matrix
+#' par(mfrow=c(1, 2))
 #' plot(r, main = "raster")
-#' plot(as.raster(as.matrix(bm_raster)), main = "boundary matrix")
+#' plot(raster(as.matrix(bm_raster)), main = "boundary matrix")
 #'
 #' # plot polygons and connected matrix
+#' par(mfrow=c(1, 2))
 #' plot(r, main = "polygons")
-#' plot(as.raster(as.matrix(bm_ply)), main = "boundary matrix")
+#' plot(raster(as.matrix(bm_ply)), main = "boundary matrix")
 #'
 #' @export
 boundary_matrix <- function(x, ...) UseMethod("boundary_matrix")
