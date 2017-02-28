@@ -32,22 +32,27 @@ unit into a protected area). Below is a list of decisions that can be
 added to a conservation planning problem.
 }
 \details{
+Only a single decision should be added to a
+\code{ConservationProblem} object. \strong{If multiple decisions are added
+to a problem object, then the last one to be added will be used.}
+
 \describe{
 
-\item{\code{add_default_decision}}{This decsion represents the default
+  \item{\code{add_default_decision}}{This decsion represents the default
     decision if no decision is specified when constructing a conservation
     planning problem. It defaults to using a \code{binary_decision}.}
+
   \item{\code{add_binary_decision}}{This is the classic decision of either
     prioritizing or not prioritizing a planning unit. Typically,
     this decision has the assumed action of buying the planning
     unit to include in a protected area network.}
 
-\item{\code{add_proportion_decision}}{This is a relaxed decision where
+  \item{\code{add_proportion_decision}}{This is a relaxed decision where
     a part of a planning unit can be prioritized. Typically, this
     this decsion has the assumed action of buying a fraction of
     a planning unit to include in a protected area network.}
 
-\item{\code{add_semicontinuous_decision}}{This decision is similar to the
+  \item{\code{add_semicontinuous_decision}}{This decision is similar to the
     \code{proportion_decision} except that it has an upper bound
     parameter. By default, the decision can range from prioritizing
     none (0 \%) to all (100 \%) of a planning unit. However, a upper
@@ -56,11 +61,7 @@ added to a conservation planning problem.
     decision may be useful when it is not practical to conserve the
     entire planning unit.}
 
-}
-
-Only a single decision should be added to a
-\code{ConservationProblem} object. \strong{If multiple decisions are added
-to a problem object, then the last one to be added will be used.}
+ }
 }
 \examples{
 # create basic problem and using the default decision (binary)

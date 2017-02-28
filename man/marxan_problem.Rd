@@ -114,7 +114,6 @@ problems using exact algorithm solvers.
 }
 \examples{
 
-
 # create Marxan problem using spatial data
 data(sim_pu_raster, sim_features)
 p1 <- marxan_problem(sim_pu_raster, features=sim_features, targets=0.2,
@@ -123,7 +122,6 @@ p1 <- marxan_problem(sim_pu_raster, features=sim_features, targets=0.2,
 
 \donttest{
 # solve problem
-
 s1 <- solve(p1)
 
 # show solution

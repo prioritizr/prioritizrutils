@@ -92,7 +92,6 @@ NULL
 #' # plot solutions
 #' plot(s, main=c("relative targets", "absolute targets",
 #'                "log-linear targets"))
-#'
 #' }
 #'
 #' @aliases add_relative_targets-method add_relative_targets,ConservationProblem,numeric-method add_relative_targets,ConservationProblem,character-method add_absolute_targets-method add_absolute_targets,ConservationProblem,numeric-method add_absolute_targets,ConservationProblem,character-method

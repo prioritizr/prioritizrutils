@@ -93,6 +93,7 @@ NULL
 #'  add_relative_targets(0.2) %>%
 #'  add_binary_decision()
 #'
+#' \donttest{
 #' # solve problems
 #' s <- list(solve(p1), solve(p2), solve(p3), solve(p4))
 #'
@@ -108,6 +109,7 @@ NULL
 #'
 #' plot(s[[4]], main = "point data", pch = 19)
 #' points(s[[4]][s[[4]]$solution == 1, ], col = "darkgreen", cex = 2, pch = 19)
+#' }
 #'
 #' @export
 problem <- function(x, features, ...) UseMethod("problem")

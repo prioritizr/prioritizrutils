@@ -46,7 +46,7 @@ NULL
 #'
 #' # plot solutions
 #' plot(s, main = c("equal weights", "rarity weights"))
-#'}
+#' }
 #'
 #' @export
 add_feature_weights <- function(x, weights) {

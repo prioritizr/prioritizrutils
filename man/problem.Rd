@@ -105,6 +105,7 @@ p4 <- problem(sim_pu_points, sim_features) \%>\%
  add_relative_targets(0.2) \%>\%
  add_binary_decision()
 
+\donttest{
 # solve problems
 s <- list(solve(p1), solve(p2), solve(p3), solve(p4))
 
@@ -120,6 +121,7 @@ lines(s[[3]][s[[3]]$solution == 1, ], col = "darkgreen", lwd = 2)
 
 plot(s[[4]], main = "point data", pch = 19)
 points(s[[4]][s[[4]]$solution == 1, ], col = "darkgreen", cex = 2, pch = 19)
+}
 
 }
 \seealso{

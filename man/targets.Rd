@@ -122,7 +122,6 @@ s <- stack(solve(p1), solve(p2), solve(p3))
 # plot solutions
 plot(s, main=c("relative targets", "absolute targets",
                "log-linear targets"))
-
 }
 
 }

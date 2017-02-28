@@ -10,8 +10,15 @@ NULL
 #' that maximizes the number of conserved species while ensuring that the cost
 #' of the reserve network does not exceed the budget. The problem objective
 #' specifies the overall goal of the problem.
-
-
+#'
+#' @param x \code{\link{ConservationProblem-class}} object.
+#'
+#' @param budget \code{numeric} value specifying the maximum expenditure of
+#'   the prioritization.
+#'
+#' @param tree \code{\link[ape]{phylo}} object specifying a phylogenetic tree
+#    for the conservation features.
+#'
 #' @details
 #' All conservation planning problems require an objective in order to
 #' be solved. While some users may feel that explicitly defining an objective
@@ -50,14 +57,6 @@ NULL
 #'     "ape" R package to be installed.}
 #'
 #'  }
-#'
-#' @param x \code{\link{ConservationProblem-class}} object.
-#'
-#' @param budget \code{numeric} value specifying the maximum expenditure of
-#'   the prioritization.
-#'
-#' @param tree \code{\link[ape]{phylo}} object specifying a phylogenetic tree
-#    for the conservation features.
 #'
 #' @seealso \code{\link{constraints}}, \code{\link{problem}},
 #'   \code{\link{targets}}.

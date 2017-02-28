@@ -8,12 +8,22 @@ NULL
 #' unit into a protected area). Below is a list of decisions that can be
 #' added to a conservation planning problem.
 #'
+#' @param x \code{\link{ConservationProblem-class}} object.
+#'
+#' @param upper_limit \code{numeric} value specifying the maximum proportion
+#'   of a planning unit that can be reserved (eg. set to 0.8 for 80 \%).
+#'
+#' @details
+#' Only a single decision should be added to a
+#' \code{ConservationProblem} object. \strong{If multiple decisions are added
+#' to a problem object, then the last one to be added will be used.}
+#'
 #' \describe{
 #'
 #'   \item{\code{add_default_decision}}{This decsion represents the default
 #'     decision if no decision is specified when constructing a conservation
 #'     planning problem. It defaults to using a \code{binary_decision}.}
-
+#'
 #'   \item{\code{add_binary_decision}}{This is the classic decision of either
 #'     prioritizing or not prioritizing a planning unit. Typically,
 #'     this decision has the assumed action of buying the planning
@@ -34,15 +44,6 @@ NULL
 #'     entire planning unit.}
 #'
 #'  }
-#'
-#' @param x \code{\link{ConservationProblem-class}} object.
-#'
-#' @param upper_limit \code{numeric} value specifying the maximum proportion
-#'   of a planning unit that can be reserved (eg. set to 0.8 for 80 \%).
-#'
-#' @details Only a single decision should be added to a
-#' \code{ConservationProblem} object. \strong{If multiple decisions are added
-#' to a problem object, then the last one to be added will be used.}
 #'
 #' @return \code{\link{Decision-class}} object.
 #'
