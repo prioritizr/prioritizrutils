@@ -20,20 +20,31 @@ get_number_of_threads()
 
   \item{get_number_of_threads}{\code{integer} number of threads.}
 
-  \item{set_number_of_threads}{invisible \code{logical} indicating 
+  \item{set_number_of_threads}{invisible \code{logical} indicating
     success.}
 
 }
 }
 \description{
-Set and get the number of threads used for processing data. Note 
-that this does not influence the number of threads used when solving a 
-conservation problem and this must be set when adding the 
+Set and get the number of threads used for processing data. Note
+that this does not influence the number of threads used when solving a
+conservation problem and this must be set when adding the
 solver to the problem.
 }
 \details{
-To stop processing data in parallel, set the number of 
+To stop processing data in parallel, set the number of
   threads to one.
+}
+\examples{
+
+# set number of threads to 2
+set_number_of_threads(2)
+# get number of threads
+get_number_of_threads()
+
+# reset number of threads to 1
+set_number_of_threads(1)
+
 }
 \seealso{
 \code{\link{is.parallel}}, \code{\link{solvers}}.

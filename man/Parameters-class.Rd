@@ -6,14 +6,14 @@
 \title{Parameters class}
 \description{
 This class represents a collection of \code{\link{Parameter-class}} objects.
-It provides methods for accessing, updating, and rendering the parmaeters 
+It provides methods for accessing, updating, and rendering the parmaeters
 stored inside it.
 }
 \section{Fields}{
 
 \describe{
 
-\item{$parameters}{\code{list} object containing 
+\item{$parameters}{\code{list} object containing
   \code{\link{Parameter-class}} objects.}
 
 }
@@ -76,14 +76,14 @@ stored inside it.
 \item{get}{retrieve the value of a parameter in the object
    using an \code{Id} object.}
 
-\item{set}{change the value of a parameter in the object 
+\item{set}{change the value of a parameter in the object
    to a new object.}
 
 \item{render}{generate a \emph{shiny} widget to modify the
   the value of a parameter (specified by argument \code{Id}).}
 
 \item{render_all}{generate a \code{\link[shiny]{div}}
-  containing all the parameters' widgets.}
+  containing all the parameters" widgets.}
 
 }
 }

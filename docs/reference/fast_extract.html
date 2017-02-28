@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fast extract <U+2014> fast_extract <e2><80><a2> prioritizrutils</title>
+<title>Fast extract — fast_extract • prioritizrutils</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -81,15 +81,19 @@
     </div>
 
     
-    <p>Extract data from a <code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> object from a 
+    <p>Extract data from a <code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> object from a
 <code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code> object using performance enhancing tricks.</p>
     
 
-    <pre><span class='fu'>fast_extract</span>(<span class='no'>x</span>, <span class='no'>y</span>) <span class='co'># Raster, SpatialPolygons</span>
+    <pre><span class='co'># S4 method for Raster,SpatialPolygons</span>
+<span class='fu'>fast_extract</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='no'>mean</span>,
+  <span class='kw'>velox</span> <span class='kw'>=</span> <span class='fu'>requireNamespace</span>(<span class='st'>"velox"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>), <span class='no'>...</span>)
 
-<span class='fu'>fast_extract</span>(<span class='no'>x</span>, <span class='no'>y</span>) <span class='co'># Raster, SpatialLines</span>
+<span class='co'># S4 method for Raster,SpatialLines</span>
+<span class='fu'>fast_extract</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='no'>mean</span>, <span class='no'>...</span>)
 
-<span class='fu'>fast_extract</span>(<span class='no'>x</span>, <span class='no'>y</span>) <span class='co'># Raster, SpatialPoints</span></pre>
+<span class='co'># S4 method for Raster,SpatialPoints</span>
+<span class='fu'>fast_extract</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='no'>mean</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
@@ -97,20 +101,31 @@
       <dd><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> object.</dd>
       <dt>y</dt>
       <dd><code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code> object.</dd>
+      <dt>fun</dt>
+      <dd><code>function</code> used to summarise values. Defaults to
+<code>sum</code>. Note that this only used when <code>x</code> is a
+<code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPolygons-class'>SpatialPolygons-class</a></code> or a
+<code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialLines-class'>SpatialLines-class</a></code> object. This function must
+have an &quot;na.rm&quot; argument.</dd>
+      <dt>velox</dt>
+      <dd><code>logical</code> should the <code><a href='http://www.rdocumentation.org/packages/velox/topics/velox'>velox</a></code>
+be used for geoprocessing? Defaults to <code>TRUE</code> if the package
+is installed. Note that this only used when <code>x</code> is a
+<code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPolygons-class'>SpatialPolygons-class</a></code> object.</dd>
       <dt>...</dt>
       <dd>additional arguments passed to <code><a href='http://www.rdocumentation.org/packages/raster/topics/extract'>extract</a></code>.</dd>
     </dl>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>data.frame</code>, <code>matrix</code>, or <code>list</code> object 
+    <p><code>data.frame</code>, <code>matrix</code>, or <code>list</code> object
   depending on the arguments.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Spatial analyses will be conducted using the 
-  <code><a href='http://www.rdocumentation.org/packages/velox/topics/velox'>velox</a></code> package if it is installed. Additionally, 
-  multiple threads can be used to speed up computation using the 
+    <p>Spatial analyses will be conducted using the
+  <code><a href='http://www.rdocumentation.org/packages/velox/topics/velox'>velox</a></code> package if it is installed. Additionally,
+  multiple threads can be used to speed up computation using the
   <code><a href='parallel.html'>set_number_of_threads</a></code> function.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -119,6 +134,31 @@
   <code><a href='http://www.rdocumentation.org/packages/velox/topics/VeloxRaster_extract'>VeloxRaster_extract</a></code>.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># load data</span>
+<span class='fu'>data</span>(<span class='no'>sim_pu_polygons</span>, <span class='no'>sim_features</span>)
+
+<span class='co'># we will investigate severals ways for extracting values from a raster</span>
+<span class='co'># using polygons. Specifically, for each band in the raster,</span>
+<span class='co'># for each polygon in the vector layer, calculate the average</span>
+<span class='co'># of the cells that are inside the polygon.</span>
+
+<span class='co'># perform the extraction using the standard raster::extract function</span>
+<span class='fu'>system.time</span>({<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'>fast_extract</span>(<span class='no'>sim_features</span>, <span class='no'>sim_pu_polygons</span>)})</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.288   0.012   0.299 </div><div class='input'>
+<span class='co'># perform extract using the fast_extract function augmented using the</span>
+<span class='co'># "velox" package</span>
+<span class='fu'>system.time</span>({<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'>fast_extract</span>(<span class='no'>sim_features</span>, <span class='no'>sim_pu_polygons</span>,
+                                    <span class='kw'>velox</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)})</div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.144   0.000   0.147 </div><div class='input'>
+<span class='co'># perform extract using the fast_extract function with "velox" package</span>
+<span class='co'># and using two threads for processing. Note that this might be slower</span>
+<span class='co'># due to overheads but should yield faster processing times on larger</span>
+<span class='co'># spatial data sets</span>
+<span class='fu'><a href='parallel.html'>set_number_of_threads</a></span>(<span class='fl'>2</span>)
+<span class='fu'>system.time</span>({<span class='no'>result</span> <span class='kw'>&lt;-</span> <span class='fu'>fast_extract</span>(<span class='no'>sim_features</span>, <span class='no'>sim_pu_polygons</span>,
+                                    <span class='kw'>velox</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)})</div><div class='output co'>#&gt; <span class='warning'>Warning: &lt;anonymous&gt;: ... may be used in an incorrect context: ‘.fun(piece, ...)’</span></div><div class='output co'>#&gt; <span class='warning'>Warning: &lt;anonymous&gt;: ... may be used in an incorrect context: ‘.fun(piece, ...)’</span></div><div class='output co'>#&gt;    user  system elapsed 
+#&gt;   0.028   0.004   2.989 </div><div class='input'><span class='fu'><a href='parallel.html'>set_number_of_threads</a></span>(<span class='fl'>1</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -130,7 +170,9 @@
       <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

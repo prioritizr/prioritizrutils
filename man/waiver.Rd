@@ -13,9 +13,20 @@ waiver()
 Create a \code{waiver} object.
 }
 \details{
-This object is used to represent that the user has not manually 
-specified a setting, and so defaults should be used. By explictly 
-using a \code{waiver()}, this means that \code{NULL} objects can be a 
+This object is used to represent that the user has not manually
+specified a setting, and so defaults should be used. By explictly
+using a \code{waiver()}, this means that \code{NULL} objects can be a
 valid setting. The use of a "waiver" object was inspired by the
 \emph{ggplot2} package.
+}
+\examples{
+# create new waiver object
+w <- waiver()
+
+# print object
+print(w)
+
+# is it a waiver object?
+is.Waiver(w)
+
 }

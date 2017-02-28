@@ -1,4 +1,4 @@
-Comments for submission to CRAN 
+Comments for submission to CRAN
 ===============================
 
 # Test environments
@@ -18,11 +18,12 @@ Comments for submission to CRAN
 
 * _Packages suggested but not available for checking:
   'gurobi', 'lpsymphony'_
-  
-  The 'lpsymphony' package is avaiable from BioConductor, and the 'gurobi' 
-  is distributed with the Gurobi software suite. The package Description 
+
+  The 'lpsymphony' package is avaiable from BioConductor, and the 'gurobi'
+  is distributed with the Gurobi software suite. The package Description
   contains information on installing these packages.
-  
+
 
 # Downstream dependencies
-This package is not present on CRAN and therefore has no packages depending on it.  
+This package is not present on CRAN and therefore has no packages depending on
+it.

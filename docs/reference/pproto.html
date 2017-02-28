@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a new pproto object <U+2014> pproto <e2><80><a2> prioritizrutils</title>
+<title>Create a new pproto object â€” pproto ü¾Œ¦”¼ü¾Œƒ ¼ü¾Œ¦„¼ prioritizrutils</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -94,7 +94,7 @@ from the <code>ggproto</code> system used in the <em>ggplot2</em> package.</p>
 attribute of the object. This is optional: if <code>NULL</code> (the default),
 no class name will be added to the object.</dd>
       <dt>_inherit</dt>
-      <dd>ggproto object to inherit from. If <code>NULL</code>, don&#39;t
+      <dd>ggproto object to inherit from. If <code>NULL</code>, don&quot;t
 inherit from any object.</dd>
       <dt>...</dt>
       <dd>A list of members in the pproto object.</dd>
@@ -102,7 +102,7 @@ inherit from any object.</dd>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>Adder</span> <span class='kw'>&lt;-</span> <span class='fu'>pproto</span>(<span class='st'>'Adder'</span>,
+    <pre class="examples"><div class='input'><span class='no'>Adder</span> <span class='kw'>&lt;-</span> <span class='fu'>pproto</span>(<span class='st'>"Adder"</span>,
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>add</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>self</span>, <span class='no'>n</span>) {
     <span class='no'>self</span>$<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>self</span>$<span class='no'>x</span> + <span class='no'>n</span>
@@ -111,7 +111,7 @@ inherit from any object.</dd>
 )
 
 <span class='no'>Adder</span>$<span class='fu'>add</span>(<span class='fl'>10</span>)</div><div class='output co'>#&gt; [1] 10</div><div class='input'><span class='no'>Adder</span>$<span class='fu'>add</span>(<span class='fl'>10</span>)</div><div class='output co'>#&gt; [1] 20</div><div class='input'>
-<span class='no'>Abacus</span> <span class='kw'>&lt;-</span> <span class='fu'>pproto</span>(<span class='st'>'Abacus'</span>, <span class='no'>Adder</span>,
+<span class='no'>Abacus</span> <span class='kw'>&lt;-</span> <span class='fu'>pproto</span>(<span class='st'>"Abacus"</span>, <span class='no'>Adder</span>,
   <span class='kw'>subtract</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>self</span>, <span class='no'>n</span>) {
     <span class='no'>self</span>$<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='no'>self</span>$<span class='no'>x</span> - <span class='no'>n</span>
     <span class='no'>self</span>$<span class='no'>x</span>

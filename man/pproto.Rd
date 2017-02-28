@@ -11,7 +11,7 @@ pproto(`_class` = NULL, `_inherit` = NULL, ...)
 attribute of the object. This is optional: if \code{NULL} (the default),
 no class name will be added to the object.}
 
-\item{_inherit}{ggproto object to inherit from. If \code{NULL}, don't
+\item{_inherit}{ggproto object to inherit from. If \code{NULL}, don"t
 inherit from any object.}
 
 \item{...}{A list of members in the pproto object.}
@@ -21,7 +21,7 @@ Construct a new object with \code{pproto}. This object system is inspired
 from the \code{ggproto} system used in the \emph{ggplot2} package.
 }
 \examples{
-Adder <- pproto('Adder',
+Adder <- pproto("Adder",
   x = 0,
   add = function(self, n) {
     self$x <- self$x + n
@@ -32,7 +32,7 @@ Adder <- pproto('Adder',
 Adder$add(10)
 Adder$add(10)
 
-Abacus <- pproto('Abacus', Adder,
+Abacus <- pproto("Abacus", Adder,
   subtract = function(self, n) {
     self$x <- self$x - n
     self$x

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Problem objective <U+2014> objectives <e2><80><a2> prioritizrutils</title>
+<title>Problem objective â€” objectives ü¾Œ¦”¼ü¾Œƒ ¼ü¾Œ¦„¼ prioritizrutils</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -86,26 +86,26 @@ For instance, the planner may require a solution that conserves
 enough habitat for each species while minimizing the overall cost of the
 reserve network. Alternatively, the planner may require a solution
 that maximizes the number of conserved species while ensuring that the cost
-of the reserve network does not exceed the budget. The problem objective 
+of the reserve network does not exceed the budget. The problem objective
 specifies the overall goal of the problem.</p>
     
 
     <pre><span class='fu'>add_default_objective</span>(<span class='no'>x</span>)
 
-<span class='fu'>add_minimum_set_objective</span>(<span class='no'>x</span>)
+<span class='fu'>add_min_set_objective</span>(<span class='no'>x</span>)
 
-<span class='fu'>add_maximum_coverage_objective</span>(<span class='no'>x</span>, <span class='no'>budget</span>)
+<span class='fu'>add_max_cover_objective</span>(<span class='no'>x</span>, <span class='no'>budget</span>)
 
-<span class='fu'>add_maximum_representation_objective</span>(<span class='no'>x</span>, <span class='no'>budget</span>)
+<span class='fu'>add_max_features_objective</span>(<span class='no'>x</span>, <span class='no'>budget</span>)
 
-<span class='fu'>add_phylogenetic_representation_objective</span>(<span class='no'>x</span>, <span class='no'>budget</span>, <span class='no'>tree</span>)</pre>
+<span class='fu'>add_max_phylo_objective</span>(<span class='no'>x</span>, <span class='no'>budget</span>, <span class='no'>tree</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>x</dt>
       <dd><code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> object.</dd>
       <dt>budget</dt>
-      <dd><code>numeric</code> value specifying the maximum expenditure of 
+      <dd><code>numeric</code> value specifying the maximum expenditure of
 the prioritization.</dd>
       <dt>tree</dt>
       <dd><code><a href='http://www.rdocumentation.org/packages/ape/topics/read.tree'>phylo</a></code> object specifying a phylogenetic tree</dd>
@@ -113,32 +113,32 @@ the prioritization.</dd>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>All conservation planning problems require an objective in order to 
-be solved. While some users may feel that explicitly defining an objective 
-for a conservation problem adds some element of arbitrariness or 
-subjectivity to the decision making process, we remind them that &quot;canned&quot; 
-decision support tools (such as Marxan or Zonation) also have objectives. The 
-key difference here is that instead of choosing between different software 
+    <p>All conservation planning problems require an objective in order to
+be solved. While some users may feel that explicitly defining an objective
+for a conservation problem adds some element of arbitrariness or
+subjectivity to the decision making process, we remind them that &quot;canned&quot;
+decision support tools (such as Marxan or Zonation) also have objectives. The
+key difference here is that instead of choosing between different software
 programs here the user is explicitly choosing their objective within the
-single environment. See below for a list of the objectives that can be 
+single environment. See below for a list of the objectives that can be
 added to a conservation problem.</p>
     <p><dl class='dl-horizontal'></p>
     <p><dt><code>add_default_objective</code></dt><dd>This objective is used when no objective
     has been explicitly specified by the user. This will result in an error
     because there is no sensible default.</dd></p>
-    <p><dt><code>add_minimum_set_objective</code></dt><dd>The objective here is to find the 
-    the solution that fulfills all the targets and constraints for 
+    <p><dt><code>add_min_set_objective</code></dt><dd>The objective here is to find the
+    the solution that fulfills all the targets and constraints for
     the smallest cost. This objective is similar to that used in Marxan.</dd></p>
-    <p><dt><code>add_maximum_coverage_objective</code></dt><dd>The objective here is to
+    <p><dt><code>add_max_cover_objective</code></dt><dd>The objective here is to
     find the solution that secures as much of each feature as possible
     whilst not exceeding the budget.</dd></p>
-    <p><dt><code>add_maximum_representation_objective</code></dt><dd>The objective here is 
-    to find the solution that fulfills as many targets as possible while 
-    ensuring that the cost of the solution does not exceed budget and that 
+    <p><dt><code>add_max_features_objective</code></dt><dd>The objective here is
+    to find the solution that fulfills as many targets as possible while
+    ensuring that the cost of the solution does not exceed budget and that
     all constraints are met. This objective was inspired by the conservation
     problem defined in Cabeza et al. XXXX.</dd></p>
-    <p><dt><code>add_phylogenetic_representation_objective</code></dt><dd>This objective is 
-    similar to <code>maximum_targets_objective</code> except that emphasis is 
+    <p><dt><code>add_max_phylo_objective</code></dt><dd>This objective is
+    similar to <code>add_max_features_objective</code> except that emphasis is
     placed on preserving as much of a representative sample a phylogenetic
     tree as possible given a budget. This objective requires the
     &quot;ape&quot; R package to be installed.</dd></p>
@@ -152,23 +152,24 @@ added to a conservation problem.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># load data</span>
-<span class='fu'>data</span>(<span class='no'>sim_pu_raster</span>, <span class='no'>sim_features</span>, <span class='no'>sim_phlyogeny</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: data set &#39;sim_phlyogeny&#39; not found</span></div><div class='input'>
+<span class='fu'>data</span>(<span class='no'>sim_pu_raster</span>, <span class='no'>sim_features</span>, <span class='no'>sim_phlyogeny</span>)</div><div class='output co'>#&gt; <span class='warning'>NA</span></div><div class='input'>
 <span class='co'># create base problem</span>
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_pu_raster</span>, <span class='no'>sim_features</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='targets.html'>add_relative_targets</a></span>(<span class='fl'>0.1</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='solvers.html'>add_default_solver</a></span>(<span class='kw'>time_limit</span><span class='kw'>=</span><span class='fl'>5</span>)
+ <span class='fu'><a href='targets.html'>add_relative_targets</a></span>(<span class='fl'>0.1</span>)
 
-<span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_minimum_set_objective</span>()
+<span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_min_set_objective</span>()
 
 <span class='co'># create problem with added maximum coverage objective</span>
 <span class='co'># note that this objective does not use targets</span>
-<span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_maximum_coverage_objective</span>(<span class='fl'>5000</span>)
+<span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_max_cover_objective</span>(<span class='fl'>5000</span>)
 
-<span class='co'># create problem with added maximum targets objective</span>
-<span class='no'>p3</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_maximum_representation_objective</span>(<span class='fl'>5000</span>)
+<span class='co'># create problem with added maximum feature representation objective</span>
+<span class='no'>p3</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_max_features_objective</span>(<span class='fl'>5000</span>)
 
-<span class='co'># create problem with added phylogenetic representation objective</span>
-<span class='no'>p4</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_phylogenetic_representation_objective</span>(<span class='fl'>5000</span>, <span class='no'>sim_phylogeny</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required namespace: ape</span></div><div class='input'>
+<span class='co'># create problem with added maximum phylogenetic representation objective</span>
+<span class='no'>p4</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_max_phylo_objective</span>(<span class='fl'>5000</span>, <span class='no'>sim_phylogeny</span>)
+
+
 <span class='co'># solve problems</span>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>stack</span>(<span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p4</span>))</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
 #&gt; Variable types: 0 continuous, 90 integer (90 binary)
@@ -192,14 +193,14 @@ added to a conservation problem.</p>
 #&gt;      0     0 1720.63823    0    4 2140.25691 1720.63823  19.6%     -    0s
 #&gt; H    0     0                    1782.9782753 1720.63823  3.50%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (10 simplex iterations) in 0.01 seconds
-#&gt; Thread count was 1 (of 2 available processors)
+#&gt; Explored 0 nodes (10 simplex iterations) in 0.00 seconds
+#&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 2: 1782.98 2140.26 
 #&gt; Pool objective bound 1720.64
 #&gt; 
 #&gt; Optimal solution found (tolerance 1.00e-01)
-#&gt; Best objective 1.782978275316e+03, best bound 1.720638226500e+03, gap 3.4964%</div><div class='output co'>#&gt; <span class='warning'>Warning: ignoring targets since the maximum coverage objective function doesn&#39;t use targets</span></div><div class='output co'>#&gt; Optimize a model with 6 rows, 95 columns and 545 nonzeros
+#&gt; Best objective 1.782978275316e+03, best bound 1.720638226500e+03, gap 3.4964%</div><div class='output co'>#&gt; <span class='warning'>Warning: ignoring targets since the maximum coverage objective function doesn&quot;t use targets</span></div><div class='output co'>#&gt; Optimize a model with 6 rows, 95 columns and 545 nonzeros
 #&gt; Variable types: 5 continuous, 90 integer (90 binary)
 #&gt; Coefficient statistics:
 #&gt;   Matrix range     [2e-01, 2e+02]
@@ -223,7 +224,7 @@ added to a conservation problem.</p>
 #&gt; H    0     0                      74.4237982   75.03415  0.82%     -    0s
 #&gt; 
 #&gt; Explored 0 nodes (1 simplex iterations) in 0.00 seconds
-#&gt; Thread count was 1 (of 2 available processors)
+#&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 2: 74.4238 -0 
 #&gt; Pool objective bound 75.0342
@@ -240,7 +241,7 @@ added to a conservation problem.</p>
 #&gt; Found heuristic solution: objective 5
 #&gt; 
 #&gt; Explored 0 nodes (0 simplex iterations) in 0.00 seconds
-#&gt; Thread count was 1 (of 2 available processors)
+#&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 1: 5 
 #&gt; Pool objective bound 5
@@ -270,8 +271,8 @@ added to a conservation problem.</p>
 #&gt;      0     0    3.24225    0    1    0.00000    3.24225      -     -    0s
 #&gt; H    0     0                       3.2422472    3.24225  0.00%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (8 simplex iterations) in 0.01 seconds
-#&gt; Thread count was 1 (of 2 available processors)
+#&gt; Explored 0 nodes (8 simplex iterations) in 0.00 seconds
+#&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 2: 3.24225 2.55364e-09 
 #&gt; Pool objective bound 3.24225
@@ -279,8 +280,10 @@ added to a conservation problem.</p>
 #&gt; Optimal solution found (tolerance 1.00e-01)
 #&gt; Best objective 3.242247207042e+00, best bound 3.242247207042e+00, gap 0.0000%</div><div class='input'>
 <span class='co'># plot solutions</span>
-<span class='fu'>plot</span>(<span class='no'>s</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>'minimum set'</span>, <span class='st'>'maximum coverage'</span>, <span class='st'>'maximum representation'</span>,
-               <span class='st'>'phylogenetic representation'</span>))</div><img src='objectives-10.png' alt='' width='540' height='400' /><div class='input'>
+<span class='fu'>plot</span>(<span class='no'>s</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"minimum set"</span>, <span class='st'>"maximum coverage"</span>, <span class='st'>"maximum representation"</span>,
+               <span class='st'>"phylogenetic representation"</span>))</div><img src='objectives-8.png' alt='' width='540' height='400' /><div class='input'>
+
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

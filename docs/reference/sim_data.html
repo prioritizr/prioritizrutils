@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simulated conservation planning data <U+2014> sim_data <e2><80><a2> prioritizrutils</title>
+<title>Simulated conservation planning data â€” sim_data ü¾Œ¦”¼ü¾Œƒ ¼ü¾Œ¦„¼ prioritizrutils</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -109,7 +109,7 @@
     <p><dt>sim_pu_polygons</dt><dd><code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPolygonsDataFrame-class'>SpatialPolygonsDataFrame-class</a></code>
     object.</dd></p>
     <p><dt>sim_pu_lines</dt><dd><code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialLinesDataFrame-class'>SpatialLinesDataFrame-class</a></code> object.</dd></p>
-    <p><dt>sim_pu_points</dt><dd><code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPointsDataFrame-class'>SpatialPointsDataFrame-class</a></code> 
+    <p><dt>sim_pu_points</dt><dd><code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPointsDataFrame-class'>SpatialPointsDataFrame-class</a></code>
     object.</dd></p>
     <p><dt>sim_pu_raster</dt><dd><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>RasterLayer-class</a></code> object.</dd></p>
     <p><dt>sim_phylogeny</dt><dd><code><a href='http://www.rdocumentation.org/packages/ape/topics/read.tree'>phylo</a></code> object.</dd></p>
@@ -120,23 +120,23 @@
     <p><dl class='dl-horizontal'>
   <dt><code>sim_pu_raster</code></dt><dd>Planning units are represented as raster data.
     Pixel values indicate cost.</dd></p>
-    <p><dt><code>sim_locked_in_raster</code></dt><dd>Planning units are represented as raster 
+    <p><dt><code>sim_locked_in_raster</code></dt><dd>Planning units are represented as raster
     data. Pixel values are binary and indicate if planning units should
     be locked in.</dd></p>
-    <p><dt><code>sim_locked_out_raster</code></dt><dd>Planning units are represented as raster 
+    <p><dt><code>sim_locked_out_raster</code></dt><dd>Planning units are represented as raster
     data. Pixel values are binary and indicate if planning units should
     be locked out.</dd></p>
     <p><dt><code>sim_pu_polygons</code></dt><dd>Planning units represented as polygon data.
     The attribute table contains data indicating the expenditure required
-    for prioritizing each planning unit (&#39;cost&#39; column), if the planning 
-    units should be selected in the solution (&#39;locked_in&#39; column), and 
+    for prioritizing each planning unit (&#39;cost&#39; column), if the planning
+    units should be selected in the solution (&#39;locked_in&#39; column), and
     and if the planning units should never be selected in the solution
     (&#39;locked_out&#39; column).</dd></p>
     <p><dt><code>sim_pu_points</code></dt><dd>Planning units represented as point data.
-    The attribute table follows the same conventions as for 
+    The attribute table follows the same conventions as for
     <code>sim_pu_polygons</code></dd>.</p>
     <p><dt><code>sim_pu_lines</code></dt><dd>Planning units represented as line data.
-    The attribute table follows the same conventions as for 
+    The attribute table follows the same conventions as for
     <code>sim_pu_polygons</code></dd>.</p>
     <p><dt><code>sim_features</code></dt><dd>The simulated distribution of ten species.
     Pixel values indicate habitat suitability.</dd></p>
@@ -158,10 +158,12 @@
 <span class='fu'>plot</span>(<span class='no'>sim_pu_polygons</span>)
 <span class='fu'>plot</span>(<span class='no'>sim_pu_lines</span>)
 <span class='fu'>plot</span>(<span class='no'>sim_pu_points</span>)
-<span class='fu'>plot</span>(<span class='no'>sim_features</span>)</div><img src='sim_data-2.png' alt='' width='540' height='400' /><img src='sim_data-3.png' alt='' width='540' height='400' /><div class='input'><span class='fu'>plot</span>(<span class='no'>sim_phylogeny</span>)
-<span class='fu'>dev.off</span>()</div><div class='output co'>#&gt; null device 
-#&gt;           1 </div><div class='input'>
-</div></pre>
+<span class='fu'>plot</span>(<span class='no'>sim_features</span>)</div><img src='sim_data-2.png' alt='' width='540' height='400' /><img src='sim_data-3.png' alt='' width='540' height='400' /><div class='input'><span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"ape"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
+ <span class='kw'>ape</span><span class='kw'>::</span><span class='fu'>plot.phylo</span>(<span class='fu'>plot</span>(<span class='no'>sim_phylogeny</span>))
+} <span class='kw'>else</span> {
+ <span class='fu'>message</span>(<span class='st'>"the \"ape\" package needs to be installed to plot phylogenies"</span>)
+}</div><div class='output co'>#&gt; <span class='warning'>Warning: found less than 2 tips in the tree</span></div><div class='output co'>#&gt; NULL</div><div class='input'>
+</div><img src='sim_data-8.png' alt='' width='540' height='400' /></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

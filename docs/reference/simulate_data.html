@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simulate data <U+2014> simulate_data <e2><80><a2> prioritizrutils</title>
+<title>Simulate data â€” simulate_data ü¾Œ¦”¼ü¾Œƒ ¼ü¾Œ¦„¼ prioritizrutils</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -114,6 +114,20 @@ from the random fields simulation.</dd>
   <code><a href='simulate_cost.html'>simulate_cost</a></code>, <code><a href='simulate_species.html'>simulate_species</a></code>.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'>## Not run: ------------------------------------</span>
+<span class='co'># </span>
+<span class='co'># # create raster</span>
+<span class='co'># r &lt;- raster::raster(ncol=10, nrow=10, xmn=0, xmx=1, ymn=0, ymx=1)</span>
+<span class='co'># raster::values(r) &lt;- 1</span>
+<span class='co'># </span>
+<span class='co'># # simulate data using a Gaussian field</span>
+<span class='co'># d &lt;- simulate_data(r, n = 1, model = RandomFields::RMgauss())</span>
+<span class='co'># </span>
+<span class='co'># # plot simulated data</span>
+<span class='co'># plot(d, main = "random Gaussian field")</span>
+<span class='co'># </span>
+<span class='co'>## ---------------------------------------------</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -123,7 +137,9 @@ from the random fields simulation.</dd>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#see-also">See also</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

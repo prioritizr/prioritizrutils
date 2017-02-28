@@ -6,7 +6,7 @@
 \title{OptimizationProblem class}
 \description{
 This class is used to represent an optimization problem. Data are stored
-in memory using an external pointer. \strong{Only experts should interact 
+in memory using an external pointer. \strong{Only experts should interact
 with this class directly.}
 }
 \section{Fields}{
@@ -96,7 +96,7 @@ with this class directly.}
 
 \item{number_of_features}{\code{integer} number of features in the problem.}
 
-\item{number_of_planning_units}{\code{integer} number of planning units in 
+\item{number_of_planning_units}{\code{integer} number of planning units in
   the problem.}
 
 \item{col_ids}{\code{character} names describing each decision variable

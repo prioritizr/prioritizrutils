@@ -1,14 +1,18 @@
-all: clean data docs readme vigns site test check install
+all: clean data docs test check install
 
 clean:
+	rm -rf man/*
 	rm -rf data/*
 	rm -rf docs/*
 	rm -rf inst/doc/*
 	rm -rf vignettes/*
 
+docs: man readme site vigns
+
 data:
 	Rscript --slave inst/extdata/simulate_data.R
-docs:
+
+man:
 	R --slave -e "devtools::document()"
 
 readme:
@@ -17,7 +21,7 @@ readme:
 	rm -rf inst/vign/gh-README.md
 	cd inst/vign;\
 	cp README.Rmd gh-README.Rmd;\
-	sed -i 1,14d gh-README.Rmd;\
+	sed -i 1,11d gh-README.Rmd;\
 	sed -i -e '1i---\' gh-README.Rmd;\
 	sed -i -e '1ioutput: github_document\' gh-README.Rmd;\
 	sed -i -e '1ititle: prioritizrutils\' gh-README.Rmd;\
@@ -32,17 +36,22 @@ vigns:
 	mkdir -p vignettes
 	cp -f inst/vign/*.Rmd vignettes/
 	rm vignettes/placeholder.Rmd
+	rm vignettes/README.Rmd
 	R --slave -e "devtools::build_vignettes()"
 	rm -rf vignettes/*
 	mkdir -p vignettes
-	cp -f inst/vign/placeholder.Rmd vignettes/README.Rmd
+	cp inst/vign/placeholder.Rmd vignettes/prioritizrutils.Rmd
 	touch inst/doc/*
 
 site:
 	mkdir -p vignettes
 	cp -f inst/vign/*.Rmd vignettes
 	rm vignettes/placeholder.Rmd
-	R --slave -e "pkgdown::build_site()"
+	rm vignettes/README.Rmd
+	R --slave -e "pkgdown::build_home()"
+	R --slave -e "pkgdown::build_reference()"
+	R --slave -e "pkgdown::build_articles()"
+	R --slave -e "pkgdown::build_news()"
 	rm -rf vignettes/*
 	rm -rf inst/doc/*
 
@@ -61,4 +70,4 @@ build:
 install:
 	R --slave -e "devtools::install_local('../conserve')"
 
-.PHONY: clean data docs readme site test check checkwb build  install 
+.PHONY: clean data docs readme site test check checkwb build  install man

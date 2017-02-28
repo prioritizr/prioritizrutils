@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Conservation problem constraints <U+2014> constraints <e2><80><a2> prioritizrutils</title>
+<title>Conservation problem constraints â€” constraints ü¾Œ¦”¼ü¾Œƒ ¼ü¾Œ¦„¼ prioritizrutils</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -87,12 +87,34 @@
         
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><dl class='dl-horizontal'>
-  <dt><code><a href='add_boundary_constraint.html'>add_boundary_constraint</a></code></dt><dd>TODO description</dd></p>
-    <p><dt><code><a href='add_connected_constraint.html'>add_connected_constraint</a></code></dt><dd>TODO description</dd></p>
-    <p><dt><code><a href='add_corridors_constraint.html'>add_corridors_constraint</a></code></dt><dd>TODO description</dd></p>
-    <p><dt><code><a href='add_locked_in_constraint.html'>add_locked_in_constraint</a></code></dt><dd>TODO description</dd></p>
-    <p><dt><code><a href='add_locked_out_constraint.html'>add_locked_out_constraint</a></code></dt><dd>TODO description</dd></p>
+    <p><dl class='dl-horizontal'></p>
+    <p><dt><code><a href='add_connected_constraints.html'>add_connected_constraints</a></code></dt><dd>
+Add constraints to a conservation problem to ensure that all selected
+planning units are spatially connected to each other.
+  </dd></p>
+    <p><dt><code><a href='add_corridors_constraints.html'>add_corridors_constraints</a></code></dt><dd>
+It is important to maintain connectivity between reserves. However,
+some areas are more difficult for species to traverse then other areas.
+As a consequence, even though reserves may be connected, species may
+not be able to move between reserves if the areas connecting them 
+are barriers to dispersal.</p>
+    <p>This function adds constraints to ensure that corridors connect 
+reserves and that individuals from all species can utilise the 
+corridors. Friction <code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> objects area
+used to show each dificult areas are to traverse.
+</dd></p>
+    <p><dt><code><a href='add_locked_in_constraints.html'>add_locked_in_constraints</a></code></dt><dd>
+Add constraints to ensure that they are prioritized in the solution. 
+For example, it may be desirable to lock in planning units that are 
+inside existing protected areas so that the solution fills in the gaps in the 
+existing reserve network.
+</dd></p>
+    <p><dt><code><a href='add_locked_out_constraints.html'>add_locked_out_constraints</a></code></dt><dd>
+Add constraints to ensure that certain planning units are not prioritized
+in the solution. For example, it may be useful to lock out planning 
+units that have been degraded and are not longer suitable for conserving
+species.</p>
+    <p></dd></p>
     <p></dl></p>
     
 

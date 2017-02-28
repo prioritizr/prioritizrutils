@@ -5,7 +5,7 @@
 \alias{Collection}
 \title{Collection prototype}
 \description{
-This prototype represents a collection of 
+This prototype represents a collection of
 \code{\link{ConservationModifier-class}} objects.
 }
 \section{Fields}{
@@ -70,18 +70,18 @@ This prototype represents a collection of
 \item{get_parameter}{retrieve the value of a parameter in the object
   using an \code{id} object.}
 
-\item{set_parameter}{change the value of a parameter in the object 
+\item{set_parameter}{change the value of a parameter in the object
   to a new object.}
 
 \item{render_parameter}{generate a \emph{shiny} widget to modify the
   the value of a parameter (specified by argument \code{id}).}
 
 \item{render_all_parameters}{generate a \code{\link[shiny]{div}}
-  containing all the parameters' widgets.}
+  containing all the parameters" widgets.}
 
 }
 }
 
 \seealso{
-\code{\link{Constraint-class}}, \code{\link{Penalties-class}}.
+\code{\link{Constraint-class}}, \code{\link{Penalty-class}}.
 }

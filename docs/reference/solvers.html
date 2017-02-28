@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Problem solvers <U+2014> solvers <e2><80><a2> prioritizrutils</title>
+<title>Problem solvers â€” solvers ü¾Œ¦”¼ü¾Œƒ ¼ü¾Œ¦„¼ prioritizrutils</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -81,8 +81,8 @@
     </div>
 
     
-    <p>Specify the software and configurations used to solve a conservation planning 
-problem. Below is a list of different solvers that can be added to a 
+    <p>Specify the software and configurations used to solve a conservation planning
+problem. Below is a list of different solvers that can be added to a
 <code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> object.</p>
     
 
@@ -110,24 +110,24 @@ function bounds is less than the gap times the upper bound. For example, a
 value of 0.01 will result in the optimizer stopping when the difference
 between the bounds is 1 percent of the upper bound.</dd>
       <dt>time_limit</dt>
-      <dd><code>numeric</code> time limit in seconds to run the optimizer. 
+      <dd><code>numeric</code> time limit in seconds to run the optimizer.
 The solver will return the current best solution when this time limit is
 exceeded.</dd>
       <dt>presolve</dt>
-      <dd><code>integer</code> number indicating how intensively the 
+      <dd><code>integer</code> number indicating how intensively the
 solver should try to simplify the problem before solving it. The default
-value of 2 indicates to that the solver should be very aggressive in 
+value of 2 indicates to that the solver should be very aggressive in
 trying to simplify the problem.</dd>
       <dt>threads</dt>
       <dd><code>integer</code> number of threads to use for the
-optimization algorithm. The default value of 1 will result in only 
+optimization algorithm. The default value of 1 will result in only
 one thread being used.</dd>
       <dt>first_feasible</dt>
       <dd><code>logical</code> should the first feasible solution be
-be returned? If <code>first_feasible</code> is set to <code>TRUE</code>, the solver 
-will return the first solution it encounters that meets all the 
-constraints, regardless of solution quality. Note that the first feasible 
-solution is not an arbitrary solution, rather it is derived from the 
+be returned? If <code>first_feasible</code> is set to <code>TRUE</code>, the solver
+will return the first solution it encounters that meets all the
+constraints, regardless of solution quality. Note that the first feasible
+solution is not an arbitrary solution, rather it is derived from the
 relaxed solution, and is therefore often reasonably close to optimality.</dd>
       <dt>verbosity</dt>
       <dd><code>integer</code> how verbose should the solver be when
@@ -137,30 +137,30 @@ reporting progress on solving the problem?</dd>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><dl class='dl-horizontal'></p>
-    <p><dt><code>default_solver</code></dt><dd>This solver uses the best software installed 
+    <p><dt><code>default_solver</code></dt><dd>This solver uses the best software installed
    currently installed on the system.</dd></p>
     <p><dt><code>add_gurobi_solver</code></dt><dd><a href = 'Gurobi'>http://gurobi.com</a> is a
     state-of-the-art commercial optimization software with an R package
     interface. It is by far the fastest of the solvers available in this
-    package, however, it is also the only one that isn&#39;t free. That said, 
-    free academic licenses are available. The <code>gurobi</code> package is 
+    package, however, it is also the only one that isn&quot;t free. That said,
+    free academic licenses are available. The <code>gurobi</code> package is
     distributed with the Gurobi software suite. This solver uses the
     <code>gurobi</code> package to solve problems.</dd></p>
     <p><dt><code>add_rsymphony_solver</code></dt><dd>
     <a href = 'SYMPHONY'>https://projects.coin-or.org/SYMPHONY</a> is an open-source
-    integer programming solver that is part of the Computational 
-    Infrastructure for Operations Research (COIN-OR) project, an initiative 
-    to promote development of open-source tools for operations research (a 
-    field that includes linear programming). The <code>Rsymphony</code> package 
-    provides an interface to COIN-OR and is available on CRAN. This solver 
+    integer programming solver that is part of the Computational
+    Infrastructure for Operations Research (COIN-OR) project, an initiative
+    to promote development of open-source tools for operations research (a
+    field that includes linear programming). The <code>Rsymphony</code> package
+    provides an interface to COIN-OR and is available on CRAN. This solver
     uses the <code>Rsymphony</code> package to solve problems.</dd></p>
     <p><dt><code>add_lpsymphony_solver</code></dt><dd>The <code>lpsymphony</code> package provides a
-   different interface to the COIN-OR software suite. Unlike the 
+   different interface to the COIN-OR software suite. Unlike the
    <code>Rsymhpony</code> package, the <code>lpsymphony</code> package is distributed
-   through 
-   <a href = 'Bioconductor'>http://bioconducto/packages/release/bioc/html/lpsymphony.html</a>. 
+   through
+   <a href = 'Bioconductor'>http://bioconducto/packages/release/bioc/html/lpsymphony.html</a>.
    On Windows and Mac, <code>lpsymphony</code> may be easier to
-   may be easier to install. This solver uses the <code>lpsymphony</code> package 
+   may be easier to install. This solver uses the <code>lpsymphony</code> package
    to solve.</dd></p>
     <p></dl></p>
     
@@ -169,26 +169,25 @@ reporting progress on solving the problem?</dd>
     <pre class="examples"><div class='input'>
 <span class='co'># create basic problem</span>
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_pu_raster</span>, <span class='no'>sim_features</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='objectives.html'>add_minimum_set_objective</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='objectives.html'>add_min_set_objective</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='targets.html'>add_relative_targets</a></span>(<span class='fl'>0.1</span>)
 
-<span class='co'># create problem with added rsymphony solver and limit the time spent </span>
+<span class='co'># create problem with added rsymphony solver and limit the time spent</span>
 <span class='co'># searching for the optimal solution to 2 seconds</span>
 <span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_rsymphony_solver</span>(<span class='kw'>time_limit</span><span class='kw'>=</span><span class='fl'>2</span>)
 
-<span class='co'># create problem with added rsymphony solver and limit the time spent </span>
+<span class='co'># create problem with added rsymphony solver and limit the time spent</span>
 <span class='co'># searching for the optimal solution to 5 seconds</span>
 <span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_rsymphony_solver</span>(<span class='kw'>time_limit</span><span class='kw'>=</span><span class='fl'>5</span>)
 
 <span class='co'># solve problems</span>
-<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>stack</span>(<span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>))
-
+<span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>stack</span>(<span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: coercing argument of type &#39;double&#39; to logical</span></div><div class='output co'>#&gt; <span class='warning'>Warning: coercing argument of type &#39;double&#39; to logical</span></div><div class='output co'>#&gt; <span class='warning'>Warning: coercing argument of type &#39;double&#39; to logical</span></div><div class='output co'>#&gt; <span class='warning'>Warning: coercing argument of type &#39;double&#39; to logical</span></div><div class='input'>
 <span class='co'># create character vector to store plot titles</span>
-<span class='no'>titles</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>'rsymphony (2s)'</span>, <span class='st'>'rsymphony (5s)'</span>)
+<span class='no'>titles</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"rsymphony (2s)"</span>, <span class='st'>"rsymphony (5s)"</span>)
 
-<span class='co'># if the gurobi is installed: create problem with added gurobi solver </span>
-<span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>'gurobi'</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)) {
-  <span class='no'>titles</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='no'>titles</span>, <span class='st'>'gurobi (5s)'</span>)
+<span class='co'># if the gurobi is installed: create problem with added gurobi solver</span>
+<span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"gurobi"</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)) {
+  <span class='no'>titles</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='no'>titles</span>, <span class='st'>"gurobi (5s)"</span>)
   <span class='no'>p3</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_gurobi_solver</span>(<span class='kw'>gap</span><span class='kw'>=</span><span class='fl'>0.1</span>, <span class='kw'>presolve</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>time_limit</span><span class='kw'>=</span><span class='fl'>5</span>)
   <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>addLayer</span>(<span class='no'>s</span>, <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>))
 }</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
@@ -213,23 +212,25 @@ reporting progress on solving the problem?</dd>
 #&gt;      0     0 1720.63823    0    4 2140.25691 1720.63823  19.6%     -    0s
 #&gt; H    0     0                    1782.9782753 1720.63823  3.50%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (10 simplex iterations) in 0.01 seconds
-#&gt; Thread count was 1 (of 2 available processors)
+#&gt; Explored 0 nodes (10 simplex iterations) in 0.00 seconds
+#&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 2: 1782.98 2140.26 
 #&gt; Pool objective bound 1720.64
 #&gt; 
 #&gt; Optimal solution found (tolerance 1.00e-01)
 #&gt; Best objective 1.782978275316e+03, best bound 1.720638226500e+03, gap 3.4964%</div><div class='input'>
-<span class='co'># if the lpsymphony is installed: create problem with added lpsymphony solver </span>
-<span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>'lpsymphony'</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)) {
-  <span class='no'>titles</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='no'>titles</span>, <span class='st'>'lpsymphony'</span>)
+<span class='co'># if the lpsymphony is installed: create problem with added lpsymphony solver</span>
+<span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"lpsymphony"</span>, <span class='kw'>quietly</span><span class='kw'>=</span><span class='fl'>TRUE</span>)) {
+  <span class='no'>titles</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='no'>titles</span>, <span class='st'>"lpsymphony"</span>)
   <span class='no'>p4</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_lpsymphony_solver</span>(<span class='kw'>gap</span><span class='kw'>=</span><span class='fl'>0.1</span>, <span class='kw'>time_limit</span><span class='kw'>=</span><span class='fl'>5</span>)
   <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>addLayer</span>(<span class='no'>s</span>, <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p4</span>))
 }
 
 <span class='co'># plot solutions</span>
-<span class='fu'>plot</span>(<span class='no'>s</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='no'>titles</span>)</div><img src='solvers-4.png' alt='' width='540' height='400' /><div class='input'>
+<span class='fu'>plot</span>(<span class='no'>s</span>, <span class='kw'>main</span><span class='kw'>=</span><span class='no'>titles</span>)</div><img src='solvers-9.png' alt='' width='540' height='400' /><div class='input'>
+
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

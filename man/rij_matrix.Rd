@@ -10,26 +10,26 @@
 \usage{
 rij_matrix(x, y, ...) # x=Raster, y=Raster
 
-rij_matrix(x, y, velox...) # x=Spatial, y=Raster
+rij_matrix(x, y, ...) # x=Spatial, y=Raster
 }
 \arguments{
 \item{x}{\code{\link[raster]{RasterLayer-class}} or
-\code{\link[sp]{Spatial-class}} object representing the 
+\code{\link[sp]{Spatial-class}} object representing the
 planning units}
 
-\item{y}{\code{\link[raster]{Raster-class}} object representing the 
+\item{y}{\code{\link[raster]{Raster-class}} object representing the
 features}
 
 \item{...}{additional arguments passed to \code{\link{fast_extract}} if
-argument to \code{x} inherits from a \code{\link[sp]{Spatial-class}} 
+argument to \code{x} inherits from a \code{\link[sp]{Spatial-class}}
 object.}
 }
 \value{
 \code{\link{Matrix}{dgCMatrix-class}} object.
 }
 \description{
-Generate a feature by planning unit (aka \emph{rij} matrix) using spatial 
-data sets. The \code{rij} contains data on the amount of each feature in 
+Generate a feature by planning unit (aka \emph{rij} matrix) using spatial
+data sets. The \code{rij} contains data on the amount of each feature in
 each planning unit.
 }
 \details{
@@ -40,18 +40,29 @@ The sparse matrix represents the spatial intersection between the
   third species in the second planning unit would be contained in the
   cell in the third column and in the second column.
 
-  This function can take a long to run for big data sets. To reduce 
+  This function can take a long to run for big data sets. To reduce
   processing time, the \code{\link{set_number_of_threads}} function
-  can be used to allocate more computational resources. Additionally, 
+  can be used to allocate more computational resources. Additionally,
   dealing with planning units represented with
-  \code{\link[sp]{SpatialPolygonsDataFrame}} object, the 
-  \code{\link[velox]{velox}} package can be installed to reduce 
+  \code{\link[sp]{SpatialPolygonsDataFrame}} object, the
+  \code{\link[velox]{velox}} package can be installed to reduce
   processing time.
 
   Generally, processing \code{\link[sp]{Spatial-class}} data takes much
-  longer to process then \code{\link[raster]{Raster-class}} data, and 
+  longer to process then \code{\link[raster]{Raster-class}} data, and
   so it is recomended to use \code{\link[raster]{Raster-class}} data
   for planning units where possible.
+}
+\examples{
+# load data
+data(sim_pu_cost, sim_pu_raster, sim_pu_polygons)
+
+# create rij matrix using raster planning units
+rij_raster <- rij_matrix(sim_pu_raster, sim_features)
+
+# create rij matrix using polygon planning units
+rij_polygons <- rij_matrix(sim_pu_polygons, sim_features)
+
 }
 \seealso{
 \code{\link{set_number_of_threads}}, \code{\link[velox]{velox}}.

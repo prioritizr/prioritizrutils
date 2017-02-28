@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Connected matrix <U+2014> connected_matrix <e2><80><a2> prioritizrutils</title>
+<title>Connected matrix â€” connected_matrix ü¾Œ¦”¼ü¾Œƒ ¼ü¾Œ¦„¼ prioritizrutils</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -84,30 +84,38 @@
     <p>Create a matrix showing which planning units are spatially connected.</p>
     
 
-    <pre><span class='fu'>connected_matrix</span>(<span class='no'>x</span>, <span class='kw'>directions</span> <span class='kw'>=</span> <span class='fl'>4</span>) <span class='co'># Raster</span>
+    <pre><span class='fu'>connected_matrix</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
-<span class='fu'>connected_matrix</span>(<span class='no'>x</span>) <span class='co'># SpatialPolygons</span>
+<span class='co'># S3 method for Raster</span>
+<span class='fu'>connected_matrix</span>(<span class='no'>x</span>, <span class='kw'>directions</span> <span class='kw'>=</span> <span class='fl'>4L</span>, <span class='no'>...</span>)
 
-<span class='fu'>connected_matrix</span>(<span class='no'>x</span>) <span class='co'># SpatialLines</span>
+<span class='co'># S3 method for SpatialPolygons</span>
+<span class='fu'>connected_matrix</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
-<span class='fu'>connected_matrix</span>(<span class='no'>x</span>, <span class='no'>distance</span>) <span class='co'># SpatialPoints</span></pre>
+<span class='co'># S3 method for SpatialLines</span>
+<span class='fu'>connected_matrix</span>(<span class='no'>x</span>, <span class='no'>...</span>)
+
+<span class='co'># S3 method for SpatialPoints</span>
+<span class='fu'>connected_matrix</span>(<span class='no'>x</span>, <span class='no'>distance</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>x</dt>
-      <dd><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> or 
-<code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code> object. Note that if <code>x</code> is a 
+      <dd><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> or
+<code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code> object. Note that if <code>x</code> is a
 <code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> object then it must have only one
 layer.</dd>
+      <dt>...</dt>
+      <dd>not used.</dd>
       <dt>directions</dt>
       <dd><code>integer</code> If <code>x</code> is a
 <code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> object, the number of directions
- in which cells should be connected: 4 (rook&#39;s case), 8 (queen&#39;s case), 
- 16 (knight and one-cell queen moves), or &#39;bishop&#39; to connect cells with
+ in which cells should be connected: 4 (rook&quot;s case), 8 (queen&quot;s case),
+ 16 (knight and one-cell queen moves), or &quot;bishop&quot; to connect cells with
  one-cell diagonal moves.</dd>
       <dt>distance</dt>
-      <dd><code>numeric</code> If <code>x</code> is a 
-<code>SpatialPoints-class</code> object, the distance that planning units 
+      <dd><code>numeric</code> If <code>x</code> is a
+<code>SpatialPoints-class</code> object, the distance that planning units
 have to be within in order to qualify as being connected.</dd>
     </dl>
     
@@ -118,10 +126,57 @@ have to be within in order to qualify as being connected.</dd>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function returns a <code><a href='http://www.rdocumentation.org/packages/Matrix/topics/dgCMatrix-class'>dgCMatrix-class</a></code> sparse
-  matrix. Cells along the off-diagonal indicate if two planning units are 
+  matrix. Cells along the off-diagonal indicate if two planning units are
   connected. Cells along the diagonal are zero to reduce memory consumption.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'>## load data</span>
+<span class='fu'>data</span>(<span class='no'>sim_pu_raster</span>, <span class='no'>sim_pu_polygons</span>, <span class='no'>sim_pu_lines</span>, <span class='no'>sim_pu_points</span>)
+
+<span class='co'>## create connected matrix using raster data</span>
+<span class='co'># crop raster to 9 cells</span>
+<span class='no'>r</span> <span class='kw'>&lt;-</span> <span class='kw'>raster</span><span class='kw'>::</span><span class='fu'>crop</span>(<span class='no'>sim_pu_raster</span>, <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>0.3</span>, <span class='fl'>0</span>, <span class='fl'>0.3</span>))
+<span class='co'># make connected matrix</span>
+<span class='no'>cm_raster</span> <span class='kw'>&lt;-</span> <span class='fu'>connected_matrix</span>(<span class='no'>r</span>)
+
+<span class='co'>## create connected matrix using polygon data</span>
+<span class='co'># subset 9 polygons</span>
+<span class='no'>ply</span> <span class='kw'>&lt;-</span> <span class='no'>sim_pu_polygons</span>[<span class='fu'>c</span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='fl'>10</span>:<span class='fl'>12</span>, <span class='fl'>20</span>:<span class='fl'>22</span>), ]
+<span class='co'># make connected matrix</span>
+<span class='no'>cm_ply</span> <span class='kw'>&lt;-</span> <span class='fu'>connected_matrix</span>(<span class='no'>ply</span>)
+
+<span class='co'>## create connected matrix using polygon line</span>
+<span class='co'># subset 9 lines</span>
+<span class='no'>lns</span> <span class='kw'>&lt;-</span> <span class='no'>sim_pu_lines</span>[<span class='fu'>c</span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='fl'>10</span>:<span class='fl'>12</span>, <span class='fl'>20</span>:<span class='fl'>22</span>), ]
+<span class='co'># make connected matrix</span>
+<span class='no'>cm_lns</span> <span class='kw'>&lt;-</span> <span class='fu'>connected_matrix</span>(<span class='no'>lns</span>)
+
+<span class='co'>## create connected matrix using point data</span>
+<span class='co'># subset 9 points</span>
+<span class='no'>pts</span> <span class='kw'>&lt;-</span> <span class='no'>sim_pu_points</span>[<span class='fu'>c</span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='fl'>10</span>:<span class='fl'>12</span>, <span class='fl'>20</span>:<span class='fl'>22</span>), ]
+<span class='co'># make connected matrix</span>
+<span class='no'>cm_pts</span> <span class='kw'>&lt;-</span> <span class='fu'>connected_matrix</span>(<span class='no'>pts</span>, <span class='kw'>distance</span> <span class='kw'>=</span> <span class='fl'>0.1</span>)
+
+<span class='co'>## plot data and the connected matrices</span>
+<span class='fu'>par</span>(<span class='kw'>mfrow</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>4</span>,<span class='fl'>2</span>))
+
+<span class='co'># plot raster and connected matrix</span>
+<span class='fu'>plot</span>(<span class='no'>r</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"raster"</span>)
+<span class='fu'>plot</span>(<span class='fu'>as.raster</span>(<span class='fu'>as.matrix</span>(<span class='no'>cm_raster</span>)), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"connected matrix"</span>)
+
+<span class='co'># plot polygons and connected matrix</span>
+<span class='fu'>plot</span>(<span class='no'>r</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"polygons"</span>)
+<span class='fu'>plot</span>(<span class='fu'>as.raster</span>(<span class='fu'>as.matrix</span>(<span class='no'>cm_ply</span>)), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"connected matrix"</span>)
+
+<span class='co'># plot lines and connected matrix</span>
+<span class='fu'>plot</span>(<span class='no'>r</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"lines"</span>)
+<span class='fu'>plot</span>(<span class='fu'>as.raster</span>(<span class='fu'>as.matrix</span>(<span class='no'>cm_lns</span>)), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"connected matrix"</span>)
+
+<span class='co'># plot points and connected matrix</span>
+<span class='fu'>plot</span>(<span class='no'>r</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"points"</span>)
+<span class='fu'>plot</span>(<span class='fu'>as.raster</span>(<span class='fu'>as.matrix</span>(<span class='no'>cm_pts</span>)), <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"connected matrix"</span>)</div><img src='connected_matrix-2.png' alt='' width='540' height='400' /><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -131,7 +186,9 @@ have to be within in order to qualify as being connected.</dd>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

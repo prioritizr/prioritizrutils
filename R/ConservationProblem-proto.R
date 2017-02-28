@@ -2,17 +2,17 @@
 NULL
 
 #' @export
-methods::setOldClass('ConservationProblem')
+methods::setOldClass("ConservationProblem")
 
 #' Conservation problem class
 #'
-#' This class is used to represent conservation planning problems. A 
+#' This class is used to represent conservation planning problems. A
 #' conservation planning problem has spatially explicit planning units.
-#' A prioritization involves making a decision on each planning unit (eg. is 
-#' the planning unit going to be turned into a protected area?). Each 
+#' A prioritization involves making a decision on each planning unit (eg. is
+#' the planning unit going to be turned into a protected area?). Each
 #' planning unit is associated with a cost that represents the cost incurred
-#' by applying the decision to the planning unit. The problem also has a set 
-#' of representation targets for each feature. Further, it also has 
+#' by applying the decision to the planning unit. The problem also has a set
+#' of representation targets for each feature. Further, it also has
 #' constraints used to ensure that the solution meets additional
 #' objectives (eg. certain areas are locked into the solution). Finally,
 #' a conservation planning problem--unlike an optimization problem--also
@@ -29,7 +29,7 @@ methods::setOldClass('ConservationProblem')
 #' \item{$objective}{\code{\link{Objective-class}} object used to represent how
 #'   the targets relate to the solution.}
 #'
-#' \item{$decision}{\code{\link{Decision-class}} object used to represent the 
+#' \item{$decision}{\code{\link{Decision-class}} object used to represent the
 #'   type of decision made on planning units.}
 #'
 #' \item{$targets}{\code{\link{Target-class}} object used to represent
@@ -81,27 +81,27 @@ methods::setOldClass('ConservationProblem')
 #'
 #' \code{x$add_targets(targ)}
 #'
-#' \code{x$get_constraint_parameter(id)} 
+#' \code{x$get_constraint_parameter(id)}
 #'
-#' \code{x$set_constraint_parameter(id, value)} 
+#' \code{x$set_constraint_parameter(id, value)}
 #'
-#' \code{x$render_constraint_parameter(id)} 
+#' \code{x$render_constraint_parameter(id)}
 #'
 #' \code{x$render_all_constraint_parameters()}
 #'
-#' \code{x$get_objective_parameter(id)} 
+#' \code{x$get_objective_parameter(id)}
 #'
-#' \code{x$set_objective_parameter(id, value)} 
+#' \code{x$set_objective_parameter(id, value)}
 #'
-#' \code{x$render_objective_parameter(id)} 
+#' \code{x$render_objective_parameter(id)}
 #'
 #' \code{x$render_all_objective_parameters()}
 #'
-#' \code{x$get_solver_parameter(id)} 
+#' \code{x$get_solver_parameter(id)}
 #'
-#' \code{x$set_solver_parameter(id, value)} 
+#' \code{x$set_solver_parameter(id, value)}
 #'
-#' \code{x$render_solver_parameter(id)} 
+#' \code{x$render_solver_parameter(id)}
 #'
 #' \code{x$render_all_solver_parameters()}
 #'
@@ -123,9 +123,9 @@ methods::setOldClass('ConservationProblem')
 #'
 #' \item{targ}{\code{\link{Target-class}} object.}
 #'
-#' \item{cost}{\code{\link[raster]{RasterLayer-class}}, 
-#'   \code{\link[sp]{SpatialPolygonsDataFrame-class}}, or 
-#'   \code{\link[sp]{SpatialLinesDataFrame-class}} object showing spatial 
+#' \item{cost}{\code{\link[raster]{RasterLayer-class}},
+#'   \code{\link[sp]{SpatialPolygonsDataFrame-class}}, or
+#'   \code{\link[sp]{SpatialLinesDataFrame-class}} object showing spatial
 #'   representation of the planning units and their cost.}
 #'
 #' \item{features}{\code{\link[raster]{RasterStack-class}} object showing
@@ -146,11 +146,11 @@ methods::setOldClass('ConservationProblem')
 #' \item{repr}{return \code{character} representation of the object.}
 #'
 #' \item{get_data}{return an object stored in the \code{data} field with
-#'   the corresponding \code{name}. If the object is not present in the 
+#'   the corresponding \code{name}. If the object is not present in the
 #'   \code{data} field, a \code{waiver} object is returned.}
 #'
 #' \item{set_data}{store an object stored in the \code{data} field with
-#'   the corresponding name. If an object with that name already 
+#'   the corresponding name. If an object with that name already
 #'   exists then the object is overwritten.}
 #'
 #' \item{number_of_planning_units}{\code{integer} number of planning units.}
@@ -164,18 +164,18 @@ methods::setOldClass('ConservationProblem')
 #'
 #' \item{feature_names}{\code{character} names of features in problem.}
 #'
-#' \item{feature_abundances_in_planning_units}{\code{numeric} get total 
+#' \item{feature_abundances_in_planning_units}{\code{numeric} get total
 #'   abundance of each feature in all the planning units.}
 #'
 #' \item{feature_targets}{\code{numeric} targets for each feature.}
 #'
-#' \item{add_objective}{return a new  \code{\link{ConservationProblem-class}} 
+#' \item{add_objective}{return a new  \code{\link{ConservationProblem-class}}
 #'   with the objective added to it.}
 #'
-#' \item{add_decision}{return a new \code{\link{ConservationProblem-class}} 
+#' \item{add_decision}{return a new \code{\link{ConservationProblem-class}}
 #'   object with the decision added to it.}
 #'
-#' \item{add_solver}{return a new \code{\link{ConservationProblem-class}} object 
+#' \item{add_solver}{return a new \code{\link{ConservationProblem-class}} object
 #'   with the solver added to it.}
 #'
 #' \item{add_constraint}{return a new \code{\link{ConservationProblem-class}}
@@ -186,7 +186,7 @@ methods::setOldClass('ConservationProblem')
 #' \item{get_constraint_parameter}{get the value of a parameter (specified by
 #'   argument \code{id}) used in one of the constraints in the object.}
 #'
-#' \item{set_constraint_parameter}{set the value of a parameter (specified by 
+#' \item{set_constraint_parameter}{set the value of a parameter (specified by
 #'   argument \code{id}) used in one of the constraints in the object to
 #'   \code{value}.}
 #'
@@ -194,12 +194,12 @@ methods::setOldClass('ConservationProblem')
 #'  the value of a parameter (specified by argument \code{id}).}
 #'
 #' \item{render_all_constraint_parameters}{generate a \emph{shiny} \code{div}
-#'   containing all the parameters' widgets.}
+#'   containing all the parameters" widgets.}
 #'
 #' \item{get_objective_parameter}{get the value of a parameter (specified by
 #'   argument \code{id}) used in one of the objectives in the object.}
 #'
-#' \item{set_objective_parameter}{set the value of a parameter (specified by 
+#' \item{set_objective_parameter}{set the value of a parameter (specified by
 #'   argument \code{id}) used in one of the objectives in the object to
 #'  \code{value}.}
 #'
@@ -207,12 +207,12 @@ methods::setOldClass('ConservationProblem')
 #'   the value of a parameter (specified by argument \code{id}).}
 #'
 #' \item{render_all_objective_parameters}{generate a \emph{shiny} \code{div}
-#'   containing all the parameters' widgets.}
+#'   containing all the parameters" widgets.}
 #'
 #' \item{get_solver_parameter}{get the value of a parameter (specified by
 #'   argument \code{id}) used in one of the solvers in the object.}
 #'
-#' \item{set_solver_parameter}{set the value of a parameter (specified by 
+#' \item{set_solver_parameter}{set the value of a parameter (specified by
 #'   argument \code{id}) used in one of the solvers in the object to
 #'  \code{value}.}
 #'
@@ -220,7 +220,7 @@ methods::setOldClass('ConservationProblem')
 #'   the value of a parameter (specified by argument \code{id}).}
 #'
 #' \item{render_all_solver_parameters}{generate a \emph{shiny} \code{div}
-#'   containing all the parameters' widgets.}
+#'   containing all the parameters" widgets.}
 #'
 #' }
 #' @name ConservationProblem-class
@@ -230,7 +230,7 @@ NULL
 
 #' @export
 ConservationProblem <- pproto(
-  'ConservationProblem',
+  "ConservationProblem",
   data = list(),
   objective = waiver(),
   decision = waiver(),
@@ -241,32 +241,32 @@ ConservationProblem <- pproto(
   print = function(self) {
     r <- sapply(list(self$objective, self$targets), function(x) {
       if (is.Waiver(x))
-        return('none specified')
+        return("none specified")
       return(x$repr())
     })
     d <- sapply(list(self$solver, self$decision), function(x) {
       if (is.Waiver(x))
-        return('default')
+        return("default")
       return(x$repr())
     })
     cs <- round(range(self$planning_unit_costs()), 5)
-    message(paste0('Conservation Problem',
-    '\n  planning units: ',class(self$data$cost)[1],' (', 
-      self$number_of_planning_units(),' units)',
-    '\n  cost:           min: ',cs[1], ', max: ',cs[2],
-    '\n  features:       ',paste(self$feature_names(), collapse=', '),
-    '\n  objective:      ',r[1],
-    '\n  targets:        ',r[2],
-    '\n  decision:       ',d[2],
-    '\n  constraints:    ',self$constraints$repr(),
-    '\n  penalties:      ',self$penalties$repr(),
-    '\n  solver:         ',d[1]))
+    message(paste0("Conservation Problem",
+    "\n  planning units: ", class(self$data$cost)[1], " (",
+      self$number_of_planning_units(), " units)",
+    "\n  cost:           min: ", cs[1], ", max: ", cs[2],
+    "\n  features:       ", paste(self$feature_names(), collapse = ", "),
+    "\n  objective:      ", r[1],
+    "\n  targets:        ", r[2],
+    "\n  decision:       ", d[2],
+    "\n  constraints:    ", self$constraints$repr(),
+    "\n  penalties:      ", self$penalties$repr(),
+    "\n  solver:         ", d[1]))
   },
   show = function(self) {
     self$print()
   },
   repr = function(self) {
-    'ConservationProblem object'
+    "ConservationProblem object"
   },
   get_data = function(self, x) {
     assertthat::assert_that(assertthat::is.string(x))
@@ -278,52 +278,52 @@ ConservationProblem <- pproto(
     assertthat::assert_that(assertthat::is.string(x))
     self$data[[x]] <- value
     invisible()
-  },  
+  },
   number_of_planning_units = function(self) {
-    if (inherits(self$data$cost, 'Raster')) {
-      return(raster::cellStats(raster::Which(!is.na(self$data$cost)), 'sum'))
-    } else if (inherits(self$data$cost, c('data.frame', 'Spatial'))) {
+    if (inherits(self$data$cost, "Raster")) {
+      return(raster::cellStats(raster::Which(!is.na(self$data$cost)), "sum"))
+    } else if (inherits(self$data$cost, c("data.frame", "Spatial"))) {
       return(nrow(self$data$cost))
     } else {
-      stop('cost is of unknown class')
-    }    
+      stop("cost is of unknown class")
+    }
   },
   number_of_total_units = function(self) {
-    if (inherits(self$data$cost, 'Raster')) {
+    if (inherits(self$data$cost, "Raster")) {
       return(raster::ncell(self$data$cost))
-    } else if (inherits(self$data$cost, c('data.frame', 'Spatial'))) {
+    } else if (inherits(self$data$cost, c("data.frame", "Spatial"))) {
       return(nrow(self$data$cost))
     } else {
-      stop('cost is of unknown class')
+      stop("cost is of unknown class")
     }
   },
   planning_unit_costs = function(self) {
-    if (inherits(self$data$cost, 'Raster')) {
+    if (inherits(self$data$cost, "Raster")) {
       return(self$data$cost[raster::Which(!is.na(self$data$cost))])
-    } else if (inherits(self$data$cost, c('data.frame',
-               'SpatialPolygonsDataFrame', 'SpatialLinesDataFrame', 
-               'SpatialPointsDataFrame'))) {
+    } else if (inherits(self$data$cost, c("data.frame",
+               "SpatialPolygonsDataFrame", "SpatialLinesDataFrame",
+               "SpatialPointsDataFrame"))) {
       return(self$data$cost[[self$data$cost_column]])
     } else {
-      stop('cost is of unknown class')
+      stop("cost is of unknown class")
     }
   },
   number_of_features = function(self) {
-    if (inherits(self$data$features, 'Raster')) {
+    if (inherits(self$data$features, "Raster")) {
       return(raster::nlayers(self$data$features))
-    } else if (inherits(self$data$features, 'data.frame')) {
+    } else if (inherits(self$data$features, "data.frame")) {
       return(nrow(self$data$features))
     } else {
-      stop('feature data is of an unrecognized class')
+      stop("feature data is of an unrecognized class")
     }
   },
   feature_names = function(self) {
-    if (inherits(self$data$features, 'Raster')) {
+    if (inherits(self$data$features, "Raster")) {
       return(names(self$data$features))
-    } else if (inherits(self$data$features, 'data.frame')) {
+    } else if (inherits(self$data$features, "data.frame")) {
       return(as.character(self$data$features$name))
     } else {
-      stop('feature data is of an unrecognized class')
+      stop("feature data is of an unrecognized class")
     }
   },
   feature_abundances_in_planning_units = function(self) {
@@ -331,41 +331,41 @@ ConservationProblem <- pproto(
   },
   feature_targets = function(self) {
     if (is.Waiver(self$targets))
-      stop('problem is missing targets')
+      stop("problem is missing targets")
     self$targets$output()
   },
   add_solver = function(self, x) {
-    assertthat::assert_that(inherits(x, 'Solver'))
+    assertthat::assert_that(inherits(x, "Solver"))
     if (!is.Waiver(self$solver))
-      warning('overwriting previously defined solver')
-    pproto(NULL, self, solver=x)
+      warning("overwriting previously defined solver")
+    pproto(NULL, self, solver = x)
     },
   add_targets = function(self, x) {
-    assertthat::assert_that(inherits(x, 'Target'))
+    assertthat::assert_that(inherits(x, "Target"))
     if (!is.Waiver(self$targets))
-      warning('overwriting previously defined targets')
-    pproto(NULL, self, targets=x)
+      warning("overwriting previously defined targets")
+    pproto(NULL, self, targets = x)
   },
   add_objective = function(self, x) {
-    assertthat::assert_that(inherits(x, 'Objective'))
+    assertthat::assert_that(inherits(x, "Objective"))
     if (!is.Waiver(self$objective))
-      warning('overwriting previously defined objective')
-    pproto(NULL, self, objective=x)
+      warning("overwriting previously defined objective")
+    pproto(NULL, self, objective = x)
   },
   add_decision = function(self, x) {
-    assertthat::assert_that(inherits(x, 'Decision'))
+    assertthat::assert_that(inherits(x, "Decision"))
     if (!is.Waiver(self$decision))
-      warning('overwriting previously defined decision')
-    pproto(NULL, self, decision=x)
+      warning("overwriting previously defined decision")
+    pproto(NULL, self, decision = x)
   },
   add_constraint = function(self, x) {
-    assertthat::assert_that(inherits(x, 'Constraint'))
+    assertthat::assert_that(inherits(x, "Constraint"))
     p <- pproto(NULL, self)
     p$constraints$add(x)
     return(p)
   },
   add_penalty = function(self, x) {
-    assertthat::assert_that(inherits(x, 'Penalty'))
+    assertthat::assert_that(inherits(x, "Penalty"))
     p <- pproto(NULL, self)
     p$penalties$add(x)
     return(p)

@@ -5,12 +5,12 @@
 \alias{ArrayParameter}
 \title{Array Parameter prototype}
 \description{
-This prototype is used to represent a parameter has multiple values. Each 
-value is has a label to differentiate values. \strong{Only experts should 
+This prototype is used to represent a parameter has multiple values. Each
+value is has a label to differentiate values. \strong{Only experts should
 interact directly with this prototype.}
 }
 \section{Fields}{
- 
+
 
 \describe{
 
@@ -28,7 +28,7 @@ interact directly with this prototype.}
 
 \item{$class}{\code{character} class of values.}
 
-\item{$lower_limit}{\code{numeric} \code{vector} specifying the minimum 
+\item{$lower_limit}{\code{numeric} \code{vector} specifying the minimum
   permitted values.}
 
 \item{$upper_limit}{\code{numeric} \code{vector} specifying the maximum
@@ -40,7 +40,7 @@ interact directly with this prototype.}
 }
 
 \section{Usage}{
- 
+
 
 \code{x$print()}
 
@@ -60,10 +60,10 @@ interact directly with this prototype.}
 }
 
 \section{Arguments}{
- 
+
 \describe{
-\item{tbl}{\code{\link{data.frame}} containing new parameter values with 
-           row names indicating the labels and a column called 'values' 
+\item{tbl}{\code{\link{data.frame}} containing new parameter values with
+           row names indicating the labels and a column called "values"
            containing the new parameter values.}
 \item{...}{arguments passed to function in \code{widget} field.}
 }
@@ -89,7 +89,7 @@ interact directly with this prototype.}
 
 \item{reset}{update the parameter values to be the default values.}
 
-\item{render}{create a \code{\link[shiny]{shiny}} widget to modify 
+\item{render}{create a \code{\link[shiny]{shiny}} widget to modify
   parameter values.}
 
 }

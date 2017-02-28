@@ -6,8 +6,8 @@
 \title{Solver prototype}
 \description{
 This prototype is used to generate objects that represent methods for solving
-optimization problems. \strong{This class represents a recipe to 
-create solver and and is only recomended for use by expert users. To 
+optimization problems. \strong{This class represents a recipe to
+create solver and and is only recomended for use by expert users. To
 customize the method used to solve optimization problems, please see the
 help page on \code{\link{solvers}}}.
 }
@@ -59,7 +59,7 @@ help page on \code{\link{solvers}}}.
 
 \item{repr}{\code{character} representation of object.}
 
-\item{solve}{solve an \code{\link{OptimizationProblem-class}} using this 
+\item{solve}{solve an \code{\link{OptimizationProblem-class}} using this
   object.}
 
 }

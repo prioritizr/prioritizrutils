@@ -6,5 +6,4 @@
 
 # Utilities for the prioritizr R package
 
-The [prioritizr](www.github.com/prioritizr/prioritizr) [R](https://cran.r-project.org/) package provides unparalleled flexibility for creating conservation planning problems. This package contains the source code that [prioritizr](www.github.com/prioritizr/prioritizr) uses for creating and solving problems.
-
+The [prioritizr](http://www.github.com/prioritizr/prioritizr) [R](https://cran.r-project.org/) package provides unparalleled flexibility for creating conservation planning problems. This package contains the source code that [prioritizr](http://www.github.com/prioritizr/prioritizr) uses for creating and solving problems.

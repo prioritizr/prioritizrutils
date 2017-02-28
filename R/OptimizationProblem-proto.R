@@ -2,12 +2,12 @@
 NULL
 
 #' @export
-methods::setOldClass('OptimizationProblem')
+methods::setOldClass("OptimizationProblem")
 
 #' OptimizationProblem class
 #'
 #' This class is used to represent an optimization problem. Data are stored
-#' in memory using an external pointer. \strong{Only experts should interact 
+#' in memory using an external pointer. \strong{Only experts should interact
 #' with this class directly.}
 #'
 #' @section Fields:
@@ -90,7 +90,7 @@ methods::setOldClass('OptimizationProblem')
 #'
 #' \item{number_of_features}{\code{integer} number of features in the problem.}
 #'
-#' \item{number_of_planning_units}{\code{integer} number of planning units in 
+#' \item{number_of_planning_units}{\code{integer} number of planning units in
 #'   the problem.}
 #'
 #' \item{col_ids}{\code{character} names describing each decision variable
@@ -108,25 +108,25 @@ NULL
 
 #' @export
 OptimizationProblem <- pproto(
-  'OptimizationProblem',
+  "OptimizationProblem",
   ptr = NULL,
   print = function(self) {
-    if (self$ncol()>0) {
+    if (self$ncol() > 0) {
     cv <- table(self$vtype())
-    cv <- paste(paste(unname(cv), paste0('(', names(cv), ')')),
-          collapse=', ')
-    message('optimization problem',
-      '\n  model sense: ', self$modelsense(), 
-      '\n  dimensions:  ', self$nrow(), ', ', self$ncol(), ', ', self$ncell(), 
-                          ' (nrow, ncol, ncell)',
-      '\n  variables:   ',cv)
+    cv <- paste(paste(unname(cv), paste0("(", names(cv), ")")),
+          collapse = ", ")
+    message("optimization problem",
+      "\n  model sense: ", self$modelsense(),
+      "\n  dimensions:  ", self$nrow(), ", ", self$ncol(), ", ", self$ncell(),
+                          " (nrow, ncol, ncell)",
+      "\n  variables:   ", cv)
     } else {
-      message('optimization problem (empty)')
+      message("optimization problem (empty)")
     }
   },
   show = function(self) {
     self$print()
-  }, 
+  },
   ncol = function(self) {
     rcpp_get_optimization_problem_ncol(self$ptr)
   },
@@ -135,7 +135,7 @@ OptimizationProblem <- pproto(
   },
   ncell = function(self) {
     rcpp_get_optimization_problem_ncell(self$ptr)
-  },    
+  },
   modelsense = function(self) {
     rcpp_get_optimization_problem_modelsense(self$ptr)
   },
@@ -147,8 +147,8 @@ OptimizationProblem <- pproto(
   },
   A = function(self) {
     x <- rcpp_get_optimization_problem_A(self$ptr)
-    Matrix::sparseMatrix(i=x$i, j=x$j, x=x$x, index1=FALSE,
-      giveCsparse=FALSE)
+    Matrix::sparseMatrix(i = x$i, j = x$j, x = x$x, index1 = FALSE,
+                         giveCsparse = FALSE)
   },
   rhs = function(self) {
     rcpp_get_optimization_problem_rhs(self$ptr)
@@ -163,10 +163,10 @@ OptimizationProblem <- pproto(
     rcpp_get_optimization_problem_ub(self$ptr)
   },
   number_of_features = function(self) {
-    rcpp_get_optimization_problem_number_of_features(self$ptr) 
+    rcpp_get_optimization_problem_number_of_features(self$ptr)
   },
   number_of_planning_units = function(self) {
-    rcpp_get_optimization_problem_number_of_planning_units(self$ptr) 
+    rcpp_get_optimization_problem_number_of_planning_units(self$ptr)
   },
   col_ids = function(self) {
     rcpp_get_optimization_problem_col_ids(self$ptr)
@@ -174,4 +174,3 @@ OptimizationProblem <- pproto(
   row_ids = function(self) {
     rcpp_get_optimization_problem_row_ids(self$ptr)
   })
-

@@ -5,13 +5,13 @@
 \alias{ConservationProblem}
 \title{Conservation problem class}
 \description{
-This class is used to represent conservation planning problems. A 
+This class is used to represent conservation planning problems. A
 conservation planning problem has spatially explicit planning units.
-A prioritization involves making a decision on each planning unit (eg. is 
-the planning unit going to be turned into a protected area?). Each 
+A prioritization involves making a decision on each planning unit (eg. is
+the planning unit going to be turned into a protected area?). Each
 planning unit is associated with a cost that represents the cost incurred
-by applying the decision to the planning unit. The problem also has a set 
-of representation targets for each feature. Further, it also has 
+by applying the decision to the planning unit. The problem also has a set
+of representation targets for each feature. Further, it also has
 constraints used to ensure that the solution meets additional
 objectives (eg. certain areas are locked into the solution). Finally,
 a conservation planning problem--unlike an optimization problem--also
@@ -29,7 +29,7 @@ class directly.}
 \item{$objective}{\code{\link{Objective-class}} object used to represent how
   the targets relate to the solution.}
 
-\item{$decision}{\code{\link{Decision-class}} object used to represent the 
+\item{$decision}{\code{\link{Decision-class}} object used to represent the
   type of decision made on planning units.}
 
 \item{$targets}{\code{\link{Target-class}} object used to represent
@@ -83,27 +83,27 @@ class directly.}
 
 \code{x$add_targets(targ)}
 
-\code{x$get_constraint_parameter(id)} 
+\code{x$get_constraint_parameter(id)}
 
-\code{x$set_constraint_parameter(id, value)} 
+\code{x$set_constraint_parameter(id, value)}
 
-\code{x$render_constraint_parameter(id)} 
+\code{x$render_constraint_parameter(id)}
 
 \code{x$render_all_constraint_parameters()}
 
-\code{x$get_objective_parameter(id)} 
+\code{x$get_objective_parameter(id)}
 
-\code{x$set_objective_parameter(id, value)} 
+\code{x$set_objective_parameter(id, value)}
 
-\code{x$render_objective_parameter(id)} 
+\code{x$render_objective_parameter(id)}
 
 \code{x$render_all_objective_parameters()}
 
-\code{x$get_solver_parameter(id)} 
+\code{x$get_solver_parameter(id)}
 
-\code{x$set_solver_parameter(id, value)} 
+\code{x$set_solver_parameter(id, value)}
 
-\code{x$render_solver_parameter(id)} 
+\code{x$render_solver_parameter(id)}
 
 \code{x$render_all_solver_parameters()}
 }
@@ -127,9 +127,9 @@ class directly.}
 
 \item{targ}{\code{\link{Target-class}} object.}
 
-\item{cost}{\code{\link[raster]{RasterLayer-class}}, 
-  \code{\link[sp]{SpatialPolygonsDataFrame-class}}, or 
-  \code{\link[sp]{SpatialLinesDataFrame-class}} object showing spatial 
+\item{cost}{\code{\link[raster]{RasterLayer-class}},
+  \code{\link[sp]{SpatialPolygonsDataFrame-class}}, or
+  \code{\link[sp]{SpatialLinesDataFrame-class}} object showing spatial
   representation of the planning units and their cost.}
 
 \item{features}{\code{\link[raster]{RasterStack-class}} object showing
@@ -152,11 +152,11 @@ class directly.}
 \item{repr}{return \code{character} representation of the object.}
 
 \item{get_data}{return an object stored in the \code{data} field with
-  the corresponding \code{name}. If the object is not present in the 
+  the corresponding \code{name}. If the object is not present in the
   \code{data} field, a \code{waiver} object is returned.}
 
 \item{set_data}{store an object stored in the \code{data} field with
-  the corresponding name. If an object with that name already 
+  the corresponding name. If an object with that name already
   exists then the object is overwritten.}
 
 \item{number_of_planning_units}{\code{integer} number of planning units.}
@@ -170,18 +170,18 @@ class directly.}
 
 \item{feature_names}{\code{character} names of features in problem.}
 
-\item{feature_abundances_in_planning_units}{\code{numeric} get total 
+\item{feature_abundances_in_planning_units}{\code{numeric} get total
   abundance of each feature in all the planning units.}
 
 \item{feature_targets}{\code{numeric} targets for each feature.}
 
-\item{add_objective}{return a new  \code{\link{ConservationProblem-class}} 
+\item{add_objective}{return a new  \code{\link{ConservationProblem-class}}
   with the objective added to it.}
 
-\item{add_decision}{return a new \code{\link{ConservationProblem-class}} 
+\item{add_decision}{return a new \code{\link{ConservationProblem-class}}
   object with the decision added to it.}
 
-\item{add_solver}{return a new \code{\link{ConservationProblem-class}} object 
+\item{add_solver}{return a new \code{\link{ConservationProblem-class}} object
   with the solver added to it.}
 
 \item{add_constraint}{return a new \code{\link{ConservationProblem-class}}
@@ -192,7 +192,7 @@ class directly.}
 \item{get_constraint_parameter}{get the value of a parameter (specified by
   argument \code{id}) used in one of the constraints in the object.}
 
-\item{set_constraint_parameter}{set the value of a parameter (specified by 
+\item{set_constraint_parameter}{set the value of a parameter (specified by
   argument \code{id}) used in one of the constraints in the object to
   \code{value}.}
 
@@ -200,12 +200,12 @@ class directly.}
  the value of a parameter (specified by argument \code{id}).}
 
 \item{render_all_constraint_parameters}{generate a \emph{shiny} \code{div}
-  containing all the parameters' widgets.}
+  containing all the parameters" widgets.}
 
 \item{get_objective_parameter}{get the value of a parameter (specified by
   argument \code{id}) used in one of the objectives in the object.}
 
-\item{set_objective_parameter}{set the value of a parameter (specified by 
+\item{set_objective_parameter}{set the value of a parameter (specified by
   argument \code{id}) used in one of the objectives in the object to
  \code{value}.}
 
@@ -213,12 +213,12 @@ class directly.}
   the value of a parameter (specified by argument \code{id}).}
 
 \item{render_all_objective_parameters}{generate a \emph{shiny} \code{div}
-  containing all the parameters' widgets.}
+  containing all the parameters" widgets.}
 
 \item{get_solver_parameter}{get the value of a parameter (specified by
   argument \code{id}) used in one of the solvers in the object.}
 
-\item{set_solver_parameter}{set the value of a parameter (specified by 
+\item{set_solver_parameter}{set the value of a parameter (specified by
   argument \code{id}) used in one of the solvers in the object to
  \code{value}.}
 
@@ -226,7 +226,7 @@ class directly.}
   the value of a parameter (specified by argument \code{id}).}
 
 \item{render_all_solver_parameters}{generate a \emph{shiny} \code{div}
-  containing all the parameters' widgets.}
+  containing all the parameters" widgets.}
 
 }
 }

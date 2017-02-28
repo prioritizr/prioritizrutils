@@ -6,39 +6,39 @@ NULL
 #' Show an object.
 #'
 #' @param object An object.
-#' 
+#'
 #' @return An object.
 #' @name show
 NULL
 
 #' @name show
 #' @rdname show
-methods::setMethod('show', 'ConservationModifier',
+methods::setMethod("show", "ConservationModifier",
                    function(object) object$show())
 
 #' @name show
 #' @rdname show
-methods::setMethod('show', 'ConservationProblem',
+methods::setMethod("show", "ConservationProblem",
                    function(object) object$show())
 
 #' @name show
 #' @rdname show
-methods::setMethod('show', 'Id',
+methods::setMethod("show", "Id",
                    function(object) print(object))
 
 #' @name show
 #' @rdname show
-methods::setMethod('show', 'OptimizationProblem',
+methods::setMethod("show", "OptimizationProblem",
                    function(object) object$show())
 
 #' @name show
 #' @rdname show
-methods::setMethod('show', 'Parameter',
+methods::setMethod("show", "Parameter",
                    function(object) object$show())
 
 #' @name show
 #' @rdname show
-methods::setMethod('show', 'Solver', function(object) object$show())
+methods::setMethod("show", "Solver", function(object) object$show())
 
 #' Print
 #'
@@ -47,7 +47,7 @@ methods::setMethod('show', 'Solver', function(object) object$show())
 #' @param x An object.
 #'
 #' @param ... not used.
-#' 
+#'
 #' @return An object.
 #'
 #' @name print
@@ -63,7 +63,7 @@ print.ConservationProblem <- function(x, ...) x$print()
 
 #' @method print Id
 #' @export
-print.Id <- function(x, ...) message('id: ', x)
+print.Id <- function(x, ...) message("id: ", x)
 
 #' @method print OptimizationProblem
 #' @export
@@ -90,7 +90,7 @@ print.Solver <- function(x, ...) x$print()
 #' @param ... unused arguments.
 #'
 #' @return An Object.
-#' 
+#'
 #' @name as
 NULL
 
@@ -99,7 +99,7 @@ NULL
 #' @export
 as.list.Parameters <- function(x, ...)
   structure(lapply(x$ids(), function(i) x[[i]]$value),
-            .Names=x$names(), id=x$ids())
+            .Names = x$names(), id = x$ids())
 
 #' Is it?
 #'
@@ -108,6 +108,6 @@ as.list.Parameters <- function(x, ...)
 #' @param x Object.
 #'
 #' @return \code{logical} indicatig if it inherits from the class.
-#' 
+#'
 #' @name is
 NULL

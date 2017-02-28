@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add problem decision type <U+2014> decisions <e2><80><a2> prioritizrutils</title>
+<title>Add problem decision type â€” decisions ü¾Œ¦”¼ü¾Œƒ ¼ü¾Œ¦„¼ prioritizrutils</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -82,7 +82,7 @@
 
     
     <p>Conservation planning problems involve making decisions on planning units.
-These decisions are then associated with actions (eg. turning a planning 
+These decisions are then associated with actions (eg. turning a planning
 unit into a protected area). Below is a list of decisions that can be
 added to a conservation planning problem.</p>
     
@@ -111,39 +111,38 @@ of a planning unit that can be reserved (eg. set to 0.8 for 80 %).</dd>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><dl class='dl-horizontal'></p>
-    <p><dt><code>add_default_decision</code></dt><dd>This decsion represents the default 
+    <p><dt><code>add_default_decision</code></dt><dd>This decsion represents the default
     decision if no decision is specified when constructing a conservation
     planning problem. It defaults to using a <code>binary_decision</code>.</dd>
-  <dt><code>add_binary_decision</code></dt><dd>This is the classic decision of either 
+  <dt><code>add_binary_decision</code></dt><dd>This is the classic decision of either
     prioritizing or not prioritizing a planning unit. Typically,
-    this decision has the assumed action of buying the planning 
+    this decision has the assumed action of buying the planning
     unit to include in a protected area network.</dd></p>
     <p><dt><code>add_proportion_decision</code></dt><dd>This is a relaxed decision where
     a part of a planning unit can be prioritized. Typically, this
-    this decsion has the assumed action of buying a fraction of 
+    this decsion has the assumed action of buying a fraction of
     a planning unit to include in a protected area network.</dd></p>
-    <p><dt><code>add_semicontinuous_decision</code></dt><dd>This decision is similar to the 
-    <code>proportion_decision</code> except that it has an upper bound 
-    parameter. By default, the decision can range from prioritizing 
-    none (0 %) to all (100 %) of a planning unit. However, a upper 
-    bound can be specified to ensure that at most only a fraction 
+    <p><dt><code>add_semicontinuous_decision</code></dt><dd>This decision is similar to the
+    <code>proportion_decision</code> except that it has an upper bound
+    parameter. By default, the decision can range from prioritizing
+    none (0 %) to all (100 %) of a planning unit. However, a upper
+    bound can be specified to ensure that at most only a fraction
     (eg. 80 %) of a planning unit can be preserved. This type of
-    decision may be useful when it is not practical to conserve the 
+    decision may be useful when it is not practical to conserve the
     entire planning unit.</dd></p>
     <p></dl></p>
-    <p>Only a single decision should be added to a 
-<code>ConservationProblem</code> object. <strong>If multiple decisions are added 
+    <p>Only a single decision should be added to a
+<code>ConservationProblem</code> object. <strong>If multiple decisions are added
 to a problem object, then the last one to be added will be used.</strong></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># create basic problem and using the default decision (binary)</span>
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_pu_raster</span>, <span class='no'>sim_features</span>) <span class='kw'>%&gt;%</span>
-       <span class='fu'><a href='objectives.html'>add_minimum_set_objective</a></span>() <span class='kw'>%&gt;%</span>
-       <span class='fu'><a href='targets.html'>add_relative_targets</a></span>(<span class='fl'>0.1</span>) <span class='kw'>%&gt;%</span>
-       <span class='fu'><a href='solvers.html'>add_default_solver</a></span>(<span class='kw'>time_limit</span><span class='kw'>=</span><span class='fl'>5</span>)
+       <span class='fu'><a href='objectives.html'>add_min_set_objective</a></span>() <span class='kw'>%&gt;%</span>
+       <span class='fu'><a href='targets.html'>add_relative_targets</a></span>(<span class='fl'>0.1</span>)
 
-<span class='co'># manually specify a binary decision type </span>
+<span class='co'># manually specify a binary decision type</span>
 <span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_binary_decision</span>()
 
 <span class='co'># specify a proportion decision type</span>
@@ -151,6 +150,7 @@ to a problem object, then the last one to be added will be used.</strong></p>
 
 <span class='co'># specify a semicontinuous decision type</span>
 <span class='no'>p4</span> <span class='kw'>&lt;-</span> <span class='no'>p</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_semicontinuous_decision</span>(<span class='kw'>upper_limit</span><span class='kw'>=</span><span class='fl'>0.5</span>)
+
 
 <span class='co'># solve problem</span>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>stack</span>(<span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p3</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p4</span>))</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
@@ -175,8 +175,8 @@ to a problem object, then the last one to be added will be used.</strong></p>
 #&gt;      0     0 1720.63823    0    4 2140.25691 1720.63823  19.6%     -    0s
 #&gt; H    0     0                    1782.9782753 1720.63823  3.50%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (10 simplex iterations) in 0.01 seconds
-#&gt; Thread count was 1 (of 2 available processors)
+#&gt; Explored 0 nodes (10 simplex iterations) in 0.00 seconds
+#&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 2: 1782.98 2140.26 
 #&gt; Pool objective bound 1720.64
@@ -205,8 +205,8 @@ to a problem object, then the last one to be added will be used.</strong></p>
 #&gt;      0     0 1720.63823    0    4 2140.25691 1720.63823  19.6%     -    0s
 #&gt; H    0     0                    1782.9782753 1720.63823  3.50%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (10 simplex iterations) in 0.01 seconds
-#&gt; Thread count was 1 (of 2 available processors)
+#&gt; Explored 0 nodes (10 simplex iterations) in 0.00 seconds
+#&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 2: 1782.98 2140.26 
 #&gt; Pool objective bound 1720.64
@@ -236,7 +236,7 @@ to a problem object, then the last one to be added will be used.</strong></p>
 #&gt; *    0     0               0    1720.6382265 1720.63823  0.00%     -    0s
 #&gt; 
 #&gt; Explored 0 nodes (10 simplex iterations) in 0.00 seconds
-#&gt; Thread count was 1 (of 2 available processors)
+#&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 2: 1720.64 2140.26 
 #&gt; Pool objective bound 1720.64
@@ -266,7 +266,7 @@ to a problem object, then the last one to be added will be used.</strong></p>
 #&gt; *    0     0               0    1738.8790989 1738.87910  0.00%     -    0s
 #&gt; 
 #&gt; Explored 0 nodes (12 simplex iterations) in 0.00 seconds
-#&gt; Thread count was 1 (of 2 available processors)
+#&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 2: 1738.88 9222.5 
 #&gt; Pool objective bound 1738.88
@@ -274,8 +274,10 @@ to a problem object, then the last one to be added will be used.</strong></p>
 #&gt; Optimal solution found (tolerance 1.00e-01)
 #&gt; Best objective 1.738879098875e+03, best bound 1.738879098875e+03, gap 0.0000%</div><div class='input'>
 <span class='co'># plot solutions</span>
-<span class='fu'>plot</span>(<span class='no'>s</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'default (binary)'</span>, <span class='st'>'binary'</span>, <span class='st'>'proportion'</span>,
-                 <span class='st'>'semicontinuous (upper=0.5)'</span>))</div><img src='decisions-4.png' alt='' width='540' height='400' /><div class='input'>
+<span class='fu'>plot</span>(<span class='no'>s</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"default (binary)"</span>, <span class='st'>"binary"</span>, <span class='st'>"proportion"</span>,
+                 <span class='st'>"semicontinuous (upper=0.5)"</span>))</div><img src='decisions-4.png' alt='' width='540' height='400' /><div class='input'>
+
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

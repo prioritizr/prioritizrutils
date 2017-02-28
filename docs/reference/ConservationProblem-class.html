@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Conservation problem class <U+2014> ConservationProblem-class <e2><80><a2> prioritizrutils</title>
+<title>Conservation problem class â€” ConservationProblem-class ü¾Œ¦”¼ü¾Œƒ ¼ü¾Œ¦„¼ prioritizrutils</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -81,13 +81,13 @@
     </div>
 
     
-    <p>This class is used to represent conservation planning problems. A 
+    <p>This class is used to represent conservation planning problems. A
 conservation planning problem has spatially explicit planning units.
-A prioritisation involves making a decision on each planning unit (eg. is 
-the planning unit going to be turned into a protected area?). Each 
+A prioritization involves making a decision on each planning unit (eg. is
+the planning unit going to be turned into a protected area?). Each
 planning unit is associated with a cost that represents the cost incurred
-by applying the decision to the planning unit. The problem also has a set 
-of representation targets for each feature. Further, it also has 
+by applying the decision to the planning unit. The problem also has a set
+of representation targets for each feature. Further, it also has
 constraints used to ensure that the solution meets additional
 objectives (eg. certain areas are locked into the solution). Finally,
 a conservation planning problem--unlike an optimization problem--also
@@ -105,11 +105,13 @@ class directly.</strong></p>
     <p><dt>$data</dt><dd><code>list</code> object containing data.</dd></p>
     <p><dt>$objective</dt><dd><code><a href='Objective-class.html'>Objective-class</a></code> object used to represent how
   the targets relate to the solution.</dd></p>
-    <p><dt>$decision</dt><dd><code><a href='Decision-class.html'>Decision-class</a></code> object used to represent the 
+    <p><dt>$decision</dt><dd><code><a href='Decision-class.html'>Decision-class</a></code> object used to represent the
   type of decision made on planning units.</dd></p>
     <p><dt>$targets</dt><dd><code><a href='Target-class.html'>Target-class</a></code> object used to represent
   representation targets for features.</dd></p>
-    <p><dt>$constraints</dt><dd><code><a href='Constraints-class.html'>Constraints-class</a></code> object used to represent
+    <p><dt>$penalties</dt><dd><code><a href='Collection-class.html'>Collection-class</a></code> object used to represent
+  additional <code><a href='penalties.html'>penalties</a></code> that the problem is subject to.</dd></p>
+    <p><dt>$constraints</dt><dd><code><a href='Collection-class.html'>Collection-class</a></code> object used to represent
   additional <code><a href='constraints.html'>constraints</a></code> that the problem is subject to.</dd></p>
     <p><dt>$solver</dt><dd><code><a href='Solver-class.html'>Solver-class</a></code> object used to solve the problem.</dd></p>
     <p></dl></p>
@@ -158,9 +160,9 @@ class directly.</strong></p>
     <p><dt>con</dt><dd><code><a href='Constraint-class.html'>Constraint-class</a></code> object.</dd></p>
     <p><dt>sol</dt><dd><code><a href='Solver-class.html'>Solver-class</a></code> object.</dd></p>
     <p><dt>targ</dt><dd><code><a href='Target-class.html'>Target-class</a></code> object.</dd></p>
-    <p><dt>cost</dt><dd><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>RasterLayer-class</a></code>, 
-  <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPolygonsDataFrame-class'>SpatialPolygonsDataFrame-class</a></code>, or 
-  <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialLinesDataFrame-class'>SpatialLinesDataFrame-class</a></code> object showing spatial 
+    <p><dt>cost</dt><dd><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>RasterLayer-class</a></code>,
+  <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPolygonsDataFrame-class'>SpatialPolygonsDataFrame-class</a></code>, or
+  <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialLinesDataFrame-class'>SpatialLinesDataFrame-class</a></code> object showing spatial
   representation of the planning units and their cost.</dd></p>
     <p><dt>features</dt><dd><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>RasterStack-class</a></code> object showing
   distribution of features.</dd></p>
@@ -176,10 +178,10 @@ class directly.</strong></p>
     <p><dt>show</dt><dd>show the object.</dd></p>
     <p><dt>repr</dt><dd>return <code>character</code> representation of the object.</dd></p>
     <p><dt>get_data</dt><dd>return an object stored in the <code>data</code> field with
-  the corresponding <code>name</code>. If the object is not present in the 
+  the corresponding <code>name</code>. If the object is not present in the
   <code>data</code> field, a <code>waiver</code> object is returned.</dd></p>
     <p><dt>set_data</dt><dd>store an object stored in the <code>data</code> field with
-  the corresponding name. If an object with that name already 
+  the corresponding name. If an object with that name already
   exists then the object is overwritten.</dd></p>
     <p><dt>number_of_planning_units</dt><dd><code>integer</code> number of planning units.</dd></p>
     <p><dt>number_of_total_units</dt><dd><code>integer</code> number of units in the cost
@@ -187,45 +189,45 @@ class directly.</strong></p>
     <p><dt>planning_unit_costs</dt><dd><code>numeric</code> costs of each planning unit.</dd></p>
     <p><dt>number_of_features</dt><dd><code>integer</code> number of features.</dd></p>
     <p><dt>feature_names</dt><dd><code>character</code> names of features in problem.</dd></p>
-    <p><dt>feature_abundances_in_planning_units</dt><dd><code>numeric</code> get total 
+    <p><dt>feature_abundances_in_planning_units</dt><dd><code>numeric</code> get total
   abundance of each feature in all the planning units.</dd></p>
     <p><dt>feature_targets</dt><dd><code>numeric</code> targets for each feature.</dd></p>
-    <p><dt>add_objective</dt><dd>return a new  <code>ConservationProblem-class</code> 
+    <p><dt>add_objective</dt><dd>return a new  <code>ConservationProblem-class</code>
   with the objective added to it.</dd></p>
-    <p><dt>add_decision</dt><dd>return a new <code>ConservationProblem-class</code> 
+    <p><dt>add_decision</dt><dd>return a new <code>ConservationProblem-class</code>
   object with the decision added to it.</dd></p>
-    <p><dt>add_solver</dt><dd>return a new <code>ConservationProblem-class</code> object 
+    <p><dt>add_solver</dt><dd>return a new <code>ConservationProblem-class</code> object
   with the solver added to it.</dd></p>
     <p><dt>add_constraint</dt><dd>return a new <code>ConservationProblem-class</code>
   object with the constraint added to it.</dd></p>
     <p><dt>add_targets</dt><dd>return a copy with the targets to the problem.</dd></p>
     <p><dt>get_constraint_parameter</dt><dd>get the value of a parameter (specified by
   argument <code>id</code>) used in one of the constraints in the object.</dd></p>
-    <p><dt>set_constraint_parameter</dt><dd>set the value of a parameter (specified by 
+    <p><dt>set_constraint_parameter</dt><dd>set the value of a parameter (specified by
   argument <code>id</code>) used in one of the constraints in the object to
   <code>value</code>.</dd></p>
     <p><dt>render_constraint_parameter</dt><dd>generate a <em>shiny</em> widget to modify
  the value of a parameter (specified by argument <code>id</code>).</dd></p>
     <p><dt>render_all_constraint_parameters</dt><dd>generate a <em>shiny</em> <code>div</code>
-  containing all the parameters&#39; widgets.</dd></p>
+  containing all the parameters&quot; widgets.</dd></p>
     <p><dt>get_objective_parameter</dt><dd>get the value of a parameter (specified by
   argument <code>id</code>) used in one of the objectives in the object.</dd></p>
-    <p><dt>set_objective_parameter</dt><dd>set the value of a parameter (specified by 
+    <p><dt>set_objective_parameter</dt><dd>set the value of a parameter (specified by
   argument <code>id</code>) used in one of the objectives in the object to
  <code>value</code>.</dd></p>
     <p><dt>render_objective_parameter</dt><dd>generate a <em>shiny</em> widget to modify
   the value of a parameter (specified by argument <code>id</code>).</dd></p>
     <p><dt>render_all_objective_parameters</dt><dd>generate a <em>shiny</em> <code>div</code>
-  containing all the parameters&#39; widgets.</dd></p>
+  containing all the parameters&quot; widgets.</dd></p>
     <p><dt>get_solver_parameter</dt><dd>get the value of a parameter (specified by
   argument <code>id</code>) used in one of the solvers in the object.</dd></p>
-    <p><dt>set_solver_parameter</dt><dd>set the value of a parameter (specified by 
+    <p><dt>set_solver_parameter</dt><dd>set the value of a parameter (specified by
   argument <code>id</code>) used in one of the solvers in the object to
  <code>value</code>.</dd></p>
     <p><dt>render_solver_parameter</dt><dd>generate a <em>shiny</em> widget to modify the
   the value of a parameter (specified by argument <code>id</code>).</dd></p>
     <p><dt>render_all_solver_parameters</dt><dd>generate a <em>shiny</em> <code>div</code>
-  containing all the parameters&#39; widgets.</dd></p>
+  containing all the parameters&quot; widgets.</dd></p>
     <p></dl></p>
     
 

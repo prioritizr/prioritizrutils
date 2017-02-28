@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add feature weights <U+2014> add_feature_weights <e2><80><a2> prioritizrutils</title>
+<title>Add feature weights â€” add_feature_weights ü¾Œ¦”¼ü¾Œƒ ¼ü¾Œ¦„¼ prioritizrutils</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -81,10 +81,10 @@
     </div>
 
     
-    <p>Conservation planning problems that aim to maximize the representation of 
-enough. In such budget-limited problems, it may be desirable to prefer the 
-representation of some features over others. Weights can be be applied to 
-a problem to favour the representation of some features over others when 
+    <p>Conservation planning problems that aim to maximize the representation of
+enough. In such budget-limited problems, it may be desirable to prefer the
+representation of some features over others. Weights can be be applied to
+a problem to favour the representation of some features over others when
 making decisions about how the budget should be allocated.</p>
     
 
@@ -96,7 +96,7 @@ making decisions about how the budget should be allocated.</p>
       <dd><code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> object.</dd>
       <dt>weights</dt>
       <dd><code>numeric</code> weights. Features with higher weights indicate
-that it is more desireable to represent them in the solution. Weights 
+that it is more desireable to represent them in the solution. Weights
 cannot have negative values.</dd>
     </dl>
     
@@ -107,11 +107,11 @@ cannot have negative values.</dd>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Weights can only be applied to a budget-limited 
-  type of planning problem (ie. <code><a href='objectives.html'>add_maximum_coverage_objective</a></code>,
-  and <code><a href='objectives.html'>add_maximum_representation_objective</a></code>. Weights can also
+    <p>Weights can only be applied to a budget-limited
+  type of planning problem (ie. <code><a href='objectives.html'>add_max_cover_objective</a></code>,
+  and <code><a href='objectives.html'>add_max_features_objective</a></code>. Weights can also
   be applied to problems that aim to maximise phylogenetic representation
-  (<code><a href='objectives.html'>add_phylogenetic_representation_objective</a></code>) to favour the 
+  (<code><a href='objectives.html'>add_max_phylo_objective</a></code>) to favour the
   representation of specific features over the representation of
   some phylogenetic branches.</p>
     
@@ -123,21 +123,21 @@ cannot have negative values.</dd>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># create problem</span>
 <span class='no'>p1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_pu_raster</span>, <span class='no'>sim_features</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='objectives.html'>add_maximum_coverage_objective</a></span>(<span class='kw'>budget</span><span class='kw'>=</span><span class='fl'>5000</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='solvers.html'>add_default_solver</a></span>(<span class='kw'>time_limit</span><span class='kw'>=</span><span class='fl'>5</span>)
+  <span class='fu'><a href='objectives.html'>add_max_cover_objective</a></span>(<span class='kw'>budget</span><span class='kw'>=</span><span class='fl'>5000</span>)
 
 <span class='co'># create weights based on rarity (1/number occurrences)</span>
-<span class='no'>w</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>/<span class='kw'>raster</span><span class='kw'>::</span><span class='fu'>cellStats</span>(<span class='no'>sim_features</span>, <span class='st'>'sum'</span>) * <span class='fl'>1000</span>
+<span class='no'>w</span> <span class='kw'>&lt;-</span> <span class='fl'>1</span>/<span class='kw'>raster</span><span class='kw'>::</span><span class='fu'>cellStats</span>(<span class='no'>sim_features</span>, <span class='st'>"sum"</span>) * <span class='fl'>1000</span>
 
 <span class='co'># create new problem with added weights according to rarity</span>
 <span class='no'>p2</span> <span class='kw'>&lt;-</span> <span class='no'>p1</span> <span class='kw'>%&gt;%</span> <span class='fu'>add_feature_weights</span>(<span class='no'>w</span>)
+
 
 <span class='co'># solve solutions</span>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>stack</span>(<span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p1</span>), <span class='fu'><a href='solve.html'>solve</a></span>(<span class='no'>p2</span>))</div><div class='output co'>#&gt; Optimize a model with 6 rows, 95 columns and 545 nonzeros
 #&gt; Variable types: 5 continuous, 90 integer (90 binary)
 #&gt; Coefficient statistics:
 #&gt;   Matrix range     [2e-01, 2e+02]
-#&gt;   Objective range  [1e-10, 3e+01]
+#&gt;   Objective range  [1e-10, 1e+00]
 #&gt;   Bounds range     [1e+00, 7e+01]
 #&gt;   RHS range        [5e+03, 5e+03]
 #&gt; Found heuristic solution: objective -0
@@ -148,22 +148,22 @@ cannot have negative values.</dd>
 #&gt; Presolved: 1 rows, 90 columns, 90 nonzeros
 #&gt; 
 #&gt; 
-#&gt; Root relaxation: objective 1.291854e+03, 1 iterations, 0.00 seconds
+#&gt; Root relaxation: objective 7.503415e+01, 1 iterations, 0.00 seconds
 #&gt; 
 #&gt;     Nodes    |    Current Node    |     Objective Bounds      |     Work
 #&gt;  Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
 #&gt; 
-#&gt;      0     0 1291.85372    0    1   -0.00000 1291.85372      -     -    0s
-#&gt; H    0     0                    1290.3383768 1291.85372  0.12%     -    0s
+#&gt;      0     0   75.03415    0    1   -0.00000   75.03415      -     -    0s
+#&gt; H    0     0                      74.4237982   75.03415  0.82%     -    0s
 #&gt; 
 #&gt; Explored 0 nodes (1 simplex iterations) in 0.00 seconds
-#&gt; Thread count was 1 (of 2 available processors)
+#&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
-#&gt; Solution count 2: 1290.34 -0 
-#&gt; Pool objective bound 1291.85
+#&gt; Solution count 2: 74.4238 -0 
+#&gt; Pool objective bound 75.0342
 #&gt; 
 #&gt; Optimal solution found (tolerance 1.00e-01)
-#&gt; Best objective 1.290338376775e+03, best bound 1.291853723903e+03, gap 0.1174%
+#&gt; Best objective 7.442379817821e+01, best bound 7.503415126084e+01, gap 0.8201%
 #&gt; Optimize a model with 6 rows, 95 columns and 545 nonzeros
 #&gt; Variable types: 5 continuous, 90 integer (90 binary)
 #&gt; Coefficient statistics:
@@ -188,7 +188,7 @@ cannot have negative values.</dd>
 #&gt; H    0     0                    1290.3383768 1291.85372  0.12%     -    0s
 #&gt; 
 #&gt; Explored 0 nodes (1 simplex iterations) in 0.00 seconds
-#&gt; Thread count was 1 (of 2 available processors)
+#&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 2: 1290.34 -0 
 #&gt; Pool objective bound 1291.85
@@ -196,7 +196,9 @@ cannot have negative values.</dd>
 #&gt; Optimal solution found (tolerance 1.00e-01)
 #&gt; Best objective 1.290338376775e+03, best bound 1.291853723903e+03, gap 0.1174%</div><div class='input'>
 <span class='co'># plot solutions</span>
-<span class='fu'>plot</span>(<span class='no'>s</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'equal weights'</span>, <span class='st'>'rarity weights'</span>))</div><img src='add_feature_weights-4.png' alt='' width='540' height='400' /><div class='input'>
+<span class='fu'>plot</span>(<span class='no'>s</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"equal weights"</span>, <span class='st'>"rarity weights"</span>))</div><img src='add_feature_weights-4.png' alt='' width='540' height='400' /><div class='input'>
+
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

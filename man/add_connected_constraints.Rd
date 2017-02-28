@@ -10,7 +10,7 @@ add_connected_constraints(x)
 \item{x}{\code{\link{ConservationProblem-class}} object.}
 }
 \value{
-\code{\link{ConservationProblem-class}} object with the constraint 
+\code{\link{ConservationProblem-class}} object with the constraint
   added to it.
 }
 \description{
@@ -22,7 +22,7 @@ planning units are spatially connected to each other.
 
 # create basic problem
 p1 <- problem(sim_pu_raster, sim_features) \%>\%
-  add_minimum_set_objective() \%>\%
+  add_min_set_objective() \%>\%
   add_relative_targets(0.2) \%>\%
   add_default_solver(time_limit=5)
 
@@ -33,7 +33,7 @@ p2 <- p1 \%>\% add_connected_constraints()
 s <- stack(solve(p1), solve(p2))
 
 # plot solutions
-plot(s, main=c('basic solution', 'connected solution'))
+plot(s, main=c("basic solution", "connected solution"))
 
 }
 }

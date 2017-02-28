@@ -24,7 +24,7 @@ Compile a \code{\link{ConservationProblem-class}} into an
 \examples{
 # build minimal conservation problem
 p <- problem(sim_pu_raster, sim_features) \%>\%
-  add_minimum_set_objective() \%>\%
+  add_min_set_objective() \%>\%
   add_relative_targets(0.1)
 
 # compile the conservation problem into an optimization problem

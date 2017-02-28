@@ -19,8 +19,8 @@ connected_matrix(x, ...)
 \method{connected_matrix}{SpatialPoints}(x, distance, ...)
 }
 \arguments{
-\item{x}{\code{\link[raster]{Raster-class}} or 
-\code{\link[sp]{Spatial-class}} object. Note that if \code{x} is a 
+\item{x}{\code{\link[raster]{Raster-class}} or
+\code{\link[sp]{Spatial-class}} object. Note that if \code{x} is a
 \code{\link[raster]{Raster-class}} object then it must have only one
 layer.}
 
@@ -28,12 +28,12 @@ layer.}
 
 \item{directions}{\code{integer} If \code{x} is a
 \code{\link[raster]{Raster-class}} object, the number of directions
- in which cells should be connected: 4 (rook's case), 8 (queen's case), 
- 16 (knight and one-cell queen moves), or 'bishop' to connect cells with
+ in which cells should be connected: 4 (rook"s case), 8 (queen"s case),
+ 16 (knight and one-cell queen moves), or "bishop" to connect cells with
  one-cell diagonal moves.}
 
-\item{distance}{\code{numeric} If \code{x} is a 
-\code{\link{SpatialPoints-class}} object, the distance that planning units 
+\item{distance}{\code{numeric} If \code{x} is a
+\code{\link{SpatialPoints-class}} object, the distance that planning units
 have to be within in order to qualify as being connected.}
 }
 \value{
@@ -44,6 +44,54 @@ Create a matrix showing which planning units are spatially connected.
 }
 \details{
 This function returns a \code{\link[Matrix]{dgCMatrix-class}} sparse
-  matrix. Cells along the off-diagonal indicate if two planning units are 
+  matrix. Cells along the off-diagonal indicate if two planning units are
   connected. Cells along the diagonal are zero to reduce memory consumption.
+}
+\examples{
+## load data
+data(sim_pu_raster, sim_pu_polygons, sim_pu_lines, sim_pu_points)
+
+## create connected matrix using raster data
+# crop raster to 9 cells
+r <- raster::crop(sim_pu_raster, c(0, 0.3, 0, 0.3))
+# make connected matrix
+cm_raster <- connected_matrix(r)
+
+## create connected matrix using polygon data
+# subset 9 polygons
+ply <- sim_pu_polygons[c(1:2, 10:12, 20:22), ]
+# make connected matrix
+cm_ply <- connected_matrix(ply)
+
+## create connected matrix using polygon line
+# subset 9 lines
+lns <- sim_pu_lines[c(1:2, 10:12, 20:22), ]
+# make connected matrix
+cm_lns <- connected_matrix(lns)
+
+## create connected matrix using point data
+# subset 9 points
+pts <- sim_pu_points[c(1:2, 10:12, 20:22), ]
+# make connected matrix
+cm_pts <- connected_matrix(pts, distance = 0.1)
+
+## plot data and the connected matrices
+par(mfrow = c(4,2))
+
+# plot raster and connected matrix
+plot(r, main = "raster")
+plot(as.raster(as.matrix(cm_raster)), main = "connected matrix")
+
+# plot polygons and connected matrix
+plot(r, main = "polygons")
+plot(as.raster(as.matrix(cm_ply)), main = "connected matrix")
+
+# plot lines and connected matrix
+plot(r, main = "lines")
+plot(as.raster(as.matrix(cm_lns)), main = "connected matrix")
+
+# plot points and connected matrix
+plot(r, main = "points")
+plot(as.raster(as.matrix(cm_pts)), main = "connected matrix")
+
 }

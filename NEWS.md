@@ -1,5 +1,5 @@
 
 # prioritizrutils 0.0.0.1 (unreleased)
 
-* Initial package version
-  + provides functionality for solving conservation planning problems
+* initial package version
+  + provides basic functionality for solving conservation planning problems

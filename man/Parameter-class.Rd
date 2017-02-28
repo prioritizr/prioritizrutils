@@ -5,12 +5,12 @@
 \alias{Parameter}
 \title{Parameter class}
 \description{
-This class is used to represent a parameter that has multiple values. Each 
-value has a different label to differentiate values. \strong{Only experts 
+This class is used to represent a parameter that has multiple values. Each
+value has a different label to differentiate values. \strong{Only experts
 should interact directly with this class.}
 }
 \section{Fields}{
- 
+
 \describe{
 
 \item{$id}{\code{\link{Id}} identifier for parameter.}
@@ -21,8 +21,8 @@ should interact directly with this class.}
 
 \item{$default}{\code{numeric} \code{vector} of default values.}
 
-\item{$class}{\code{character} name of the class that the values inherit 
-  from (eg. \code{'integer'}.}
+\item{$class}{\code{character} name of the class that the values inherit
+  from (eg. \code{"integer"}.}
 
 \item{$lower_limit}{\code{numeric} \code{vector} specifying the minimum
   permitted value for each element in \code{$value}.}
@@ -36,7 +36,7 @@ should interact directly with this class.}
 }
 
 \section{Usage}{
- 
+
 
 \code{x$print()}
 

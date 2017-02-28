@@ -18,10 +18,10 @@ Create a new collection of \code{Parameter} objects.
 \examples{
 
 # create two Parameter objects
-p1 <- binary_parameter('parameter one', 1)
+p1 <- binary_parameter("parameter one", 1)
 print(p1)
 
-p2 <- numeric_parameter('parameter two', 5)
+p2 <- numeric_parameter("parameter two", 5)
 print(p2)
 
 # store Parameter objects in a Parameters object

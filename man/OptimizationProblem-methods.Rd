@@ -115,11 +115,11 @@ The functions return the following data:
 \item{ncell}{\code{integer} number of cells.}
 
 \item{modelsense}{\code{character} describing if the problem is to be
-  maximized (\code{'max'}) or minimized (\code{'min'}).}
+  maximized (\code{"max"}) or minimized (\code{"min"}).}
 
 \item{vtype}{\code{character} describing the type of each decision variable:
-  binary (\code{'B'}), semi-continuous (\code{'S'}), or continuous 
-  (\code{'C'})}
+  binary (\code{"B"}), semi-continuous (\code{"S"}), or continuous
+  (\code{"C"})}
 
 \item{obj}{\code{numeric} vector specifying the objective function.}
 
@@ -129,7 +129,7 @@ The functions return the following data:
 \item{rhs}{\code{numeric} vector with right-hand-side linear constraints}
 
 \item{sense}{\code{character} vector with the senses of the linear
-  constraints (\code{'<='}, \code{'>='}, \code{'='}).}
+  constraints (\code{"<="}, \code{">="}, \code{"="}).}
 
 \item{lb}{\code{numeric} lower bound for each decision variable. Missing data
   values (\code{NA}) indicate no lower bound for a given variable.}

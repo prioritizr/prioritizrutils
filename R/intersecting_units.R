@@ -12,7 +12,7 @@ NULL
 #'
 #' @param ... not used.
 #'
-#' @return \code{integer} indices of the units in \code{x} that intersect with 
+#' @return \code{integer} indices of the units in \code{x} that intersect with
 #'   \code{y}.
 #'
 #' @details The \code{\link{set_number_of_threads}} can be used to distribute
@@ -25,30 +25,62 @@ NULL
 #'
 #' @exportMethod intersecting_units
 #'
-#' @aliases intersecting_units,Raster,Raster-method intersecting_units,Raster,Spatial-method intersecting_units,Spatial,Raster-method intersecting_units,Spatial,Spatial-method
+#' @aliases intersecting_units,Raster,Raster-method intersecting_units,Raster,Spatial-method intersecting_units,Spatial,Raster-method intersecting_units,Spatial,Spatial-method intersecting_units,data.frame,ANY-method
+#'
+#' @examples
+#' ## create data
+#' r <- raster::raster(matrix(1:9, byrow = TRUE, ncol=3))
+#' r_with_holes <- r
+#' r_with_holes[c(1, 5, 9)] <- NA
+#' ply <- raster::rasterToPolygons(r)
+#' ply_with_holes <- raster::rasterToPolygons(r_with_holes)
+#'
+#' ## prepare plotting device
+#' par(mfrow=c(4, 2))
+#'
+#' ## intersect raster with raster
+#' plot(r, main = 'x=Raster')
+#' plot(r_with_holes, main = 'y=Raster')
+#' print(intersecting_units(r, r_with_holes))
+#'
+#' ## intersect raster with polygons
+#' plot(r, main = 'x=Raster')
+#' plot(ply_with_holes, main = 'y=Spatial')
+#' print(intersecting_units(r, ply_with_holes))
+#'
+#' ## intersect polygons with raster
+#' plot(ply, main = 'x=Spatial')
+#' plot(r_with_holes, main = 'y=Raster')
+#' print(intersecting_units(ply, r_with_holes))
+#'
+#' ## intersect polygons with polygons
+#' plot(ply, main = 'x=Spatial')
+#' plot(ply_with_holes, main = 'y=Spatial')
+#' print(intersecting_units(ply, ply_with_holes))
 #'
 #' @export
-methods::setGeneric('intersecting_units', 
-                    signature=methods::signature('x', 'y'),
-                    function(x, y, ...) 
-                      standardGeneric('intersecting_units'))
+methods::setGeneric("intersecting_units",
+                    signature = methods::signature("x", "y"),
+                    function(x, y, ...)
+                      standardGeneric("intersecting_units"))
 
 #' @name intersecting_units
 #' @usage intersecting_units(x, y, ...) # x=Raster, y=Raster
 #' @rdname intersecting_units
-methods::setMethod('intersecting_units',
-  methods::signature(x='Raster', y='Raster'),
+methods::setMethod(
+  "intersecting_units",
+  methods::signature(x = "Raster", y = "Raster"),
   function(x, y, ...) {
     # assert arguments are valid
-    assertthat::assert_that(inherits(x, 'Raster'), inherits(y, 'Raster'),
-      isTRUE(raster::nlayers(x)==1), raster::compareCRS(x@crs, y@crs),
-      raster::compareRaster(x, y, crs=TRUE, res=TRUE, tolerance=1e-5,
-        stopiffalse=FALSE))
-    if (inherits(x, c('RasterStack', 'RasterBrick'))) x <- x[[1]]
-    if (inherits(y, c('RasterStack', 'RasterBrick'))) y <- y[[1]]
+    assertthat::assert_that(inherits(x, "Raster"), inherits(y, "Raster"),
+      isTRUE(raster::nlayers(x) == 1), raster::compareCRS(x@crs, y@crs),
+      raster::compareRaster(x, y, crs = TRUE, res = TRUE, tolerance = 1e-5,
+                            stopiffalse = FALSE))
+    if (inherits(x, c("RasterStack", "RasterBrick"))) x <- x[[1]]
+    if (inherits(y, c("RasterStack", "RasterBrick"))) y <- y[[1]]
     y <- as.logical(y)
     # find positive cells
-    cells <- raster::Which(y & !is.na(x), cells=TRUE)
+    cells <- raster::Which(y & !is.na(x), cells = TRUE)
     # return result
     return(cells)
   }
@@ -57,20 +89,20 @@ methods::setMethod('intersecting_units',
 #' @name intersecting_units
 #' @usage intersecting_units(x, y, ...) # x=Spatial, y=Spatial
 #' @rdname intersecting_units
-methods::setMethod('intersecting_units',
-  methods::signature(x='Spatial', y='Spatial'),
+methods::setMethod(
+  "intersecting_units",
+  methods::signature(x = "Spatial", y = "Spatial"),
   function(x, y, ...) {
     # assert arguments are valid
     assertthat::assert_that(
-      inherits(x, 'Spatial'), inherits(x, 'Spatial'),
+      inherits(x, "Spatial"), inherits(x, "Spatial"),
       raster::compareCRS(x@proj4string, y@proj4string),
-      isTRUE(rgeos::gIntersects(methods::as(raster::extent(x), 
-                                            'SpatialPolygons'),
-                                methods::as(raster::extent(y), 
-                                            'SpatialPolygons'))))
+      isTRUE(rgeos::gIntersects(methods::as(raster::extent(x),
+                                            "SpatialPolygons"),
+                                methods::as(raster::extent(y),
+                                            "SpatialPolygons"))))
     # find out which units in x intersect with any units in y
-    intersects <- rgeos::gContains(x, y, byid=TRUE, 
-      returnDense=FALSE)
+    intersects <- rgeos::gContains(x, y, byid = TRUE, returnDense = FALSE)
     # convert dense list to sparse matrix
     names(intersects) <- as.character(seq_len(length(x)))
     intersects <- rcpp_list_to_matrix_indices(intersects)
@@ -82,19 +114,21 @@ methods::setMethod('intersecting_units',
 #' @name intersecting_units
 #' @usage intersecting_units(x, y, ...) # x=Raster, y=Spatial
 #' @rdname intersecting_units
-methods::setMethod('intersecting_units',
-  methods::signature(x='Raster', y='Spatial'),
+methods::setMethod(
+  "intersecting_units",
+  methods::signature(x = "Raster", y = "Spatial"),
   function(x, y, ...) {
     # assert arguments are valid
     assertthat::assert_that(
-      inherits(x, 'Raster'), inherits(y, 'Spatial'), 
-      isTRUE(raster::nlayers(x)==1), raster::compareCRS(x@crs, y@proj4string),
-      isTRUE(rgeos::gIntersects(methods::as(raster::extent(x), 
-                                            'SpatialPolygons'),
-                                methods::as(raster::extent(y), 
-                                            'SpatialPolygons'))))
-    # find cells in x that intersect with y 
-    cells <- fast_extract(x, y, fun=NULL, cellnumbers=TRUE, sp=FALSE, df=TRUE)
+      inherits(x, "Raster"), inherits(y, "Spatial"),
+      isTRUE(raster::nlayers(x) == 1), raster::compareCRS(x@crs, y@proj4string),
+      isTRUE(rgeos::gIntersects(methods::as(raster::extent(x),
+                                            "SpatialPolygons"),
+                                methods::as(raster::extent(y),
+                                            "SpatialPolygons"))))
+    # find cells in x that intersect with y
+    cells <- fast_extract(x, y, fun = NULL, cellnumbers = TRUE, sp = FALSE,
+                          df = TRUE)
     cells <- unique(cells[[2]])
     # return cells
     return(cells)
@@ -104,22 +138,22 @@ methods::setMethod('intersecting_units',
 #' @name intersecting_units
 #' @usage intersecting_units(x, y, ...) # x=Spatial, y=Raster
 #' @rdname intersecting_units
-methods::setMethod('intersecting_units',
-  methods::signature(x='Spatial', y='Raster'),
+methods::setMethod("intersecting_units",
+  methods::signature(x = "Spatial", y = "Raster"),
   function(x, y, ...) {
     # assert arguments are valid
     assertthat::assert_that(
-      inherits(x, 'Spatial'), inherits(y, 'Raster'), 
-      isTRUE(raster::nlayers(y)==1), raster::compareCRS(x@proj4string, y@crs),
-      isTRUE(rgeos::gIntersects(methods::as(raster::extent(x), 
-                                            'SpatialPolygons'),
-                                methods::as(raster::extent(y), 
-                                            'SpatialPolygons'))))
-    if (inherits(y, c('RasterStack', 'RasterBrick'))) y <- y[[1]]
+      inherits(x, "Spatial"), inherits(y, "Raster"),
+      isTRUE(raster::nlayers(y) == 1), raster::compareCRS(x@proj4string, y@crs),
+      isTRUE(rgeos::gIntersects(methods::as(raster::extent(x),
+                                            "SpatialPolygons"),
+                                methods::as(raster::extent(y),
+                                            "SpatialPolygons"))))
+    if (inherits(y, c("RasterStack", "RasterBrick"))) y <- y[[1]]
     y <- as.logical(y)
     # find maximum pixel value in each unit in x
-    ext <- fast_extract(y, x, fun=max, na.rm=TRUE, df=TRUE)
-    units <- ext[[1]][which(ext[[2]]==1)]
+    ext <- fast_extract(y, x, fun = max, na.rm = TRUE, df = TRUE)
+    units <- ext[[1]][which(ext[[2]] == 1)]
     # return result
     return(units)
   }
@@ -128,12 +162,11 @@ methods::setMethod('intersecting_units',
 #' @name intersecting_units
 #' @usage intersecting_units(x, y, ...) # x=data.frame, y=ANY
 #' @rdname intersecting_units
-methods::setMethod('intersecting_units',
-  methods::signature(x='data.frame', y='ANY'),
+methods::setMethod(
+  "intersecting_units",
+  methods::signature(x = "data.frame", y = "ANY"),
   function(x, y, ...) {
-    stop('planning units are stored as a data.frame and so the required ',
-         'spatial analysis cannot be performed.')
+    stop("planning units are stored as a data.frame and so the required ",
+         "spatial analysis cannot be performed.")
   }
 )
-
-

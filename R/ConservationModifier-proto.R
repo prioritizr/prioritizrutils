@@ -2,16 +2,16 @@
 NULL
 
 #' @export
-methods::setOldClass('ConservationModifier')
+methods::setOldClass("ConservationModifier")
 
 #' Conservation problem modifier prototype
 #'
-#' This super-prototype is used to represent prototypes that in turn are used to 
+#' This super-prototype is used to represent prototypes that in turn are used to
 #' modify a \code{\link{ConservationProblem-class}} object. Specifically, the
-#' \code{\link{Constraint-class}}, \code{\link{Decision-class}}, 
-#' \code{\link{Objective-class}}, and \code{\link{Target-class}} prototypes 
-#' inherit from this class. \strong{Only the most expert experts should use 
-#' this class directly because changes to these class will have profound and 
+#' \code{\link{Constraint-class}}, \code{\link{Decision-class}},
+#' \code{\link{Objective-class}}, and \code{\link{Target-class}} prototypes
+#' inherit from this class. \strong{Only the most expert experts should use
+#' this class directly because changes to these class will have profound and
 #' far reaching effects.}
 #'
 #' @section Fields:
@@ -79,30 +79,30 @@ methods::setOldClass('ConservationModifier')
 #' \item{repr}{return \code{character} representation of the object.}
 #'
 #' \item{get_data}{return an object stored in the \code{data} field with
-#'   the corresponding \code{name}. If the object is not present in the 
+#'   the corresponding \code{name}. If the object is not present in the
 #'   \code{data} field, a \code{waiver} object is returned.}
 #'
 #' \item{set_data}{store an object stored in the \code{data} field with
-#'   the corresponding name. If an object with that name already 
+#'   the corresponding name. If an object with that name already
 #'   exists then the object is overwritten.}
 #'
 #' \item{calculate}{\code{function} used to perform preliminary calculations
-#'   and store the data so that they can be reused later without 
+#'   and store the data so that they can be reused later without
 #'   performing the same calculations multiple times. Data can be stored
-#'   in the \code{data} slot of the input \code{ConservationModifier} or 
+#'   in the \code{data} slot of the input \code{ConservationModifier} or
 #'   \code{ConservationProblem} objects.}
 #'
 #' \item{output}{\code{function} used to generate an output from the object.
 #'   This method is only used for \code{\link{Target-class}} objects.}
 #'
-#' \item{apply}{\code{function} used to apply the modifier to an 
+#' \item{apply}{\code{function} used to apply the modifier to an
 #'   \code{\link{OptimizationProblem-class}} object.
-#'   This is used by \code{\link{Constraint-class}}, 
+#'   This is used by \code{\link{Constraint-class}},
 #'   \code{\link{Decision-class}}, and \code{\link{Objective-class}} objects.}
 #'
 #' \item{get_parameter}{retrieve the value of a parameter.}
 #'
-#' \item{get_all_parameters}{generate \code{list} containing all the 
+#' \item{get_all_parameters}{generate \code{list} containing all the
 #'   parameters.}
 #'
 #' \item{set_parameter}{change the value of a parameter to new value.}
@@ -111,7 +111,7 @@ methods::setOldClass('ConservationModifier')
 #'   the value of a parameter (specified by argument \code{id}).}
 #'
 #' \item{render_all_parameters}{generate a \code{\link[shiny]{div}}
-#'   containing all the parameters' widgets.}
+#'   containing all the parameters" widgets.}
 #'
 #' }
 #'
@@ -122,7 +122,7 @@ NULL
 
 #' @export
 ConservationModifier <- pproto(
-  'ConservationModifier',
+  "ConservationModifier",
   name = character(0),
   parameters = parameters(),
   data = list(),
@@ -130,12 +130,12 @@ ConservationModifier <- pproto(
     invisible(TRUE)
   },
   apply = function(self, x, y) {
-    assertthat::assert_that(inherits(x, 'OptimizationProblem'))
-    assertthat::assert_that(inherits(y, 'ConservationProblem'))
-    stop('no defined apply method')
+    assertthat::assert_that(inherits(x, "OptimizationProblem"))
+    assertthat::assert_that(inherits(y, "ConservationProblem"))
+    stop("no defined apply method")
   },
   output = function(self) {
-    stop('no defined output method')
+    stop("no defined output method")
   },
   print = function(self) {
     message(self$repr())
@@ -144,7 +144,7 @@ ConservationModifier <- pproto(
     self$print()
   },
   repr = function(self) {
-    paste(self$name, gsub('[]', '', self$parameters$repr(), fixed=TRUE))
+    paste(self$name, gsub("[]", "", self$parameters$repr(), fixed = TRUE))
   },
   get_data = function(self, x) {
     if (!x %in% names(self$data))
@@ -165,11 +165,10 @@ ConservationModifier <- pproto(
     self$parameters$render(x)
   },
   get_all_parameters = function(self) {
-    structure(lapply(self$parameters, function(x){x$value}),
-      .Names=sapply(self$parameters, function(x){x$name}),
-      id=sapply(self$parameters, function(x){x$id}))
+    structure(lapply(self$parameters, function(x) x$value),
+      .Names = sapply(self$parameters, function(x) x$name),
+      id = sapply(self$parameters, function(x) x$id))
   },
   render_all_parameters = function(self) {
-    shiny::div(class=class(self)[1], self$parameters$render_all())
+    shiny::div(class = class(self)[1], self$parameters$render_all())
   })
-

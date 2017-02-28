@@ -1,8 +1,8 @@
 #include "package.h"
 #include "optimization_problem.h"
- 
+
 // [[Rcpp::export]]
-bool rcpp_apply_minimum_set_objective(SEXP x, Rcpp::NumericVector targets,
+bool rcpp_apply_min_set_objective(SEXP x, Rcpp::NumericVector targets,
                                       Rcpp::NumericVector costs) {
   Rcpp::XPtr<OPTIMIZATIONPROBLEM> ptr = Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x);
   for (std::size_t i=0; i<(ptr->_number_of_planning_units); ++i)
@@ -18,4 +18,3 @@ bool rcpp_apply_minimum_set_objective(SEXP x, Rcpp::NumericVector targets,
   ptr->_modelsense="min";
   return true;
 }
- 

@@ -3,7 +3,6 @@ NULL
 
 #' @import raster
 #' @import sp
-#' @import proto
 #' @useDynLib prioritizrutils
 NULL
 

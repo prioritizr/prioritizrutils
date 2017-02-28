@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Solve a problem <U+2014> solve <e2><80><a2> prioritizrutils</title>
+<title>Solve a problem â€” solve ü¾Œ¦”¼ü¾Œƒ ¼ü¾Œ¦„¼ prioritizrutils</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -81,7 +81,7 @@
     </div>
 
     
-    <p>Solve a <code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> or an 
+    <p>Solve a <code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> or an
 <code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code>.</p>
     
 
@@ -100,25 +100,25 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>RasterLayer-class</a></code>, 
-  <code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code>, or a <code>numeric</code> vector containing the 
+    <p>A <code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>RasterLayer-class</a></code>,
+  <code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code>, or a <code>numeric</code> vector containing the
   solution depending on the argument to <code>a</code>.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>If a <code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code> is supplied, then the 
-  solution is returned as a <code>logical</code> showing the status of each 
-  planning unit. If a <code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> is supplied, 
-  then the  solution is returned in the format of the cost data contained 
+    <p>If a <code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code> is supplied, then the
+  solution is returned as a <code>logical</code> showing the status of each
+  planning unit. If a <code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> is supplied,
+  then the  solution is returned in the format of the cost data contained
   inside it:
   <ul>
-<li><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>RasterLayer-class</a></code>the solution is returned as a
-     <code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>RasterLayer-class</a></code> object. Cell values denote the 
-     decision.
+<li><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>RasterLayer-class</a></code>the solution is returned as
+     a <code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>RasterLayer-class</a></code> object. Cell values denote
+     the decision.
   </li>
-<li><code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code>the solution is returned as a 
+<li><code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code>the solution is returned as a
      <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPolygons'>SpatialPolygonsDataFrame</a></code> or
-     <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialLines'>SpatialLinesDataFrame</a></code> with a &quot;Solution&quot; column 
+     <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialLines'>SpatialLinesDataFrame</a></code> with a &quot;Solution&quot; column
      containing the decision values.
   </li>
 </ul></p>
@@ -127,10 +127,10 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># build minimal conservation problem</span>
 <span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='problem.html'>problem</a></span>(<span class='no'>sim_pu_raster</span>, <span class='no'>sim_features</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='objectives.html'>add_minimum_set_objective</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='objectives.html'>add_min_set_objective</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='targets.html'>add_relative_targets</a></span>(<span class='fl'>0.1</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='decisions.html'>add_binary_decision</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='solvers.html'>add_default_solver</a></span>(<span class='kw'>time_limit</span><span class='kw'>=</span><span class='fl'>5</span>)
+  <span class='fu'><a href='decisions.html'>add_binary_decision</a></span>()
+
 
 <span class='co'># solve the problem</span>
 <span class='no'>s</span> <span class='kw'>&lt;-</span> <span class='fu'>solve</span>(<span class='no'>p</span>)</div><div class='output co'>#&gt; Optimize a model with 5 rows, 90 columns and 450 nonzeros
@@ -155,8 +155,8 @@
 #&gt;      0     0 1720.63823    0    4 2140.25691 1720.63823  19.6%     -    0s
 #&gt; H    0     0                    1782.9782753 1720.63823  3.50%     -    0s
 #&gt; 
-#&gt; Explored 0 nodes (10 simplex iterations) in 0.01 seconds
-#&gt; Thread count was 1 (of 2 available processors)
+#&gt; Explored 0 nodes (10 simplex iterations) in 0.00 seconds
+#&gt; Thread count was 1 (of 4 available processors)
 #&gt; 
 #&gt; Solution count 2: 1782.98 2140.26 
 #&gt; Pool objective bound 1720.64
@@ -173,6 +173,8 @@
 #&gt; names       : layer 
 #&gt; values      : 0, 1  (min, max)
 #&gt; </div><div class='input'>
+
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

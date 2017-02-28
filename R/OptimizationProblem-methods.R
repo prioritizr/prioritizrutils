@@ -11,12 +11,11 @@ NULL
 #'
 #' @export
 new_optimization_problem <- function() {
-  pproto(NULL, OptimizationProblem,
-    ptr=rcpp_new_optimization_problem())
+  pproto(NULL, OptimizationProblem, ptr = rcpp_new_optimization_problem())
 }
 
 #' Optimization problem methods
-#' 
+#'
 #' These functions are used to access data from an
 #' \code{\link{OptimizationProblem-class}} object.
 #'
@@ -33,11 +32,11 @@ new_optimization_problem <- function() {
 #' \item{ncell}{\code{integer} number of cells.}
 #'
 #' \item{modelsense}{\code{character} describing if the problem is to be
-#'   maximized (\code{'max'}) or minimized (\code{'min'}).}
+#'   maximized (\code{"max"}) or minimized (\code{"min"}).}
 #'
 #' \item{vtype}{\code{character} describing the type of each decision variable:
-#'   binary (\code{'B'}), semi-continuous (\code{'S'}), or continuous 
-#'   (\code{'C'})}
+#'   binary (\code{"B"}), semi-continuous (\code{"S"}), or continuous
+#'   (\code{"C"})}
 #'
 #' \item{obj}{\code{numeric} vector specifying the objective function.}
 #'
@@ -47,7 +46,7 @@ new_optimization_problem <- function() {
 #' \item{rhs}{\code{numeric} vector with right-hand-side linear constraints}
 #'
 #' \item{sense}{\code{character} vector with the senses of the linear
-#'   constraints (\code{'<='}, \code{'>='}, \code{'='}).}
+#'   constraints (\code{"<="}, \code{">="}, \code{"="}).}
 #'
 #' \item{lb}{\code{numeric} lower bound for each decision variable. Missing data
 #'   values (\code{NA}) indicate no lower bound for a given variable.}
@@ -69,7 +68,7 @@ new_optimization_problem <- function() {
 #'
 #' @name OptimizationProblem-methods
 #'
-#' @aliases nrow ncol ncell modelsense vtype obj A rhs sense lb ub number_of_features number_of_planning_units col_ids row_ids ncell,OptimizationProblem-method A,OptimizationProblem-method col_ids,OptimizationProblem-method lb,OptimizationProblem-method modelsense,OptimizationProblem-method ncol,OptimizationProblem-method nrow,OptimizationProblem-method number_of_features,OptimizationProblem-method number_of_planning_units,OptimizationProblem-method obj,OptimizationProblem-method rhs,OptimizationProblem-method row_ids,OptimizationProblem-method sense,OptimizationProblem-method ub,OptimizationProblem-method vtype,OptimizationProblem-method 
+#' @aliases nrow ncol ncell modelsense vtype obj A rhs sense lb ub number_of_features number_of_planning_units col_ids row_ids ncell,OptimizationProblem-method A,OptimizationProblem-method col_ids,OptimizationProblem-method lb,OptimizationProblem-method modelsense,OptimizationProblem-method ncol,OptimizationProblem-method nrow,OptimizationProblem-method number_of_features,OptimizationProblem-method number_of_planning_units,OptimizationProblem-method obj,OptimizationProblem-method rhs,OptimizationProblem-method row_ids,OptimizationProblem-method sense,OptimizationProblem-method ub,OptimizationProblem-method vtype,OptimizationProblem-method
 NULL
 
 #' @name OptimizationProblem-methods
@@ -82,7 +81,7 @@ NULL
 #'
 #' @usage nrow(x)
 #'
-methods::setMethod('nrow', 'OptimizationProblem', function(x) x$nrow())
+methods::setMethod("nrow", "OptimizationProblem", function(x) x$nrow())
 
 #' @name OptimizationProblem-methods
 #'
@@ -94,7 +93,7 @@ methods::setMethod('nrow', 'OptimizationProblem', function(x) x$nrow())
 #'
 #' @usage ncol(x)
 #'
-methods::setMethod('ncol', 'OptimizationProblem', function(x) x$ncol())
+methods::setMethod("ncol", "OptimizationProblem", function(x) x$ncol())
 
 #' @name OptimizationProblem-methods
 #'
@@ -106,7 +105,7 @@ methods::setMethod('ncol', 'OptimizationProblem', function(x) x$ncol())
 #'
 #' @usage ncell(x)
 #'
-methods::setMethod('ncell', 'OptimizationProblem', function(x) x$ncell())
+methods::setMethod("ncell", "OptimizationProblem", function(x) x$ncell())
 
 #' @name OptimizationProblem-methods
 #'
@@ -116,12 +115,12 @@ methods::setMethod('ncell', 'OptimizationProblem', function(x) x$ncell())
 #'
 #' @usage modelsense(x)
 #'
-methods::setGeneric('modelsense', function(x) standardGeneric('modelsense'))
+methods::setGeneric("modelsense", function(x) standardGeneric("modelsense"))
 
 #' @name OptimizationProblem-methods
 #'
 #' @rdname OptimizationProblem-methods
-methods::setMethod('modelsense', 'OptimizationProblem',
+methods::setMethod("modelsense", "OptimizationProblem",
   function(x) x$modelsense())
 
 #' @name OptimizationProblem-methods
@@ -129,16 +128,16 @@ methods::setMethod('modelsense', 'OptimizationProblem',
 #' @rdname OptimizationProblem-methods
 #'
 #' @exportMethod vtype
-#'  
+#'
 #' @usage vtype(x)
 #'
-methods::setGeneric('vtype', function(x) standardGeneric('vtype'))
+methods::setGeneric("vtype", function(x) standardGeneric("vtype"))
 
 #' @name OptimizationProblem-methods
 #'
 #' @rdname OptimizationProblem-methods
 #'
-methods::setMethod('vtype', 'OptimizationProblem', function(x) x$vtype())
+methods::setMethod("vtype", "OptimizationProblem", function(x) x$vtype())
 
 #' @name OptimizationProblem-methods
 #'
@@ -148,13 +147,13 @@ methods::setMethod('vtype', 'OptimizationProblem', function(x) x$vtype())
 #'
 #' @usage obj(x)
 #'
-methods::setGeneric('obj', function(x) standardGeneric('obj'))
+methods::setGeneric("obj", function(x) standardGeneric("obj"))
 
 #' @name OptimizationProblem-methods
 #'
 #' @rdname OptimizationProblem-methods
 #'
-methods::setMethod('obj', 'OptimizationProblem', function(x) x$obj())
+methods::setMethod("obj", "OptimizationProblem", function(x) x$obj())
 
 #' @name OptimizationProblem-methods
 #'
@@ -164,13 +163,13 @@ methods::setMethod('obj', 'OptimizationProblem', function(x) x$obj())
 #'
 #' @usage A(x)
 #'
-methods::setGeneric('A', function(x) standardGeneric('A'))
+methods::setGeneric("A", function(x) standardGeneric("A"))
 
 #' @name OptimizationProblem-methods
 #'
 #' @rdname OptimizationProblem-methods
 #'
-methods::setMethod('A', 'OptimizationProblem', function(x) x$A())
+methods::setMethod("A", "OptimizationProblem", function(x) x$A())
 
 #' @name OptimizationProblem-methods
 #'
@@ -180,13 +179,13 @@ methods::setMethod('A', 'OptimizationProblem', function(x) x$A())
 #'
 #' @usage rhs(x)
 #'
-methods::setGeneric('rhs', function(x) standardGeneric('rhs'))
+methods::setGeneric("rhs", function(x) standardGeneric("rhs"))
 
 #' @name OptimizationProblem-methods
 #'
 #' @rdname OptimizationProblem-methods
 #'
-methods::setMethod('rhs', 'OptimizationProblem', function(x) x$rhs())
+methods::setMethod("rhs", "OptimizationProblem", function(x) x$rhs())
 
 #' @name OptimizationProblem-methods
 #'
@@ -196,13 +195,13 @@ methods::setMethod('rhs', 'OptimizationProblem', function(x) x$rhs())
 #'
 #' @usage sense(x)
 #'
-methods::setGeneric('sense', function(x) standardGeneric('sense'))
+methods::setGeneric("sense", function(x) standardGeneric("sense"))
 
 #' @name OptimizationProblem-methods
 #'
 #' @rdname OptimizationProblem-methods
 #'
-methods::setMethod('sense', 'OptimizationProblem', function(x) x$sense())
+methods::setMethod("sense", "OptimizationProblem", function(x) x$sense())
 
 #' @name OptimizationProblem-methods
 #'
@@ -212,13 +211,13 @@ methods::setMethod('sense', 'OptimizationProblem', function(x) x$sense())
 #'
 #' @usage lb(x)
 #'
-methods::setGeneric('lb', function(x) standardGeneric('lb'))
+methods::setGeneric("lb", function(x) standardGeneric("lb"))
 
 #' @name OptimizationProblem-methods
 #'
 #' @rdname OptimizationProblem-methods
 #'
-methods::setMethod('lb', 'OptimizationProblem', function(x) x$lb())
+methods::setMethod("lb", "OptimizationProblem", function(x) x$lb())
 
 #' @name OptimizationProblem-methods
 #'
@@ -228,13 +227,13 @@ methods::setMethod('lb', 'OptimizationProblem', function(x) x$lb())
 #'
 #' @usage ub(x)
 #'
-methods::setGeneric('ub', function(x) standardGeneric('ub'))
+methods::setGeneric("ub", function(x) standardGeneric("ub"))
 
 #' @name OptimizationProblem-methods
 #'
 #' @rdname OptimizationProblem-methods
 #'
-methods::setMethod('ub', 'OptimizationProblem', function(x) x$ub())
+methods::setMethod("ub", "OptimizationProblem", function(x) x$ub())
 
 #' @name OptimizationProblem-methods
 #'
@@ -244,14 +243,14 @@ methods::setMethod('ub', 'OptimizationProblem', function(x) x$ub())
 #'
 #' @usage number_of_features(x)
 #'
-methods::setGeneric('number_of_features',
-  function(x) standardGeneric('number_of_features'))
+methods::setGeneric("number_of_features",
+  function(x) standardGeneric("number_of_features"))
 
 #' @name OptimizationProblem-methods
 #'
 #' @rdname OptimizationProblem-methods
 #'
-methods::setMethod('number_of_features', 'OptimizationProblem',
+methods::setMethod("number_of_features", "OptimizationProblem",
   function(x) x$number_of_features())
 
 #' @name OptimizationProblem-methods
@@ -262,14 +261,14 @@ methods::setMethod('number_of_features', 'OptimizationProblem',
 #'
 #' @usage number_of_planning_units(x)
 #'
-methods::setGeneric('number_of_planning_units',
-  function(x) standardGeneric('number_of_planning_units'))
+methods::setGeneric("number_of_planning_units",
+  function(x) standardGeneric("number_of_planning_units"))
 
 #' @name OptimizationProblem-methods
 #'
 #' @rdname OptimizationProblem-methods
 #'
-methods::setMethod('number_of_planning_units', 'OptimizationProblem',
+methods::setMethod("number_of_planning_units", "OptimizationProblem",
   function(x) x$number_of_planning_units())
 
 #' @name OptimizationProblem-methods
@@ -280,13 +279,13 @@ methods::setMethod('number_of_planning_units', 'OptimizationProblem',
 #'
 #' @usage col_ids(x)
 #'
-methods::setGeneric('col_ids', function(x) standardGeneric('col_ids'))
+methods::setGeneric("col_ids", function(x) standardGeneric("col_ids"))
 
 #' @name OptimizationProblem-methods
 #'
 #' @rdname OptimizationProblem-methods
 #'
-methods::setMethod('col_ids', 'OptimizationProblem',
+methods::setMethod("col_ids", "OptimizationProblem",
   function(x) x$col_ids())
 
 #' @name OptimizationProblem-methods
@@ -297,11 +296,10 @@ methods::setMethod('col_ids', 'OptimizationProblem',
 #'
 #' @usage row_ids(x)
 #'
-methods::setGeneric('row_ids', function(x) standardGeneric('row_ids'))
+methods::setGeneric("row_ids", function(x) standardGeneric("row_ids"))
 
 #' @name OptimizationProblem-methods
 #'
 #' @rdname OptimizationProblem-methods
 #'
-methods::setMethod('row_ids', 'OptimizationProblem', function(x) x$row_ids())
-
+methods::setMethod("row_ids", "OptimizationProblem", function(x) x$row_ids())

@@ -2,14 +2,14 @@
 NULL
 
 #' @export
-methods::setOldClass('ScalarParameter')
+methods::setOldClass("ScalarParameter")
 
 #' Scalar Parameter prototype
 #'
 #' This prototype is used to represent a parameter has a single value.
 #' \strong{Only experts should interact directly with this prototype.}
 #'
-#' @section Fields: 
+#' @section Fields:
 #' \describe{
 #'
 #' \item{$id}{\code{character} identifier for parameter.}
@@ -23,17 +23,17 @@ methods::setOldClass('ScalarParameter')
 #' \item{$class}{\code{character} name of the class that \code{$value} should
 #'   inherit from (eg. \code{integer}).}
 #'
-#' \item{$lower_limit}{\code{numeric} scalar value that is the minimum value 
+#' \item{$lower_limit}{\code{numeric} scalar value that is the minimum value
 #'   that \code{$value} is permitted to be.}
 #'
-#' \item{$upper_limit}{\code{numeric} scalar value that is the maximum value 
+#' \item{$upper_limit}{\code{numeric} scalar value that is the maximum value
 #'   that \code{$value} is permitted to be.}
 #'
 #' \item{$widget}{\code{function} used to construct a
 #'                \code{\link[shiny]{shiny}} interface for modifying values.}
 #' }
 #'
-#' @section Usage: 
+#' @section Usage:
 #'
 #' \code{x$print()}
 #'
@@ -49,7 +49,7 @@ methods::setOldClass('ScalarParameter')
 #'
 #' \code{x$render(...)}
 #'
-#' @section Arguments: 
+#' @section Arguments:
 #'
 #' \describe{
 #'
@@ -74,7 +74,7 @@ methods::setOldClass('ScalarParameter')
 #'
 #' \item{reset}{update the parameter value to be the default value.}
 #'
-#' \item{render}{create a \code{\link[shiny]{shiny}} widget to modify 
+#' \item{render}{create a \code{\link[shiny]{shiny}} widget to modify
 #'               parameter values.}
 #'
 #' }
@@ -88,10 +88,10 @@ NULL
 
 #' @export
 ScalarParameter <- pproto(
-  'ScalarParameter',
+  "ScalarParameter",
   Parameter,
   repr = function(self) {
-    paste0(self$name, ' (', self$value, ')')
+    paste0(self$name, " (", self$value, ")")
   },
   validate = function(self, x) {
     invisible(assertthat::see_if(
@@ -110,13 +110,11 @@ ScalarParameter <- pproto(
   },
   render = function(self, ...) {
     # get all possible arguments
-    args <- list(inputId=self$id, label=self$name, value=self$value,
-      min=self$lower_limit, max=self$upper_limit)
+    args <- list(inputId = self$id, label = self$name, value = self$value,
+      min = self$lower_limit, max = self$upper_limit)
     f <- do.call(getFromNamespace,
-      as.list(rev(strsplit(self$widget, '::')[[1]])))
+      as.list(rev(strsplit(self$widget, "::")[[1]])))
     # subset to include only valid arguments
     args <- args[intersect(names(args), names(as.list(args(f))))]
     do.call(f, append(args, list(...)))
   })
-
-

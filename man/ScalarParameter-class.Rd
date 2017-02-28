@@ -9,7 +9,7 @@ This prototype is used to represent a parameter has a single value.
 \strong{Only experts should interact directly with this prototype.}
 }
 \section{Fields}{
- 
+
 \describe{
 
 \item{$id}{\code{character} identifier for parameter.}
@@ -23,10 +23,10 @@ This prototype is used to represent a parameter has a single value.
 \item{$class}{\code{character} name of the class that \code{$value} should
   inherit from (eg. \code{integer}).}
 
-\item{$lower_limit}{\code{numeric} scalar value that is the minimum value 
+\item{$lower_limit}{\code{numeric} scalar value that is the minimum value
   that \code{$value} is permitted to be.}
 
-\item{$upper_limit}{\code{numeric} scalar value that is the maximum value 
+\item{$upper_limit}{\code{numeric} scalar value that is the maximum value
   that \code{$value} is permitted to be.}
 
 \item{$widget}{\code{function} used to construct a
@@ -35,7 +35,7 @@ This prototype is used to represent a parameter has a single value.
 }
 
 \section{Usage}{
- 
+
 
 \code{x$print()}
 
@@ -53,7 +53,7 @@ This prototype is used to represent a parameter has a single value.
 }
 
 \section{Arguments}{
- 
+
 
 \describe{
 
@@ -80,7 +80,7 @@ This prototype is used to represent a parameter has a single value.
 
 \item{reset}{update the parameter value to be the default value.}
 
-\item{render}{create a \code{\link[shiny]{shiny}} widget to modify 
+\item{render}{create a \code{\link[shiny]{shiny}} widget to modify
               parameter values.}
 
 }

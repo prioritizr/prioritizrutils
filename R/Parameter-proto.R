@@ -1,15 +1,15 @@
 #' @include internal.R pproto.R
 
 #' @export
-methods::setOldClass('Parameter')
+methods::setOldClass("Parameter")
 
 #' Parameter class
 #'
-#' This class is used to represent a parameter that has multiple values. Each 
-#' value has a different label to differentiate values. \strong{Only experts 
+#' This class is used to represent a parameter that has multiple values. Each
+#' value has a different label to differentiate values. \strong{Only experts
 #' should interact directly with this class.}
 #'
-#' @section Fields: 
+#' @section Fields:
 #' \describe{
 #'
 #' \item{$id}{\code{\link{Id}} identifier for parameter.}
@@ -20,8 +20,8 @@ methods::setOldClass('Parameter')
 #'
 #' \item{$default}{\code{numeric} \code{vector} of default values.}
 #'
-#' \item{$class}{\code{character} name of the class that the values inherit 
-#'   from (eg. \code{'integer'}.}
+#' \item{$class}{\code{character} name of the class that the values inherit
+#'   from (eg. \code{"integer"}.}
 #'
 #' \item{$lower_limit}{\code{numeric} \code{vector} specifying the minimum
 #'   permitted value for each element in \code{$value}.}
@@ -31,9 +31,9 @@ methods::setOldClass('Parameter')
 #'
 #' \item{$widget}{\code{function} used to construct a
 #'                \code{\link[shiny]{shiny}} interface for modifying values.}
-#' } 
+#' }
 #'
-#' @section Usage: 
+#' @section Usage:
 #'
 #' \code{x$print()}
 #'
@@ -57,21 +57,21 @@ NULL
 
 #' @export
 Parameter <- pproto(
-    'Parameter',
-    id = structure(NULL, class='I'),
-    name = character(0),
-    value = numeric(0),
-    default = numeric(0),
-    class = character(0),
-    upper_limit = numeric(0),
-    lower_limit = numeric(0),
-    widget = function(...) {stop('no widget defined')},
-    print = function(self) {
-      message(self$repr())
-    },
-    show = function(self) {
-      self$print()
-    },
-    reset = function(self) {
-      self$value <- self$default
-    })
+  "Parameter",
+  id = structure(NULL, class = "ID"),
+  name = character(0),
+  value = numeric(0),
+  default = numeric(0),
+  class = character(0),
+  upper_limit = numeric(0),
+  lower_limit = numeric(0),
+  widget = function(...) stop("no widget defined"),
+  print = function(self) {
+    message(self$repr())
+  },
+  show = function(self) {
+    self$print()
+  },
+  reset = function(self) {
+    self$value <- self$default
+  })

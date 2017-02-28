@@ -2,15 +2,15 @@
 NULL
 
 #' @export
-methods::setOldClass('ArrayParameter')
+methods::setOldClass("ArrayParameter")
 
 #' Array Parameter prototype
 #'
-#' This prototype is used to represent a parameter has multiple values. Each 
-#' value is has a label to differentiate values. \strong{Only experts should 
+#' This prototype is used to represent a parameter has multiple values. Each
+#' value is has a label to differentiate values. \strong{Only experts should
 #' interact directly with this prototype.}
 #'
-#' @section Fields: 
+#' @section Fields:
 #'
 #' \describe{
 #'
@@ -28,7 +28,7 @@ methods::setOldClass('ArrayParameter')
 #'
 #' \item{$class}{\code{character} class of values.}
 #'
-#' \item{$lower_limit}{\code{numeric} \code{vector} specifying the minimum 
+#' \item{$lower_limit}{\code{numeric} \code{vector} specifying the minimum
 #'   permitted values.}
 #'
 #' \item{$upper_limit}{\code{numeric} \code{vector} specifying the maximum
@@ -36,9 +36,9 @@ methods::setOldClass('ArrayParameter')
 #'
 #' \item{$widget}{\code{function} used to construct a
 #'   \code{\link[shiny]{shiny}} interface for modifying values.}
-#' } 
+#' }
 #'
-#' @section Usage: 
+#' @section Usage:
 #'
 #' \code{x$print()}
 #'
@@ -56,10 +56,10 @@ methods::setOldClass('ArrayParameter')
 #'
 #' \code{x$render(...)}
 #'
-#' @section Arguments: 
+#' @section Arguments:
 #' \describe{
-#' \item{tbl}{\code{\link{data.frame}} containing new parameter values with 
-#'            row names indicating the labels and a column called 'values' 
+#' \item{tbl}{\code{\link{data.frame}} containing new parameter values with
+#'            row names indicating the labels and a column called "values"
 #'            containing the new parameter values.}
 #' \item{...}{arguments passed to function in \code{widget} field.}
 #' }
@@ -83,7 +83,7 @@ methods::setOldClass('ArrayParameter')
 #'
 #' \item{reset}{update the parameter values to be the default values.}
 #'
-#' \item{render}{create a \code{\link[shiny]{shiny}} widget to modify 
+#' \item{render}{create a \code{\link[shiny]{shiny}} widget to modify
 #'   parameter values.}
 #'
 #' }
@@ -97,24 +97,24 @@ NULL
 
 #' @export
 ArrayParameter <- pproto(
-  'ArrayParameter',
+  "ArrayParameter",
   Parameter,
   label = character(0),
   length = 0,
   repr = function(self) {
-    paste0(self$name, ' (min: ', min(self$value), ', max: ',
-      max(self$value), ')')
+    paste0(self$name, " (min: ", min(self$value), ", max: ",
+      max(self$value), ")")
   },
   validate = function(self, x) {
-    assertthat:::assert_that(inherits(x, 'data.frame'))
+    assertthat:::assert_that(inherits(x, "data.frame"))
     invisible(assertthat::see_if(
-      identical(names(x),'value'),
+      identical(names(x), "value"),
       all(is.finite(x[[1]])),
-      ncol(x)==1,
-      nrow(x)==self$length,
+      ncol(x) == 1,
+      nrow(x) == self$length,
       inherits(x[[1]], self$class),
       setequal(self$label, rownames(x)),
-      sum(!is.finite(x[[1]]))==0,
+      sum(!is.finite(x[[1]])) == 0,
       isTRUE(all(x[[1]] >= self$lower_limit)),
       isTRUE(all(x[[1]] <= self$upper_limit))))
   },
@@ -123,13 +123,13 @@ ArrayParameter <- pproto(
     self$value <- x[[1]][match(rownames(x), self$label)]
   },
   get = function(self) {
-    structure(list(value=self$value),
-              .Names = 'value',
+    structure(list(value = self$value),
+              .Names = "value",
               row.names = self$label,
               class = "data.frame")
   },
   render = function(self, ...) {
     f <- do.call(getFromNamespace,
-      as.list(rev(strsplit(self$widget, '::')[[1]])))
-    do.call(f, list(outputId=self$id))
+      as.list(rev(strsplit(self$widget, "::")[[1]])))
+    do.call(f, list(outputId = self$id))
   })

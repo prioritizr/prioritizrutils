@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Feature by planning unit matrix <U+2014> rij_matrix <e2><80><a2> prioritizrutils</title>
+<title>Feature by planning unit matrix â€” rij_matrix ü¾Œ¦”¼ü¾Œƒ ¼ü¾Œ¦„¼ prioritizrutils</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -81,43 +81,28 @@
     </div>
 
     
-    <p>Generate a feature by planning unit (aka <em>rij</em> matrix) using spatial 
-data sets. The <code>rij</code> contains data on the amount of each feature in 
+    <p>Generate a feature by planning unit (aka <em>rij</em> matrix) using spatial
+data sets. The <code>rij</code> contains data on the amount of each feature in
 each planning unit.</p>
     
 
-    <pre><span class='fu'>rij_matrix</span>(<span class='no'>x</span>, <span class='no'>y</span>) <span class='co'># Raster, Raster</span>
+    <pre><span class='fu'>rij_matrix</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>...</span>) <span class='co'># x=Raster, y=Raster</span>
 
-<span class='fu'>rij_matrix</span>(<span class='no'>x</span>, <span class='no'>y</span>) <span class='co'># Spatial, Raster</span></pre>
+<span class='fu'>rij_matrix</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='no'>...</span>) <span class='co'># x=Spatial, y=Raster</span></pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
       <dt>x</dt>
       <dd><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>RasterLayer-class</a></code> or
-<code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code> object representing the 
+<code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code> object representing the
 planning units</dd>
       <dt>y</dt>
-      <dd><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> object representing the 
+      <dd><code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> object representing the
 features</dd>
-      <dt>fun</dt>
-      <dd><code>function</code> used to summarise values. Defaults to
-<code>sum</code>. Note that this only used when <code>x</code> is a
-<code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPolygons-class'>SpatialPolygons-class</a></code> or a 
-<code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialLines-class'>SpatialLines-class</a></code> object. This function must
-have an &#39;na.rm&#39; argument.</dd>
-      <dt>na.rm</dt>
-      <dd><code>logical</code> should missing values be omitted when
-performing calculations? Defaults to <code>TRUE</code>. Note this argument
-only has an effect when <code>x</code> is a 
-<code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPolygons-class'>SpatialPolygons-class</a></code> or a 
-<code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialLines-class'>SpatialLines-class</a></code> and <code>velox</code> is <code>FALSE</code>.</dd>
-      <dt>velox</dt>
-      <dd><code>logical</code> should the <code><a href='http://www.rdocumentation.org/packages/velox/topics/velox'>velox</a></code>
-be used for geoprocessing? Defaults to <code>TRUE</code> if the package
-is installed. Note that this only used when <code>x</code> is a
-<code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPolygons-class'>SpatialPolygons-class</a></code> object.</dd>
       <dt>...</dt>
-      <dd>not used.</dd>
+      <dd>additional arguments passed to <code><a href='fast_extract.html'>fast_extract</a></code> if
+argument to <code>x</code> inherits from a <code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code>
+object.</dd>
     </dl>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -132,15 +117,15 @@ is installed. Note that this only used when <code>x</code> is a
   of the feature in the planning unit. For example, the amount of the
   third species in the second planning unit would be contained in the
   cell in the third column and in the second column.</p>
-    <p>This function can take a long to run for big data sets. To reduce 
+    <p>This function can take a long to run for big data sets. To reduce
   processing time, the <code><a href='parallel.html'>set_number_of_threads</a></code> function
-  can be used to allocate more computational resources. Additionally, 
+  can be used to allocate more computational resources. Additionally,
   dealing with planning units represented with
-  <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPolygons'>SpatialPolygonsDataFrame</a></code> object, the 
-  <code><a href='http://www.rdocumentation.org/packages/velox/topics/velox'>velox</a></code> package can be installed to reduce 
+  <code><a href='http://www.rdocumentation.org/packages/sp/topics/SpatialPolygons'>SpatialPolygonsDataFrame</a></code> object, the
+  <code><a href='http://www.rdocumentation.org/packages/velox/topics/velox'>velox</a></code> package can be installed to reduce
   processing time.</p>
     <p>Generally, processing <code><a href='http://www.rdocumentation.org/packages/sp/topics/Spatial-class'>Spatial-class</a></code> data takes much
-  longer to process then <code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> data, and 
+  longer to process then <code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> data, and
   so it is recomended to use <code><a href='http://www.rdocumentation.org/packages/raster/topics/Raster-classes'>Raster-class</a></code> data
   for planning units where possible.</p>
     
@@ -149,6 +134,14 @@ is installed. Note that this only used when <code>x</code> is a
     <p><code><a href='parallel.html'>set_number_of_threads</a></code>, <code><a href='http://www.rdocumentation.org/packages/velox/topics/velox'>velox</a></code>.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># load data</span>
+<span class='fu'>data</span>(<span class='no'>sim_pu_cost</span>, <span class='no'>sim_pu_raster</span>, <span class='no'>sim_pu_polygons</span>)</div><div class='output co'>#&gt; <span class='warning'>NA</span></div><div class='input'>
+<span class='co'># create rij matrix using raster planning units</span>
+<span class='no'>rij_raster</span> <span class='kw'>&lt;-</span> <span class='fu'>rij_matrix</span>(<span class='no'>sim_pu_raster</span>, <span class='no'>sim_features</span>)
+
+<span class='co'># create rij matrix using polygon planning units</span>
+<span class='no'>rij_polygons</span> <span class='kw'>&lt;-</span> <span class='fu'>rij_matrix</span>(<span class='no'>sim_pu_polygons</span>, <span class='no'>sim_features</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -160,7 +153,9 @@ is installed. Note that this only used when <code>x</code> is a
       <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

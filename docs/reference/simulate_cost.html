@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simulate cost data <U+2014> simulate_cost <e2><80><a2> prioritizrutils</title>
+<title>Simulate cost data â€” simulate_cost ü¾Œ¦”¼ü¾Œƒ ¼ü¾Œ¦„¼ prioritizrutils</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -115,6 +115,20 @@ from the random fields simulation.</dd>
     <p><code><a href='simulate_data.html'>simulate_data</a></code>.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'>## Not run: ------------------------------------</span>
+<span class='co'># </span>
+<span class='co'># # create raster</span>
+<span class='co'># r &lt;- raster::raster(ncol=10, nrow=10, xmn=0, xmx=1, ymn=0, ymx=1)</span>
+<span class='co'># values(r) &lt;- 1</span>
+<span class='co'># </span>
+<span class='co'># # simulate data</span>
+<span class='co'># cost &lt;- simulate_cost(r)</span>
+<span class='co'># </span>
+<span class='co'># # plot simulated species</span>
+<span class='co'># plot(cost, main = "simulated cost data")</span>
+<span class='co'># </span>
+<span class='co'>## ---------------------------------------------</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -124,7 +138,9 @@ from the random fields simulation.</dd>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#see-also">See also</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

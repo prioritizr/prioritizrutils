@@ -3,12 +3,12 @@
 \docType{methods}
 \name{targets}
 \alias{targets}
-\alias{add_relative_targets-methods}
-\alias{add_relative_targets,ConservationProblem,numeric-methods}
-\alias{add_relative_targets,ConservationProblem,character-methods}
-\alias{add_absolute_targets-methods}
-\alias{add_absolute_targets,ConservationProblem,numeric-methods}
-\alias{add_absolute_targets,ConservationProblem,character-methods}
+\alias{add_relative_targets-method}
+\alias{add_relative_targets,ConservationProblem,numeric-method}
+\alias{add_relative_targets,ConservationProblem,character-method}
+\alias{add_absolute_targets-method}
+\alias{add_absolute_targets,ConservationProblem,numeric-method}
+\alias{add_absolute_targets,ConservationProblem,character-method}
 \alias{add_default_targets}
 \alias{add_relative_targets}
 \alias{add_relative_targets}
@@ -38,20 +38,20 @@ add_loglinear_targets(x, lower_bound_amount, lower_bound_target,
 \item{lower_bound_amount}{\code{numeric} lower bound for the total amount
 of the features.}
 
-\item{lower_bound_target}{\code{numeric} relative target that should be 
- applied to features with a total amount that is less 
+\item{lower_bound_target}{\code{numeric} relative target that should be
+ applied to features with a total amount that is less
 than or equal to \code{lower_bound_amount}.}
 
 \item{upper_bound_amount}{\code{numeric} upper bound for the total amount
 of features.}
 
-\item{upper_bound_target}{\code{numeric} relative target that should be 
+\item{upper_bound_target}{\code{numeric} relative target that should be
 applied to features with a total amount that is greater
 than or equal to \code{upper_bound_amount}.}
 
 \item{targets}{\code{numeric} targets for features. If all features should
-have the same target, \code{targets} can be a single number. Otherwise, 
-\code{targets} should be a \code{numeric} \code{vector} specifying a 
+have the same target, \code{targets} can be a single number. Otherwise,
+\code{targets} should be a \code{numeric} \code{vector} specifying a
 target for each feature. Alternatively, if the features in
 \code{x} were specified using a \code{data.frame} object, then
 argument to \code{targets} may refer to a column name.}
@@ -63,8 +63,8 @@ argument to \code{targets} may refer to a column name.}
   to it.
 }
 \description{
-Targets are used to specify the minimum amount or proportion of a feature's 
-distribution that needs to be protected. Below is a list of different 
+Targets are used to specify the minimum amount or proportion of a feature"s
+distribution that needs to be protected. Below is a list of different
 targets that can be added to a conservation planning \code{\link{problem}}.
 }
 \details{
@@ -75,7 +75,7 @@ targets that can be added to a conservation planning \code{\link{problem}}.
     of this package do not believe that there can be any sensible default
     targets. Thus relying on the default target will yield an error. }
 
-\item{\code{relative_targets}}{Targets are expressed as a proportion 
+\item{\code{relative_targets}}{Targets are expressed as a proportion
     (between 0
     and 1) of the maximum level of representation in the study area.
     The argument to \code{x} should have a single value if all features
@@ -84,11 +84,11 @@ targets that can be added to a conservation planning \code{\link{problem}}.
     on the their position in the argument to \code{x} and the
     \code{feature} when specifying the problem.}
 
-\item{\code{absolute_targets}}{Targets are expressed as the actual value 
-    that needs to be represented in the prioritisation. The argument to 
+\item{\code{absolute_targets}}{Targets are expressed as the actual value
+    that needs to be represented in the prioritisation. The argument to
     \code{x} is treated the same as for \code{relative_targets}.}
 
-\item{\code{loglinear_targets}}{Targets are expressed as a proportion 
+\item{\code{loglinear_targets}}{Targets are expressed as a proportion
     (between 0
     and 1) which is calculated using a log-linear equation and four
     tuning parameters (as used in XXX \emph{et al.} XXX). The first
@@ -102,11 +102,9 @@ targets that can be added to a conservation planning \code{\link{problem}}.
 }
 }
 \examples{
-\donttest{
-
 # create basic problem
 p <- problem(sim_pu_raster, sim_features) \%>\%
-  add_minimum_set_objective()
+  add_min_set_objective()
 
 # create problem with added relative targets
 p1 <- p \%>\% add_relative_targets(0.1)
@@ -117,12 +115,14 @@ p2 <- p \%>\% add_absolute_targets(3)
 # create problem with added log-linear target
 p3 <- p \%>\% add_loglinear_targets(10, 0.9, 100, 0.2)
 
+\donttest{
+
 # solve solutions
 s <- stack(solve(p1), solve(p2), solve(p3))
 
 # plot solutions
-plot(s, main=c('relative targets', 'absolute targets', 
-               'loglinear targets'))
+plot(s, main=c("relative targets", "absolute targets",
+               "loglinear targets"))
 
 }
 

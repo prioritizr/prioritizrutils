@@ -21,7 +21,7 @@ boundary_matrix(x, ...)
 \arguments{
 \item{x}{\code{\link[raster]{Raster-class}},
 \code{\link[sp]{SpatialLines-class}}, or
-\code{\link[sp]{SpatialPolygons-class}} object. If \code{x} is a 
+\code{\link[sp]{SpatialPolygons-class}} object. If \code{x} is a
 \code{\link[raster]{Raster-class}} object then it must have only one
 layer.}
 
@@ -31,19 +31,47 @@ layer.}
 \code{\link{Matrix}{dsCMatrix-class}} object.
 }
 \description{
-Generate a boundary matrix describing the shared and exposed edges of 
+Generate a boundary matrix describing the shared and exposed edges of
 planning units.
 }
 \details{
-This function returns a \code{\link[Matrix]{dsCMatrix-class}} 
-  symmetric sparse matrix. Cells on the off-diagonal indicate the length of 
-  the shared boundary between two different planning units. Cells on the 
-  diagonal indicate length of a given planning unit's edges that have no 
-  neighbors (eg. for edges of planning units found along the 
+This function returns a \code{\link[Matrix]{dsCMatrix-class}}
+  symmetric sparse matrix. Cells on the off-diagonal indicate the length of
+  the shared boundary between two different planning units. Cells on the
+  diagonal indicate length of a given planning unit"s edges that have no
+  neighbors (eg. for edges of planning units found along the
   coastline). \strong{This function assumes the data are in a coordinate
   system where Euclidean distances accurately describe the proximity
   between two points on the earth}. Thus spatial data in a longitude/latitude
   coordinate system (aka \href{http://spatialreference.org/ref/epsg/wgs-84/}{WGS84})
-  should be reprojected to another coordinate system before using this 
+  should be reprojected to another coordinate system before using this
   function.
+}
+\examples{
+## load data
+data(sim_pu_raster, sim_pu_polygons)
+
+## create boundary matrix using raster data
+# crop raster to 9 cells
+r <- raster::crop(sim_pu_raster, c(0, 0.3, 0, 0.3))
+# make boundary matrix
+bm_raster <- boundary_matrix(r)
+
+## create boundary matrix using polygon data
+# subset 9 polygons
+ply <- sim_pu_polygons[c(1:2, 10:12, 20:22), ]
+# make boundary matrix
+bm_ply <- boundary_matrix(ply)
+
+## plot data and the boundary matrices
+par(mfrow=c(2, 2))
+
+# plot raster and connected matrix
+plot(r, main = "raster")
+plot(as.raster(as.matrix(bm_raster)), main = "boundary matrix")
+
+# plot polygons and connected matrix
+plot(r, main = "polygons")
+plot(as.raster(as.matrix(bm_ply)), main = "boundary matrix")
+
 }

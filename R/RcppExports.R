@@ -105,20 +105,20 @@ rcpp_apply_locked_out_constraints <- function(x, indices) {
     .Call('prioritizrutils_rcpp_apply_locked_out_constraints', PACKAGE = 'prioritizrutils', x, indices)
 }
 
-rcpp_apply_maximum_coverage_objective <- function(x, abundances, costs, budget) {
-    .Call('prioritizrutils_rcpp_apply_maximum_coverage_objective', PACKAGE = 'prioritizrutils', x, abundances, costs, budget)
+rcpp_apply_max_cover_objective <- function(x, abundances, costs, budget) {
+    .Call('prioritizrutils_rcpp_apply_max_cover_objective', PACKAGE = 'prioritizrutils', x, abundances, costs, budget)
 }
 
-rcpp_apply_maximum_representation_objective <- function(x, targets, costs, budget) {
-    .Call('prioritizrutils_rcpp_apply_maximum_representation_objective', PACKAGE = 'prioritizrutils', x, targets, costs, budget)
+rcpp_apply_max_features_objective <- function(x, targets, costs, budget) {
+    .Call('prioritizrutils_rcpp_apply_max_features_objective', PACKAGE = 'prioritizrutils', x, targets, costs, budget)
 }
 
-rcpp_apply_minimum_set_objective <- function(x, targets, costs) {
-    .Call('prioritizrutils_rcpp_apply_minimum_set_objective', PACKAGE = 'prioritizrutils', x, targets, costs)
+rcpp_apply_max_phylo_objective <- function(x, targets, costs, budget, branch_matrix, branch_lengths) {
+    .Call('prioritizrutils_rcpp_apply_max_phylo_objective', PACKAGE = 'prioritizrutils', x, targets, costs, budget, branch_matrix, branch_lengths)
 }
 
-rcpp_apply_phylogenetic_representation_objective <- function(x, targets, costs, budget, branch_matrix, branch_lengths) {
-    .Call('prioritizrutils_rcpp_apply_phylogenetic_representation_objective', PACKAGE = 'prioritizrutils', x, targets, costs, budget, branch_matrix, branch_lengths)
+rcpp_apply_min_set_objective <- function(x, targets, costs) {
+    .Call('prioritizrutils_rcpp_apply_min_set_objective', PACKAGE = 'prioritizrutils', x, targets, costs)
 }
 
 rcpp_apply_symmetric_boundary_constraints <- function(x, boundary_matrix, penalty, edge_factor) {

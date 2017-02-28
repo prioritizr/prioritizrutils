@@ -10,18 +10,18 @@ add_connectivity_penalties(x, penalty, connectivity_data)
 \item{x}{\code{\link{ConservationProblem-class}} object.}
 
 \item{penalty}{\code{numeric} penalty for missing connections between
-planning units. This is equivalent to the connectivity strength modifier 
+planning units. This is equivalent to the connectivity strength modifier
 (CSM; (XXX et al. XXXX). Defaults to one so that penalties are the
 same as the values in the \code{data}.}
 
-\item{connectivity_data}{\code{data.frame}, \code{matrix}, \code{\link[Matrix]{Matrix}} 
-object that shows the strength of connectivity between consecutive planning 
-units. If \code{data} is a matrix, then rows and columns represent 
+\item{connectivity_data}{\code{data.frame}, \code{matrix}, \code{\link[Matrix]{Matrix}}
+object that shows the strength of connectivity between consecutive planning
+units. If \code{data} is a matrix, then rows and columns represent
 each planing unit and the cell values represent the connectivity between
-them. If \code{data} is a \code{data.frame} the column names 
-be \code{'id1'}, \code{'id2'}, \code{'boundary'} where each row
+them. If \code{data} is a \code{data.frame} the column names
+be \code{"id1"}, \code{"id2"}, \code{"boundary"} where each row
 shows the connectivity between two planning units (following the Marxan
-format). The data can be describe symmetric or asymmetric 
+format). The data can be describe symmetric or asymmetric
 connecitivity between planning units.}
 }
 \value{
@@ -35,36 +35,56 @@ planning units with high connectivity between them.
 # load data
 data(sim_pu_points, sim_features)
 
-# create connectivity matrix that expresses connectivity as the inverse
-# distance between planning units
-connectivity_matrix <- 1 / (as.matrix(dist(sim_pu_points@coords)) + 1)
+# create a symmetric connectivity matrix where the connectivity between
+# two planning units is the inverse distance between them
+sc_matrix <- (1 / (as.matrix(dist(sim_pu_points@coords)) + 1))
+
+# remove connections between planning unitswith little connectivity
+sc_matrix[sc_matrix < 0.85] <- 0
 
 # create basic problem
-p1 <- problem(sim_pu_polygons, sim_features) \%>\%
-  add_minimum_set_objective() \%>\%
+p1 <- problem(sim_pu_points, sim_features) \%>\%
+  add_min_set_objective() \%>\%
   add_relative_targets(0.2)
 
 # create problem with low connectivity penalties
-p2 <- p1 \%>\% add_connectivity_penalties(1000, connectivity_matrix)
+p2 <- p1 \%>\% add_connectivity_penalties(25, sc_matrix)
 
-# create problem with high connectivity penalties
-# receive half the penalty as inner edges
-p3 <- p1 \%>\% add_connectivity_penalties(10000, connectivity_matrix)
+# create problem with higher connectivity penalties
+p3 <- p1 \%>\% add_connectivity_penalties(50, sc_matrix)
+
+# create an asymmetric connectivity matrix where links from even numered
+# units to odd numbered units have half the connectivity as from odd
+# numbered units to even units
+even_units <- seq(2, length(sim_pu_points), 2)
+odd_units <- seq(1, length(sim_pu_points), 2)
+ac_matrix <- sc_matrix
+ac_matrix[even_units, odd_units] <- 0.5 * ac_matrix[even_units, odd_units]
+
+# create problem with asymmetric connectivity and high penalties
+p4 <- p1 \%>\% add_connectivity_penalties(50, ac_matrix)
+
+\donttest{
 
 # solve problems
-s <- list(solve(p1), solve(p2), solve(p3))
+s <- list(solve(p1), solve(p2), solve(p3), solve(p4))
 
 # plot solutions
-par(mfrow=c(1,3))
+par(mfrow=c(2,2))
 
-plot(s[[1]], pch=19, main='basic solution')
-points(s[[1]][s[[1]]$solution==1,], col='green', pch=19)
+plot(s[[1]], pch=19, main="basic solution", cex=2.5)
+points(s[[1]][s[[1]]$solution==1, ], col="darkgreen", pch=19, cex=2.5)
 
-plot(s[[2]], pch=19, main='small penalties')
-points(s[[2]][s[[2]]$solution==1,], col='green', pch=19)
+plot(s[[2]], pch=19, main="small penalties", cex=2.5)
+points(s[[2]][s[[2]]$solution==1, ], col="darkgreen", pch=19, cex=2.5)
 
-plot(s[[3]], pch=19, main='high penalties')
-points(s[[3]][s[[3]]$solution==1,], col='green', pch=19)
+plot(s[[3]], pch=19, main="high penalties", cex=2.5)
+points(s[[3]][s[[3]]$solution==1, ], col="darkgreen", pch=19, cex=2.5)
+
+plot(s[[4]], pch=19, main="asymmetric connectivity", cex=2.5)
+points(s[[4]][s[[4]]$solution==1, ], col="darkgreen", pch=19, cex=2.5)
+
+}
 
 }
 \seealso{
