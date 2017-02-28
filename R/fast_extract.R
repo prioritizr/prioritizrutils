@@ -39,11 +39,9 @@ NULL
 #' @exportMethod fast_extract
 #'
 #' @examples
+#' \donttest{
 #' # load data
 #' data(sim_pu_polygons, sim_features)
-#'
-#' # select first three layers to reduce processing time
-#' sim_features <- sim_features[[1:3]]
 #'
 #' # we will investigate severals ways for extracting values from a raster
 #' # using polygons. Specifically, for each band in the raster,
@@ -66,6 +64,7 @@ NULL
 #' system.time({result <- fast_extract(sim_features, sim_pu_polygons,
 #'                                     velox = TRUE)})
 #' set_number_of_threads(1)
+#' }
 #'
 #' @aliases fast_extract,Raster,SpatialLines-method fast_extract,Raster,SpatialPoints-method fast_extract,Raster,SpatialPolygons-method
 #'
