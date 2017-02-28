@@ -14,7 +14,7 @@ test_that("add_default_solver (raster cost data)", {
   expect_true(inherits(s, "Raster"))
   expect_equal(raster::nlayers(s), 1)
   expect_true(raster::compareRaster(sim_pu_raster, s, res = TRUE, crs = TRUE,
-    tolerance = 1e-5, stopiffalse = FALSE))
+              tolerance = 1e-5, stopiffalse = FALSE))
 })
 
 test_that("add_default_solver (spatial cost data)", {
@@ -43,7 +43,7 @@ test_that("add_rsymphony_solver", {
     add_min_set_objective() %>%
     add_relative_targets(0.1) %>%
     add_binary_decision() %>%
-    add_rsymphony_solver(gap = 0.95, time_limit = 5)
+    add_rsymphony_solver(time_limit = 5)
   s <- solve(p)
   # check that solution has correct properties
   expect_true(inherits(s, "Raster"))
@@ -61,7 +61,7 @@ test_that("add_lpsymphony_solver", {
     add_min_set_objective() %>%
     add_relative_targets(0.1) %>%
     add_binary_decision() %>%
-    add_lpsymphony_solver(gap = 0.95, time_limit = 5)
+    add_lpsymphony_solver(time_limit = 5)
   s <- solve(p)
   # check that solution has correct properties
   expect_true(inherits(s, "Raster"))
@@ -69,7 +69,6 @@ test_that("add_lpsymphony_solver", {
   expect_true(raster::compareRaster(sim_pu_raster, s, res = TRUE, crs = TRUE,
                                     tolerance = 1e-5, stopiffalse = FALSE))
 })
-
 
 test_that("add_gurobi_solver", {
   skip_on_cran()
@@ -80,11 +79,11 @@ test_that("add_gurobi_solver", {
     add_min_set_objective() %>%
     add_relative_targets(0.1) %>%
     add_binary_decision() %>%
-    add_gurobi_solver(gap = 0.95, time_limit = 5)
+    add_gurobi_solver(time_limit = 5)
   s <- solve(p)
   # check that solution has correct properties
   expect_is(s, "Raster")
   expect_equal(raster::nlayers(s), 1)
   expect_true(raster::compareRaster(sim_pu_raster, s, res = TRUE, crs = TRUE,
-    tolerance = 1e-5, stopiffalse = FALSE))
+                                    tolerance = 1e-5, stopiffalse = FALSE))
 })

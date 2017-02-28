@@ -86,7 +86,7 @@ NULL
 Collection <- pproto(
   "Collection",
   repr = function(self) {
-    if (length(self$ids()) > 0)
+    if (base::length(self$ids()) > 0)
       return(paste0("<", paste(sapply(self$ids(),
                                       function(z) self[[z]]$repr()),
                          collapse = "\n"), ">"))
@@ -110,7 +110,7 @@ Collection <- pproto(
     o[!sapply(o, function(x) inherits(self[[x]], "function"))]
   },
   length = function(self) {
-    length(self$ids())
+    base::length(self$ids())
   },
   add = function(self, x) {
     assertthat::assert_that(inherits(x, "ConservationModifier"))

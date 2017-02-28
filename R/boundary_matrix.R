@@ -119,8 +119,8 @@ boundary_matrix.SpatialPolygons <- function(x, ...) {
 #' @export
 boundary_matrix.SpatialLines <- function(x, ...) {
   assertthat::assert_that(inherits(x, "SpatialLines"))
-  stop("Data represented by lines have no boundaries. ",
-    "See ?constraints for alternative constraints.")
+  stop("data represented by lines have no boundaries - ",
+    "see ?constraints for alternative constraints.")
 }
 
 #' @rdname boundary_matrix
@@ -128,6 +128,6 @@ boundary_matrix.SpatialLines <- function(x, ...) {
 #' @export
 boundary_matrix.SpatialPoints <- function(x, ...) {
   assertthat::assert_that(inherits(x, "SpatialPoints"))
-  stop("Data represented by points have no boundaries. ",
-    "See ?constraints alternative constraints.")
+  stop("data represented by points have no boundaries - ",
+    "see ?constraints alternative constraints.")
 }

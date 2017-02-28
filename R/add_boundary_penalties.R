@@ -117,7 +117,7 @@ add_boundary_penalties <- function(x, penalty, edge_factor,
       d <- list(boundary_matrix = boundary_matrix)
     } else {
      # throw error because object class not recognized
-      stop("argument to boundary_data is of a class that is not supported.")
+      stop("argument to boundary_data is of a class that is not supported")
     }
   } else {
     d <- list()

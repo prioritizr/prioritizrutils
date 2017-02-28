@@ -113,7 +113,7 @@ add_connectivity_penalties <- function(x, penalty, connectivity_data) {
       isTRUE(ncol(connectivity_data) == nrow(connectivity_data)))
   } else {
     # return error is connectivity_data is not valid matrix
-    stop("argument to connectivity_data is not of a recognized class.")
+    stop("argument to connectivity_data is not of a recognized class")
   }
   # create parameters
   p <- parameters(numeric_parameter("penalty", penalty, lower_limit = 0))
