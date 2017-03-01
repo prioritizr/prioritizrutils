@@ -4,7 +4,7 @@ NULL
 #' Add neighbor constraints
 #'
 #' Add constraints to a conservation problem to ensure that all selected
-#' planning units have a minimum number of neighbors.
+#' planning units have at least a certain number of neighbors.
 #'
 #' @param x \code{\link{ConservationProblem-class}} object.
 #'

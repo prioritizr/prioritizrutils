@@ -20,7 +20,7 @@ must have.}
 }
 \description{
 Add constraints to a conservation problem to ensure that all selected
-planning units have a minimum number of neighbors.
+planning units have at least a certain number of neighbors.
 }
 \examples{
 # create basic problem
