@@ -1,7 +1,7 @@
 #' @include internal.R Constraint-proto.R
 NULL
 
-#' Add connected constraint
+#' Add connected constraints
 #'
 #' Add constraints to a conservation problem to ensure that all selected
 #' planning units are spatially connected to each other.

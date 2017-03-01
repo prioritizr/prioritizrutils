@@ -6,6 +6,7 @@
 \alias{boundary_matrix.SpatialPolygons}
 \alias{boundary_matrix.SpatialLines}
 \alias{boundary_matrix.SpatialPoints}
+\alias{boundary_matrix.data.frame}
 \title{Boundary matrix}
 \usage{
 boundary_matrix(x, ...)
@@ -17,6 +18,8 @@ boundary_matrix(x, ...)
 \method{boundary_matrix}{SpatialLines}(x, ...)
 
 \method{boundary_matrix}{SpatialPoints}(x, ...)
+
+\method{boundary_matrix}{data.frame}(x, ...)
 }
 \arguments{
 \item{x}{\code{\link[raster]{Raster-class}},

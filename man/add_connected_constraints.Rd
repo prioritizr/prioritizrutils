@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_connected_constraints.R
 \name{add_connected_constraints}
 \alias{add_connected_constraints}
-\title{Add connected constraint}
+\title{Add connected constraints}
 \usage{
 add_connected_constraints(x)
 }

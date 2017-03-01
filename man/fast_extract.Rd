@@ -50,6 +50,7 @@ Spatial analyses will be conducted using the
   \code{\link{set_number_of_threads}} function.
 }
 \examples{
+\donttest{
 # load data
 data(sim_pu_polygons, sim_features)
 
@@ -74,6 +75,7 @@ set_number_of_threads(2)
 system.time({result <- fast_extract(sim_features, sim_pu_polygons,
                                     velox = TRUE)})
 set_number_of_threads(1)
+}
 
 }
 \seealso{

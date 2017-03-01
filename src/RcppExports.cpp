@@ -360,6 +360,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_apply_neighbor_constraints
+bool rcpp_apply_neighbor_constraints(SEXP x, arma::sp_mat connected_matrix, int k);
+RcppExport SEXP prioritizrutils_rcpp_apply_neighbor_constraints(SEXP xSEXP, SEXP connected_matrixSEXP, SEXP kSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::sp_mat >::type connected_matrix(connected_matrixSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_apply_neighbor_constraints(x, connected_matrix, k));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_apply_symmetric_boundary_constraints
 bool rcpp_apply_symmetric_boundary_constraints(SEXP x, arma::sp_mat boundary_matrix, double penalty, double edge_factor);
 RcppExport SEXP prioritizrutils_rcpp_apply_symmetric_boundary_constraints(SEXP xSEXP, SEXP boundary_matrixSEXP, SEXP penaltySEXP, SEXP edge_factorSEXP) {

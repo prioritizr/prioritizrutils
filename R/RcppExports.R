@@ -121,6 +121,10 @@ rcpp_apply_min_set_objective <- function(x, targets, costs) {
     .Call('prioritizrutils_rcpp_apply_min_set_objective', PACKAGE = 'prioritizrutils', x, targets, costs)
 }
 
+rcpp_apply_neighbor_constraints <- function(x, connected_matrix, k) {
+    .Call('prioritizrutils_rcpp_apply_neighbor_constraints', PACKAGE = 'prioritizrutils', x, connected_matrix, k)
+}
+
 rcpp_apply_symmetric_boundary_constraints <- function(x, boundary_matrix, penalty, edge_factor) {
     .Call('prioritizrutils_rcpp_apply_symmetric_boundary_constraints', PACKAGE = 'prioritizrutils', x, boundary_matrix, penalty, edge_factor)
 }

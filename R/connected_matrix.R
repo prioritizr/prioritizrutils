@@ -144,3 +144,11 @@ connected_matrix.SpatialPoints <- function(x, distance, ...) {
   # return matrix
   return(m)
 }
+
+#' @rdname connected_matrix
+#' @method connected_matrix data.frame
+#' @export
+connected_matrix.data.frame <- function(x, ...) {
+  assertthat::assert_that(inherits(x, "data.frame"))
+  stop("data stored in a data.frame do not contain spatial information")
+}

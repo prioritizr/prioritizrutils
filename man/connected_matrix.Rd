@@ -6,6 +6,7 @@
 \alias{connected_matrix.SpatialPolygons}
 \alias{connected_matrix.SpatialLines}
 \alias{connected_matrix.SpatialPoints}
+\alias{connected_matrix.data.frame}
 \title{Connected matrix}
 \usage{
 connected_matrix(x, ...)
@@ -17,6 +18,8 @@ connected_matrix(x, ...)
 \method{connected_matrix}{SpatialLines}(x, ...)
 
 \method{connected_matrix}{SpatialPoints}(x, distance, ...)
+
+\method{connected_matrix}{data.frame}(x, ...)
 }
 \arguments{
 \item{x}{\code{\link[raster]{Raster-class}} or
