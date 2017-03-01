@@ -30,8 +30,10 @@ p1 <- problem(sim_pu_polygons, sim_features) \%>\%
 
 # create problem with constraints that require 1 neighbor
 p2 <- p1 \%>\% add_neighbor_constraints(2)
+
 # create problem with constraints that require 2 neighbors
 p3 <- p1 \%>\% add_neighbor_constraints(2)
+
 # create problem with constraints that require 3 neighbors
 p4 <- p1 \%>\% add_neighbor_constraints(3)
 
