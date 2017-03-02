@@ -4,10 +4,12 @@
 \alias{add_connected_constraints}
 \title{Add connected constraints}
 \usage{
-add_connected_constraints(x)
+add_connected_constraints(x, ...)
 }
 \arguments{
 \item{x}{\code{\link{ConservationProblem-class}} object.}
+
+\item{...}{arguments passed to \code{\link{connected_matrix}}.}
 }
 \value{
 \code{\link{ConservationProblem-class}} object with the constraint
@@ -18,16 +20,15 @@ Add constraints to a conservation problem to ensure that all selected
 planning units are spatially connected to each other.
 }
 \examples{
-\dontrun{
 # create basic problem
 p1 <- problem(sim_pu_raster, sim_features) \%>\%
   add_min_set_objective() \%>\%
-  add_relative_targets(0.2) \%>\%
-  add_default_solver(time_limit=5)
+  add_relative_targets(0.2)
 
 # create problem with added connected constraints
 p2 <- p1 \%>\% add_connected_constraints()
 
+\donttest{
 # solve problems
 s <- stack(solve(p1), solve(p2))
 

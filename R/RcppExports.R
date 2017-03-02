@@ -77,8 +77,8 @@ rcpp_apply_asymmetric_boundary_constraints <- function(x, boundary_matrix, penal
     .Call('prioritizrutils_rcpp_apply_asymmetric_boundary_constraints', PACKAGE = 'prioritizrutils', x, boundary_matrix, penalty, edge_factor)
 }
 
-rcpp_apply_connected_constraints <- function(x, boundary_matrix) {
-    .Call('prioritizrutils_rcpp_apply_connected_constraints', PACKAGE = 'prioritizrutils', x, boundary_matrix)
+rcpp_apply_connected_constraints <- function(x, connected_matrix) {
+    .Call('prioritizrutils_rcpp_apply_connected_constraints', PACKAGE = 'prioritizrutils', x, connected_matrix)
 }
 
 rcpp_apply_binary_decision <- function(x) {

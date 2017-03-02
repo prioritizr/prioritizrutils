@@ -222,14 +222,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // rcpp_apply_connected_constraints
-bool rcpp_apply_connected_constraints(SEXP x, Rcpp::DataFrame boundary_matrix);
-RcppExport SEXP prioritizrutils_rcpp_apply_connected_constraints(SEXP xSEXP, SEXP boundary_matrixSEXP) {
+bool rcpp_apply_connected_constraints(SEXP x, arma::sp_mat connected_matrix);
+RcppExport SEXP prioritizrutils_rcpp_apply_connected_constraints(SEXP xSEXP, SEXP connected_matrixSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
-    Rcpp::traits::input_parameter< Rcpp::DataFrame >::type boundary_matrix(boundary_matrixSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_apply_connected_constraints(x, boundary_matrix));
+    Rcpp::traits::input_parameter< arma::sp_mat >::type connected_matrix(connected_matrixSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_apply_connected_constraints(x, connected_matrix));
     return rcpp_result_gen;
 END_RCPP
 }
