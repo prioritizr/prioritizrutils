@@ -12,7 +12,7 @@ test_that("RasterLayer", {
   expect_true(all(as.matrix(m)[upper.tri(m)] == as.matrix(s)[upper.tri(s)]))
 })
 
-test_that("SpatialPolygons", {
+test_that("SpatialPolygons (connected data)", {
   # data
   r <- raster::raster(matrix(0:8, byrow = TRUE, ncol = 3),
                       xmn = 0, xmx = 3, ymn = 0, ymx = 3)
@@ -24,7 +24,14 @@ test_that("SpatialPolygons", {
   expect_true(all(as.matrix(m)[upper.tri(m)] == as.matrix(s)[upper.tri(s)]))
 })
 
-test_that("SpatialLines", {
+test_that("SpatialPolygons (unconnected data)", {
+  data(sim_pu_polygons)
+  expect_true(all(Matrix::sparseMatrix(i = integer(0), j = integer(0),
+                                       x = numeric(0), dims = c(2, 2)) ==
+                  connected_matrix(sim_pu_polygons[c(1, 3), ])))
+})
+
+test_that("SpatialLines (connected data)", {
   # data
   x <- sp::SpatialLines(list(
     sp::Lines(ID = "1", list(sp::Line(matrix(
@@ -56,7 +63,14 @@ test_that("SpatialLines", {
   expect_true(all(m == s))
 })
 
-test_that("SpatialPoints", {
+test_that("SpatialLines (unconnected data)", {
+  data(sim_pu_lines)
+  expect_true(all(Matrix::sparseMatrix(i = integer(0), j = integer(0),
+                                       x = numeric(0), dims = c(2, 2)) ==
+                  connected_matrix(sim_pu_lines[c(1, 3), ])))
+})
+
+test_that("SpatialPoints (connected data)", {
   # data
   x <- sp::SpatialPoints(matrix(c(
     0, 0,
@@ -73,4 +87,13 @@ test_that("SpatialPoints", {
   # tests
   expect_true(inherits(m, "dsCMatrix"))
   expect_true(all(m == s))
+})
+
+test_that("SpatialPoints (unconnected data)", {
+  data(sim_pu_points)
+  expect_true(all(Matrix::sparseMatrix(i = integer(0), j = integer(0),
+                                       x = numeric(0),
+                                       dims = rep(nrow(sim_pu_points@coords),
+                                                  2)) ==
+                   connected_matrix(sim_pu_points, distance = 1e-10)))
 })

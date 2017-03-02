@@ -111,7 +111,8 @@ connected_matrix.SpatialPolygons <- function(x, ...) {
   sp::spChFIDs(x) <- as.character(seq_len(length(x)))
   m <- rcpp_list_to_matrix_indices(rgeos::gIntersects(x, byid = TRUE,
                                                       returnDense = FALSE))
-  m <- Matrix::forceSymmetric(Matrix::sparseMatrix(i = m$i, j = m$j, x = m$x))
+  m <- Matrix::forceSymmetric(Matrix::sparseMatrix(i = m$i, j = m$j, x = m$x,
+                                                   dims = rep(length(x), 2)))
   # return matrix
   return(m)
 }
@@ -124,7 +125,8 @@ connected_matrix.SpatialLines <- function(x,  ...) {
   sp::spChFIDs(x) <- as.character(seq_len(length(x)))
   m <- rcpp_list_to_matrix_indices(rgeos::gIntersects(x, byid = TRUE,
                                                       returnDense = FALSE))
-  m <- Matrix::forceSymmetric(Matrix::sparseMatrix(i = m$i, j = m$j, x = m$x))
+  m <- Matrix::forceSymmetric(Matrix::sparseMatrix(i = m$i, j = m$j, x = m$x,
+                                                   dims = rep(length(x), 2)))
   # return matrix
   return(m)
 }
