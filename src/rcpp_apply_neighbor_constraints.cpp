@@ -20,9 +20,9 @@ bool rcpp_apply_neighbor_constraints(SEXP x,
 
   // extract data from the connected matrix
   std::vector<std::size_t> pu_i;
-  pu_i.reserve(connected_matrix.n_nonzero - ptr->_number_of_planning_units);
+  pu_i.reserve(connected_matrix.n_nonzero);
   std::vector<std::size_t> pu_j;
-  pu_j.reserve(connected_matrix.n_nonzero - ptr->_number_of_planning_units);
+  pu_j.reserve(connected_matrix.n_nonzero);
   std::size_t curr_i, curr_j;
   double curr_value;
   for (arma::sp_mat::const_iterator it=connected_matrix.begin();
