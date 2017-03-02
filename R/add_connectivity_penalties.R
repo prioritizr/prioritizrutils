@@ -23,7 +23,6 @@ NULL
 #'  format). The data can be describe symmetric or asymmetric
 #'  connecitivity between planning units.
 #'
-#'
 #' @return \code{\link{ConservationProblem-class}} object.
 #'
 #' @seealso \code{\link{constraints}}, \code{\link{penalties}}.
