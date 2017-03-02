@@ -69,14 +69,14 @@ add_neighbor_constraints <- function(x, k, ...) {
                                               lower_limit = 0L)),
     calculate = function(self, x) {
       assertthat::assert_that(inherits(x, "ConservationProblem"))
-      if (is.Waiver(x$get_data("connected_matrix"))) {
+      if (is.Waiver(self$get_data("connected_matrix"))) {
         # create matrix
         m <- do.call(connected_matrix, append(list(x$data$cost),
                                               self$data$arguments))
         # coerce matrix to full matrix
         m <- methods::as(m, "dgCMatrix")
         # store data
-        x$set_data("connected_matrix", m)
+        self$set_data("connected_matrix", m)
       }
       invisible(TRUE)
     },
@@ -86,7 +86,7 @@ add_neighbor_constraints <- function(x, k, ...) {
       k <- self$parameters$get("number of neighbors")
       if (k > 0)
         rcpp_apply_neighbor_constraints(x$ptr,
-          y$get_data("connected_matrix"), k)
+          self$get_data("connected_matrix"), k)
       invisible(TRUE)
     }))
 }
