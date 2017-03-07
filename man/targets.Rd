@@ -102,6 +102,9 @@ targets that can be added to a conservation planning \code{\link{problem}}.
 }
 }
 \examples{
+# load data
+data(sim_pu_raster, sim_features)
+
 # create basic problem
 p <- problem(sim_pu_raster, sim_features) \%>\%
   add_min_set_objective()

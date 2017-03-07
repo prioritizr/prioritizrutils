@@ -12,7 +12,7 @@ NULL
 #' planning units are spatially connected to each other.
 #'   }
 #'
-#'   \item{\code{\link{add_corridors_constraints}}}{
+#'   \item{\code{\link{add_corridor_constraints}}}{
 #' It is important to maintain connectivity between reserves. However,
 #' some areas are more difficult for species to traverse then other areas.
 #' As a consequence, even though reserves may be connected, species may

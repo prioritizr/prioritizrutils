@@ -14,7 +14,7 @@
 \item{b}{\code{\link{Solver-class}} object. Not used if \code{a} is an
 \code{\link{ConservationProblem-class}} object.}
 
-\item{...}{not used.}
+\item{...}{arguments passed to \code{\link{compile}}.}
 }
 \value{
 A \code{\link[raster]{RasterLayer-class}},

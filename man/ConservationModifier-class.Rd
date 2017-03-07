@@ -24,6 +24,10 @@ far reaching effects.}
 
 \item{$data}{\code{list} object with data.}
 
+\item{$compressed_formulation}{\code{logical} can this constraint be applied
+   to the compressed version of the conservation planning problem?. Defaults
+   to \code{TRUE}.}
+
 }
 }
 

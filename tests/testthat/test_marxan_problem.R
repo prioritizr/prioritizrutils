@@ -189,21 +189,21 @@ test_that("data.frame input (compile asymmetric boundary penalties)", {
   expect_equal(b_row_labels, rep(c("b1", "b2"), length(c_data@i)))
   expect_equal(b_sense, rep(c("<=", "<="), length(c_data@i)))
   expect_equal(b_rhs, rep(c(0, 0), length(c_data@i)))
+  # test that problem matrix is correctly specified
+  a <- o$A()
+  a <- a[-1 * seq_len(n_f), ] # extract connection constraints
+  a <- as.matrix(a) # convert to regular matrix
+  pu_pos <- which(a == -1, arr.ind = TRUE)
+  pu_ij_pos <- which(a == 1, arr.ind = TRUE)
+  pu_i <- c_data@i + 1 # add one to convert to base-1 indexing
+  pu_j <- c_data@j + 1
+  # test that they are expect_equal
   for (pos in seq_along(c_data@i)) {
-    # get current planning unit indices
-    curr_i <- c_data@i[pos] + 1
-    curr_j <- c_data@j[pos] + 1
-    # find connections with i and j
-    rows_i <- which(o$A()[, curr_i] == -1)
-    rows_j <- which(o$A()[, curr_j] == -1)
-    # assert that there is a connection between them
-    connection_columns_for_i <- sapply(rows_i,
-                                       function(r) which(o$A()[r, ] == 1))
-    connection_columns_for_j <- sapply(rows_j,
-                                       function(r) which(o$A()[r, ] == 1))
-    # test that connections exist in matrix
-    expect_true(1 == length(intersect(connection_columns_for_i,
-                                      connection_columns_for_j)))
+    rows_i <- pu_pos[, 1] == pu_i[pos]
+    rows_j <- pu_pos[, 1] == pu_j[pos]
+    columns_ij_i <- pu_ij_pos[, 1] %in% rows_i
+    columns_ij_j <- pu_ij_pos[, 1] %in% rows_j
+    expect_equal(sum(columns_ij_i & columns_ij_j), 1)
   }
 })
 

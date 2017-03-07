@@ -72,6 +72,9 @@ NULL
 #'   \code{\link{problem}}, \code{\link{add_feature_weights}}.
 #'
 #' @examples
+#' # load data
+#' data(sim_pu_raster, sim_features)
+#'
 #' # create basic problem
 #' p <- problem(sim_pu_raster, sim_features) %>%
 #'   add_min_set_objective()

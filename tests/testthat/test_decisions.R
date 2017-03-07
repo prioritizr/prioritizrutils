@@ -79,7 +79,7 @@ test_that("add_semicontinuous_decision (compile)", {
   expect_error(p %>% add_semicontinuous_decision(c(1, 3)))
 })
 
-test_that("add_semicontinuous_decision (compile)", {
+test_that("add_semicontinuous_decision (solve)", {
   skip_on_cran()
   # generate solution
   data(sim_pu_raster, sim_features)
@@ -90,6 +90,6 @@ test_that("add_semicontinuous_decision (compile)", {
     add_default_solver(time_limit = 5) %>%
     solve()
   # check that solutions have correct decisions
-  expect_true(isTRUE(all(na.omit(values(s)) <= 0.3)))
+  expect_true(isTRUE(all(round(na.omit(values(s)), 5) <= 0.3)))
   expect_true(isTRUE(all(na.omit(values(s)) >= 0)))
 })

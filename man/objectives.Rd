@@ -77,7 +77,7 @@ added to a conservation problem.
 }
 \examples{
 # load data
-data(sim_pu_raster, sim_features, sim_phlyogeny)
+data(sim_pu_raster, sim_features, sim_phylogeny)
 
 # create base problem
 p <- problem(sim_pu_raster, sim_features) \%>\%

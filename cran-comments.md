@@ -12,17 +12,22 @@ Comments for submission to CRAN
 
 # Check results
 
-0 errors | 0 warnings | 1 notes
+0 errors | 0 warnings | 2 notes
 
 ## Notes
 
-* _Packages suggested but not available for checking:
-  'gurobi', 'lpsymphony'_
+* _Packages suggested but not available for checking: 'gurobi',_
+  _'prioritizrdata'_
 
-  The 'lpsymphony' package is avaiable from BioConductor, and the 'gurobi'
-  is distributed with the Gurobi software suite. The package Description
-  contains information on installing these packages.
+  The 'gurobi' R package is distributed with the Gurobi software suite. The
+  package Description contains information on installing these packages.
 
+* _checking installed package size_
+    installed size is  8.1Mb
+    sub-directories of 1Mb or more:
+      libs   7.2Mb
+
+  The package makes extensive use of compiled code to reduce processing times.
 
 # Downstream dependencies
 This package is not present on CRAN and therefore has no packages depending on

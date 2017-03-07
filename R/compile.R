@@ -8,7 +8,23 @@ NULL
 #'
 #' @param x \code{\link{ConservationProblem-class}} object.
 #'
+#' @param compressed_formulation \code{logical} should the conservation problem
+#'   compiled into a compressed version of a planning problem?
+#'   If \code{TRUE} then the problem is expressed using the compressed
+#'   formulation. If \code{FALSE} then the problem is expressed using the
+#'   expanded formulation. If \code{NA}, then the compressed is used unless one
+#'   of the constraints requires the expanded formulation. This argument
+#'   defaults to \code{NA}.
+#'
 #' @param ... not used.
+#'
+#' @details \strong{In nearly all cases, the default argument to
+#'   \code{formulation} should be used}. The only situation where manually
+#'   setting the argument to \code{formulation} is desireable is during testing.
+#'   Manually setting the argument to \code{formulation} will at best
+#'   have no effect on the problem. At worst, it may result in
+#'   an error, a mis-specfied problem, or unnecessarily long
+#'   solve times.
 #'
 #' @return \code{\link{OptimizationProblem-class}} object.
 #'
@@ -24,14 +40,18 @@ NULL
 #' # print the optimization problem
 #' print(o)
 #'
+#' # print the optimization problem
+#' print(o)
+#'
 #' @export
 compile <- function(x, ...) UseMethod("compile")
 
 #' @rdname compile
 #' @export
-compile.ConservationProblem <- function(x, ...) {
+compile.ConservationProblem <- function(x, compressed_formulation = NA, ...) {
   # assert arguments are valid
-  assertthat::assert_that(inherits(x, "ConservationProblem"))
+  assertthat::assert_that(inherits(x, "ConservationProblem"),
+    is.na(compressed_formulation) || assertthat::is.flag(compressed_formulation))
   # sanity checks
   if (inherits(x$objective, "MaximumCoverageObjective") &
       !is.Waiver(x$targets))
@@ -47,8 +67,12 @@ compile.ConservationProblem <- function(x, ...) {
   if (is.Waiver(x$solver))
     x <- add_default_solver(x)
   op <- new_optimization_problem()
+  # determine if expanded formulation is required
+  if (is.na(compressed_formulation))
+    compressed_formulation <- all(sapply(x$constraints$ids(),
+      function(i) x$constraints[[i]]$compressed_formulation))
   # add rij data to optimization problem
-  rcpp_add_rij_data(op$ptr, x$get_data("rij_matrix"))
+  rcpp_add_rij_data(op$ptr, x$get_data("rij_matrix"), compressed_formulation)
   # add decision types to optimization problem
   x$decision$calculate(x)
   x$decision$apply(op)

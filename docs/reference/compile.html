@@ -88,7 +88,7 @@
     <pre><span class='fu'>compile</span>(<span class='no'>x</span>, <span class='no'>...</span>)
 
 <span class='co'># S3 method for ConservationProblem</span>
-<span class='fu'>compile</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>compile</span>(<span class='no'>x</span>, <span class='kw'>compressed_formulation</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <dl class="dl-horizontal">
@@ -96,11 +96,29 @@
       <dd><code><a href='ConservationProblem-class.html'>ConservationProblem-class</a></code> object.</dd>
       <dt>...</dt>
       <dd>not used.</dd>
+      <dt>compressed_formulation</dt>
+      <dd><code>logical</code> should the conservation problem
+compiled into a compressed version of a planning problem?
+If <code>TRUE</code> then the problem is expressed using the compressed
+formulation. If <code>FALSE</code> then the problem is expressed using the
+expanded formulation. If <code>NA</code>, then the compressed is used unless one
+of the constraints requires the expanded formulation. This argument
+defaults to <code>NA</code>.</dd>
     </dl>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code><a href='OptimizationProblem-class.html'>OptimizationProblem-class</a></code> object.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><strong>In nearly all cases, the default argument to
+  <code>formulation</code> should be used</strong>. The only situation where manually
+  setting the argument to <code>formulation</code> is desireable is during testing.
+  Manually setting the argument to <code>formulation</code> will at best
+  have no effect on the problem. At worst, it may result in
+  an error, a mis-specfied problem, or unnecessarily long
+  solve times.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -117,6 +135,11 @@
 #&gt; <span class='message'>  model sense: min</span>
 #&gt; <span class='message'>  dimensions:  5, 90, 450 (nrow, ncol, ncell)</span>
 #&gt; <span class='message'>  variables:   90 (B)</span></div><div class='input'>
+<span class='co'># print the optimization problem</span>
+<span class='fu'><a href='print.html'>print</a></span>(<span class='no'>o</span>)</div><div class='output co'>#&gt; <span class='message'>optimization problem</span>
+#&gt; <span class='message'>  model sense: min</span>
+#&gt; <span class='message'>  dimensions:  5, 90, 450 (nrow, ncol, ncell)</span>
+#&gt; <span class='message'>  variables:   90 (B)</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -125,6 +148,8 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

@@ -19,12 +19,14 @@ SEXP rcpp_predefined_optimization_problem(Rcpp::List l) {
   std::vector<double> lb = Rcpp::as<std::vector<double>>(l["lb"]);
   std::vector<double> ub = Rcpp::as<std::vector<double>>(l["ub"]);
   std::vector<double> rhs = Rcpp::as<std::vector<double>>(l["rhs"]);
+  bool compressed_formulation = Rcpp::as<bool>(l["compressed_formulation"]);
   std::vector<std::string> sense = Rcpp::as<std::vector<std::string>>(l["sense"]);
   std::vector<std::string> vtype = Rcpp::as<std::vector<std::string>>(l["vtype"]);
   std::vector<std::string> row_ids = Rcpp::as<std::vector<std::string>>(l["row_ids"]);
   std::vector<std::string> col_ids = Rcpp::as<std::vector<std::string>>(l["col_ids"]);
   OPTIMIZATIONPROBLEM* x = new OPTIMIZATIONPROBLEM(modelsense,number_of_features, number_of_planning_units,
-                                                   A_i,A_j,A_x,obj,lb,ub,rhs,sense,vtype,row_ids,col_ids);
+                                                   A_i,A_j,A_x,obj,lb,ub,rhs,sense,vtype,row_ids,col_ids,
+                                                   compressed_formulation);
   Rcpp::XPtr<OPTIMIZATIONPROBLEM> ptr = Rcpp::XPtr<OPTIMIZATIONPROBLEM>(x, true);
   return(ptr);
 }
@@ -46,7 +48,7 @@ std::size_t rcpp_get_optimization_problem_ncell(SEXP x) {
 
 // [[Rcpp::export]]
 Rcpp::List rcpp_get_optimization_problem_A(SEXP x) {
-  return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->A());  
+  return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->A());
 }
 
 // [[Rcpp::export]]
@@ -72,7 +74,7 @@ std::vector<std::string> rcpp_get_optimization_problem_vtype(SEXP x) {
 
 // [[Rcpp::export]]
 std::vector<double> rcpp_get_optimization_problem_obj(SEXP x) {
-  return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_obj);  
+  return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_obj);
 }
 
 // [[Rcpp::export]]
@@ -82,26 +84,30 @@ std::vector<double> rcpp_get_optimization_problem_rhs(SEXP x) {
 
 // [[Rcpp::export]]
 std::vector<std::string> rcpp_get_optimization_problem_sense(SEXP x) {
-  return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_sense);  
+  return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_sense);
 }
 
 // [[Rcpp::export]]
 std::vector<double> rcpp_get_optimization_problem_lb(SEXP x) {
-  return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_lb);  
+  return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_lb);
 }
 
 // [[Rcpp::export]]
 std::vector<double> rcpp_get_optimization_problem_ub(SEXP x) {
-  return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_ub);  
+  return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_ub);
 }
 
 // [[Rcpp::export]]
 std::vector<std::string> rcpp_get_optimization_problem_col_ids(SEXP x) {
-  return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_col_ids); 
+  return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_col_ids);
 }
 
 // [[Rcpp::export]]
 std::vector<std::string> rcpp_get_optimization_problem_row_ids(SEXP x) {
-  return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_row_ids); 
+  return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_row_ids);
 }
 
+// [[Rcpp::export]]
+bool rcpp_get_optimization_problem_compressed_formulation(SEXP x) {
+  return(Rcpp::as<Rcpp::XPtr<OPTIMIZATIONPROBLEM>>(x)->_compressed_formulation);
+}

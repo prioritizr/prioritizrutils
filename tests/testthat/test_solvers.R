@@ -55,6 +55,7 @@ test_that("add_rsymphony_solver", {
 test_that("add_lpsymphony_solver", {
   skip_on_cran()
   skip_if_not_installed("lpsymphony")
+  skip_on_os("linux") # lpsymphony package crashes unpredicatbly on Ubuntu 16.04
   # make data
   data(sim_pu_raster, sim_features)
   p <- problem(sim_pu_raster, sim_features) %>%

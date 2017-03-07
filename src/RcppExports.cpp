@@ -195,15 +195,27 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rcpp_get_optimization_problem_compressed_formulation
+bool rcpp_get_optimization_problem_compressed_formulation(SEXP x);
+RcppExport SEXP prioritizrutils_rcpp_get_optimization_problem_compressed_formulation(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_get_optimization_problem_compressed_formulation(x));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_add_rij_data
-bool rcpp_add_rij_data(SEXP x, arma::sp_mat rij);
-RcppExport SEXP prioritizrutils_rcpp_add_rij_data(SEXP xSEXP, SEXP rijSEXP) {
+bool rcpp_add_rij_data(SEXP x, arma::sp_mat rij, bool compressed_formulation);
+RcppExport SEXP prioritizrutils_rcpp_add_rij_data(SEXP xSEXP, SEXP rijSEXP, SEXP compressed_formulationSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
     Rcpp::traits::input_parameter< arma::sp_mat >::type rij(rijSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_add_rij_data(x, rij));
+    Rcpp::traits::input_parameter< bool >::type compressed_formulation(compressed_formulationSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_add_rij_data(x, rij, compressed_formulation));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -230,6 +242,19 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
     Rcpp::traits::input_parameter< arma::sp_mat >::type connected_matrix(connected_matrixSEXP);
     rcpp_result_gen = Rcpp::wrap(rcpp_apply_connected_constraints(x, connected_matrix));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rcpp_apply_corridor_constraints
+bool rcpp_apply_corridor_constraints(SEXP x, Rcpp::List connected_matrix_list, Rcpp::NumericVector threshold);
+RcppExport SEXP prioritizrutils_rcpp_apply_corridor_constraints(SEXP xSEXP, SEXP connected_matrix_listSEXP, SEXP thresholdSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
+    Rcpp::traits::input_parameter< Rcpp::List >::type connected_matrix_list(connected_matrix_listSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type threshold(thresholdSEXP);
+    rcpp_result_gen = Rcpp::wrap(rcpp_apply_corridor_constraints(x, connected_matrix_list, threshold));
     return rcpp_result_gen;
 END_RCPP
 }

@@ -69,8 +69,12 @@ rcpp_get_optimization_problem_row_ids <- function(x) {
     .Call('prioritizrutils_rcpp_get_optimization_problem_row_ids', PACKAGE = 'prioritizrutils', x)
 }
 
-rcpp_add_rij_data <- function(x, rij) {
-    .Call('prioritizrutils_rcpp_add_rij_data', PACKAGE = 'prioritizrutils', x, rij)
+rcpp_get_optimization_problem_compressed_formulation <- function(x) {
+    .Call('prioritizrutils_rcpp_get_optimization_problem_compressed_formulation', PACKAGE = 'prioritizrutils', x)
+}
+
+rcpp_add_rij_data <- function(x, rij, compressed_formulation) {
+    .Call('prioritizrutils_rcpp_add_rij_data', PACKAGE = 'prioritizrutils', x, rij, compressed_formulation)
 }
 
 rcpp_apply_asymmetric_boundary_constraints <- function(x, boundary_matrix, penalty, edge_factor) {
@@ -79,6 +83,10 @@ rcpp_apply_asymmetric_boundary_constraints <- function(x, boundary_matrix, penal
 
 rcpp_apply_connected_constraints <- function(x, connected_matrix) {
     .Call('prioritizrutils_rcpp_apply_connected_constraints', PACKAGE = 'prioritizrutils', x, connected_matrix)
+}
+
+rcpp_apply_corridor_constraints <- function(x, connected_matrix_list, threshold) {
+    .Call('prioritizrutils_rcpp_apply_corridor_constraints', PACKAGE = 'prioritizrutils', x, connected_matrix_list, threshold)
 }
 
 rcpp_apply_binary_decision <- function(x) {

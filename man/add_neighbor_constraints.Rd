@@ -29,7 +29,7 @@ p1 <- problem(sim_pu_polygons, sim_features) \%>\%
   add_relative_targets(0.2)
 
 # create problem with constraints that require 1 neighbor
-p2 <- p1 \%>\% add_neighbor_constraints(2)
+p2 <- p1 \%>\% add_neighbor_constraints(1)
 
 # create problem with constraints that require 2 neighbors
 p3 <- p1 \%>\% add_neighbor_constraints(2)

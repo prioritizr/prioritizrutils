@@ -24,6 +24,10 @@ methods::setOldClass("ConservationModifier")
 #'
 #' \item{$data}{\code{list} object with data.}
 #'
+#' \item{$compressed_formulation}{\code{logical} can this constraint be applied
+#'    to the compressed version of the conservation planning problem?. Defaults
+#'    to \code{TRUE}.}
+#'
 #' }
 #'
 #' @section Usage:
@@ -126,6 +130,7 @@ ConservationModifier <- pproto(
   name = character(0),
   parameters = parameters(),
   data = list(),
+  compressed_formulation = TRUE,
   calculate = function(self, y) {
     invisible(TRUE)
   },

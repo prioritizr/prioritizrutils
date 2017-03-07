@@ -92,7 +92,11 @@ check_that <- function(x) {
 #'
 #' @noRd
 matrix_to_triplet_dataframe <- function(x) {
-  data.frame(i = x@i, j = x@j, x = x@x)
+  if (inherits(x, c("dsCMatrix")))
+    x <- methods::as(x, "dsTMatrix")
+  if (inherits(x, c("dgCMatrix")))
+    x <- methods::as(x, "dgTMatrix")
+  data.frame(i = x@i + 1, j = x@j + 1, x = x@x)
 }
 
 #' Convert a triplet data.frame to a matrix

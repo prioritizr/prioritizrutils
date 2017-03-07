@@ -86,9 +86,9 @@ connected_matrix <- function(x, ...) UseMethod("connected_matrix")
 #' @method connected_matrix Raster
 #' @export
 connected_matrix.Raster <- function(x, directions=4L, ...) {
-  assertthat::assert_that(inherits(x, "Raster"))
-  assertthat::assert_that(
-    isTRUE(raster::nlayers(x) == 1))
+  assertthat::assert_that(inherits(x, "Raster"),
+                          assertthat::is.count(directions),
+                          isTRUE(raster::nlayers(x) == 1))
   # indices of cells with finite values
   include <- raster::Which(is.finite(x), cells = TRUE)
   # find the neighboring indices of these cells

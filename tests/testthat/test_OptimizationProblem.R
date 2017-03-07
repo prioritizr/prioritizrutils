@@ -23,7 +23,8 @@ test_that("get methods", {
     sense = c("=", "=", "="),
     vtype = c("b", "s", "c"),
     row_ids = c("a", "b", "c"),
-    col_ids = c("d", "e", "f"))
+    col_ids = c("d", "e", "f"),
+    compressed_formulation = FALSE)
   x <- rcpp_predefined_optimization_problem(l)
   # tests
   expect_equal(rcpp_get_optimization_problem_nrow(x), 3)
@@ -43,4 +44,5 @@ test_that("get methods", {
                l$number_of_planning_units)
   expect_equal(rcpp_get_optimization_problem_col_ids(x), l$col_ids)
   expect_equal(rcpp_get_optimization_problem_row_ids(x), l$row_ids)
+  expect_equal(rcpp_get_optimization_problem_compressed_formulation(x), l$compressed_formulation)
 })

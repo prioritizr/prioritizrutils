@@ -12,7 +12,7 @@ NULL
 #' @param b \code{\link{Solver-class}} object. Not used if \code{a} is an
 #'   \code{\link{ConservationProblem-class}} object.
 #'
-#' @param ... not used.
+#' @param ... arguments passed to \code{\link{compile}}.
 #'
 #' @details If a \code{\link{OptimizationProblem-class}} is supplied, then the
 #'   solution is returned as a \code{logical} showing the status of each
@@ -82,7 +82,7 @@ methods::setMethod(
     if (inherits(a$solver, "Waiver"))
       a <- add_default_solver(a)
     # compile and solve optimisation problem
-    opt <- compile.ConservationProblem(a)
+    opt <- compile.ConservationProblem(a, ...)
     sol <- solve(opt, a$solver)[seq_len(opt$number_of_planning_units())]
     # check that solution is valid
     if (is.null(sol)) {

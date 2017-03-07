@@ -5,7 +5,7 @@ test_that("cluster functions", {
   expect_true(is.null(asNamespace("prioritizrutils")$.pkgenv$cluster))
   # create parallel backend
   set_number_of_threads(2)
-  # check that it is created
+  # # check that it is created
   expect_true(is.parallel())
   expect_false(is.null(asNamespace("prioritizrutils")$.pkgenv$cluster))
   expect_equal(get_number_of_threads(), 2L)

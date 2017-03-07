@@ -57,6 +57,7 @@ site:
 
 test:
 	R --slave -e "devtools::test()" > test.log 2>&1
+	rm -f tests/testthat/Rplots.pdf
 
 check:
 	R --slave -e "devtools::check()" > check.log 2>&1
