@@ -197,7 +197,6 @@ test_that("maximum coverage objective (compile binary decisions)", {
   })
 })
 
-
 test_that("maximum coverage objective (solve binary decisions)", {
   skip_on_cran()
   # check that solution is feasible
@@ -208,5 +207,4 @@ test_that("maximum coverage objective (solve binary decisions)", {
     add_boundary_penalties(2, 0.5) %>%
     add_default_solver(time_limit = 5) %>%
     solve()
-
 })

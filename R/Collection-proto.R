@@ -28,6 +28,8 @@ methods::setOldClass("Collection")
 #'
 #' \code{x$add}
 #'
+#' \code{x$remove(id)}
+#'
 #' \code{x$get_parameter(id)}
 #'
 #' \code{x$set_parameter(id, value)}
@@ -60,6 +62,8 @@ methods::setOldClass("Collection")
 #' \item{length}{\code{integer} number of objects inside collection.}
 #'
 #' \item{add}{add \code{\link{ConservationModifier-class}} object.}
+#'
+#' \item{remove}{remove an item from the collection.}
 #'
 #' \item{get_parameter}{retrieve the value of a parameter in the object
 #'   using an \code{id} object.}
@@ -105,6 +109,20 @@ Collection <- pproto(
     }
     n[r]
   },
+  find = function(self, x) {
+    assertthat::assert_that(assertthat::is.string(x) || is.id(x))
+      if (inherits(x, "Id")) {
+        return(x)
+    } else {
+      n <- self$ids()
+      x <- match(x, sapply(n, function(j) self[[j]]$name))
+      if (!is.finite(x))
+        stop("item with matching name not found")
+      if (base::length(x) > 1)
+        stop("multiple items with the same name")
+      return(n[x])
+    }
+  },
   ids = function(self) {
     o <- self$ls()
     o[!sapply(o, function(x) inherits(self[[x]], "function"))]
@@ -116,6 +134,11 @@ Collection <- pproto(
     assertthat::assert_that(inherits(x, "ConservationModifier"))
     self[[new_id()]] <- x
     invisible()
+  },
+  remove = function(self, x) {
+    assertthat::assert_that(is.Id(x))
+    rm(list = as.character(x), envir = self)
+    invisible(TRUE)
   },
   get_parameter = function(self, id) {
     assertthat::assert_that(inherits(id), "Id")

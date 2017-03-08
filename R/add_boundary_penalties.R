@@ -61,7 +61,7 @@ NULL
 #'
 #' @export
 add_boundary_penalties <- function(x, penalty, edge_factor,
-                                   boundary_data=NULL) {
+                                   boundary_data = NULL) {
   # assert valid arguments
   assertthat::assert_that(inherits(x, "ConservationProblem"),
     isTRUE(all(is.finite(penalty))), assertthat::is.scalar(penalty),

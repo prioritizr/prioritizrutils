@@ -30,6 +30,8 @@ This prototype represents a collection of
 
 \code{x$add}
 
+\code{x$remove(id)}
+
 \code{x$get_parameter(id)}
 
 \code{x$set_parameter(id, value)}
@@ -66,6 +68,8 @@ This prototype represents a collection of
 \item{length}{\code{integer} number of objects inside collection.}
 
 \item{add}{add \code{\link{ConservationModifier-class}} object.}
+
+\item{remove}{remove an item from the collection.}
 
 \item{get_parameter}{retrieve the value of a parameter in the object
   using an \code{id} object.}

@@ -36,7 +36,7 @@ new_id <- function() {
 
 #' @rdname as
 #' @export
-as.id <- function(x, ...) UseMethod("as.Id")
+as.Id <- function(x, ...) UseMethod("as.Id")
 
 #' @rdname as
 #' @export
